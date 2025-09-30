@@ -7,9 +7,14 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
     public class CharacterMovement : MonoBehaviour, IEntityComponent
     {
         [SerializeField] private StatSO moveSpeedStat;
+        
+        private Entity _entity;
+        private EntityStatCompo _statCompo;
+        
         public void Initialize(Entity entity)
         {
-            
+            _entity = entity;
+            _statCompo = entity.GetCompo<EntityStatCompo>();
         }
     }
 }
