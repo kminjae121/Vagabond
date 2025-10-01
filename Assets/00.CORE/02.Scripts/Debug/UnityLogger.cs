@@ -2,7 +2,7 @@
 
 namespace Code.Core.Debug
 {
-    public static class Logger
+    public static class UnityLogger
     {
 #if ONLOG && UNITY_EDITOR
         public static void Log<T>(T message) => UnityEngine.Debug.Log(message);
