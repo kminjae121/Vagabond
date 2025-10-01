@@ -1,0 +1,66 @@
+﻿using System;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+namespace _00.CORE._02.Scripts.Input
+{
+    [CreateAssetMenu(menuName = "SO/Player")]
+    public class InputReader : ScriptableObject, Controls.IPlayerActions
+    {
+        private Controls _controlls;
+
+
+        public Vector2 MoveValue;
+
+        public Action<bool> SlidingEvent { get; set; }
+        
+        public Action JumpKeyEvent { get; set; }
+
+
+        private void OnEnable()
+        {
+            if (_controlls == null)
+            {
+                _controlls = new Controls();
+            }
+
+            _controlls.Player.SetCallbacks(this);
+            _controlls.Player.Enable();
+        }
+
+        private void OnDestroy()
+        {
+            _controlls.Player.Disable();
+        }
+
+        public void OnMove(InputAction.CallbackContext context)
+        {
+            MoveValue = context.ReadValue<Vector2>();
+        }
+
+        public void OnAttack(InputAction.CallbackContext context)
+        {
+        }
+
+        public void OnSprint(InputAction.CallbackContext context)
+        {
+        }
+
+        public void OnJump(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                JumpKeyEvent.Invoke();
+            }
+            if (context.started)
+            {
+                SlidingEvent?.Invoke(true);
+            }
+            else if (context.canceled) 
+            {
+                SlidingEvent?.Invoke(false);
+            }
+        }
+    }
+}
