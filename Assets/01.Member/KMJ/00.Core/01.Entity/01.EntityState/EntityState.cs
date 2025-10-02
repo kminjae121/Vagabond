@@ -25,7 +25,11 @@ public abstract class EntityState
     }
     
     public virtual void Update() { }
-    
+
+    public virtual void FixedUpdate()
+    {
+    }
+
     public virtual void Exit()
     {
         _entityAnimator.SetParam(_animationHash, false);

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using _01.Member.KMJ._00.Core._01.Entity._01.EntityState;
 using UnityEngine;
 
-public class EntityStatemachine
+public class EntityStateMachine
     {
         public EntityState CurrentState { get; set; }
         private Dictionary<string, EntityState> _states;
 
-        public EntityStatemachine(Entity entity, StateDataSO[] stateList)
+        public EntityStateMachine(Entity entity, StateDataSO[] stateList)
         {
             _states = new Dictionary<string, EntityState>();
             foreach (StateDataSO state in stateList)
@@ -37,5 +37,10 @@ public class EntityStatemachine
         public void UpdateStateMachine()
         {
             CurrentState?.Update();
+        }
+
+        public void FixedUpdateMachine()
+        {
+            CurrentState?.FixedUpdate();
         }
     }
