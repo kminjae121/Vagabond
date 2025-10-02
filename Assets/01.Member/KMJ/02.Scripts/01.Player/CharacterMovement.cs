@@ -28,7 +28,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         public float baseSpeed { get; private set; }= 8f;
         
         public float maxmoveSpeed { get; private set; }= 10f;
-        public float targetSpeed { get; private set; }= 8f;
+        public float targetSpeed { get; private set; }= 0;
         
         public float jumpSpeed { get; private set; }
 
@@ -80,11 +80,11 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         {
             moveSpeed = _statCompo.SubscribeStat(moveSpeedStat, HandleMoveSpeedChange, 4f);
             
-            baseSpeed = _statCompo.SubscribeStat(moveSpeedStat, HandleMoveSpeedChange, 4f);
-            
             jumpSpeed = _statCompo.SubscribeStat(jumpSpeedStat, HandleJumpPowerChange, 3f);
             
             maxmoveSpeed = _statCompo.SubscribeStat(maxMoveSpeedStat, HandleMaxMoveSpeedChange, 3f);
+
+            baseSpeed = moveSpeed;
         }
 
         private void OnDestroy()
@@ -95,7 +95,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         private void HandleMoveSpeedChange(StatSO stat, float currentvalue, float previousvalue)
         {
             moveSpeed = currentvalue;
-            baseSpeed = currentvalue;
         }
         
         
@@ -125,7 +124,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
 
         public void SetReturnOriginMoveSpeed()
         {
-            moveSpeed = baseSpeed;
+            targetSpeed = baseSpeed;
         }
 
         private void Update()

@@ -18,7 +18,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         
         public PlayerCamFirst _camCompo { get; set; }
 
-        private CharacterMovement _movementCompo;
+        public CharacterMovement _movementCompo { get; private set; }
         
         protected override void Awake()
         {

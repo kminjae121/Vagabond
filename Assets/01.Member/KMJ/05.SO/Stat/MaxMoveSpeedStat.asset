@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39e8d17d953649bd9f20f6b6971775c2, type: 3}
   m_Name: MaxMoveSpeedStat
   m_EditorClassIdentifier: 
-  statName: MoveSpeed
+  statName: MaxMoveSpeed
   description: 
   icon: {fileID: 0}
   displayName: 
