@@ -556,6 +556,7 @@ GameObject:
   - component: {fileID: 917204921}
   - component: {fileID: 917204922}
   - component: {fileID: 917204923}
+  - component: {fileID: 917204924}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -822,6 +823,19 @@ MonoBehaviour:
   leftPos: {fileID: 1459559836}
   rightPos: {fileID: 337207036}
   checkSize: {x: 0.8, y: 1.5, z: 1}
+--- !u!114 &917204924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917204911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a5997bdb4a74bf7baddb898670a85e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputReader: {fileID: 11400000, guid: 24b9526a025a0b345ba14a70e5eb829f, type: 2}
 --- !u!1 &1171281740
 GameObject:
   m_ObjectHideFlags: 0

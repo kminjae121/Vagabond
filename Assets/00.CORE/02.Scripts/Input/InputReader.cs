@@ -22,7 +22,7 @@ namespace _00.CORE._02.Scripts.Input
         public Action ChargingAttackEvent { get; set; }
         
         public Action AttackEvent { get; set; }
-        
+
 
         private void OnEnable()
         {
@@ -60,7 +60,14 @@ namespace _00.CORE._02.Scripts.Input
 
         public void OnCharging(InputAction.CallbackContext context)
         {
-           
+            if (context.started)
+            {
+                ChargingEvent?.Invoke();
+            }
+            else if (context.canceled)
+            {
+                ChargingAttackEvent?.Invoke();
+            }
         }
 
         public void OnJump(InputAction.CallbackContext context)
