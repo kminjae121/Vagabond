@@ -35,7 +35,7 @@ namespace _00.CORE._02.Scripts.Input
             _controlls.Player.Enable();
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             _controlls.Player.Disable();
         }

@@ -14,17 +14,18 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
         
         public override void Enter()
         {
+            _atkCompo.ChargingAttack();
+            _player.SetJumping(false);
             base.Enter();
-            _atkCompo.ChargeAttackSec();
         }
 
         public override void Update()
         {
-            base.Update();
         }
 
         public override void Exit()
         {
+            _player.SetJumping(true);
             base.Exit();
         }
     }
