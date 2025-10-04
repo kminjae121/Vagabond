@@ -35,8 +35,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
 
         private void HandleCharge()
         {
-            StartChargingTimer();
-            //_player.ChangeState("CHARGE");
+            _player.ChangeState("CHARGE");
         }
 
         private void HandleAttack()

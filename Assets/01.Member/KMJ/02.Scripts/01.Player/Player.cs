@@ -26,9 +26,9 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         {
             base.Awake();
             _stateMachine = new EntityStateMachine(this, stateDataList);
-            _wallSlidingCompo = GetComponent<WallSliding>();
+            _wallSlidingCompo = GetCompo<WallSliding>();
             _camCompo = GetComponentInChildren<PlayerCamFirst>();
-            _movementCompo = GetComponent<CharacterMovement>();  
+            _movementCompo = GetCompo<CharacterMovement>();  
 
             _inputReader.JumpKeyEvent += HandleJump;
             _inputReader.SlidingEvent += HandleWallSliding;
