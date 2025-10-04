@@ -42,7 +42,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         {
             _entity = entity;
             _statCompo = entity.GetCompo<EntityStatCompo>();
-            _rbCompo = GetComponent<Rigidbody>();
+            _rbCompo = entity.GetComponent<Rigidbody>();
             AfterInitialize();
         }
         
