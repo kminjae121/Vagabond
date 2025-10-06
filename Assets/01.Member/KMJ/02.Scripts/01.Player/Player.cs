@@ -71,7 +71,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
 
         private void HandleJump()
         {
-
             if (isJumping)
             {
                 if (_wallSlidingCompo.CanSlidingWall() == "None")

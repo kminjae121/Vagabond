@@ -529,6 +529,12 @@ MonoBehaviour:
   - stat: {fileID: 11400000, guid: 15923a10eacd89b4d8bb6235c032a264, type: 2}
     isUseOverride: 1
     overrideBaseValue: 8
+  - stat: {fileID: 11400000, guid: c327b7d2f23b1804a95f2b22e2e6aef7, type: 2}
+    isUseOverride: 1
+    overrideBaseValue: 8
+  - stat: {fileID: 11400000, guid: ff92e412cae7ab74a9a8430979d5d61e, type: 2}
+    isUseOverride: 1
+    overrideBaseValue: 8
 --- !u!1 &544777993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1408,8 +1414,8 @@ GameObject:
   - component: {fileID: 1739915478}
   - component: {fileID: 1739915477}
   - component: {fileID: 1739915476}
-  - component: {fileID: 1739915480}
   - component: {fileID: 1739915481}
+  - component: {fileID: 1739915482}
   m_Layer: 0
   m_Name: TestSword
   m_TagString: Untagged
@@ -1506,24 +1512,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 917204915}
   m_LocalEulerAnglesHint: {x: 0, y: 95.072, z: -44.833}
---- !u!114 &1739915480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1739915475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51707a989aca4fa4a3419e33a10a7a97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _atkDamageStat: {fileID: 0}
-  _atkSpeedStat: {fileID: 0}
-  _statCompo: {fileID: 0}
-  _whatIsEnemy:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!95 &1739915481
 Animator:
   serializedVersion: 7
@@ -1546,6 +1534,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1739915482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739915475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51707a989aca4fa4a3419e33a10a7a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _atkDamageStat: {fileID: 11400000, guid: c327b7d2f23b1804a95f2b22e2e6aef7, type: 2}
+  _atkSpeedStat: {fileID: 11400000, guid: ff92e412cae7ab74a9a8430979d5d61e, type: 2}
+  _statCompo: {fileID: 457821711}
+  _whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 256
+  _weaponAtkData: {fileID: 11400000, guid: 377c9e407345f644b968f91255748261, type: 2}
 --- !u!1 &1928006761
 GameObject:
   m_ObjectHideFlags: 0
