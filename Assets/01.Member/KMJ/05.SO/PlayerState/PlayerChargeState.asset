@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ac363a0e2bc4412b2fd890eee8758c7, type: 3}
-  m_Name: InputReader
+  m_Script: {fileID: 11500000, guid: ddfd851c0d834c4eb9a33b1cda0211e8, type: 3}
+  m_Name: PlayerChargeState
   m_EditorClassIdentifier: 
-  MoveValue: {x: 0, y: 0}
-  _canChargeTime: 1.3
-  _chargingAttackTime: 2.3
+  stateName: CHARGE
+  className: _01.Member.KMJ._02.Scripts._01.Player.State.PlayerChargeState
+  animParamName: CHARGING
+  animationHash: -859241368

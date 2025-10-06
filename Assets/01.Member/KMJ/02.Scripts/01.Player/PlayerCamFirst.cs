@@ -9,6 +9,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
 
         [Header("Tilt Settings")]
         [SerializeField] private float tiltSpeed = 5f;  
+        [SerializeField] private float camMoveSpeed = 5f;  
 
         public Transform orientation;
 
@@ -16,10 +17,13 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         private float _yRotation;
 
         public float slideAngle { get; private set; }     
-        private float _targetSlideAngle = 0f;         
+        
+        private float _targetSlideAngle = 0f;
+        [SerializeField] private Vector3 _targetPos;
 
         private void Start()
         {
+            _targetPos = transform.parent.position;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
@@ -28,6 +32,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         {
             CamSetting();
             SmoothTilt();
+            //SetCamTrm();
         }
 
         private void CamSetting()
@@ -44,9 +49,19 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             orientation.rotation = Quaternion.Euler(0, _yRotation, 0);
         }
 
+        public void SetCamTrm()
+        {
+            transform.position = Vector3.Lerp(transform.position, _targetPos, Time.deltaTime * camMoveSpeed);
+        }
+
         private void SmoothTilt()
         {
             slideAngle = Mathf.Lerp(slideAngle, _targetSlideAngle, Time.deltaTime * tiltSpeed);
+        }
+
+        public void SetCamPos(Vector3 pos)
+        {
+            _targetPos = pos;
         }
         
         public void SetTilt(float targetAngle)

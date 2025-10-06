@@ -16,6 +16,12 @@ namespace _00.CORE._02.Scripts.Input
         public Action<bool> SlidingEvent { get; set; }
         
         public Action JumpKeyEvent { get; set; }
+        
+        public Action ChargingEvent { get; set; }
+        
+        public Action ChargingAttackEvent { get; set; }
+        
+        public Action AttackEvent { get; set; }
 
 
         private void OnEnable()
@@ -29,7 +35,7 @@ namespace _00.CORE._02.Scripts.Input
             _controlls.Player.Enable();
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             _controlls.Player.Disable();
         }
@@ -41,10 +47,27 @@ namespace _00.CORE._02.Scripts.Input
 
         public void OnAttack(InputAction.CallbackContext context)
         {
+            if (context.performed)
+            {
+                AttackEvent?.Invoke();
+            }
         }
 
         public void OnSprint(InputAction.CallbackContext context)
         {
+            
+        }
+
+        public void OnCharging(InputAction.CallbackContext context)
+        {
+            if (context.started)
+            {
+                ChargingEvent?.Invoke();
+            }
+            else if (context.canceled)
+            {
+                ChargingAttackEvent?.Invoke();
+            }
         }
 
         public void OnJump(InputAction.CallbackContext context)

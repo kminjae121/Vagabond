@@ -27,7 +27,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.SlidingCompo
         public void Initialize(Entity entity)
         {
             _movementCompo = entity.GetCompo<CharacterMovement>();
-            _rbCompo = GetComponent<Rigidbody>();
+            _rbCompo = entity.GetComponent<Rigidbody>();
         }
         
 

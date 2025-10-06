@@ -18,15 +18,17 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         
         public PlayerCamFirst _camCompo { get; set; }
 
-        private CharacterMovement _movementCompo;
+        public CharacterMovement _movementCompo { get; private set; }
+        
+        private bool isJumping = true;
         
         protected override void Awake()
         {
             base.Awake();
             _stateMachine = new EntityStateMachine(this, stateDataList);
-            _wallSlidingCompo = GetComponent<WallSliding>();
+            _wallSlidingCompo = GetCompo<WallSliding>();
             _camCompo = GetComponentInChildren<PlayerCamFirst>();
-            _movementCompo = GetComponent<CharacterMovement>();  
+            _movementCompo = GetCompo<CharacterMovement>();  
 
             _inputReader.JumpKeyEvent += HandleJump;
             _inputReader.SlidingEvent += HandleWallSliding;
@@ -34,25 +36,32 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
 
         private void HandleWallSliding(bool isSliding)
         {
-            if (_wallSlidingCompo.CanSlidingWall() != "None")
+            if (isJumping)
             {
-                if (isSliding && _wallSlidingCompo.CanSlidingWall() == "Left" && !_wallSlidingCompo._isWallSliding)
+                if (_wallSlidingCompo.CanSlidingWall() != "None")
                 {
-                    _movementCompo._jumpCnt = 0;
-                    ChangeState("LEFTSLIDING");
-                }
-                else if(isSliding && _wallSlidingCompo.CanSlidingWall() == "Right" && !_wallSlidingCompo._isWallSliding)
-                {
-                    _movementCompo._jumpCnt = 0;
-                    ChangeState("RIGHTSLIDING");
-                }
-                else if (!isSliding)
-                {
-                    ChangeState("JUMP");
+                    if (isSliding && _wallSlidingCompo.CanSlidingWall() == "Left" && !_wallSlidingCompo._isWallSliding)
+                    {
+                        _movementCompo._jumpCnt = 0;
+                        ChangeState("LEFTSLIDING");
+                    }
+                    else if(isSliding && _wallSlidingCompo.CanSlidingWall() == "Right" && !_wallSlidingCompo._isWallSliding)
+                    {
+                        _movementCompo._jumpCnt = 0;
+                        ChangeState("RIGHTSLIDING");
+                    }
+                    else if (!isSliding)
+                    {
+                        ChangeState("JUMP");
+                    }   
                 }   
             }
         }
 
+        public void SetJumping(bool isJump)
+        {
+            isJumping = isJump;
+        }
 
         private void Start()
         {
@@ -62,9 +71,12 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
 
         private void HandleJump()
         {
-            if (_wallSlidingCompo.CanSlidingWall() == "None")
+            if (isJumping)
             {
-                ChangeState("JUMP");
+                if (_wallSlidingCompo.CanSlidingWall() == "None")
+                {
+                    ChangeState("JUMP");
+                }   
             }
         }
         
