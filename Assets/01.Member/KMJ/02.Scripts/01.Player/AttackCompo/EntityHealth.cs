@@ -1,6 +1,5 @@
 ﻿using System.Globalization;
 using _00.CORE._02.Scripts;
-using _00.CORE._02.Scripts.GameEventChannel;
 using _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo;
 using _01.Member.KMJ._00.Core._01.Entity._05.Interface;
 using UnityEngine;

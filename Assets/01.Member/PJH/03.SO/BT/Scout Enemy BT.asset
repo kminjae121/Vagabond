@@ -1,0 +1,374 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7910748160772200606
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dd922ae02c94c87a66e46a10a7319b9, type: 3}
+  m_Name: Scout Enemy BT Blackboard
+  m_EditorClassIdentifier: 
+  AssetID:
+    m_Value0: 16479111845292589268
+    m_Value1: 10538479214033700923
+  m_Variables:
+  - rid: 5727384822137487565
+  - rid: 5727384822137487592
+  m_VersionTimestamp: 638954572276988986
+  m_CommandBuffer:
+    m_Commands: []
+  m_RuntimeBlackboardAsset: {fileID: 7356441234072635701}
+  references:
+    version: 2
+    RefIds:
+    - rid: 5727384822137487565
+      type: {class: 'TypedVariableModel`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 1
+          m_Value1: 0
+        Name: Self
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: 0}
+    - rid: 5727384822137487592
+      type: {class: 'TypedVariableModel`1[[Code.Enemies.EnemyState, Assembly-CSharp]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 10779356414293640519
+          m_Value1: 10514597969918082869
+        Name: CurrentState
+        IsExposed: 0
+        m_IsShared: 0
+        m_Value: 0
+--- !u!114 &-194654567526767712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b27bb6d9a2c8d540a10dff10acc543e, type: 3}
+  m_Name: Scout Enemy BT Debug Info
+  m_EditorClassIdentifier: 
+  m_CodeBreakPointsList: []
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad8f2220607dac4db5082ff333fafb8, type: 3}
+  m_Name: Scout Enemy BT
+  m_EditorClassIdentifier: 
+  Blackboard: {fileID: -7910748160772200606}
+  m_Description: 
+  m_Nodes:
+  - rid: 5727384822137487563
+  - rid: 5727384822137487663
+  m_VersionTimestamp: 638954572288751216
+  m_DebugInfo: {fileID: -194654567526767712}
+  m_RuntimeGraph: {fileID: 2204925073971142482}
+  AssetID:
+    m_Value0: 16479111845292589268
+    m_Value1: 10538479214033700923
+  Story:
+    Story: 
+    StoryVariableNames: []
+    Variables: []
+  m_NodeModelsInfo:
+  - Name: On Start
+    Story: 
+    RuntimeTypeID:
+      m_Value0: 3335272451348827663
+      m_Value1: 11549843281177505721
+    Variables: []
+    NamedChildren: []
+  - Name: GetComponents
+    Story: 'Get Components from [Self]'
+    RuntimeTypeID:
+      m_Value0: 7554036481999295728
+      m_Value1: 10280213420558023669
+    Variables:
+    - Name: Self
+      Type:
+        m_SerializableType: Code.Enemies.Enemy, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      Tooltip: 
+    NamedChildren: []
+  - Name: Switch
+    Story: 
+    RuntimeTypeID:
+      m_Value0: 7697158487413557231
+      m_Value1: 14836087705204215232
+    Variables:
+    - Name: EnumVariable
+      Type:
+        m_SerializableType: Unity.Behavior.BlackboardVariable, Unity.Behavior, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      Tooltip: 
+    NamedChildren: []
+  m_Blackboards: []
+  m_MainBlackboardAuthoringAsset: {fileID: -7910748160772200606}
+  m_CommandBuffer:
+    m_Commands: []
+  m_SubgraphsInfo: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 5727384822137487563
+      type: {class: StartNodeModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        Position: {x: 0, y: 0}
+        ID:
+          m_Value0: 12812228739153136779
+          m_Value1: 6186489344402740146
+        Parents: []
+        PortModels:
+        - rid: 5727384822137487564
+        NodeType:
+          m_SerializableType: Unity.Behavior.Start, Unity.Behavior, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        NodeTypeID:
+          m_Value0: 3335272451348827663
+          m_Value1: 11549843281177505721
+        m_FieldValues: []
+        Repeat: 0
+        AllowMultipleRepeatsPerTick: 0
+    - rid: 5727384822137487564
+      type: {class: PortModel, ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        m_Name: OutputPort
+        m_PortDataFlowType: 1
+        m_IsFloating: 0
+        m_NodeModel:
+          rid: 5727384822137487563
+        m_Connections:
+        - rid: 5727384822137487664
+    - rid: 5727384822137487663
+      type: {class: ActionNodeModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        Position: {x: 4.9588337, y: 129.395}
+        ID:
+          m_Value0: 8228927986423517976
+          m_Value1: 12440771170108699582
+        Parents: []
+        PortModels:
+        - rid: 5727384822137487664
+        - rid: 5727384822137487665
+        NodeType:
+          m_SerializableType: GetComponentsAction, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        NodeTypeID:
+          m_Value0: 7554036481999295728
+          m_Value1: 10280213420558023669
+        m_FieldValues:
+        - rid: 5727384822137487666
+    - rid: 5727384822137487664
+      type: {class: PortModel, ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        m_Name: InputPort
+        m_PortDataFlowType: 0
+        m_IsFloating: 0
+        m_NodeModel:
+          rid: 5727384822137487663
+        m_Connections:
+        - rid: 5727384822137487564
+    - rid: 5727384822137487665
+      type: {class: PortModel, ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        m_Name: OutputPort
+        m_PortDataFlowType: 1
+        m_IsFloating: 0
+        m_NodeModel:
+          rid: 5727384822137487663
+        m_Connections: []
+    - rid: 5727384822137487666
+      type: {class: BehaviorGraphNodeModel/FieldModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        FieldName: Self
+        Type:
+          m_SerializableType: Code.Enemies.Enemy, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        LocalValue:
+          rid: 5727384822137487667
+        LinkedVariable:
+          rid: 5727384822137487687
+    - rid: 5727384822137487667
+      type: {class: 'BlackboardVariable`1[[Code.Enemies.Enemy, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: {fileID: 0}
+    - rid: 5727384822137487687
+      type: {class: 'TypedVariableModel`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 1
+          m_Value1: 0
+        Name: Self
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: 0}
+--- !u!114 &2204925073971142482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db920e62f70f420bb33c771449926fa4, type: 3}
+  m_Name: Scout Enemy BT
+  m_EditorClassIdentifier: 
+  Graphs:
+  - rid: 5727384822137487688
+  RootGraph:
+    rid: 5727384822137487688
+  m_DebugInfo: {fileID: -194654567526767712}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 5727384822137487688
+      type: {class: BehaviorGraphModule, ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        AuthoringAssetID:
+          m_Value0: 16479111845292589268
+          m_Value1: 10538479214033700923
+        m_DebugInfo: {fileID: 0}
+        BlackboardReference:
+          rid: 5727384822137487689
+        BlackboardGroupReferences: []
+        Root:
+          rid: 5727384822137487690
+        m_ActiveNodes: []
+        m_NodesToTick: []
+        m_NodesToEnd:
+          rid: 5727384822137487691
+        m_EndedNodes:
+          rid: 5727384822137487692
+        m_VersionTimestamp: 638954572288751216
+    - rid: 5727384822137487689
+      type: {class: BlackboardReference, ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        m_Blackboard:
+          rid: 5727384822137487693
+        m_Source: {fileID: 7356441234072635701}
+    - rid: 5727384822137487690
+      type: {class: Start, ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        ID:
+          m_Value0: 12812228739153136779
+          m_Value1: 6186489344402740146
+        Graph:
+          rid: 5727384822137487688
+        m_Parent:
+          rid: -2
+        m_Child:
+          rid: 5727384822137487694
+        Repeat: 0
+        AllowMultipleRepeatsPerTick: 0
+    - rid: 5727384822137487691
+      type: {class: 'Stack`1[[Unity.Behavior.Node, Unity.Behavior]]', ns: System.Collections.Generic, asm: mscorlib}
+      data: 
+    - rid: 5727384822137487692
+      type: {class: 'HashSet`1[[Unity.Behavior.Node, Unity.Behavior]]', ns: System.Collections.Generic, asm: System.Core}
+      data: 
+    - rid: 5727384822137487693
+      type: {class: Blackboard, ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        m_Variables:
+        - rid: 5727384822137487695
+        - rid: 5727384822137487696
+    - rid: 5727384822137487694
+      type: {class: GetComponentsAction, ns: , asm: Assembly-CSharp}
+      data:
+        ID:
+          m_Value0: 8228927986423517976
+          m_Value1: 12440771170108699582
+        Graph:
+          rid: 5727384822137487688
+        m_Parent:
+          rid: 5727384822137487690
+        Self:
+          rid: 5727384822137487697
+    - rid: 5727384822137487695
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 1
+          m_Value1: 0
+        Name: Self
+        m_Value: {fileID: 0}
+    - rid: 5727384822137487696
+      type: {class: 'BlackboardVariable`1[[Code.Enemies.EnemyState, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 10779356414293640519
+          m_Value1: 10514597969918082869
+        Name: CurrentState
+        m_Value: 0
+    - rid: 5727384822137487697
+      type: {class: 'GameObjectToComponentBlackboardVariable`1[[Code.Enemies.Enemy, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: {fileID: 0}
+        m_LinkedVariable:
+          rid: 5727384822137487695
+--- !u!114 &7356441234072635701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c02bb70996b49eba31d0c206e28da24, type: 3}
+  m_Name: Scout Enemy BT Blackboard
+  m_EditorClassIdentifier: 
+  VersionTimestamp: 638954572276988986
+  AssetID:
+    m_Value0: 16479111845292589268
+    m_Value1: 10538479214033700923
+  m_Blackboard:
+    m_Variables:
+    - rid: 5727384822137487573
+    - rid: 5727384822137487601
+  m_SharedBlackboardVariableGuids: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 5727384822137487573
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 1
+          m_Value1: 0
+        Name: Self
+        m_Value: {fileID: 0}
+    - rid: 5727384822137487601
+      type: {class: 'BlackboardVariable`1[[Code.Enemies.EnemyState, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 10779356414293640519
+          m_Value1: 10514597969918082869
+        Name: CurrentState
+        m_Value: 0
