@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using _01.Member.KMJ._00.Core._01.Entity._05.Interface;
+using Code.Entities;
+using Code.Interfaces;
 using UnityEngine;
 
 namespace _00.CORE._02.Scripts

@@ -1,7 +1,8 @@
 ﻿using _00.CORE._02.Scripts;
 using _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo;
-using _01.Member.KMJ._00.Core._01.Entity._05.Interface;
 using _01.Member.KMJ._02.Scripts._01.Player.AttackCompo;
+using Code.Entities;
+using Code.Interfaces;
 using UnityEngine;
 
 namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
@@ -48,7 +49,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
             {
                 if (other.TryGetComponent(out IDamageable damageable))
                 {
-                    damageable.ApplyDamage(damageData, other.transform.position, _owner.transform.forward, weaponAtkData, _owner);
+                    damageable.ApplyDamage(damageData, other.transform.position, _owner.transform.forward, weaponAtkData,null);
                 }
             }
         }
