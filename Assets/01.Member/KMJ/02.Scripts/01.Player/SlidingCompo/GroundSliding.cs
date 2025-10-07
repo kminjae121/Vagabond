@@ -16,7 +16,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.SlidingCompo
 
         public void Slide()
         {
-            if (_player._movementCompo.CheckGroundDetected())
+            if (_player.movementCompo.CheckGroundDetected())
             {
                 _player.ChangeState("SLIDE");
             }

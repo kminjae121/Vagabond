@@ -14,6 +14,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
 
         public override void Enter()
         {
+            _player.swordCompo.NabDo();
             _atkCompo.StartChargingTimer();
             _player.SetJumping(false);
             Debug.Log("차징공격 시작함");
@@ -27,6 +28,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
 
         public override void Exit()
         {
+            _player.swordCompo.StopNabDo();
             _atkCompo.StopChargingTimer();
         }
     }

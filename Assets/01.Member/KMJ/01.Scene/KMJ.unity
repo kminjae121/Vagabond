@@ -952,7 +952,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0177029bc1592a74cb130223a7cdbc92, type: 2}
   - {fileID: 11400000, guid: a647b1e7fef6ad348817f070c0a2af32, type: 2}
   - {fileID: 11400000, guid: 6c7f90f522d765a4d87f108512068dde, type: 2}
-  _inputReader: {fileID: 11400000, guid: 24b9526a025a0b345ba14a70e5eb829f, type: 2}
+  inputReader: {fileID: 11400000, guid: 24b9526a025a0b345ba14a70e5eb829f, type: 2}
 --- !u!1 &1171281740
 GameObject:
   m_ObjectHideFlags: 0
@@ -1416,6 +1416,7 @@ GameObject:
   - component: {fileID: 1739915476}
   - component: {fileID: 1739915481}
   - component: {fileID: 1739915482}
+  - component: {fileID: 1739915484}
   m_Layer: 0
   m_Name: TestSword
   m_TagString: Untagged
@@ -1522,7 +1523,7 @@ Animator:
   m_GameObject: {fileID: 1739915475}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: daf963c1299fa464081ef2613c4ddf62, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1546,13 +1547,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51707a989aca4fa4a3419e33a10a7a97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _atkDamageStat: {fileID: 11400000, guid: c327b7d2f23b1804a95f2b22e2e6aef7, type: 2}
-  _atkSpeedStat: {fileID: 11400000, guid: ff92e412cae7ab74a9a8430979d5d61e, type: 2}
-  _statCompo: {fileID: 457821711}
-  _whatIsEnemy:
+  animCompo: {fileID: 1739915481}
+  _inputReader: {fileID: 11400000, guid: 24b9526a025a0b345ba14a70e5eb829f, type: 2}
+  statCompo: {fileID: 457821711}
+  atkSpeedStat: {fileID: 11400000, guid: ff92e412cae7ab74a9a8430979d5d61e, type: 2}
+--- !u!114 &1739915484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739915475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caf7c53a743443c5ae5479b4d50ce958, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whatIsEnemy:
     serializedVersion: 2
     m_Bits: 256
-  _weaponAtkData: {fileID: 11400000, guid: 377c9e407345f644b968f91255748261, type: 2}
+  weaponAtkData: {fileID: 11400000, guid: 377c9e407345f644b968f91255748261, type: 2}
+  atkDamageStat: {fileID: 11400000, guid: c327b7d2f23b1804a95f2b22e2e6aef7, type: 2}
 --- !u!1 &1928006761
 GameObject:
   m_ObjectHideFlags: 0

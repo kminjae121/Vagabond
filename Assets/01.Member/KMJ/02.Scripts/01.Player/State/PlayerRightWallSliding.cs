@@ -15,7 +15,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
         public override void Enter()
         {
             base.Enter();
-            _player._camCompo.SetTilt(15f);  
+            _player.camCompo.SetTilt(15f);  
             _movementCompo.SetSpeed(15f);
             _movementCompo.StopMoving();
             _slidingCompo.StartWallSlide();
@@ -39,7 +39,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
         public override void Exit()
         {
             base.Exit();
-            _player._camCompo.SetTilt(0f);
+            _player.camCompo.SetTilt(0f);
             _movementCompo.SetReturnOriginMoveSpeed();
             _slidingCompo.EndWallSlide();
         }

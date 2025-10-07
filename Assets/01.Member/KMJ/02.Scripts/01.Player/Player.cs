@@ -1,6 +1,7 @@
 ﻿using System;
 using _00.CORE._02.Scripts.Input;
 using _01.Member.KMJ._00.Core._01.Entity._01.EntityState;
+using _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon;
 using _01.Member.KMJ._02.Scripts._01.Player.SlidingCompo;
 using _01.Member.KMJ._02.Scripts._01.Player.State;
 using UnityEngine;
@@ -12,13 +13,15 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         [SerializeField] private StateDataSO[] stateDataList;
         
         private EntityStateMachine _stateMachine;
-        [SerializeField] private InputReader _inputReader;
+        [SerializeField] private InputReader inputReader;
 
         private WallSliding _wallSlidingCompo;
         
-        public PlayerCamFirst _camCompo { get; set; }
+        public PlayerCamFirst camCompo { get; set; }
 
-        public CharacterMovement _movementCompo { get; private set; }
+        public CharacterMovement movementCompo { get; private set; }
+        
+        public PlayerSword swordCompo { get; private set; }
         
         private bool isJumping = true;
         
@@ -27,11 +30,12 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             base.Awake();
             _stateMachine = new EntityStateMachine(this, stateDataList);
             _wallSlidingCompo = GetCompo<WallSliding>();
-            _camCompo = GetComponentInChildren<PlayerCamFirst>();
-            _movementCompo = GetCompo<CharacterMovement>();  
+            camCompo = GetComponentInChildren<PlayerCamFirst>();
+            movementCompo = GetCompo<CharacterMovement>();
+            swordCompo = GetComponentInChildren<PlayerSword>();
 
-            _inputReader.JumpKeyEvent += HandleJump;
-            _inputReader.SlidingEvent += HandleWallSliding;
+            inputReader.JumpKeyEvent += HandleJump;
+            inputReader.SlidingEvent += HandleWallSliding;
         }
 
         private void HandleWallSliding(bool isSliding)
@@ -42,12 +46,12 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
                 {
                     if (isSliding && _wallSlidingCompo.CanSlidingWall() == "Left" && !_wallSlidingCompo._isWallSliding)
                     {
-                        _movementCompo._jumpCnt = 0;
+                        movementCompo._jumpCnt = 0;
                         ChangeState("LEFTSLIDING");
                     }
                     else if(isSliding && _wallSlidingCompo.CanSlidingWall() == "Right" && !_wallSlidingCompo._isWallSliding)
                     {
-                        _movementCompo._jumpCnt = 0;
+                        movementCompo._jumpCnt = 0;
                         ChangeState("RIGHTSLIDING");
                     }
                     else if (!isSliding)
