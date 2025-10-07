@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88b4dbc13337405da3b983052bfd7b5a, type: 3}
-  m_Name: Entity Finder
+  m_Name: Player Finder
   m_EditorClassIdentifier: 
