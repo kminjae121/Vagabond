@@ -1,5 +1,7 @@
 ﻿using System;
-using _01.Member.KMJ._00.Core._01.Entity._05.Interface;
+
+using Code.Entities;
+using Code.Interfaces;
 using UnityEngine;
 
 namespace _01.Member.KMJ._02.Scripts._01.Player.SlidingCompo

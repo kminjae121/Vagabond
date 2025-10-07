@@ -1,5 +1,5 @@
 using System;
-using _01.Member.KMJ._00.Core._01.Entity._05.Interface;
+using Code.Interfaces;
 using Unity.Behavior;
 using UnityEngine;
 using Action = Unity.Behavior.Action;

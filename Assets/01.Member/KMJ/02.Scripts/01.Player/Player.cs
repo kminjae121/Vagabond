@@ -1,9 +1,9 @@
 ﻿using System;
 using _00.CORE._02.Scripts.Input;
-using _01.Member.KMJ._00.Core._01.Entity._01.EntityState;
 using _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon;
 using _01.Member.KMJ._02.Scripts._01.Player.SlidingCompo;
 using _01.Member.KMJ._02.Scripts._01.Player.State;
+using Code.Entities;
 using UnityEngine;
 
 namespace _01.Member.KMJ._02.Scripts._01.Player
