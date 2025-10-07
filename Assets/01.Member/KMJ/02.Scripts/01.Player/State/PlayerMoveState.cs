@@ -12,7 +12,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
 
         public override void Enter()
         {
-            _player._movementCompo.SetSpeed(_movementCompo.maxmoveSpeed);
+            _player.movementCompo.SetSpeed(_movementCompo.maxmoveSpeed);
             base.Enter();
         }
 
@@ -36,7 +36,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
         public override void Exit()
         {
             base.Exit();
-            _player._movementCompo.SetReturnOriginMoveSpeed();
+            _player.movementCompo.SetReturnOriginMoveSpeed();
         }
     }
 }

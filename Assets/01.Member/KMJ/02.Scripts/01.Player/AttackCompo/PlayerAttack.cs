@@ -40,7 +40,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
 
         private void HandleAttack()
         {
-            Debug.Log("공격");
+            _player.swordCompo.Attack();
         }
         public void StartChargingTimer()
         {
