@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace _00.CORE._02.Scripts
+namespace Code.Core.Stats
 {
     [Serializable]
     public class StatOverride

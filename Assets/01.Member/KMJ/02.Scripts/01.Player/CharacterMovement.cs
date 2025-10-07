@@ -1,10 +1,7 @@
-﻿using System;
-using _00.CORE._02.Scripts;
-using _00.CORE._02.Scripts.Input;
-using Code.Entities;
+﻿using _00.CORE._02.Scripts.Input;
+using Code.Core.Stats;
 using Code.Interfaces;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Code.Entities
 {

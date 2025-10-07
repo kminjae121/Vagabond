@@ -1,6 +1,6 @@
 #define ONLOG // 디버그 끌 땐 주석 처리
 
-namespace Code.Core.Debug
+namespace Code.Core.Debugs
 {
     public static class UnityLogger
     {
