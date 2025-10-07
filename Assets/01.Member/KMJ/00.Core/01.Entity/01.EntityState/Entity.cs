@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using _01.Member.KMJ._00.Core._01.Entity._05.Interface;
+using Code.Interfaces;
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class Entity : MonoBehaviour
+namespace Code.Entities
 {
+    public abstract class Entity : MonoBehaviour
+    {
         public UnityEvent OnHitEvent;
         public UnityEvent OnDeathEvent;
         
@@ -44,8 +46,7 @@ public abstract class Entity : MonoBehaviour
                 .ToList().ForEach(component => component.AfterInitialize());
         }
         
-        public T GetCompo<T>() where T : IEntityComponent
-            => (T)_components.GetValueOrDefault(typeof(T));
+        public T GetCompo<T>() => (T)_components.GetValueOrDefault(typeof(T));
 
         public IEntityComponent GetCompo(Type type)
             => _components.GetValueOrDefault(type);
@@ -67,4 +68,5 @@ public abstract class Entity : MonoBehaviour
                 transform.rotation = targetRotation;
             }
         }
+    }
 }

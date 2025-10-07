@@ -1,5 +1,5 @@
 ﻿using System;
-using _01.Member.KMJ._00.Core._01.Entity._05.Interface;
+using Code.Interfaces;
 using UnityEngine;
 
 namespace _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo
@@ -14,9 +14,9 @@ namespace _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo
         public event Action<bool> OnDamageToggleTrigger;
         public event Action OnCastSkillTrigger;
         
-        private global::Entity _entity;
+        private Code.Entities.Entity _entity;
         
-        public void Initialize(global::Entity entity)
+        public void Initialize(Code.Entities.Entity entity)
         {
             _entity = entity;
         }
