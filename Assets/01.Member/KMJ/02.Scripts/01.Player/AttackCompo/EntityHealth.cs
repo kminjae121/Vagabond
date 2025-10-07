@@ -2,6 +2,7 @@
 using _00.CORE._02.Scripts;
 using _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo;
 using _01.Member.KMJ._02.Scripts._01.Player.AttackCompo;
+using Code.Core.Debug;
 using Code.Entities;
 using Code.Interfaces;
 using UnityEngine;
@@ -64,6 +65,7 @@ namespace Code.Entities
 
             currentHealth = Mathf.Clamp(currentHealth - damageData.damage, 0, maxHealth);
 
+            UnityLogger.Log(currentHealth);
             OnHealthChangedEvent?.Invoke(currentHealth, maxHealth);
             
             //int typeHash = damageData.isCritical ? criticalText.nameHash : normalText.nameHash;
