@@ -29,6 +29,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         [Provide]
         public Player GetPlayer() => this;
         
+        public BloodFlowerSystem bloodSystemCompo { get; set; }
+        
         protected override void Awake()
         {
             base.Awake();
@@ -37,6 +39,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             camCompo = GetComponentInChildren<PlayerCamFirst>();
             movementCompo = GetCompo<CharacterMovement>();
             swordCompo = GetComponentInChildren<PlayerSword>();
+            bloodSystemCompo = GetComponent<BloodFlowerSystem>();
 
             inputReader.JumpKeyEvent += HandleJump;
             inputReader.SlidingEvent += HandleWallSliding;
