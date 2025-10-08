@@ -1,4 +1,4 @@
-﻿using _00.CORE._02.Scripts;
+﻿using Code.Core.Stats;
 using Code.Entities;
 using Code.Interfaces;
 using UnityEngine;

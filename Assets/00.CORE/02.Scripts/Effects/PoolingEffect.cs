@@ -1,4 +1,4 @@
-﻿using Code.Core.Debug;
+﻿using Code.Core.Debugs;
 using GondrLib.ObjectPool.RunTime;
 using UnityEngine;
 

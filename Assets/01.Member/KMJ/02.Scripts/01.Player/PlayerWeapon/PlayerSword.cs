@@ -1,8 +1,5 @@
-﻿using System;
-using _00.CORE._02.Scripts;
-using _00.CORE._02.Scripts.Input;
-using _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo;
-using _01.Member.KMJ._02.Scripts._01.Player.AttackCompo;
+﻿using _00.CORE._02.Scripts.Input;
+using Code.Core.Stats;
 using Code.Entities;
 using Code.Interfaces;
 using UnityEngine;

@@ -4,7 +4,7 @@ using Code.Entities;
 using Code.Interfaces;
 using UnityEngine;
 
-namespace _00.CORE._02.Scripts
+namespace Code.Core.Stats
 {
     public class EntityStatCompo : MonoBehaviour, IEntityComponent
     {

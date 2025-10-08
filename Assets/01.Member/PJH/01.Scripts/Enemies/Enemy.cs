@@ -1,4 +1,4 @@
-﻿using Code.Core.Debug;
+﻿using Code.Core.Debugs;
 using Code.Entities;
 using Unity.Behavior;
 using UnityEngine;
