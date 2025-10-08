@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using _01.Member.KMJ._02.Scripts._01.Player;
-using Code.Core.Debug;
+using Code.Core.Debugs;
 using UnityEngine;
 
 public class BloodFlowerSystem : MonoBehaviour
