@@ -28,11 +28,12 @@ namespace Code.Entities
         public float moveSpeed { get; private set; }= 8f;
         public float baseSpeed { get; private set; }= 8f;
         
-        public float maxmoveSpeed { get; private set; }= 30f;
+        public float maxmoveSpeed { get; set; }= 30f;
         public float targetSpeed { get; private set; }= 0;
         
         public float jumpSpeed { get; private set; }
 
+        public int maxJumpCnt { get; set; } = 2;
         
         private Entity _entity;
         private EntityStatCompo _statCompo;
@@ -70,7 +71,7 @@ namespace Code.Entities
                 _rbCompo.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
                 _jumpCnt++;
             }
-            else if (_jumpCnt < 2)
+            else if (_jumpCnt < maxJumpCnt)
             {
                 _rbCompo.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
                 _jumpCnt++;

@@ -18,12 +18,13 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
         [Header("InputComponent")]
         [SerializeField] private InputReader _inputReader;
         
-            
-            
         [Space(5)]
         [Header("StatCompo")]
         [SerializeField] private EntityStatCompo statCompo;
         [SerializeField] private StatSO atkSpeedStat;
+
+        [SerializeField] private LayerMask baseWeaponMask;
+        [SerializeField] private LayerMask baldoWeaponMask;
         #endregion
         
         
@@ -77,15 +78,13 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
         {
             if (_isAttacking)
                 return;
-
-
             _weaponCollider.enabled = true;
             _isAttacking = true;
             animCompo.SetBool(_swordIdleHash, false);
             animCompo.SetInteger(_cntAttackHash, _atkCnt);
             animCompo.SetBool(_normalAttackHash, true);
 
-            if (_atkCnt >= 3)
+            if (_atkCnt >= 2)
             {
                 _atkCnt = 0;
             }
@@ -116,6 +115,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
             if (_isAttacking)
                 return;
 
+            gameObject.layer = Mathf.RoundToInt(Mathf.Log(baldoWeaponMask.value, 2));
             _isAttacking = true;
             _weaponCollider.enabled = true;
             animCompo.SetBool(_swordIdleHash, false);
@@ -124,6 +124,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
 
         public void StopBalDo()
         {
+            gameObject.layer = Mathf.RoundToInt(Mathf.Log(baseWeaponMask.value, 2));
             _isAttacking = false;
             _weaponCollider.enabled = false;
             animCompo.SetBool(_swordIdleHash, true); 
