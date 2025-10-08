@@ -24,8 +24,8 @@ namespace Code.Entities
         
         public float moveSpeed { get; private set; }= 8f;
         public float baseSpeed { get; private set; }= 8f;
-        
-        public float maxmoveSpeed { get; set; }= 30f;
+
+        public float maxmoveSpeed { get; set; } = 15f;
         public float targetSpeed { get; private set; }= 0;
         
         public float jumpSpeed { get; private set; }
