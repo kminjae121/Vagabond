@@ -1019,9 +1019,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2032174344548280421, guid: 3700923809c32994088d7b52a9ddf789, type: 3}
+      propertyPath: movespeeds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2032174344548280421, guid: 3700923809c32994088d7b52a9ddf789, type: 3}
+      propertyPath: 'movespeeds.Array.data[0]'
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2032174344548280421, guid: 3700923809c32994088d7b52a9ddf789, type: 3}
+      propertyPath: 'movespeeds.Array.data[1]'
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2032174344548280421, guid: 3700923809c32994088d7b52a9ddf789, type: 3}
+      propertyPath: 'movespeeds.Array.data[2]'
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2323300005208227372, guid: 3700923809c32994088d7b52a9ddf789, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5259937198285099259, guid: 3700923809c32994088d7b52a9ddf789, type: 3}
+      propertyPath: _dashTrm
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5259937198285099259, guid: 3700923809c32994088d7b52a9ddf789, type: 3}
+      propertyPath: emptyObject
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

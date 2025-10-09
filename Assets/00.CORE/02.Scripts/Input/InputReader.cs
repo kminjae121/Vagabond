@@ -19,6 +19,7 @@ namespace _00.CORE._02.Scripts.Input
         public Action ChargingEvent { get; set; }
         
         public Action ChargingAttackEvent { get; set; }
+        public Action AttackEndEvent { get; set; }
         
         public Action AttackEvent { get; set; }
         
@@ -48,9 +49,13 @@ namespace _00.CORE._02.Scripts.Input
 
         public void OnAttack(InputAction.CallbackContext context)
         {
-            if (context.performed)
+            if (context.started)
             {
                 AttackEvent?.Invoke();
+            }
+            else if (context.canceled)
+            {
+                AttackEndEvent?.Invoke();
             }
         }
 
