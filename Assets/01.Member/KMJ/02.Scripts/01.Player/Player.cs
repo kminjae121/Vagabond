@@ -3,6 +3,7 @@ using _00.CORE._02.Scripts.Input;
 using _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon;
 using _01.Member.KMJ._02.Scripts._01.Player.SlidingCompo;
 using _01.Member.KMJ._02.Scripts._01.Player.State;
+using Code.Dash;
 using Code.Entities;
 using GondrLib.Dependencies;
 using UnityEngine;
@@ -16,6 +17,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         private EntityStateMachine _stateMachine;
         [SerializeField] private InputReader inputReader;
 
+        #region PlayerComponent
+        
         private WallSliding _wallSlidingCompo;
         
         public PlayerCamFirst camCompo { get; set; }
@@ -23,13 +26,17 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         public CharacterMovement movementCompo { get; private set; }
         
         public PlayerSword swordCompo { get; private set; }
+        public BloodFlowerSystem bloodSystemCompo { get; private set; }
+        
+        public PlayerDashComponent dashComponent { get; private set; }
+        
+        #endregion
         
         private bool isJumping = true;
 
         [Provide]
         public Player GetPlayer() => this;
         
-        public BloodFlowerSystem bloodSystemCompo { get; set; }
         
         protected override void Awake()
         {
@@ -40,6 +47,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             movementCompo = GetCompo<CharacterMovement>();
             swordCompo = GetComponentInChildren<PlayerSword>();
             bloodSystemCompo = GetComponent<BloodFlowerSystem>();
+            dashComponent = GetComponent<PlayerDashComponent>();
 
             inputReader.JumpKeyEvent += HandleJump;
             inputReader.SlidingEvent += HandleWallSliding;
