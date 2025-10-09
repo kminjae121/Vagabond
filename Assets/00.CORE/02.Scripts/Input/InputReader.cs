@@ -21,6 +21,8 @@ namespace _00.CORE._02.Scripts.Input
         public Action ChargingAttackEvent { get; set; }
         
         public Action AttackEvent { get; set; }
+        
+        public Action DashEvent { get; set; }
 
 
         private void OnEnable()
@@ -66,6 +68,14 @@ namespace _00.CORE._02.Scripts.Input
             else if (context.canceled)
             {
                 ChargingAttackEvent?.Invoke();
+            }
+        }
+
+        public void OnDash(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                DashEvent?.Invoke();
             }
         }
 
