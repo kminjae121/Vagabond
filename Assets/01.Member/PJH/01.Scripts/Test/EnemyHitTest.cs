@@ -9,7 +9,6 @@ namespace Code.Entities.Test
     public class EnemyHitTest : MonoBehaviour
     {
         [SerializeField] private EntityHealth enemy;
-        [SerializeField] private Entity dealer;
 
         private void Update()
         {
@@ -27,7 +26,7 @@ namespace Code.Entities.Test
                 AttackDataSO atkSO = ScriptableObject.CreateInstance<AttackDataSO>();
                 atkSO.isPowerAttack = false;
                 
-                enemy.ApplyDamage(data, Vector3.zero, Vector3.zero, atkSO, dealer);
+                enemy.ApplyDamage(data, Vector3.zero, Vector3.zero, atkSO, null);
             }
         }
     }
