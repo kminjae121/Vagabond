@@ -12,6 +12,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
         [Space(5)]
         [Header("EnemyLayer")]
         [SerializeField] private LayerMask whatIsEnemy;
+        [SerializeField] private LayerMask baldoWeaponLayer;
         
         [Space(5)]
         [Header("AttackData")]
@@ -19,7 +20,10 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
             
         [Header("Stat")]
         [SerializeField] private StatSO atkDamageStat;
-        
+
+        [SerializeField] private EntityStatCompo statCompo;
+
+        [SerializeField] private Player player;
         private float _atkDamage;
 
         private Entity _owner;
@@ -34,7 +38,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
             
             damageData = new DamageData();
 
-            damageData.damage = _atkDamage;
+            damageData.damage = statCompo.GetStat(atkDamageStat).Value;
+            
             damageData.damageType = DamageType.MELEE;
         }
         
@@ -45,7 +50,19 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
         
         private void OnTriggerEnter(Collider other)
         {
-            if (((1 << other.gameObject.layer) & whatIsEnemy) != 0)
+            if (((1 << other.gameObject.layer) & whatIsEnemy) != 0 && ((1 << gameObject.layer) & baldoWeaponLayer) != 0)
+            {
+                if (other.TryGetComponent(out IDamageable damageable))
+                {
+                    DamageData data = new DamageData();
+                    data.damage = 3000;
+                    data.damageType = DamageType.MELEE;
+                    
+                    damageable.ApplyDamage(data, other.transform.position, _owner.transform.forward, weaponAtkData,null);
+                    player.bloodSystemCompo.AddFlower(1);
+                }
+            }
+            else if (((1 << other.gameObject.layer) & whatIsEnemy) != 0)
             {
                 if (other.TryGetComponent(out IDamageable damageable))
                 {
