@@ -44,21 +44,31 @@ public class BloodFlowerSystem : MonoBehaviour
         switch (_flowerCnt)
         {
             case 0:
+                SetDash(false);
                 _player.movementCompo.maxmoveSpeed = 20;
                 break;
             case <= 1 :
+                SetDash(false);
                 _player.movementCompo.maxmoveSpeed = 23;
                 break;
             case <= 6 :
+                SetDash(false);
                 _player.movementCompo.maxmoveSpeed = 30;
                 _player.movementCompo.maxJumpCnt = 3;
                 break;
             case <= 9 :
+                SetDash(true);
                 break;
             case 10 :
+                SetDash(true);
                 _isFallingFlower = true;
                 break;
         }
+    }
+
+    public void SetDash(bool IsCanDash)
+    {
+        _player.dashComponent.isCanDash = IsCanDash;
     }
 
     private void FallingFlower()
@@ -71,7 +81,7 @@ public class BloodFlowerSystem : MonoBehaviour
         if (fallingFlowerSec <= 0)
         {
             _isFallingFlower = true;
-            _flowerCnt = 0;
+            _flowerCnt = 1;
         }
     }
 }
