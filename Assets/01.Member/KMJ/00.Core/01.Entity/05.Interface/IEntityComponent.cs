@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using Code.Entities;
+using UnityEngine;
 
-namespace _01.Member.KMJ._00.Core._01.Entity._05.Interface
+namespace Code.Interfaces
 {
     public interface IEntityComponent
     {
-        public void Initialize(global::Entity entity);
+        public void Initialize(Entity entity);
     }
 }

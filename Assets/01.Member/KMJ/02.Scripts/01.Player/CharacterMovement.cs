@@ -1,11 +1,9 @@
-﻿using System;
-using _00.CORE._02.Scripts;
-using _00.CORE._02.Scripts.Input;
-using _01.Member.KMJ._00.Core._01.Entity._05.Interface;
+﻿using _00.CORE._02.Scripts.Input;
+using Code.Core.Stats;
+using Code.Interfaces;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace _01.Member.KMJ._02.Scripts._01.Player
+namespace Code.Entities
 {
     public class CharacterMovement : MonoBehaviour, IEntityComponent
     {
@@ -26,12 +24,13 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         
         public float moveSpeed { get; private set; }= 8f;
         public float baseSpeed { get; private set; }= 8f;
-        
-        public float maxmoveSpeed { get; private set; }= 10f;
+
+        public float maxmoveSpeed { get; set; } = 15f;
         public float targetSpeed { get; private set; }= 0;
         
         public float jumpSpeed { get; private set; }
 
+        public int maxJumpCnt { get; set; } = 2;
         
         private Entity _entity;
         private EntityStatCompo _statCompo;
@@ -69,7 +68,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
                 _rbCompo.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
                 _jumpCnt++;
             }
-            else if (_jumpCnt < 2)
+            else if (_jumpCnt < maxJumpCnt)
             {
                 _rbCompo.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
                 _jumpCnt++;

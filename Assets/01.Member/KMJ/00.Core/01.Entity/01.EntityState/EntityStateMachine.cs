@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
-using _01.Member.KMJ._00.Core._01.Entity._01.EntityState;
 using UnityEngine;
 
-public class EntityStateMachine
+namespace Code.Entities
+{
+    public class EntityStateMachine
     {
         public EntityState CurrentState { get; set; }
         private Dictionary<string, EntityState> _states;
@@ -16,7 +17,7 @@ public class EntityStateMachine
                 Type type = Type.GetType(state.className); //문자열로 타입 가져오기
                 Debug.Assert(type != null, $"Finding type is null : {state.className}");
                 EntityState entityState = Activator.CreateInstance(type, entity, state.animationHash)
-                                            as EntityState;
+                    as EntityState;
                 _states.Add(state.stateName, entityState);
             }
         }
@@ -44,3 +45,4 @@ public class EntityStateMachine
             CurrentState?.FixedUpdate();
         }
     }
+}

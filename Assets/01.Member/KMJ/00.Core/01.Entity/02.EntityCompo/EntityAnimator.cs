@@ -1,4 +1,5 @@
-﻿using _01.Member.KMJ._00.Core._01.Entity._05.Interface;
+﻿
+using Code.Interfaces;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,9 +16,9 @@ namespace _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo
             set => animator.applyRootMotion = value;
         }
         
-        private global::Entity _entity;
+        private Code.Entities.Entity _entity;
 
-        public void Initialize(global::Entity entity)
+        public void Initialize(Code.Entities.Entity entity)
         {
             _entity = entity;
         }
@@ -40,5 +41,6 @@ namespace _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo
         {
             animator.enabled = false;
         }
+        
     }
 }
