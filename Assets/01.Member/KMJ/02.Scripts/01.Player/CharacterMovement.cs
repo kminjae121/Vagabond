@@ -66,12 +66,23 @@ namespace Code.Entities
             if (CheckGroundDetected() == true)
             {
                 _jumpCnt = 0;
+                
+                Vector3 velocity = _rbCompo.linearVelocity;
+                velocity.y = 0;
+                _rbCompo.linearVelocity = velocity;
+    
                 _rbCompo.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+                
                 _jumpCnt++;
             }
             else if (_jumpCnt < maxJumpCnt)
             {
+                Vector3 velocity = _rbCompo.linearVelocity;
+                velocity.y = 0;
+                _rbCompo.linearVelocity = velocity;
+    
                 _rbCompo.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+                
                 _jumpCnt++;
             }
         }

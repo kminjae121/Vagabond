@@ -5,6 +5,7 @@ using _01.Member.KMJ._02.Scripts._01.Player;
 using Code.Core.Debugs;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BloodFlowerSystem : MonoBehaviour
 {
@@ -13,6 +14,11 @@ public class BloodFlowerSystem : MonoBehaviour
     [SerializeField] private Player _player;
     
     public event Action _flowerChangeEvent;
+
+    public UnityAction germinationEvent;
+    public UnityAction bloomEvent;
+    public UnityAction fullBloomEvent;
+    public UnityAction fallingFlowerEvent;
     
     public float fallingFlowerSec { get; set; }
 
@@ -52,18 +58,22 @@ public class BloodFlowerSystem : MonoBehaviour
                 _player.movementCompo.maxmoveSpeed = movespeeds[0];
                 break;
             case <= 3 :
+                germinationEvent?.Invoke();
                 SetDash(false);
                 _player.movementCompo.maxmoveSpeed = movespeeds[1];
                 break;
             case <= 6 :
+                bloomEvent?.Invoke();
                 SetDash(false);
                 _player.movementCompo.maxmoveSpeed = movespeeds[2];
                 _player.movementCompo.maxJumpCnt = 3;
                 break;
             case <= 9 :
+                fullBloomEvent?.Invoke();
                 SetDash(true);
                 break;
             case 10 :
+                fallingFlowerEvent?.Invoke();
                 SetDash(true);
                 isFallingFlower = true;
                 break;

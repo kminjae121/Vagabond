@@ -3,6 +3,7 @@ using _00.CORE._02.Scripts.Input;
 using _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon;
 using _01.Member.KMJ._02.Scripts._01.Player.SlidingCompo;
 using _01.Member.KMJ._02.Scripts._01.Player.State;
+using Code.Core.Debugs;
 using Code.Dash;
 using Code.Entities;
 using GondrLib.Dependencies;
@@ -16,12 +17,14 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         
         private EntityStateMachine _stateMachine;
         [SerializeField] private InputReader inputReader;
-
+        [field: SerializeField] public Transform cameraTrm { get; set; }
+        [SerializeField] private Transform parentTrm;
+        
         #region PlayerComponent
         
         private WallSliding _wallSlidingCompo;
         
-        public PlayerCamFirst camCompo { get; set; }
+        [field:SerializeField] public PlayerCamFirst camCompo { get; set; }
 
         public CharacterMovement movementCompo { get; private set; }
         
@@ -43,7 +46,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             base.Awake();
             _stateMachine = new EntityStateMachine(this, stateDataList);
             _wallSlidingCompo = GetCompo<WallSliding>();
-            camCompo = GetComponentInChildren<PlayerCamFirst>();
             movementCompo = GetCompo<CharacterMovement>();
             swordCompo = GetComponentInChildren<PlayerSword>();
             bloodSystemCompo = GetComponent<BloodFlowerSystem>();
@@ -101,12 +103,20 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         
         private void Update()
         {
+            
             _stateMachine.UpdateStateMachine();
         }
 
         private void FixedUpdate()
         {
             _stateMachine.FixedUpdateMachine();
+        }
+
+        private void LateUpdate()
+        {
+            Vector3 angles = transform.localEulerAngles;
+            angles.y = cameraTrm.localEulerAngles.y;    
+            transform.localEulerAngles = angles;
         }
 
         public void ChangeState(string newStateName, bool force = false) 
