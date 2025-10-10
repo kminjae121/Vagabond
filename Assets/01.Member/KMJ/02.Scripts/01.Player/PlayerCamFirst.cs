@@ -4,9 +4,13 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
 { 
     public class PlayerCamFirst : MonoBehaviour 
     { 
-        [Header("Tilt Settings")] [SerializeField] private float tiltSpeed = 5f;
-        public float slideAngle { get; private set; } 
-        private float _targetSlideAngle = 0f; [SerializeField] private Vector3 _targetPos;
+        [Header("Tilt Settings")]
+        [SerializeField] private float tiltSpeed = 5f;
+        public float slideAngle { get; private set; }
+        private float _targetSlideAngle = 0f;
+        [SerializeField] private Vector3 _targetPos;
+
+        [SerializeField] private Transform _target;
 
         private void Awake()
         {
@@ -16,20 +20,17 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
 
         private void Start()
         {
-            _targetPos = transform.parent.position;
-            
+            _targetPos = transform.position;
         } 
         private void Update()
-        { 
-            SmoothTilt();
-
-        }
-
-        private void FixedUpdate()
         {
-            
+            transform.rotation = Quaternion.Euler(0, 0, slideAngle);
+            SmoothTilt();
         }
-        
+
+        private void LateUpdate()
+        {
+        }
 
         public void SetCamTrm()
         {
