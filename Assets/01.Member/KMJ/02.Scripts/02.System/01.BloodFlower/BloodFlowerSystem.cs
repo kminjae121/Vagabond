@@ -1,8 +1,11 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using _01.Member.KMJ._02.Scripts._01.Player;
 using Code.Core.Debugs;
+using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BloodFlowerSystem : MonoBehaviour
 {
@@ -11,10 +14,17 @@ public class BloodFlowerSystem : MonoBehaviour
     [SerializeField] private Player _player;
     
     public event Action _flowerChangeEvent;
+
+    public UnityAction germinationEvent;
+    public UnityAction bloomEvent;
+    public UnityAction fullBloomEvent;
+    public UnityAction fallingFlowerEvent;
     
     public float fallingFlowerSec { get; set; }
 
-    private bool _isFallingFlower;
+    public bool isFallingFlower { get; set; } = true;
+
+    [SerializeField] private List<float> movespeeds;
 
     private void Awake()
     {
@@ -45,23 +55,27 @@ public class BloodFlowerSystem : MonoBehaviour
         {
             case 0:
                 SetDash(false);
-                _player.movementCompo.maxmoveSpeed = 20;
+                _player.movementCompo.maxmoveSpeed = movespeeds[0];
                 break;
-            case <= 1 :
+            case <= 3 :
+                germinationEvent?.Invoke();
                 SetDash(false);
-                _player.movementCompo.maxmoveSpeed = 23;
+                _player.movementCompo.maxmoveSpeed = movespeeds[1];
                 break;
             case <= 6 :
+                bloomEvent?.Invoke();
                 SetDash(false);
-                _player.movementCompo.maxmoveSpeed = 30;
+                _player.movementCompo.maxmoveSpeed = movespeeds[2];
                 _player.movementCompo.maxJumpCnt = 3;
                 break;
             case <= 9 :
+                fullBloomEvent?.Invoke();
                 SetDash(true);
                 break;
             case 10 :
+                fallingFlowerEvent?.Invoke();
                 SetDash(true);
-                _isFallingFlower = true;
+                isFallingFlower = true;
                 break;
         }
     }
@@ -73,14 +87,14 @@ public class BloodFlowerSystem : MonoBehaviour
 
     private void FallingFlower()
     {
-        if (_isFallingFlower == false)
+        if (isFallingFlower == false)
             return;
         
         fallingFlowerSec -= Time.deltaTime;
 
         if (fallingFlowerSec <= 0)
         {
-            _isFallingFlower = true;
+            isFallingFlower = false;
             _flowerCnt = 1;
         }
     }

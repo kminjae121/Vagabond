@@ -1,4 +1,5 @@
 ﻿using _00.CORE._02.Scripts.Input;
+using Code.Core.Debugs;
 using Code.Core.Stats;
 using Code.Interfaces;
 using UnityEngine;
@@ -65,12 +66,23 @@ namespace Code.Entities
             if (CheckGroundDetected() == true)
             {
                 _jumpCnt = 0;
+                
+                Vector3 velocity = _rbCompo.linearVelocity;
+                velocity.y = 0;
+                _rbCompo.linearVelocity = velocity;
+    
                 _rbCompo.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+                
                 _jumpCnt++;
             }
             else if (_jumpCnt < maxJumpCnt)
             {
+                Vector3 velocity = _rbCompo.linearVelocity;
+                velocity.y = 0;
+                _rbCompo.linearVelocity = velocity;
+    
                 _rbCompo.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
+                
                 _jumpCnt++;
             }
         }
@@ -114,6 +126,11 @@ namespace Code.Entities
         private void SmoothMoveSpeed()
         {
             moveSpeed = Mathf.Lerp(moveSpeed, targetSpeed, Time.deltaTime * moveModifierSpeed);
+
+            if (moveSpeed >= maxmoveSpeed)
+            {
+                moveSpeed = maxmoveSpeed;
+            }
         }
         
         public void SetSpeed(float targetSpeedValue)
@@ -129,6 +146,7 @@ namespace Code.Entities
         private void Update()
         {
             SmoothMoveSpeed();
+            UnityLogger.Log(maxmoveSpeed);
         }
 
         private void OnDrawGizmos()

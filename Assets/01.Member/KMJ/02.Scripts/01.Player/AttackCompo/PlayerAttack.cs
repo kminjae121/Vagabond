@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using _00.CORE._02.Scripts.Input;
+using Code.Core.Debugs;
 using Code.Entities;
 using Code.Interfaces;
 using UnityEngine;
@@ -23,7 +24,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
         {
             _inputReader.AttackEvent += HandleAttack;
             _inputReader.ChargingEvent += HandleCharge;
-            _inputReader.ChargingAttackEvent += HandleChargeAttack;   
+            _inputReader.ChargingAttackEvent += HandleChargeAttack;
+            _inputReader.AttackEndEvent += HandleAttackEnd;
             _player = entity as Player;
         }
 
@@ -32,6 +34,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
             _inputReader.AttackEvent -= HandleAttack;
             _inputReader.ChargingEvent -= HandleCharge;
             _inputReader.ChargingAttackEvent -= HandleChargeAttack;
+            _inputReader.AttackEndEvent -= HandleAttackEnd;
         }
 
         private void HandleCharge()
@@ -41,7 +44,14 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
 
         private void HandleAttack()
         {
-            _player.swordCompo.Attack();
+            if (_player.bloodSystemCompo.isFallingFlower)
+            {
+                HandleCharge();
+            }
+            else
+            {
+                _player.swordCompo.Attack();
+            }
         }
         public void StartChargingTimer()
         {
@@ -73,6 +83,25 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
             }
 
             chargingTime = 0;
+        }
+        
+        private void HandleAttackEnd()
+        {
+            if (_player.bloodSystemCompo.isFallingFlower)
+            {
+                StopChargingTimer();
+                if (chargingTime >= chargeAttackSec)
+                {
+                    _player.ChangeState("CHARGEATTACK");
+                }
+                else
+                {
+                    _player.ChangeState("IDLE");
+                }
+
+                chargingTime = 0;
+            }
+            else return;
         }
 
         
