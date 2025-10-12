@@ -54,30 +54,55 @@ public class BloodFlowerSystem : MonoBehaviour
         switch (_flowerCnt)
         {
             case 0:
-                SetDash(false);
-                _player.movementCompo.maxmoveSpeed = movespeeds[0];
+                SetNormal();
                 break;
             case <= 3 :
-                germinationEvent?.Invoke();
-                SetDash(false);
-                _player.movementCompo.maxmoveSpeed = movespeeds[1];
+                SetGermination();
                 break;
             case <= 6 :
-                bloomEvent?.Invoke();
-                SetDash(false);
-                _player.movementCompo.maxmoveSpeed = movespeeds[2];
-                _player.movementCompo.maxJumpCnt = 3;
+                SetBloomEvent();
                 break;
             case <= 9 :
-                fullBloomEvent?.Invoke();
-                SetDash(true);
+                SetFullBloom();
                 break;
             case 10 :
-                fallingFlowerEvent?.Invoke();
-                SetDash(true);
-                isFallingFlower = true;
+                SetFallingFlower();
                 break;
         }
+    }
+
+    private void SetNormal()
+    {
+        SetDash(false);
+        _player.movementCompo.maxmoveSpeed = movespeeds[0];
+    }
+
+    private void SetGermination()
+    {
+        germinationEvent?.Invoke();
+        SetDash(false);
+        _player.movementCompo.maxmoveSpeed = movespeeds[1];
+    }
+
+    private void SetBloomEvent()
+    {
+        bloomEvent?.Invoke();
+        SetDash(false);
+        _player.movementCompo.maxmoveSpeed = movespeeds[2];
+        _player.movementCompo.maxJumpCnt = 3;
+    }
+
+    private void SetFullBloom()
+    {
+        fullBloomEvent?.Invoke();
+        SetDash(true);
+    }
+
+    private void SetFallingFlower()
+    {
+        fallingFlowerEvent?.Invoke();
+        SetDash(true);
+        isFallingFlower = true;
     }
 
     public void SetDash(bool IsCanDash)
