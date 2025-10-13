@@ -7,6 +7,8 @@ namespace Code.Enemies
     {
         [field: SerializeField] public GameEventChannelSO PlayerChannel { get; private set; }
         [field: SerializeField] public bool IsBattleState { get; set; }
+
+        private StateChangeEvent _stateChangeChannel;
         
         protected override void Awake()
         {
@@ -18,13 +20,14 @@ namespace Code.Enemies
         protected override void Start()
         {
             base.Start();
-            
-            
+
+            _stateChangeChannel = GetBlackboardVariable<StateChangeEvent>("StateChannel").Value;
+            OnDeathEvent.AddListener(HandleDeadEvent);
         }
 
         private void OnDestroy()
         {
-            
+            OnDeathEvent.RemoveListener(HandleDeadEvent);
         }
 
         private void HandleDeadEvent()
@@ -33,6 +36,7 @@ namespace Code.Enemies
                 return;
 
             IsDead = true;
+            _stateChangeChannel.SendEventMessage(EnemyState.DEAD);
         }
 
         public void SetBattleState()
@@ -44,8 +48,8 @@ namespace Code.Enemies
             
             var stateVariable = GetBlackboardVariable<EnemyState>("CurrentState");
             
-            //if (stateVariable != null && stateVariable.Value != EnemyState.HIT)
-                
+            if (stateVariable != null && stateVariable.Value != EnemyState.HIT)
+                _stateChangeChannel.SendEventMessage(EnemyState.CHASE);
         }
     }
 }

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cce3d017ddc3464e88742eaf91ebea0d, type: 3}
-  m_Name: TestOre
+  m_Name: Arrow
   m_EditorClassIdentifier: 
-  poolingName: TestOre
-  prefab: {fileID: 8544659385943388679, guid: 80ed71e5cbdd48b42b50f23ca36a2663, type: 3}
-  initCount: 25
+  poolingName: Arrow
+  prefab: {fileID: 6943268254350053634, guid: 80fda0b0696e4ec4d875715d8b0742d1, type: 3}
+  initCount: 5
