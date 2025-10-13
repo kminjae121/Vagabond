@@ -62,7 +62,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
             Debug.Assert(target != null, $"{atkSpeedStat.statName} does not exist");
             target.OnValueChanged += HandleAttackSpeedChange;
             _atkSpeed = target.Value;
-            
         }
         
         private void HandleAttackSpeedChange(StatSO stat, float currentvalue, float previousvalue)

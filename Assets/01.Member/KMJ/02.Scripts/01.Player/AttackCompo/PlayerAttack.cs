@@ -14,9 +14,9 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
         private Player _player;
 
         public float chargingTime { get; set; } = 0;
-        public float maxchargingTime { get; set; } = 5;
+        [field: SerializeField] public float maxchargingTime { get; set; } = 5;
 
-        private float chargeAttackSec = 3f;
+        [field: SerializeField] private float chargeAttackSec = 3f;
 
         private Coroutine _timerCoroutine;
 
