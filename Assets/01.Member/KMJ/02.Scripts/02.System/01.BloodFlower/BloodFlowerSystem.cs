@@ -9,7 +9,7 @@ using UnityEngine.Events;
 
 public class BloodFlowerSystem : MonoBehaviour
 {
-    private int _flowerCnt;
+    private int _flowerCnt = 0;
 
     [SerializeField] private Player _player;
     
@@ -19,10 +19,10 @@ public class BloodFlowerSystem : MonoBehaviour
     public UnityAction bloomEvent;
     public UnityAction fullBloomEvent;
     public UnityAction fallingFlowerEvent;
-    
-    public float fallingFlowerSec { get; set; }
 
-    public bool isFallingFlower { get; set; } = true;
+    public float fallingFlowerSec { get; set; } = 10f;
+
+    public bool isFallingFlower { get; set; } = false;
 
     [SerializeField] private List<float> movespeeds;
 
@@ -34,6 +34,7 @@ public class BloodFlowerSystem : MonoBehaviour
     private void Update()
     {
         FallingFlower();
+        print(isFallingFlower);
     }
 
     public void AddFlower(int amount)
@@ -114,6 +115,7 @@ public class BloodFlowerSystem : MonoBehaviour
     {
         if (isFallingFlower == false)
             return;
+        
         
         fallingFlowerSec -= Time.deltaTime;
 
