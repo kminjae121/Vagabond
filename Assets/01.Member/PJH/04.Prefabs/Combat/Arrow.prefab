@@ -122,6 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10c8916d75114eedb1ada67a732f0eaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <PoolItem>k__BackingField: {fileID: 11400000, guid: 57625f940051ee64ebdf2ec337c21027, type: 2}
+  arrowAttackData: {fileID: 11400000, guid: b4d250814161b9849bf3f2a0651e4cea, type: 2}
 --- !u!54 &-2783407627278020983
 Rigidbody:
   m_ObjectHideFlags: 0
