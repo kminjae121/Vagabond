@@ -1,6 +1,5 @@
 using Code.Enemies;
 using System;
-using Code.Entities.Combat;
 using Unity.Behavior;
 using UnityEngine;
 using Action = Unity.Behavior.Action;
@@ -18,8 +17,7 @@ public partial class ShootArrowAction : Action
         if (Self.Value == null || Target.Value == null)
             return Status.Failure;
 
-        Vector3 dir = Target.Value.position - Self.Value.transform.position;
-        dir.Normalize();
+        Vector3 dir = (Target.Value.position - Self.Value.transform.position).normalized;
         
         Self.Value.ShootArrow(dir);
         
