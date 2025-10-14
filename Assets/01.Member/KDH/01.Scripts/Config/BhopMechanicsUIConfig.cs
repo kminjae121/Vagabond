@@ -80,28 +80,28 @@ namespace _01.Member.KDH._01.Scripts.Config
         
         [Header("Text Formats - 텍스트 형식")]
         [Tooltip("코요테 타임 텍스트 형식 ({0} = 남은 시간)")]
-        public string coyoteTimeTextFormat = "Coyote: {0:F2}s";
+        public string coyoteTimeTextFormat = "{0:F2}s";
         
         [Tooltip("코요테 타임 준비 상태 텍스트")]
-        public string coyoteReadyText = "Coyote: Ready";
+        public string coyoteReadyText = "Ready";
         
         [Tooltip("점프 버퍼 텍스트 형식 ({0} = 남은 시간)")]
-        public string jumpBufferTextFormat = "Buffer: {0:F2}s";
+        public string jumpBufferTextFormat = "{0:F2}s";
         
         [Tooltip("점프 버퍼 준비 상태 텍스트")]
-        public string bufferReadyText = "Buffer: Ready";
+        public string bufferReadyText = "Ready";
         
         [Tooltip("속도계 텍스트 형식 ({0} = 현재 속도, {1} = 최대 속도)")]
-        public string speedometerFormat = "Speed: {0:F1} / {1:F1}";
+        public string speedometerFormat = "{0:F1} / {1:F1}";
         
         [Tooltip("속도 단위")]
         public string speedUnit = "m/s";
         
         [Tooltip("Bhop 카운터 텍스트 형식 ({0} = 연속 횟수)")]
-        public string bhopCounterFormat = "Bhops: {0}";
+        public string bhopCounterFormat = "{0}";
         
         [Tooltip("최고 속도 텍스트 형식 ({0} = 최고 속도)")]
-        public string maxSpeedFormat = "Max: {0:F1}";
+        public string maxSpeedFormat = "{0:F1}";
         
         [Header("Animation Settings - 애니메이션 설정")]
         [Tooltip("UI 페이드 인/아웃 속도")]

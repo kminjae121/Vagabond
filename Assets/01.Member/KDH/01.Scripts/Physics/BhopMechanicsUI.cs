@@ -134,7 +134,7 @@ namespace _01.Member.KDH._01.Scripts.Physics
             // Update text
             if (coyoteTimeText != null)
             {
-                string textFormat = config != null ? config.coyoteTimeTextFormat : "Coyote: {0:F2}s";
+                string textFormat = config != null ? config.coyoteTimeTextFormat : "{0:F2}s";
                 
                 if (isActive)
                 {
@@ -143,7 +143,7 @@ namespace _01.Member.KDH._01.Scripts.Physics
                 }
                 else
                 {
-                    coyoteTimeText.text = config != null ? config.coyoteReadyText : "Coyote: Ready";
+                    coyoteTimeText.text = config != null ? config.coyoteReadyText : "Ready";
                     coyoteTimeText.color = GetCoyoteInactiveColor();
                 }
             }
@@ -173,7 +173,7 @@ namespace _01.Member.KDH._01.Scripts.Physics
             // Update text
             if (jumpBufferText != null)
             {
-                string textFormat = config != null ? config.jumpBufferTextFormat : "Buffer: {0:F2}s";
+                string textFormat = config != null ? config.jumpBufferTextFormat : "{0:F2}s";
                 
                 if (isActive)
                 {
@@ -182,7 +182,7 @@ namespace _01.Member.KDH._01.Scripts.Physics
                 }
                 else
                 {
-                    jumpBufferText.text = config != null ? config.bufferReadyText : "Buffer: Ready";
+                    jumpBufferText.text = config != null ? config.bufferReadyText : "Ready";
                     jumpBufferText.color = GetBufferInactiveColor();
                 }
             }
@@ -203,7 +203,7 @@ namespace _01.Member.KDH._01.Scripts.Physics
             // Update text
             if (speedText != null)
             {
-                string format = config != null ? config.speedometerFormat : "Speed: {0:F1} / {1:F1}";
+                string format = config != null ? config.speedometerFormat : "{0:F1} / {1:F1}";
                 string unit = config != null ? config.speedUnit : "m/s";
                 
                 speedText.text = string.Format(format, speed, maxSpeed) + " " + unit;
@@ -252,7 +252,7 @@ namespace _01.Member.KDH._01.Scripts.Physics
             wasGrounded = isGrounded;
             
             // Update display
-            string format = config != null ? config.bhopCounterFormat : "Bhops: {0}";
+            string format = config != null ? config.bhopCounterFormat : "{0}";
             bhopCounterText.text = string.Format(format, consecutiveBhops);
             
             // Color based on streak
@@ -277,7 +277,7 @@ namespace _01.Member.KDH._01.Scripts.Physics
         {
             if (maxSpeedText == null) return;
             
-            string format = config != null ? config.maxSpeedFormat : "Max: {0:F1}";
+            string format = config != null ? config.maxSpeedFormat : "{0:F1}";
             string unit = config != null ? config.speedUnit : "m/s";
             
             maxSpeedText.text = string.Format(format, maxSpeedReached) + " " + unit;

@@ -44,12 +44,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         [SerializeField] private float jumpRaySize = 0.3f;
         [SerializeField] private LayerMask whatIsGround;
         
-        [Header("Ground Check Advanced - 고급 지면 체크")]
-        [Tooltip("추가 지면 체크 레이캐스트 개수 (더 안정적인 감지)")]
-        [SerializeField] private bool useMultipleRaycasts = true;
-        [SerializeField] private int raycastCount = 5;
-        [SerializeField] private float raycastRadius = 0.3f;
-        
         [field: SerializeField] public InputReader _inputReader { get; private set; }
         
         public Vector3 _move;
@@ -74,10 +68,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         private float jumpBufferCounter;
         private bool isGroundedCached;
         private bool canUseCoyoteTime;
-        
-        // 디버그용
-        private float lastJumpTime;
-        private const float MIN_JUMP_INTERVAL = 0.1f;
         
         public void Initialize(Entity entity)
         {
@@ -105,42 +95,9 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             _move.z = ZMove;
         }
         
-        /// <summary>
-        /// 개선된 지면 체크 - 여러 지점에서 레이캐스트
-        /// </summary>
         public bool CheckGroundDetected()
         {
-            if (!useMultipleRaycasts)
-            {
-                // 기본 단일 레이캐스트
-                return Physics.Raycast(transform.position, Vector3.down, jumpRaySize, whatIsGround);
-            }
-            
-            // 중앙 레이캐스트
-            if (Physics.Raycast(transform.position, Vector3.down, jumpRaySize, whatIsGround))
-            {
-                return true;
-            }
-            
-            // 원형으로 배치된 여러 레이캐스트
-            for (int i = 0; i < raycastCount; i++)
-            {
-                float angle = i * (360f / raycastCount) * Mathf.Deg2Rad;
-                Vector3 offset = new Vector3(
-                    Mathf.Cos(angle) * raycastRadius,
-                    0,
-                    Mathf.Sin(angle) * raycastRadius
-                );
-                
-                Vector3 rayOrigin = transform.position + offset;
-                
-                if (Physics.Raycast(rayOrigin, Vector3.down, jumpRaySize, whatIsGround))
-                {
-                    return true;
-                }
-            }
-            
-            return false;
+            return Physics.Raycast(transform.position, Vector3.down, jumpRaySize, whatIsGround);
         }
         
         private void OnJumpInputReceived()
@@ -149,28 +106,13 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             
             if (showJumpDebug)
             {
-                UnityLogger.Log($"[Jump Input] Received - Buffer: {jumpBufferCounter:F2}s | Grounded: {isGroundedCached} | JumpCnt: {_jumpCnt}/{maxJumpCnt}");
+                UnityLogger.Log("Jump input received - Buffer activated");
             }
         }
         
         public void Jump()
         {
-            // 너무 빠른 연속 점프 방지
-            if (Time.time - lastJumpTime < MIN_JUMP_INTERVAL)
-            {
-                if (showJumpDebug)
-                {
-                    UnityLogger.Log($"[Jump Blocked] Too soon! Last jump: {Time.time - lastJumpTime:F3}s ago");
-                }
-                return;
-            }
-            
             bool canJumpFromGround = isGroundedCached || (coyoteTimeCounter > 0 && canUseCoyoteTime);
-            
-            if (showJumpDebug)
-            {
-                UnityLogger.Log($"[Jump Attempt] Grounded: {isGroundedCached} | Coyote: {canUseCoyoteTime} | JumpCnt: {_jumpCnt}/{maxJumpCnt}");
-            }
             
             if (useBhopPhysics)
             {
@@ -190,13 +132,13 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
                 
                 if (isGroundedCached && jumpBufferCounter > 0)
                 {
-                    if (showJumpDebug)
-                    {
-                        UnityLogger.Log($"[Jump Buffer] Executing buffered jump! Time left: {jumpBufferCounter:F2}s");
-                    }
-                    
                     Jump();
                     jumpBufferCounter = 0;
+                    
+                    if (showJumpDebug)
+                    {
+                        UnityLogger.Log("Jump executed from buffer!");
+                    }
                 }
             }
         }
@@ -208,15 +150,9 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
                 coyoteTimeCounter = coyoteTime;
                 canUseCoyoteTime = true;
 
-                // 지면에 착지했을 때 점프 카운트 리셋
-                if (!wasGrounded)
+                if (wasGrounded == false)
                 {
                     _jumpCnt = 0;
-                    
-                    if (showJumpDebug)
-                    {
-                        UnityLogger.Log($"[Ground Landing] Jump count reset! Speed: {currentHorizontalSpeed:F2}");
-                    }
                 }
             }
             else
@@ -236,24 +172,13 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
                     canUseCoyoteTime = false;
                     if (showJumpDebug)
                     {
-                        UnityLogger.Log("[Coyote Jump] Executed!");
+                        UnityLogger.Log("Coyote time jump executed!");
                     }
                 }
             }
             else if (_jumpCnt < maxJumpCnt)
             {
-                if (showJumpDebug)
-                {
-                    UnityLogger.Log($"[Air Jump] Executing air jump #{_jumpCnt + 1}");
-                }
                 ExecuteJump();
-            }
-            else
-            {
-                if (showJumpDebug)
-                {
-                    UnityLogger.Log($"[Jump Failed] Max jumps reached! {_jumpCnt}/{maxJumpCnt}");
-                }
             }
         }
         
@@ -269,61 +194,43 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
                     Vector3 horizontalDir = new Vector3(currentVel.x, 0, currentVel.z).normalized;
                     currentVel.x = horizontalDir.x * retainedSpeed;
                     currentVel.z = horizontalDir.z * retainedSpeed;
-                    
-                    if (showJumpDebug)
-                    {
-                        UnityLogger.Log($"[Bhop] Speed retained: {retainedSpeed:F2}");
-                    }
                 }
                 
                 currentVel.y = jumpSpeed;
                 _rbCompo.linearVelocity = currentVel;
                 _jumpCnt++;
-                lastJumpTime = Time.time;
                 
                 if (!isGroundedCached && coyoteTimeCounter > 0)
                 {
                     canUseCoyoteTime = false;
                     if (showJumpDebug)
                     {
-                        UnityLogger.Log($"[Coyote Bhop] Speed: {currentHorizontalSpeed:F2}");
+                        UnityLogger.Log($"Coyote time jump! Speed: {currentHorizontalSpeed:F2}");
                     }
                 }
             }
             else if (_jumpCnt < maxJumpCnt)
             {
-                Vector3 vel = _rbCompo.linearVelocity;
-                vel.y = jumpSpeed;
-                _rbCompo.linearVelocity = vel;
+                Vector3 velocity = _rbCompo.linearVelocity;
+                velocity.y = jumpSpeed;
+                _rbCompo.linearVelocity = velocity;
                 _jumpCnt++;
-                lastJumpTime = Time.time;
                 
                 if (showJumpDebug)
                 {
-                    UnityLogger.Log($"[Air Jump] #{_jumpCnt}/{maxJumpCnt}");
-                }
-            }
-            else
-            {
-                if (showJumpDebug)
-                {
-                    UnityLogger.Log($"[Jump Failed] Max jumps! {_jumpCnt}/{maxJumpCnt} | Grounded: {isGroundedCached}");
+                    UnityLogger.Log($"Air jump #{_jumpCnt}");
                 }
             }
         }
         
         private void ExecuteJump()
         {
-            Vector3 vel = _rbCompo.linearVelocity;
-            vel.y = jumpSpeed;
-            _rbCompo.linearVelocity = vel;
+            _jumpCnt = 0;
+            Vector3 velocity = _rbCompo.linearVelocity;
+            velocity.y = 0;
+            _rbCompo.linearVelocity = velocity;
+            _rbCompo.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
             _jumpCnt++;
-            lastJumpTime = Time.time;
-            
-            if (showJumpDebug)
-            {
-                UnityLogger.Log($"[Standard Jump] Executed! Count: {_jumpCnt}");
-            }
         }
         
         public void AfterInitialize()
@@ -378,15 +285,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         
         private void Update()
         {
-            // 지면 체크를 먼저 수행
-            bool previousGroundState = isGroundedCached;
             isGroundedCached = CheckGroundDetected();
-            
-            // 지면 상태 변화 감지
-            if (previousGroundState != isGroundedCached && showJumpDebug)
-            {
-                UnityLogger.Log($"[Ground State Changed] Now: {(isGroundedCached ? "GROUNDED" : "AIRBORNE")} | JumpCnt: {_jumpCnt}");
-            }
             
             currentHorizontalSpeed = GetHorizontalSpeed();
             
@@ -395,13 +294,9 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             
             if (useBhopPhysics && showJumpDebug)
             {
-                string debugInfo = $"[Movement Debug]\n";
-                debugInfo += $"Speed: {currentHorizontalSpeed:F2} / {maxmoveSpeed:F2}\n";
-                debugInfo += $"Grounded: {isGroundedCached} | JumpCnt: {_jumpCnt}/{maxJumpCnt}\n";
-                debugInfo += $"Coyote: {coyoteTimeCounter:F2}s (Active: {IsCoyoteTimeActive()})\n";
-                debugInfo += $"Buffer: {jumpBufferCounter:F2}s (Active: {IsJumpBufferActive()})\n";
-                debugInfo += $"Y Velocity: {_rbCompo.linearVelocity.y:F2}";
-                
+                string debugInfo = $"Speed: {currentHorizontalSpeed:F2} | Max: {maxmoveSpeed:F2}";
+                debugInfo += $"\nCoyote: {coyoteTimeCounter:F2}s | Buffer: {jumpBufferCounter:F2}s";
+                debugInfo += $"\nGrounded: {isGroundedCached} | JumpCount: {_jumpCnt}";
                 UnityLogger.Log(debugInfo);
             }
         }
@@ -570,63 +465,30 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             return jumpBufferCounter > 0;
         }
         
-        /// <summary>
-        /// 강제로 점프 카운트를 리셋 (디버깅/치트용)
-        /// </summary>
-        [ContextMenu("Reset Jump Count")]
-        public void ResetJumpCount()
-        {
-            _jumpCnt = 0;
-            UnityLogger.Log("[Debug] Jump count reset!");
-        }
-        
         private void OnDrawGizmos()
         {
             if (_rbCompo == null) return;
             
-            // 기본 지면 체크 레이
             Gizmos.color = isGroundedCached ? Color.green : Color.red;
             Gizmos.DrawRay(transform.position, Vector3.down * jumpRaySize);
             
-            // 추가 레이캐스트 표시
-            if (useMultipleRaycasts)
-            {
-                Gizmos.color = Color.yellow;
-                for (int i = 0; i < raycastCount; i++)
-                {
-                    float angle = i * (360f / raycastCount) * Mathf.Deg2Rad;
-                    Vector3 offset = new Vector3(
-                        Mathf.Cos(angle) * raycastRadius,
-                        0,
-                        Mathf.Sin(angle) * raycastRadius
-                    );
-                    
-                    Vector3 rayOrigin = transform.position + offset;
-                    Gizmos.DrawRay(rayOrigin, Vector3.down * jumpRaySize);
-                }
-            }
-            
             if (useBhopPhysics)
             {
-                // 속도 벡터
                 Gizmos.color = Color.blue;
                 Gizmos.DrawRay(transform.position, _rbCompo.linearVelocity.normalized * 2f);
                 
-                // 입력 방향
                 Gizmos.color = Color.yellow;
                 Gizmos.DrawRay(transform.position, wishDir * 2f);
             }
 
             if (showJumpDebug)
             {
-                // 코요테 타임   
                 if (IsCoyoteTimeActive())
                 {
                     Gizmos.color = Color.cyan;
                     Gizmos.DrawWireSphere(transform.position + Vector3.up * 0.5f, 0.3f);
                 }
 
-                // 점프 버퍼
                 if (IsJumpBufferActive())
                 {
                     Gizmos.color = Color.magenta;

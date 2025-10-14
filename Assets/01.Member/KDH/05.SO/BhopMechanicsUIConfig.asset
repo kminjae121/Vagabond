@@ -33,14 +33,14 @@ MonoBehaviour:
   bhopExpertColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   bhopMasterColor: {r: 1, g: 0, b: 0, a: 1}
   maxSpeedColor: {r: 0, g: 1, b: 1, a: 1}
-  coyoteTimeTextFormat: 'Coyote: {0:F2}s'
-  coyoteReadyText: 'Coyote: Ready'
-  jumpBufferTextFormat: 'Buffer: {0:F2}s'
-  bufferReadyText: 'Buffer: Ready'
-  speedometerFormat: 'Speed: {0:F1} / {1:F1}'
+  coyoteTimeTextFormat: '{0:F2}s'
+  coyoteReadyText: Ready
+  jumpBufferTextFormat: '{0:F2}s'
+  bufferReadyText: Ready
+  speedometerFormat: '{0:F1} / {1:F1}'
   speedUnit: m/s
-  bhopCounterFormat: 'Bhops: {0}'
-  maxSpeedFormat: 'Max: {0:F1}'
+  bhopCounterFormat: '{0}'
+  maxSpeedFormat: '{0:F1}'
   fadeSpeed: 5
   barFillSpeed: 10
   coyoteTimeDuration: 0.15
