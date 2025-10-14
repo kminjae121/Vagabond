@@ -1,6 +1,9 @@
-﻿using _00.CORE._02.Scripts.Input;
+﻿using System;
+using _00.CORE._02.Scripts.Input;
 using _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon;
 using _01.Member.KMJ._02.Scripts._01.Player.SlidingCompo;
+using _01.Member.KMJ._02.Scripts._01.Player.State;
+using Code.Core.Debugs;
 using Code.Dash;
 using Code.Entities;
 using GondrLib.Dependencies;
@@ -14,7 +17,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         
         private EntityStateMachine _stateMachine;
         [SerializeField] private InputReader inputReader;
-        
         [field: SerializeField] public Transform cameraTrm { get; set; }
         [SerializeField] private Transform parentTrm;
         
@@ -34,10 +36,10 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         #endregion
         
         private bool isJumping = true;
-        private bool isMovementEnabled = true;
 
         [Provide]
         public Player GetPlayer() => this;
+        
         
         protected override void Awake()
         {
@@ -55,42 +57,31 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
 
         private void HandleWallSliding(bool isSliding)
         {
-            if (!isJumping) return;
-            
-            string slidingDirection = _wallSlidingCompo.CanSlidingWall();
-            
-            if (slidingDirection != "None")
+            if (isJumping)
             {
-                if (isSliding && slidingDirection == "Left" && !_wallSlidingCompo._isWallSliding)
+                if (_wallSlidingCompo.CanSlidingWall() != "None")
                 {
-                    movementCompo._jumpCnt = 0;
-                    ChangeState("LEFTSLIDING");
-                }
-                else if (isSliding && slidingDirection == "Right" && !_wallSlidingCompo._isWallSliding)
-                {
-                    movementCompo._jumpCnt = 0;
-                    ChangeState("RIGHTSLIDING");
-                }
-                else if (!isSliding)
-                {
-                    ChangeState("JUMP");
-                }
+                    if (isSliding && _wallSlidingCompo.CanSlidingWall() == "Left" && !_wallSlidingCompo._isWallSliding)
+                    {
+                        movementCompo._jumpCnt = 0;
+                        ChangeState("LEFTSLIDING");
+                    }
+                    else if(isSliding && _wallSlidingCompo.CanSlidingWall() == "Right" && !_wallSlidingCompo._isWallSliding)
+                    {
+                        movementCompo._jumpCnt = 0;
+                        ChangeState("RIGHTSLIDING");
+                    }
+                    else if (!isSliding)
+                    {
+                        ChangeState("JUMP");
+                    }   
+                }   
             }
         }
 
         public void SetJumping(bool isJump)
         {
             isJumping = isJump;
-        }
-        
-        public void SetMovementEnabled(bool enabled)
-        {
-            isMovementEnabled = enabled;
-            
-            if (!enabled)
-            {
-                movementCompo.SetMove(0, 0);
-            }
         }
 
         private void Start()
@@ -101,16 +92,18 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
 
         private void HandleJump()
         {
-            if (!isJumping) return;
-            
-            if (_wallSlidingCompo.CanSlidingWall() == "None")
+            if (isJumping)
             {
-                movementCompo.Jump();
+                if (_wallSlidingCompo.CanSlidingWall() == "None")
+                {
+                    ChangeState("JUMP");
+                }   
             }
         }
         
         private void Update()
         {
+            
             _stateMachine.UpdateStateMachine();
         }
 
@@ -121,7 +114,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
 
         private void LateUpdate()
         {
-            // 카메라 방향에 맞춰 플레이어 회전
             Vector3 angles = transform.localEulerAngles;
             angles.y = cameraTrm.localEulerAngles.y;    
             transform.localEulerAngles = angles;
@@ -130,13 +122,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         public void ChangeState(string newStateName, bool force = false) 
             => _stateMachine.ChangeState(newStateName, force);
 
-        private void OnDestroy()
-        {
-            if (inputReader != null)
-            {
-                inputReader.JumpKeyEvent -= HandleJump;
-                inputReader.SlidingEvent -= HandleWallSliding;
-            }
-        }
+        
     }
 }
