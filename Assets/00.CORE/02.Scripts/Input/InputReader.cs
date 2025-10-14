@@ -12,9 +12,13 @@ namespace _00.CORE._02.Scripts.Input
 
         public Vector2 MoveValue;
 
+        #region Event
+        
         public Action<bool> SlidingEvent { get; set; }
         
         public Action JumpKeyEvent { get; set; }
+        
+        public Action SlideEvent { get; set; }
         
         public Action ChargingEvent { get; set; }
         
@@ -24,8 +28,10 @@ namespace _00.CORE._02.Scripts.Input
         public Action AttackEvent { get; set; }
         
         public Action DashEvent { get; set; }
+        
 
-
+        #endregion
+        
         private void OnEnable()
         {
             if (_controlls == null)
@@ -61,7 +67,6 @@ namespace _00.CORE._02.Scripts.Input
 
         public void OnSprint(InputAction.CallbackContext context)
         {
-            
         }
 
         public void OnCharging(InputAction.CallbackContext context)
@@ -81,6 +86,14 @@ namespace _00.CORE._02.Scripts.Input
             if (context.performed)
             {
                 DashEvent?.Invoke();
+            }
+        }
+
+        public void OnSliding(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                SlideEvent?.Invoke();
             }
         }
 
