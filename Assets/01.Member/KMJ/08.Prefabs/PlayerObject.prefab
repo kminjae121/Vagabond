@@ -392,8 +392,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tiltSpeed: 18
+  maxTiltAngle: 15
+  enableVelocityTilt: 1
+  velocityTiltMultiplier: 0.5
   _targetPos: {x: 0, y: 0, z: 0}
   _target: {fileID: 84041272777376154}
+  positionLerpSpeed: 10
+  enableSpeedFOV: 1
+  baseFOV: 90
+  maxSpeedFOV: 110
+  speedForMaxFOV: 20
+  fovChangeSpeed: 5
+  enableHeadBob: 1
+  bobFrequency: 2
+  bobHorizontalAmplitude: 0.05
+  bobVerticalAmplitude: 0.1
 --- !u!1 &3191186563080092151
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,8 +710,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tiltSpeed: 18
+  maxTiltAngle: 15
+  enableVelocityTilt: 1
+  velocityTiltMultiplier: 0.5
   _targetPos: {x: 0, y: 0, z: 0}
   _target: {fileID: 0}
+  positionLerpSpeed: 10
+  enableSpeedFOV: 1
+  baseFOV: 90
+  maxSpeedFOV: 110
+  speedForMaxFOV: 20
+  fovChangeSpeed: 5
+  enableHeadBob: 1
+  bobFrequency: 2
+  bobHorizontalAmplitude: 0.05
+  bobVerticalAmplitude: 0.1
 --- !u!114 &5777238585332016569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -825,13 +851,29 @@ MonoBehaviour:
   moveSpeedStat: {fileID: 11400000, guid: 352b61d201b41bb49837213e2c6f9f65, type: 2}
   jumpSpeedStat: {fileID: 11400000, guid: 28c9b40d4e09d66499dae8386ebc8b95, type: 2}
   maxMoveSpeedStat: {fileID: 11400000, guid: 15923a10eacd89b4d8bb6235c032a264, type: 2}
-  jumpRaySize: 1.23432
+  groundCheckDistance: 0.3
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
-  moveModifierSpeed: 2.8
+  groundStickForce: 5
+  enableAdvancedMovement: 1
+  gravity: 20.32
+  friction: 6
+  groundAcceleration: 14
+  groundDeceleration: 10
+  airAcceleration: 2
+  airControl: 0.3
+  airCap: 0.76199996
+  sideStrafeSpeed: 1
+  sideStrafeAcceleration: 50
+  autoBhop: 1
+  maxSlopeAngle: 45
+  surfSlope: 0.7
+  stepSize: 0.48
+  movingUpRapidlyFactor: 0.85
+  maxCollisionChecks: 128
+  collisionOffset: 0.01
   <_inputReader>k__BackingField: {fileID: 11400000, guid: 24b9526a025a0b345ba14a70e5eb829f, type: 2}
-  _move: {x: 0, y: 0, z: 0}
 --- !u!1 &6156553796495784310
 GameObject:
   m_ObjectHideFlags: 0
@@ -877,9 +919,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e77ecefbdf024a8cb822be7946d7c30f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiltSpeed: 18
+  tiltSpeed: 5
+  maxTiltAngle: 15
+  enableVelocityTilt: 1
+  velocityTiltMultiplier: 0.5
   _targetPos: {x: 0, y: 0, z: 0}
   _target: {fileID: 84041272777376154}
+  positionLerpSpeed: 10
+  enableSpeedFOV: 1
+  baseFOV: 90
+  maxSpeedFOV: 110
+  speedForMaxFOV: 20
+  fovChangeSpeed: 5
+  enableHeadBob: 1
+  bobFrequency: 2
+  bobHorizontalAmplitude: 0.05
+  bobVerticalAmplitude: 0.1
 --- !u!1 &7352122107813478315
 GameObject:
   m_ObjectHideFlags: 0
@@ -1278,3 +1333,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputReader: {fileID: 11400000, guid: 24b9526a025a0b345ba14a70e5eb829f, type: 2}
+  <maxchargingTime>k__BackingField: 5
+  chargeAttackSec: 3

@@ -1,11 +1,11 @@
 ﻿using System;
 using Unity.Cinemachine;
-using UnityEngine; 
-namespace _01.Member.KMJ._02.Scripts._01.Player 
-{ 
-    public class PlayerCamFirst : MonoBehaviour 
-    { 
-        [Header("Tilt Settings")]   
+using UnityEngine;
+namespace _01.Member.KMJ._02.Scripts._01.Player
+{
+    public class PlayerCamFirst : MonoBehaviour
+    {
+        [Header("Tilt Settings")]
         [SerializeField] private float tiltSpeed = 5f;
         public float slideAngle { get; private set; }
         private float _targetSlideAngle = 0f;
@@ -14,20 +14,20 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         [SerializeField] private Transform _target;
         private void Awake()
         {
-            Cursor.lockState = CursorLockMode.Locked; 
-            Cursor.visible = false; 
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
         private void Start()
         {
             _targetPos = transform.position;
-        } 
+        }
         private void Update()
         {
             ApplyWorldTilt();
             SmoothTilt();
         }
-        
+
         private void ApplyWorldTilt()
         {
             if (_target == null) return;
@@ -37,8 +37,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
 
             float sinY = Mathf.Sin(radY);
             float cosY = Mathf.Cos(radY);
-            
-            float xRot = sinY * slideAngle; 
+
+            float xRot = sinY * slideAngle;
             float zRot = cosY * slideAngle;
 
             transform.localRotation = Quaternion.Euler(xRot, 0f, zRot);
@@ -72,5 +72,5 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         {
             _targetSlideAngle = 0;
         }
-    } 
+    }
 }
