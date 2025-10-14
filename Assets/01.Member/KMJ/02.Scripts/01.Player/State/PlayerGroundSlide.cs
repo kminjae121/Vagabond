@@ -20,7 +20,7 @@ public class PlayerGroundSlide : PlayerState
 
     public override void Update()
     {
-        //_player._groundSlideCompo.Sliding();
+        _player._groundSlideCompo.Sliding();
         
         if (!_player.isSliding || _movementCompo.moveSpeed <= 1)
         {
@@ -33,7 +33,7 @@ public class PlayerGroundSlide : PlayerState
     public override void Exit()
     {
         //_movementCompo.moveModifierSpeed = 3f;
-        //_player._groundSlideCompo.ReturnSliding();
+        _player._groundSlideCompo.ReturnSliding();
         _player.isSliding = false;
         base.Exit();
     }
