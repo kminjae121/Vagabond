@@ -49,7 +49,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         public Vector3 _move;
         public int _jumpCnt { get; set; }
         
-        public float moveSpeed { get; private set; } = 8f;
+        public float moveSpeed { get; set; } = 8f;
         public float baseSpeed { get; private set; } = 8f;
         public float maxmoveSpeed { get; set; } = 15f;
         public float jumpSpeed { get; private set; }

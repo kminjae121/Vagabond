@@ -19,7 +19,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
             _player.swordCompo.NabDo();
             _atkCompo.StartChargingTimer();
             _player.SetJumping(false);
-            Debug.Log("차징공격 시작함");
             base.Enter();
         }
 
