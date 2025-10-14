@@ -13,14 +13,14 @@ public class PlayerGroundSlide : PlayerState
     public override void Enter()
     {
         _player.isSliding = true;
-        _movementCompo.SetSpeedZero();
-        _movementCompo.moveModifierSpeed = 1.21f;
+        //_movementCompo.SetSpeedZero();
+        //_movementCompo.moveModifierSpeed = 1.21f;
         base.Enter();
     }
 
     public override void Update()
     {
-        _player._groundSlideCompo.Sliding();
+        //_player._groundSlideCompo.Sliding();
         
         if (!_player.isSliding || _movementCompo.moveSpeed <= 1)
         {
@@ -32,8 +32,8 @@ public class PlayerGroundSlide : PlayerState
 
     public override void Exit()
     {
-        _movementCompo.moveModifierSpeed = 3f;
-        _player._groundSlideCompo.ReturnSliding();
+        //_movementCompo.moveModifierSpeed = 3f;
+        //_player._groundSlideCompo.ReturnSliding();
         _player.isSliding = false;
         base.Exit();
     }

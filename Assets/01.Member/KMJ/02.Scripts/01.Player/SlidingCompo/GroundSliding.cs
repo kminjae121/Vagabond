@@ -45,7 +45,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.SlidingCompo
         {
             if (!_player.isSliding)
             {
-                ReturnSliding();
+             //   ReturnSliding();
             }
         }
 
@@ -59,20 +59,20 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.SlidingCompo
         }
         
 
-        public void Sliding()
-        {
-            _eyeTrm.position = Vector3.Lerp(_eyeTrm.position, _slideTrm.position, Time.deltaTime * camMoveSpeed);
-            
-            Vector3 forwardDir = transform.forward;
-            
-            _rbCompo.linearVelocity = new Vector3(forwardDir.x * _player.movementCompo.moveSpeed,
-                _rbCompo.linearVelocity.y, forwardDir.z * _player.movementCompo.moveSpeed
-            );
-        }
+        //public void Sliding()
+        //{
+        //    _eyeTrm.position = Vector3.Lerp(_eyeTrm.position, _slideTrm.position, Time.deltaTime * camMoveSpeed);
+        //    
+        //    Vector3 forwardDir = transform.forward;
+        //    
+        //    _rbCompo.linearVelocity = new Vector3(forwardDir.x * _player.movementCompo.moveSpeed,
+        //        _rbCompo.linearVelocity.y, forwardDir.z * _player.movementCompo.moveSpeed
+        //    );
+        //}
 
-        public void ReturnSliding()
-        {
-            _eyeTrm.position = Vector3.Lerp(_eyeTrm.position, _ownTrm.position, Time.deltaTime * camMoveSpeed);
-        }
+        //public void ReturnSliding()
+        //{
+        //    _eyeTrm.position = Vector3.Lerp(_eyeTrm.position, _ownTrm.position, Time.deltaTime * camMoveSpeed);
+        //}
     }
 }
