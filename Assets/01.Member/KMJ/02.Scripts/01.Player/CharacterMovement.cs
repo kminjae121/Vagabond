@@ -16,14 +16,14 @@ namespace Code.Entities
         [SerializeField] private LayerMask whatIsGround;
         
         [Header("ModifierValue")]
-        [SerializeField] private float moveModifierSpeed;
+        [field: SerializeField] public float moveModifierSpeed { get; set; }
         
         [field : SerializeField] public InputReader _inputReader { get; private set; }
         public Vector3 _move;
 
         public int _jumpCnt { get; set; }
         
-        public float moveSpeed { get; private set; }= 8f;
+        public float moveSpeed { get;  set; }= 8f;
         public float baseSpeed { get; private set; }= 8f;
 
         public float maxmoveSpeed { get; set; } = 15f;
@@ -127,10 +127,10 @@ namespace Code.Entities
         {
             moveSpeed = Mathf.Lerp(moveSpeed, targetSpeed, Time.deltaTime * moveModifierSpeed);
 
-            if (moveSpeed >= maxmoveSpeed)
-            {
-                moveSpeed = maxmoveSpeed;
-            }
+            //if (moveSpeed >= maxmoveSpeed)
+            //{
+            //    moveSpeed = maxmoveSpeed;
+            //}
         }
         
         public void SetSpeed(float targetSpeedValue)
@@ -143,10 +143,14 @@ namespace Code.Entities
             targetSpeed = baseSpeed;
         }
 
+        public void SetSpeedZero()
+        {
+            targetSpeed = 0;
+        }
+
         private void Update()
         {
             SmoothMoveSpeed();
-            UnityLogger.Log(maxmoveSpeed);
         }
 
         private void OnDrawGizmos()
