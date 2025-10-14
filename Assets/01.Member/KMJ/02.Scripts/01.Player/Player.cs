@@ -38,7 +38,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         #endregion
         
         private bool isJumping = true;
-
         public bool isSliding = false;
 
         [Provide]

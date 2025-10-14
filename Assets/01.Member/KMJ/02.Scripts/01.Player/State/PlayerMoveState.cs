@@ -25,23 +25,20 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
             if (_movementCompo._inputReader.MoveValue == Vector2.zero)
             {
                 _player.ChangeState("IDLE");
-                _movementCompo.StopMoving();
             }
         }
 
         public override void FixedUpdate()
         {
+            // Bhop Physics를 사용하는 경우 CharacterMovement가 자동으로 처리하므로 제거
+            if (_movementCompo.useBhopPhysics)
+                return;
+        
             Vector3 keyDir = new Vector3(_player.movementCompo._move.x, 0, _player.movementCompo._move.z).normalized;
-            
             Vector3 movement = _player.cameraTrm.forward * keyDir.z + _player.cameraTrm.right * keyDir.x;
-            
             movement *= _movementCompo.moveSpeed;
             movement.y = _rbCompo.linearVelocity.y;
-            
             _rbCompo.linearVelocity = movement;
-
-            //_rbCompo.linearVelocity = new Vector3(_entity.transform.TransformDirection(_movementCompo._move).x * _movementCompo.moveSpeed,
-            //    _rbCompo.linearVelocity.y, _entity.transform.TransformDirection(_movementCompo._move).z * _movementCompo.moveSpeed);
         }
 
         public override void Exit()

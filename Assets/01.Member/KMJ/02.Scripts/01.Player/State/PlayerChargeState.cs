@@ -19,18 +19,21 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
             _player.swordCompo.NabDo();
             _atkCompo.StartChargingTimer();
             _player.SetJumping(false);
+            _movementCompo.StopMoving();
             base.Enter();
         }
 
         public override void Update()
         {
-            
+            base.Update();
         }
 
         public override void Exit()
         {
             _player.swordCompo.StopNabDo();
             _atkCompo.StopChargingTimer();
+            _player.SetJumping(true);
+            base.Exit();
         }
     }
 }

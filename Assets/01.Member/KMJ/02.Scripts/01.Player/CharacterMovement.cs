@@ -15,7 +15,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         [SerializeField] private StatSO maxMoveSpeedStat;
         
         [Header("Bhop Physics")]
-        [SerializeField] private bool useBhopPhysics = true;
+        [SerializeField] public bool useBhopPhysics = true;
         [SerializeField] private float groundAccelerate = 14f;
         [SerializeField] private float airAccelerate = 2f;
         [SerializeField] private float friction = 6f;
@@ -41,7 +41,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         [SerializeField] private bool showJumpDebug = false;
         
         [Header("Ground Check")]
-        [SerializeField] private float jumpRaySize = 0.3f;
+        [SerializeField] private float jumpRaySize = 1.2f;
         [SerializeField] private LayerMask whatIsGround;
         
         [field: SerializeField] public InputReader _inputReader { get; private set; }
