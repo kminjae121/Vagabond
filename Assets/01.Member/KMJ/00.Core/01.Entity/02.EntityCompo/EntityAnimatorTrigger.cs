@@ -7,7 +7,6 @@ namespace _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo
     public class EntityAnimatorTrigger : MonoBehaviour, IEntityComponent
     {
         public Action OnAnimationEndTrigger;
-        //public event Action<bool> OnRollingStatusChange;
         public event Action OnAttackVFXTrigger;
         public event Action<bool> OnManualRotationTrigger;
         public event Action OnDamageCastTrigger;
@@ -26,8 +25,6 @@ namespace _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo
             OnAnimationEndTrigger?.Invoke();
         }
         
-        // private void RollingStart() => OnRollingStatusChange?.Invoke(true);
-        // private void RollingEnd() => OnRollingStatusChange?.Invoke(false);
         private void PlayAttackVFX() => OnAttackVFXTrigger?.Invoke();
         private void StartManualRotation() => OnManualRotationTrigger?.Invoke(true);
         private void StopManualRotation() => OnManualRotationTrigger?.Invoke(false);
