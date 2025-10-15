@@ -59,6 +59,9 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
                     data.damageType = DamageType.MELEE;
                     
                     damageable.ApplyDamage(data, other.transform.position, _owner.transform.forward, weaponAtkData,null);
+                    
+                    player.aimmingComponent.SetEnemyNull();
+                    
                     player.bloodSystemCompo.AddFlower(1);
                 }
             }

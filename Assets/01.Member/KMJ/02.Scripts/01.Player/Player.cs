@@ -1,5 +1,6 @@
 ﻿using System;
 using _00.CORE._02.Scripts.Input;
+using _01.Member.KMJ._02.Scripts._01.Player.AttackCompo;
 using _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon;
 using _01.Member.KMJ._02.Scripts._01.Player.SlidingCompo;
 using _01.Member.KMJ._02.Scripts._01.Player.State;
@@ -21,6 +22,11 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         [SerializeField] private Transform parentTrm;
         
         #region PlayerComponent
+
+        public WallClimbingCompo climbingComponent { get; set; }
+        
+        public PlayerAttack atkComponent {get; private set;}
+        public PlayerAutoAiming aimmingComponent { get; private set; }
         
         private WallSliding _wallSlidingCompo;
         
@@ -48,12 +54,18 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         {
             base.Awake();
             _stateMachine = new EntityStateMachine(this, stateDataList);
+
+            #region GetCompo
+            climbingComponent = GetCompo<WallClimbingCompo>();
+            atkComponent = GetCompo<PlayerAttack>();
+            aimmingComponent = GetComponent<PlayerAutoAiming>();
             _groundSlideCompo = GetCompo<GroundSliding>();
             _wallSlidingCompo = GetCompo<WallSliding>();
             movementCompo = GetCompo<CharacterMovement>();
             swordCompo = GetComponentInChildren<PlayerSword>();
             bloodSystemCompo = GetComponent<BloodFlowerSystem>();
             dashComponent = GetComponent<PlayerDashComponent>();
+            #endregion
 
             inputReader.JumpKeyEvent += HandleJump;
             inputReader.SlidingEvent += HandleWallSliding;
@@ -98,7 +110,11 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         {
             if (isJumping)
             {
-                if (_wallSlidingCompo.CanSlidingWall() == "None")
+                if (climbingComponent.CanClimbWall())
+                {
+                    climbingComponent.ClimingWall();
+                }
+                else if (_wallSlidingCompo.CanSlidingWall() == "None")
                 {
                     ChangeState("JUMP");
                 }   
@@ -107,7 +123,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         
         private void Update()
         {
-            
             _stateMachine.UpdateStateMachine();
         }
 
@@ -125,7 +140,5 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
 
         public void ChangeState(string newStateName, bool force = false) 
             => _stateMachine.ChangeState(newStateName, force);
-
-        
     }
 }

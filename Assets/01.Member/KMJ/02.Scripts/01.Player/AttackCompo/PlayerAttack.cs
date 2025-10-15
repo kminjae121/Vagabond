@@ -18,6 +18,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
 
         [field: SerializeField] private float chargeAttackSec = 3f;
 
+        [SerializeField] private float flyingSpeed = 3;
         private Coroutine _timerCoroutine;
 
         public void Initialize(Entity entity)
@@ -73,7 +74,11 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
         private void HandleChargeAttack()
         {
             StopChargingTimer();
-            if (chargingTime >= chargeAttackSec)
+            if (_player.aimmingComponent.aimingObject != null)
+            {
+                _player.ChangeState("GUIDEATTACK");
+            }
+            else if (chargingTime >= chargeAttackSec)
             {
                 _player.ChangeState("CHARGEATTACK");
             }
@@ -116,7 +121,19 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
             float dashDuration = 0.3f;
             
             StartCoroutine(DashRoutine(dashDirection, dashSpeed, dashDuration));
+        }
 
+        public void GuidedAttack()
+        {
+            if (_player.aimmingComponent.aimingObject == null)
+            {
+                _player.ChangeState("IDLE");
+            }
+            else
+            {
+                _player.transform.position = Vector3.MoveTowards(_player.transform.position,
+                    _player.aimmingComponent.aimingObject.transform.position, Time.deltaTime * flyingSpeed);
+            }
         }
 
         private IEnumerator DashRoutine(Vector3 direction, float speed, float duration)
