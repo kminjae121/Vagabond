@@ -2514,7 +2514,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &390704172
 Transform:
   m_ObjectHideFlags: 0
@@ -10787,7 +10787,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1809001646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11712,6 +11712,8 @@ MonoBehaviour:
   _inputReader: {fileID: 11400000, guid: 24b9526a025a0b345ba14a70e5eb829f, type: 2}
   <maxchargingTime>k__BackingField: 5
   chargeAttackSec: 1
+  dashSpeed: 25
+  maxtimer: 0.4
   flyingSpeed: 40
 --- !u!1 &2037375913
 GameObject:
@@ -12891,6 +12893,8 @@ MonoBehaviour:
   _inputReader: {fileID: 11400000, guid: 24b9526a025a0b345ba14a70e5eb829f, type: 2}
   <maxchargingTime>k__BackingField: 5
   chargeAttackSec: 2
+  dashSpeed: 0
+  maxtimer: 1.2
   flyingSpeed: 3
 --- !u!4 &3897750602198960202
 Transform:
