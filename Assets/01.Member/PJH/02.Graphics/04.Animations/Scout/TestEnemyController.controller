@@ -63,7 +63,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: a303da9c620fd2d4cb5f43f1ce31a0a2, type: 2}
+  m_Motion: {fileID: 7400000, guid: 068a62456b643054995b9334d90fc8a6, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -90,7 +90,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 88152d7d3af9a554190f6173d7b25c71, type: 2}
+  m_Motion: {fileID: 7400000, guid: ac2c2d0cd86af5e4a9f4d30003fe1e7e, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -222,7 +222,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 3eab8092e31dbb047902bf868af6b729, type: 2}
+  m_Motion: {fileID: 7400000, guid: d256752adfbe3ee4990238c9e256893c, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -249,7 +249,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 30b5716be83742541855706f073f4b2c, type: 2}
+  m_Motion: {fileID: 7400000, guid: 3b01dc49d594f7f46ba672667f2ce555, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -316,16 +316,16 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -5309595432675743602}
-    m_Position: {x: 380, y: -50, z: 0}
+    m_Position: {x: 380, y: -10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5003278611537121339}
-    m_Position: {x: 400, y: 90, z: 0}
+    m_Position: {x: 380, y: 90, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5480991462196515376}
-    m_Position: {x: 370, y: 210, z: 0}
+    m_Position: {x: 380, y: 200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1885992958737096259}
-    m_Position: {x: 390, y: 330, z: 0}
+    m_Position: {x: 380, y: 290, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions:
