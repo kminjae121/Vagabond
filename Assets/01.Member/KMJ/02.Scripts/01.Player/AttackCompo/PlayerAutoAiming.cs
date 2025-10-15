@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using _01.Member.KMJ._02.Scripts.Enemy;
 using Code.Core.Debugs;
 using Code.Entities;
 using Code.Interfaces;
@@ -11,14 +13,10 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
     {
         [SerializeField] private LayerMask whatIsEnemy;
         [SerializeField] private float aimmingFullTime;
-        
-        [SerializeField] private CinemachineCamera playerCam;
-        
-        [SerializeField] private CinemachinePanTilt panTilt;
 
         private Player _player;
         private float currentAimmingTime = 0f;
-        private GameObject aimingObject;
+        [field: SerializeField] public GameObject aimingObject { get; set; }
         
         private Transform defaultTarget;
         private bool isLockedOn = false;
@@ -30,10 +28,9 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
 
         private void Update()
         {
-            
         }
 
-        private void FixedUpdate()
+        public void ShootRayForCheckEnemy()
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -42,62 +39,37 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
             {
                 if (((1 << hit.collider.gameObject.layer) & whatIsEnemy) != 0)
                 {
-                    UnityLogger.Log("시작됨");
                     currentAimmingTime += Time.deltaTime;
+
+                    CheckIsTimeOver(hit);
                 }
             }
-            else
+            else if(aimingObject != null)
             {
-                aimingObject = null;
-                currentAimmingTime = 0;
-                UnlockCamera(); 
+                if (aimingObject.TryGetComponent(out EnemyAimed aimed))
+                {
+                    aimed.AimmingThis(false);
+                    SetEnemyNull();
+                }
             }
-                
+        }
+
+        private void CheckIsTimeOver(RaycastHit hit)
+        {
             if (currentAimmingTime >= aimmingFullTime)
             {
-                if (Physics.Raycast(ray, out hit))
+                aimingObject = hit.collider.gameObject;
+                        
+                if (aimingObject.TryGetComponent(out EnemyAimed aimed))
                 {
-                    if (((1 << hit.collider.gameObject.layer) & whatIsEnemy) != 0 && aimingObject == null)
-                    {
-                        aimingObject = hit.collider.gameObject;
-                    }
+                    aimed.AimmingThis(true);
                 }
             }
-            
-            if (aimingObject != null)
-            {
-                LockCamera(aimingObject.transform);
-                
-            }
-
-            if (aimingObject == null)
-            {
-                UnlockCamera();
-            }
         }
 
-        private void LockCamera(Transform target)
+        public void SetEnemyNull()
         {
-            if (playerCam == null || isLockedOn) return;
-
-            if (panTilt != null)
-                panTilt.enabled = false;
-
-            playerCam.transform.LookAt(target);
-            //isLockedOn = true;
-        }
-        
-       
-        private void UnlockCamera()
-        {
-            if (playerCam == null || !isLockedOn) return;
-
-            playerCam.LookAt = defaultTarget;
-
-            if (panTilt != null)
-                panTilt.enabled = true; 
-
-            isLockedOn = false;
+            aimingObject = null;
         }
     }
 }

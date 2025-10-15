@@ -16,6 +16,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
 
         public override void Enter()
         {
+            _player.movementCompo.SetReturnOriginMoveSpeed();
             _player.swordCompo.NabDo();
             _atkCompo.StartChargingTimer();
             _player.SetJumping(false);
@@ -25,6 +26,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
 
         public override void Update()
         {
+            _player.aimmingComponent.ShootRayForCheckEnemy();
             base.Update();
         }
 

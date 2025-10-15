@@ -87,7 +87,7 @@ namespace Code.Enemies
         {
             _lookAtTrm = target;
             IsUpdateRotation = _lookAtTrm == null;
-        }
+        }       
         
         public void SetStop(bool isStop) => agent.isStopped = isStop;
         public void SetVelocity(Vector3 velocity) => agent.velocity = velocity;

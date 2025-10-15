@@ -114,8 +114,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
             gameObject.layer = Mathf.RoundToInt(Mathf.Log(baldoWeaponMask.value, 2));
             _isAttacking = true;
             _weaponCollider.enabled = true;
-            animCompo.SetBool(_swordIdleHash, false);
             animCompo.SetBool(_baldoAttackHash, true);
+            animCompo.SetBool(_swordIdleHash, false);
         }
 
         public void StopBalDo()

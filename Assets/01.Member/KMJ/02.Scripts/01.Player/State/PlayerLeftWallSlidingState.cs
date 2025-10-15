@@ -9,6 +9,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
     public class PlayerLeftWallSlidingState : PlayerState
     {
         private WallSliding _slidingCompo;
+
+        private Rigidbody _rbComponentl;
         public PlayerLeftWallSlidingState(Entity entity, int animationHash) : base(entity, animationHash)
         {
             _slidingCompo = entity.GetCompo<WallSliding>();
@@ -17,9 +19,11 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
         public override void Enter()
         {
             base.Enter();
+            _rbComponentl = _player.GetComponent<Rigidbody>();
             _player.isSliding = false;
             _player.camCompo.SetTilt(-15f);  
-            _movementCompo.SetSpeed(14f);
+           // _movementCompo.SetSpeed(_movementCompo.moveSpeed);
+            //_movementCompo.SetSpeed(11);
             _movementCompo.StopMoving();
             _slidingCompo.StartWallSlide();
         }
@@ -42,8 +46,10 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
         public override void Exit()
         {
             base.Exit();
+            
+            _rbComponentl.AddForce(_player.transform.right * 1.7f, ForceMode.Impulse);
             _player.camCompo.ReturnOwnTilt();  
-            _movementCompo.SetReturnOriginMoveSpeed();
+            //_movementCompo.SetReturnOriginMoveSpeed();
             _slidingCompo.EndWallSlide();
         }
     }

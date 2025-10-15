@@ -44,7 +44,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
         public override void Exit()
         {
             base.Exit();
-            _player.movementCompo.SetReturnOriginMoveSpeed();
         }
     }
 }
