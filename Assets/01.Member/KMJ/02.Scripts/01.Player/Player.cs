@@ -16,7 +16,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         [SerializeField] private StateDataSO[] stateDataList;
         
         private EntityStateMachine _stateMachine;
-        [SerializeField] private InputReader inputReader;
+        [field : SerializeField] public InputReader inputReader { get; private set; }
         [field: SerializeField] public Transform cameraTrm { get; set; }
         [SerializeField] private Transform parentTrm;
         
@@ -33,9 +33,12 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         
         public PlayerDashComponent dashComponent { get; private set; }
         
+        public GroundSliding _groundSlideCompo { get; private set; }
+        
         #endregion
         
         private bool isJumping = true;
+        public bool isSliding = false;
 
         [Provide]
         public Player GetPlayer() => this;
@@ -45,6 +48,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         {
             base.Awake();
             _stateMachine = new EntityStateMachine(this, stateDataList);
+            _groundSlideCompo = GetCompo<GroundSliding>();
             _wallSlidingCompo = GetCompo<WallSliding>();
             movementCompo = GetCompo<CharacterMovement>();
             swordCompo = GetComponentInChildren<PlayerSword>();

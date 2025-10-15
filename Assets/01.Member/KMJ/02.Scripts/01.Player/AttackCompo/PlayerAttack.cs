@@ -117,7 +117,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
             
             StartCoroutine(DashRoutine(dashDirection, dashSpeed, dashDuration));
 
-            Debug.Log("차징공격 발동!");
         }
 
         private IEnumerator DashRoutine(Vector3 direction, float speed, float duration)
@@ -137,8 +136,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
             while (chargingTime < maxchargingTime)
             {
                 chargingTime += 1;
-                
-                Debug.Log($"플레이어 차징중!{chargingTime}");
                 
                 yield return new WaitForSeconds(1f);
             }

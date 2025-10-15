@@ -17,6 +17,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
         public override void Enter()
         {
             base.Enter();
+            _player.isSliding = false;
             _player.camCompo.SetTilt(15f);  
             _movementCompo.SetSpeed(15f);
             _movementCompo.StopMoving();

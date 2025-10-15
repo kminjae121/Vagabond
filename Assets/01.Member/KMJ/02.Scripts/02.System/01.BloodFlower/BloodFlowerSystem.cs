@@ -31,10 +31,14 @@ public class BloodFlowerSystem : MonoBehaviour
         _flowerChangeEvent += FlowerEvent;
     }
 
+    private void Start()
+    {
+        _flowerChangeEvent?.Invoke();
+    }
+
     private void Update()
     {
         FallingFlower();
-        print(isFallingFlower);
     }
 
     public void AddFlower(int amount)
