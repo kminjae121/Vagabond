@@ -18,7 +18,14 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
 
         [field: SerializeField] private float chargeAttackSec = 3f;
 
+        [SerializeField] private float dashSpeed = 5;
+        [SerializeField] private float maxtimer = 1.2f;
         [SerializeField] private float flyingSpeed = 3;
+
+        public float _timer { get; set; } = 0;
+
+        private Rigidbody _rbComponent;
+        
         private Coroutine _timerCoroutine;
 
         public void Initialize(Entity entity)
@@ -28,6 +35,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
             _inputReader.ChargingAttackEvent += HandleChargeAttack;
             _inputReader.AttackEndEvent += HandleAttackEnd;
             _player = entity as Player;
+            _rbComponent = _player.GetComponent<Rigidbody>();
         }
 
         private void OnDestroy()
@@ -120,7 +128,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
             
             float dashDuration = 0.3f;
             
-            StartCoroutine(DashRoutine(dashDirection, dashSpeed, dashDuration));
         }
 
         public void GuidedAttack()
@@ -136,16 +143,28 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
             }
         }
 
-        private IEnumerator DashRoutine(Vector3 direction, float speed, float duration)
+        //private IEnumerator DashRoutine(Vector3 direction, float speed, float duration)
+        //{
+        //    float elapsed = 0f;
+        //    while (elapsed < duration)
+        //    {
+        //        _player.transform.position += direction * speed * Time.deltaTime;
+        //        elapsed += Time.deltaTime;
+        //        yield return null;
+        //    }
+        //    _player.ChangeState("IDLE");
+        //}
+
+        public void Dash()
         {
-            float elapsed = 0f;
-            while (elapsed < duration)
+            _timer += Time.fixedDeltaTime;
+
+            _rbComponent.AddForce(transform.forward * dashSpeed, ForceMode.Impulse);
+                
+            if (_timer >= maxtimer)
             {
-                _player.transform.position += direction * speed * Time.deltaTime;
-                elapsed += Time.deltaTime;
-                yield return null;
+                _player.ChangeState("IDLE");
             }
-            _player.ChangeState("IDLE");
         }
         
         public IEnumerator ChargeAttackSec()
