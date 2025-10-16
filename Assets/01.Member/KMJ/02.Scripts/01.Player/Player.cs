@@ -2,6 +2,7 @@
 using _00.CORE._02.Scripts.Input;
 using _01.Member.KMJ._00.Core._01.Entity._01.EntityState;
 using _01.Member.KMJ._02.Scripts._01.Player.AttackCompo;
+using _01.Member.KMJ._02.Scripts._01.Player.Climing;
 using _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon;
 using _01.Member.KMJ._02.Scripts._01.Player.SlidingCompo;
 using _01.Member.KMJ._02.Scripts._01.Player.State;
@@ -42,7 +43,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         
         public PlayerSword swordCompo { get; private set; }
         public BloodFlowerSystem bloodSystemCompo { get; private set; }
-        
         
         #endregion
         
@@ -185,6 +185,12 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         private void Update()
         {
             _stateMachine.UpdateStateMachine();
+            
+            if (movementCompo != null && camCompo != null)
+            {
+                Vector3 velocity = movementCompo.GetVelocity();
+                camCompo.SetLastYVelocity(velocity.y);
+            }
         }
 
         private void FixedUpdate()
