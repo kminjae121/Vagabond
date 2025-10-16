@@ -347,14 +347,14 @@ GameObject:
   - component: {fileID: 884089944}
   - component: {fileID: 884089941}
   - component: {fileID: 884089948}
-  - component: {fileID: 884089947}
+  - component: {fileID: 884089956}
   - component: {fileID: 884089946}
   - component: {fileID: 884089952}
   - component: {fileID: 884089953}
   - component: {fileID: 884089954}
   - component: {fileID: 884089955}
   m_Layer: 8
-  m_Name: Test Enemy
+  m_Name: Scout Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -421,53 +421,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &884089947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 884089940}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 508179b9c4fa47a38ff2c53fd5ca4f56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnHitEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 884089947}
-        m_TargetAssemblyTypeName: Code.Enemies.CommonEnemy, Assembly-CSharp
-        m_MethodName: SetBattleState
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnDeathEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 884089947}
-        m_TargetAssemblyTypeName: Code.Enemies.CommonEnemy, Assembly-CSharp
-        m_MethodName: EntityDestroy
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  <PlayerFinder>k__BackingField: {fileID: 11400000, guid: a88336997ab67cf4eaa686d6a5512e7c, type: 2}
-  detectRange: 6
-  attackRange: 3
-  <PlayerChannel>k__BackingField: {fileID: 11400000, guid: 5b30ecdb60edff74aa9fe93eb2f3987a, type: 2}
-  <IsBattleState>k__BackingField: 0
 --- !u!114 &884089948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -571,6 +524,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c33ef85b91248c986439a0681028a6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &884089956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884089940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e21b1fb8a4e41568a216ada4613bfaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnHitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 884089956}
+        m_TargetAssemblyTypeName: Code.Enemies.EnemyScout, Assembly-CSharp
+        m_MethodName: SetBattleState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDeathEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 884089956}
+        m_TargetAssemblyTypeName: Code.Enemies.EnemyScout, Assembly-CSharp
+        m_MethodName: EntityDestroy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  <PlayerFinder>k__BackingField: {fileID: 11400000, guid: a88336997ab67cf4eaa686d6a5512e7c, type: 2}
+  detectRange: 6
+  attackRange: 3
+  <PlayerChannel>k__BackingField: {fileID: 11400000, guid: 5b30ecdb60edff74aa9fe93eb2f3987a, type: 2}
+  <IsBattleState>k__BackingField: 0
 --- !u!1 &897496545
 GameObject:
   m_ObjectHideFlags: 0
@@ -969,7 +969,7 @@ GameObject:
   - component: {fileID: 1948447317}
   - component: {fileID: 1948447316}
   - component: {fileID: 1948447315}
-  - component: {fileID: 1948447314}
+  - component: {fileID: 1948447321}
   - component: {fileID: 1948447313}
   - component: {fileID: 1948447312}
   - component: {fileID: 1948447311}
@@ -978,9 +978,8 @@ GameObject:
   - component: {fileID: 1948447308}
   - component: {fileID: 1948447307}
   - component: {fileID: 1948447306}
-  - component: {fileID: 1948447320}
   m_Layer: 8
-  m_Name: Test Enemy Archer
+  m_Name: Archer Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1124,53 +1123,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1948447314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1948447305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 508179b9c4fa47a38ff2c53fd5ca4f56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnHitEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1948447314}
-        m_TargetAssemblyTypeName: Code.Enemies.CommonEnemy, Assembly-CSharp
-        m_MethodName: SetBattleState
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnDeathEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1948447314}
-        m_TargetAssemblyTypeName: Code.Enemies.CommonEnemy, Assembly-CSharp
-        m_MethodName: EntityDestroy
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  <PlayerFinder>k__BackingField: {fileID: 11400000, guid: a88336997ab67cf4eaa686d6a5512e7c, type: 2}
-  detectRange: 10
-  attackRange: 8
-  <PlayerChannel>k__BackingField: {fileID: 11400000, guid: 5b30ecdb60edff74aa9fe93eb2f3987a, type: 2}
-  <IsBattleState>k__BackingField: 0
 --- !u!114 &1948447315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1183,31 +1135,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0038c16c34866b4f9e25c9c0dc0f7e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Graph: {fileID: 8960877605377737910, guid: c00af6345170d874f9896fbaa78c74db, type: 2}
-  m_BlackboardVariableOverridesList:
-  - rid: 5727384822137487591
-  - rid: 5727384867961569728
+  m_Graph: {fileID: 0}
+  m_BlackboardVariableOverridesList: []
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
     version: 2
-    RefIds:
-    - rid: 5727384822137487591
-      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 1
-          m_Value1: 0
-        Name: Self
-        m_Value: {fileID: 1948447305}
-    - rid: 5727384867961569728
-      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 914508440378039096
-          m_Value1: 9924133919445181820
-        Name: AttackDelay
-        m_Value: 2.5
+    RefIds: []
 --- !u!136 &1948447316
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1300,7 +1234,7 @@ Transform:
   - {fileID: 513043180}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1948447320
+--- !u!114 &1948447321
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1309,13 +1243,48 @@ MonoBehaviour:
   m_GameObject: {fileID: 1948447305}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ee1bd13016d46aa870af39cdb5225a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 35f8231b29cc449e9068496f9297828f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnHitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1948447321}
+        m_TargetAssemblyTypeName: Code.Enemies.EnemyArcher, Assembly-CSharp
+        m_MethodName: SetBattleState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDeathEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1948447321}
+        m_TargetAssemblyTypeName: Code.Enemies.EnemyArcher, Assembly-CSharp
+        m_MethodName: EntityDestroy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  <PlayerFinder>k__BackingField: {fileID: 11400000, guid: a88336997ab67cf4eaa686d6a5512e7c, type: 2}
+  detectRange: 10
+  attackRange: 8
+  <PlayerChannel>k__BackingField: {fileID: 11400000, guid: 5b30ecdb60edff74aa9fe93eb2f3987a, type: 2}
+  <IsBattleState>k__BackingField: 0
   firePos: {fileID: 513043180}
   poolManager: {fileID: 11400000, guid: 05d8d22aadd96e84a8fe7d8f241e8814, type: 2}
   arrowPrefab: {fileID: 11400000, guid: 57625f940051ee64ebdf2ec337c21027, type: 2}
-  arrowSpeed: 5
+  arrowSpeed: 20
   arrowDamage: 10
 --- !u!4 &49454697228678133
 Transform:
