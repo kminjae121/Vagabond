@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PlayerMoveState
   m_EditorClassIdentifier: 
   stateName: MOVE
-  className: _01.Member.KMJ._02.Scripts._01.Player.State.PlayerMoveState
+  className: PlayerMoveState
   animParamName: MOVE
   animationHash: -643048756

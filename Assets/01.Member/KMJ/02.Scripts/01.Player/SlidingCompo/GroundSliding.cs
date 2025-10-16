@@ -1,78 +1,95 @@
-﻿
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Code.Core.Debugs;
+﻿using System;
 using Code.Entities;
 using Code.Interfaces;
-using TMPro;
 using UnityEngine;
 
 namespace _01.Member.KMJ._02.Scripts._01.Player.SlidingCompo
 {
     public class GroundSliding : MonoBehaviour, IEntityComponent
     {
+        [Header("Camera Settings")]
         [SerializeField] private Transform _eyeTrm;
-
-
         [SerializeField] private Transform _slideTrm;
         [SerializeField] private Transform _ownTrm;
+        [SerializeField] private float camMoveSpeed;
 
-        [field: SerializeField] public CapsuleCollider playerCollider { get; set; }
-        [field: SerializeField] private float camMoveSpeed { get; set; }
+        [Header("Collider Settings")]
+        [SerializeField] public CapsuleCollider playerCollider;
 
-        private Rigidbody _rbCompo;
-        public Player _player;
+        private Player _player;
+        private bool isSlideKeyHeld = false;
         
         public void Initialize(Entity entity)
         {
             _player = entity as Player;
-            _rbCompo = GetComponentInParent<Rigidbody>();
         }
 
         private void Start()
         {
-            _player.inputReader.SlideEvent += Slide;
+            if (_player != null && _player.inputReader != null)
+            {
+                _player.inputReader.SlideEvent += OnSlideInput;
+            }
         }
 
         private void OnDisable()
         {
-            _player.inputReader.SlideEvent -= Slide;
+            if (_player != null && _player.inputReader != null)
+            {
+                _player.inputReader.SlideEvent -= OnSlideInput;
+            }
         }
-
 
         private void Update()
         {
-            if (!_player.isSliding)
+            UpdateCameraPosition();
+            UpdateSlideState();
+        }
+
+        private void OnSlideInput()
+        {
+            isSlideKeyHeld = !isSlideKeyHeld;
+        }
+
+        private void UpdateSlideState()
+        {
+            if (_player == null || _player.movementCompo == null) return;
+
+            if (isSlideKeyHeld && _player.movementCompo.CheckGroundDetected())
             {
-                ReturnSliding();
+                if (!_player.isSliding)
+                {
+                    StartSlide();
+                }
+            }
+            else
+            {
+                if (_player.isSliding)
+                {
+                    EndSlide();
+                }
             }
         }
 
-        public void Slide()
+        private void StartSlide()
         {
-            if (_player.movementCompo.CheckGroundDetected())
-            {
-                _player.movementCompo.moveSpeed = _player.movementCompo.maxmoveSpeed + 10;
-                _player.ChangeState("SLIDE");
-            }
-        }
-        
-
-        public void Sliding()
-        {
-            _eyeTrm.position = Vector3.Lerp(_eyeTrm.position, _slideTrm.position, Time.deltaTime * camMoveSpeed);
-            
-            //Vector3 forwardDir = transform.forward;
-            //
-            //_rbCompo.linearVelocity = new Vector3(forwardDir.x * _player.movementCompo.moveSpeed,
-            //    _rbCompo.linearVelocity.y, forwardDir.z * _player.movementCompo.moveSpeed
-            //);
+            _player.isSliding = true;
+            _player.movementCompo.StartGroundSlide();
+            _player.ChangeState("SLIDE");
         }
 
-        public void ReturnSliding()
+        private void EndSlide()
         {
-            _eyeTrm.position = Vector3.Lerp(_eyeTrm.position, _ownTrm.position, Time.deltaTime * camMoveSpeed);
+            _player.isSliding = false;
+            _player.movementCompo.StopGroundSlide();
+        }
+
+        private void UpdateCameraPosition()
+        {
+            if (_eyeTrm == null || _slideTrm == null || _ownTrm == null) return;
+
+            Vector3 targetPos = _player.isSliding ? _slideTrm.position : _ownTrm.position;
+            _eyeTrm.position = Vector3.Lerp(_eyeTrm.position, targetPos, Time.deltaTime * camMoveSpeed);
         }
     }
 }

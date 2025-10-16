@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddfd851c0d834c4eb9a33b1cda0211e8, type: 3}
-  m_Name: PlayerSlideState
+  m_Name: PlayerJumpState
   m_EditorClassIdentifier: 
-  stateName: SLIDE
-  className: PlayerGroundSlide
-  animParamName: SLIDE
-  animationHash: -2051330862
+  stateName: JUMP
+  className: PlayerJumpState
+  animParamName: JUMP
+  animationHash: -1859720286

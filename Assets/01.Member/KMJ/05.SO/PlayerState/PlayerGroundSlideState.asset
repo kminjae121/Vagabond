@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddfd851c0d834c4eb9a33b1cda0211e8, type: 3}
-  m_Name: PlayerRightState
+  m_Name: PlayerGroundSlideState
   m_EditorClassIdentifier: 
-  stateName: RIGHTSLIDING
-  className: _01.Member.KMJ._02.Scripts._01.Player.State.PlayerRightWallSliding
-  animParamName: RIGHT
-  animationHash: 1134475172
+  stateName: GROUNDSLIDE
+  className: PlayerGroundSlideState
+  animParamName: GROUNDSLIDE
+  animationHash: -157530352

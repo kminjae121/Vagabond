@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddfd851c0d834c4eb9a33b1cda0211e8, type: 3}
-  m_Name: PlayerLeftState
+  m_Name: PlayerClimbWallState
   m_EditorClassIdentifier: 
-  stateName: LEFTSLIDING
-  className: _01.Member.KMJ._02.Scripts._01.Player.State.PlayerLeftWallSlidingState
-  animParamName: LEFT
-  animationHash: 1290930908
+  stateName: CLIMBWALL
+  className: PlayerClimbingWallState
+  animParamName: CLIMBWALL
+  animationHash: 996541345

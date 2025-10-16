@@ -1,5 +1,4 @@
-﻿
-using Code.Entities;
+﻿using Code.Entities;
 using UnityEngine;
 
 namespace _01.Member.KMJ._02.Scripts._01.Player.State
@@ -19,10 +18,11 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
 
         public override void Update()
         {
-            if (_movementCompo._inputReader.MoveValue != Vector2.zero)
+            if (_player.inputReader != null && _player.inputReader.MoveValue != Vector2.zero)
             {
                 _player.ChangeState("MOVE");
             }
+            
             base.Update();
         }
     }

@@ -2,90 +2,154 @@
 using Code.Interfaces;
 using UnityEngine;
 
-using Code.Entities;
-using Code.Interfaces;
-using UnityEngine;
-
 namespace _01.Member.KMJ._02.Scripts._01.Player.SlidingCompo
 {
     public class WallSliding : MonoBehaviour, IEntityComponent
     {
-        [Header("WallLayerMask")]
+        [Header("Wall Detection")]
         [SerializeField] private LayerMask _whatIsWall;
-
-        [Space(10)]
-        [Header("Detected Pos")]
-        
         [SerializeField] private Transform leftPos;
         [SerializeField] private Transform rightPos;
-
-        [Header("Ray")]
-        [SerializeField] private Vector3 checkSize; 
+        [SerializeField] private Vector3 checkSize;
+        [SerializeField] private float rayDistance = 1f;
 
         public bool _isWallSliding { get; set; }
-        
-        private Rigidbody _rbCompo;
 
         private CharacterMovement _movementCompo;
-        
+        private Player _player;
+        private bool isSlidingKeyHeld = false;
+        private Vector3 currentWallNormal = Vector3.zero;
+        private string currentWallSide = "None";
+
         public void Initialize(Entity entity)
         {
             _movementCompo = entity.GetCompo<CharacterMovement>();
-            _rbCompo = entity.GetComponent<Rigidbody>();
+            _player = entity as Player;
         }
-        
 
-        public string CanSlidingWall()
+        private void Start()
         {
-            Collider[] leftHit = Physics.OverlapBox(leftPos.position, checkSize, Quaternion.identity, _whatIsWall);
-            
-            Collider[] rightHit = Physics.OverlapBox(rightPos.position, checkSize, Quaternion.identity, _whatIsWall);
-
-            if (leftHit.Length > 0)
+            if (_player != null && _player.inputReader != null)
             {
-                return "Left";
+                _player.inputReader.SlidingEvent += OnSlidingInput;
             }
-            if(rightHit.Length > 0)
+        }
+
+        private void OnDisable()
+        {
+            if (_player != null && _player.inputReader != null)
             {
-                return "Right";
+                _player.inputReader.SlidingEvent -= OnSlidingInput;
+            }
+        }
+
+        private void Update()
+        {
+            UpdateWallSlideState();
+        }
+
+        private void OnSlidingInput(bool isHeld)
+        {
+            isSlidingKeyHeld = isHeld;
+        }
+
+        private void UpdateWallSlideState()
+        {
+            if (_movementCompo == null) return;
+
+            string wallSide = CanSlidingWall();
+
+            if (isSlidingKeyHeld && wallSide != "None" && !_movementCompo.CheckGroundDetected())
+            {
+                if (!_isWallSliding)
+                {
+                    StartWallSlide();
+                }
             }
             else
             {
-                return "None";
+                if (_isWallSliding)
+                {
+                    EndWallSlide();
+                }
             }
+        }
+
+        public string CanSlidingWall()
+        {
+            if (CheckWall(leftPos.position, out Vector3 leftNormal))
+            {
+                currentWallNormal = leftNormal;
+                currentWallSide = "Left";
+                return "Left";
+            }
+
+            if (CheckWall(rightPos.position, out Vector3 rightNormal))
+            {
+                currentWallNormal = rightNormal;
+                currentWallSide = "Right";
+                return "Right";
+            }
+
+            currentWallSide = "None";
+            return "None";
+        }
+
+        public string GetWallSide()
+        {
+            return currentWallSide;
+        }
+
+        private bool CheckWall(Vector3 position, out Vector3 normal)
+        {
+            normal = Vector3.zero;
+
+            Collider[] hits = Physics.OverlapBox(position, checkSize, Quaternion.identity, _whatIsWall);
+
+            if (hits.Length > 0)
+            {
+                Vector3 directionToWall = (hits[0].transform.position - transform.position).normalized;
+                directionToWall.y = 0;
+
+                if (Physics.Raycast(position, directionToWall, out RaycastHit hit, rayDistance, _whatIsWall))
+                {
+                    normal = hit.normal;
+                    return true;
+                }
+
+                normal = -directionToWall;
+                return true;
+            }
+
+            return false;
         }
 
         public void StartWallSlide()
         {
             _isWallSliding = true;
-            _rbCompo.useGravity = false;
-            _movementCompo.StopMoving();    
+            _movementCompo.StartWallSlide(currentWallNormal);
+            _player.ChangeState("WALLSLIDE");
         }
-
-        public void WallSlide()
-        {
-            Vector3 forwardDir = transform.forward;
-            
-            print(_movementCompo.moveSpeed);
-            
-            _rbCompo.linearVelocity = new Vector3(forwardDir.x * _movementCompo.moveSpeed,
-                _rbCompo.linearVelocity.y, forwardDir.z * _movementCompo.moveSpeed
-            );
-        }
-
 
         public void EndWallSlide()
         {
             _isWallSliding = false;
-            _rbCompo.useGravity = true;
+            _movementCompo.StopWallSlide();
         }
-        
+
         private void OnDrawGizmos()
         {
+            if (leftPos == null || rightPos == null) return;
+
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube(leftPos.position, checkSize);
-            Gizmos.DrawWireCube(rightPos.position,checkSize);
-            Gizmos.color = Color.white;
+            Gizmos.DrawWireCube(rightPos.position, checkSize);
+
+            if (_isWallSliding && currentWallNormal != Vector3.zero)
+            {
+                Gizmos.color = Color.cyan;
+                Gizmos.DrawRay(transform.position, currentWallNormal * 2f);
+            }
         }
     }
 }

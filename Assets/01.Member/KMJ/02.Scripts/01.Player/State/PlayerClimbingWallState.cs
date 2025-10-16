@@ -2,30 +2,37 @@
 using Code.Entities;
 using UnityEngine;
 
-public class PlayerClimbingWallState : PlayerState
+namespace _01.Member.KMJ._02.Scripts._01.Player.State
 {
-    public PlayerClimbingWallState(Entity entity, int animationHash) : base(entity, animationHash)
+    public class PlayerClimbingWallState : PlayerState
     {
-    }
+        public PlayerClimbingWallState(Entity entity, int animationHash) : base(entity, animationHash)
+        {
+        }
 
-    public override void Enter()
-    {
-        base.Enter();
-    }
+        public override void Enter()
+        {
+            base.Enter();
+        }
 
-    public override void Update()
-    {
-        base.Update();
-    }
+        public override void Update()
+        {
+            base.Update();
+        }
 
-    public override void FixedUpdate()
-    {
-        _player.climbingComponent.Climbing();
-        base.FixedUpdate();
-    }
+        public override void FixedUpdate()
+        {
+            base.FixedUpdate();
+            
+            if (_player.climbingComponent != null)
+            {
+                _player.climbingComponent.Climbing();
+            }
+        }
 
-    override public void Exit()
-    {
-        
+        public override void Exit()
+        {
+            base.Exit();
+        }
     }
 }

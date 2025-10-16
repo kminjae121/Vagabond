@@ -34,7 +34,6 @@ namespace _01.Member.KDH._01.Scripts.Physics
         private float coyoteTargetAlpha;
         private float bufferTargetAlpha;
         
-        // Stats tracking
         private int consecutiveBhops = 0;
         private float maxSpeedReached = 0f;
         private bool wasGrounded = true;
@@ -43,11 +42,11 @@ namespace _01.Member.KDH._01.Scripts.Physics
         {
             SetupCanvasGroups();
             LoadDefaultConfig();
+            ValidateReferences();
         }
         
         private void SetupCanvasGroups()
         {
-            // Setup canvas groups for fading
             if (coyoteTimeBar != null)
             {
                 coyoteGroup = GetOrAddCanvasGroup(coyoteTimeBar.transform.parent);
@@ -66,6 +65,8 @@ namespace _01.Member.KDH._01.Scripts.Physics
         
         private CanvasGroup GetOrAddCanvasGroup(Transform parent)
         {
+            if (parent == null) return null;
+            
             CanvasGroup group = parent.GetComponent<CanvasGroup>();
             if (group == null)
             {
@@ -78,7 +79,15 @@ namespace _01.Member.KDH._01.Scripts.Physics
         {
             if (config == null)
             {
-                Debug.LogWarning("BhopMechanicsUIConfig가 할당되지 않았습니다. 기본값을 사용합니다.");
+                Debug.LogWarning("[BhopMechanicsUI] BhopMechanicsUIConfig가 할당되지 않았습니다. 기본값을 사용합니다.");
+            }
+        }
+        
+        private void ValidateReferences()
+        {
+            if (characterMovement == null)
+            {
+                Debug.LogError("[BhopMechanicsUI] CharacterMovement가 할당되지 않았습니다.");
             }
         }
         
@@ -114,9 +123,6 @@ namespace _01.Member.KDH._01.Scripts.Physics
             UpdateFading();
         }
         
-        /// <summary>
-        /// Coyote Time 시각적 표시 업데이트
-        /// </summary>
         private void UpdateCoyoteTimeDisplay()
         {
             float coyoteTime = characterMovement.GetCoyoteTimeRemaining();
@@ -124,14 +130,12 @@ namespace _01.Member.KDH._01.Scripts.Physics
             
             float coyoteDuration = config != null ? config.coyoteTimeDuration : 0.15f;
             
-            // Update bar fill
             if (coyoteTimeBar != null)
             {
                 coyoteTimeBar.fillAmount = coyoteTime / coyoteDuration;
                 coyoteTimeBar.color = isActive ? GetCoyoteActiveColor() : GetCoyoteInactiveColor();
             }
             
-            // Update text
             if (coyoteTimeText != null)
             {
                 string textFormat = config != null ? config.coyoteTimeTextFormat : "{0:F2}s";
@@ -148,14 +152,10 @@ namespace _01.Member.KDH._01.Scripts.Physics
                 }
             }
             
-            // Set target alpha for fading
             bool showOnlyActive = config != null ? config.showOnlyWhenActive : true;
             coyoteTargetAlpha = (showOnlyActive && !isActive) ? 0f : 1f;
         }
         
-        /// <summary>
-        /// Jump Buffer 시각적 표시 업데이트
-        /// </summary>
         private void UpdateJumpBufferDisplay()
         {
             float bufferTime = characterMovement.GetJumpBufferRemaining();
@@ -163,14 +163,12 @@ namespace _01.Member.KDH._01.Scripts.Physics
             
             float bufferDuration = config != null ? config.jumpBufferDuration : 0.2f;
             
-            // Update bar fill
             if (jumpBufferBar != null)
             {
                 jumpBufferBar.fillAmount = bufferTime / bufferDuration;
                 jumpBufferBar.color = isActive ? GetBufferActiveColor() : GetBufferInactiveColor();
             }
             
-            // Update text
             if (jumpBufferText != null)
             {
                 string textFormat = config != null ? config.jumpBufferTextFormat : "{0:F2}s";
@@ -187,20 +185,15 @@ namespace _01.Member.KDH._01.Scripts.Physics
                 }
             }
             
-            // Set target alpha for fading
             bool showOnlyActive = config != null ? config.showOnlyWhenActive : true;
             bufferTargetAlpha = (showOnlyActive && !isActive) ? 0f : 1f;
         }
         
-        /// <summary>
-        /// 속도계 업데이트
-        /// </summary>
         private void UpdateSpeedDisplay()
         {
             float speed = characterMovement.GetHorizontalSpeed();
             float maxSpeed = characterMovement.maxmoveSpeed;
             
-            // Update text
             if (speedText != null)
             {
                 string format = config != null ? config.speedometerFormat : "{0:F1} / {1:F1}";
@@ -210,30 +203,24 @@ namespace _01.Member.KDH._01.Scripts.Physics
                 speedText.color = GetSpeedColor(speed, maxSpeed);
             }
             
-            // Update bar
             if (speedBar != null)
             {
                 speedBar.fillAmount = Mathf.Clamp01(speed / maxSpeed);
                 speedBar.color = GetSpeedColor(speed, maxSpeed);
             }
             
-            // Track max speed
             if (speed > maxSpeedReached)
             {
                 maxSpeedReached = speed;
             }
         }
         
-        /// <summary>
-        /// 연속 Bhop 카운터 업데이트
-        /// </summary>
         private void UpdateBhopCounter()
         {
             if (bhopCounterText == null) return;
             
-            bool isGrounded = characterMovement.CheckGroundDetected();
+            bool isGrounded = characterMovement.isGrounded;
             
-            // Detect successful bhop
             if (!wasGrounded && isGrounded)
             {
                 float speed = characterMovement.GetHorizontalSpeed();
@@ -251,11 +238,9 @@ namespace _01.Member.KDH._01.Scripts.Physics
             
             wasGrounded = isGrounded;
             
-            // Update display
             string format = config != null ? config.bhopCounterFormat : "{0}";
             bhopCounterText.text = string.Format(format, consecutiveBhops);
             
-            // Color based on streak
             if (consecutiveBhops >= 10)
             {
                 bhopCounterText.color = config != null ? config.bhopMasterColor : Color.red;
@@ -270,9 +255,6 @@ namespace _01.Member.KDH._01.Scripts.Physics
             }
         }
         
-        /// <summary>
-        /// 최고 속도 기록 표시
-        /// </summary>
         private void UpdateMaxSpeedDisplay()
         {
             if (maxSpeedText == null) return;
@@ -284,14 +266,10 @@ namespace _01.Member.KDH._01.Scripts.Physics
             maxSpeedText.color = config != null ? config.maxSpeedColor : Color.cyan;
         }
         
-        /// <summary>
-        /// 속도에 따른 색상 반환
-        /// </summary>
         private Color GetSpeedColor(float speed, float maxSpeed)
         {
             if (config == null)
             {
-                // Default colors
                 float speedPercent = speed / maxSpeed;
                 if (speedPercent > 1.2f) return Color.red;
                 if (speedPercent > 0.8f) return Color.yellow;
@@ -330,9 +308,6 @@ namespace _01.Member.KDH._01.Scripts.Physics
             return config != null ? config.bufferInactiveColor : Color.gray;
         }
         
-        /// <summary>
-        /// Fade In/Out 애니메이션 처리
-        /// </summary>
         private void UpdateFading()
         {
             float fadeSpeed = config != null ? config.fadeSpeed : 5f;
@@ -356,37 +331,29 @@ namespace _01.Member.KDH._01.Scripts.Physics
             }
         }
         
-        /// <summary>
-        /// 최고 속도 기록 초기화 (공개 메서드)
-        /// </summary>
         public void ResetMaxSpeed()
         {
             maxSpeedReached = 0f;
         }
         
-        /// <summary>
-        /// Bhop 카운터 초기화 (공개 메서드)
-        /// </summary>
         public void ResetBhopCounter()
         {
             consecutiveBhops = 0;
         }
         
-        /// <summary>
-        /// 모든 통계 초기화 (공개 메서드)
-        /// </summary>
         public void ResetAllStats()
         {
             ResetMaxSpeed();
             ResetBhopCounter();
         }
         
-        /// <summary>
-        /// Config 런타임 변경 (공개 메서드)
-        /// </summary>
         public void SetConfig(BhopMechanicsUIConfig newConfig)
         {
             config = newConfig;
         }
+        
+        public int GetConsecutiveBhops() => consecutiveBhops;
+        
+        public float GetMaxSpeedReached() => maxSpeedReached;
     }
 }

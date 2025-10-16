@@ -1,6 +1,5 @@
 ﻿using _00.CORE._02.Scripts.Input;
 using Code.Core.Debugs;
-using Code.Core.Stats;
 using Code.Entities;
 using Code.Interfaces;
 using UnityEngine;
@@ -9,84 +8,125 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
 {
     public class CharacterMovement : MonoBehaviour, IEntityComponent
     {
-        [Header("Stat Settings")]
-        [SerializeField] private StatSO moveSpeedStat;
-        [SerializeField] private StatSO jumpSpeedStat;
-        [SerializeField] private StatSO maxMoveSpeedStat;
+        [Header("CPM Physics - Movement")]
+        [SerializeField] private float moveSpeed = 7.0f;
+        [SerializeField] private float jumpSpeed = 8.0f;
+        [SerializeField] private float gravity = 20.0f;
         
-        [Header("Bhop Physics")]
-        [SerializeField] public bool useBhopPhysics = true;
-        [SerializeField] private float groundAccelerate = 14f;
-        [SerializeField] private float airAccelerate = 2f;
-        [SerializeField] private float friction = 6f;
-        [SerializeField] private float stopSpeed = 1.5f;
+        [Header("CPM Physics - Acceleration")]
+        [SerializeField] private float runAcceleration = 14.0f;
+        [SerializeField] private float runDeacceleration = 10.0f;
+        [SerializeField] private float airAcceleration = 2.0f;
+        [SerializeField] private float airDecceleration = 2.0f;
+        [SerializeField] private float airControl = 0.3f;
         
-        [Header("Strafe Jumping")]
-        [SerializeField] private bool enableStrafeJumping = true;
-        [SerializeField] private float strafeMultiplier = 1.2f;
-        [SerializeField] private float maxStrafeSpeed = 20f;
+        [Header("CPM Physics - Strafe")]
+        [SerializeField] private float sideStrafeSpeed = 1.0f;
+        [SerializeField] private float sideStrafeAcceleration = 50.0f;
         
-        [Header("Bunny Hop")]
-        [SerializeField] private bool enableAutoBhop = false;
-        [SerializeField] private float bhopSpeedRetention = 0.9f;
+        [Header("CPM Physics - Friction")]
+        [SerializeField] private float friction = 6.0f;
         
-        [Header("Jump Feel Enhancement")]
-        [Tooltip("Time window after leaving ground where jump is still allowed (seconds)")]
-        [SerializeField] private float coyoteTime = 0.15f;
+        [Header("Ground Slide Settings")]
+        [SerializeField] private float groundSlideSpeedBoost = 5.0f;
+        [SerializeField] private float groundSlideFriction = 1.0f;
+        [SerializeField] private float groundSlideAcceleration = 10.0f;
         
-        [Tooltip("Time window to buffer jump input before landing (seconds)")]
-        [SerializeField] private float jumpBufferTime = 0.2f;
+        [Header("Wall Slide Settings")]
+        [SerializeField] private float wallSlideForwardSpeed = 7.0f;
+        [SerializeField] private float wallJumpAwayForce = 5.0f;
         
-        [Tooltip("Enable visual/debug feedback for jump mechanics")]
-        [SerializeField] private bool showJumpDebug = false;
+        [Header("Speed Limits")]
+        private float _maxmoveSpeed = 15f;
+        public float maxmoveSpeed 
+        { 
+            get => _maxmoveSpeed; 
+            set => _maxmoveSpeed = value; 
+        }
         
-        [Header("Ground Check")]
-        [SerializeField] private float jumpRaySize = 1.2f;
+        [Header("Ground Detection")]
+        [SerializeField] private float groundCheckRadius = 0.4f;
+        [SerializeField] private float groundCheckDistance = 0.2f;
         [SerializeField] private LayerMask whatIsGround;
         
-        [field: SerializeField] public InputReader _inputReader { get; private set; }
+        [Header("Jump Settings")]
+        [SerializeField] private int _maxJumpCnt = 2;
+        [SerializeField] private float coyoteTime = 0.15f;
+        [SerializeField] private float jumpBufferTime = 0.2f;
+        [SerializeField] private bool showJumpDebug = false;
+        
+        [Header("Debug Display")]
+        [SerializeField] private bool showSpeedDebug = true;
+        [SerializeField] private GUIStyle debugStyle;
+        [SerializeField] private float fpsDisplayRate = 4.0f;
         
         public Vector3 _move;
         public int _jumpCnt { get; set; }
+        public int maxJumpCnt 
+        { 
+            get => _maxJumpCnt; 
+            set => _maxJumpCnt = value; 
+        }
         
-        public float moveSpeed { get; set; } = 8f;
-        public float baseSpeed { get; private set; } = 8f;
-        public float maxmoveSpeed { get; set; } = 15f;
-        public float jumpSpeed { get; private set; }
-        public int maxJumpCnt { get; set; } = 2;
+        public float baseSpeed { get; private set; }
+        public bool isGrounded => isGroundedCached;
+        public bool isGroundSliding { get; private set; }
+        public bool isWallSliding { get; private set; }
         
         private Entity _entity;
-        private EntityStatCompo _statCompo;
+        private Player _player;
         private Rigidbody _rbCompo;
         
-        private Vector3 velocity;
-        private Vector3 wishDir;
-        private bool wasGrounded;
-        private float currentHorizontalSpeed;
+        private Vector3 playerVelocity = Vector3.zero;
+        private Vector3 moveDirectionNorm = Vector3.zero;
+        private Vector3 wallNormal = Vector3.zero;
+        private bool wishJump = false;
+        private float playerFriction = 0.0f;
         
         private float coyoteTimeCounter;
         private float jumpBufferCounter;
-        private bool isGroundedCached;
+        private bool wasGrounded;
         private bool canUseCoyoteTime;
+        private bool isGroundedCached;
+        
+        private bool pendingJump = false;
+        private bool pendingWallJump = false;
+        private bool pendingGroundSlideJump = false;
+        private Vector3 pendingWallJumpDirection;
+        
+        private float playerTopVelocity = 0.0f;
+        private int frameCount = 0;
+        private float dt = 0.0f;
+        private float fps = 0.0f;
         
         public void Initialize(Entity entity)
         {
             _entity = entity;
-            _statCompo = entity.GetCompo<EntityStatCompo>();
+            _player = entity as Player;
             _rbCompo = entity.GetComponent<Rigidbody>();
             
-            if (_rbCompo != null && useBhopPhysics)
+            if (_rbCompo == null)
             {
-                _rbCompo.useGravity = true;
-                _rbCompo.freezeRotation = true;
+                UnityLogger.LogError("Rigidbody가 엔티티에 없습니다. Rigidbody를 추가해주세요.");
+                return;
             }
             
-            AfterInitialize();
-            
-            if (_inputReader != null)
+            if (_player == null)
             {
-                _inputReader.JumpKeyEvent += OnJumpInputReceived;
+                UnityLogger.LogError("CharacterMovement는 Player 엔티티에만 사용할 수 있습니다.");
+                return;
             }
+            
+            SetupRigidbody();
+            baseSpeed = moveSpeed;
+        }
+        
+        private void SetupRigidbody()
+        {
+            _rbCompo.useGravity = false;
+            _rbCompo.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+            _rbCompo.collisionDetectionMode = CollisionDetectionMode.Continuous;
+            _rbCompo.interpolation = RigidbodyInterpolation.Interpolate;
         }
         
         public void SetMove(float XMove, float ZMove)
@@ -95,32 +135,146 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             _move.z = ZMove;
         }
         
-        public bool CheckGroundDetected()
+        private void UpdateMoveFromInput()
         {
-            return Physics.Raycast(transform.position, Vector3.down, jumpRaySize, whatIsGround);
+            if (_player != null && _player.inputReader != null)
+            {
+                Vector2 moveValue = _player.inputReader.MoveValue;
+                _move.x = moveValue.x;
+                _move.z = moveValue.y;
+            }
         }
         
-        private void OnJumpInputReceived()
+        public bool CheckGroundDetected()
+        {
+            if (_rbCompo == null) return false;
+            
+            Vector3 spherePosition = transform.position + Vector3.down * groundCheckDistance;
+            return Physics.CheckSphere(spherePosition, groundCheckRadius, whatIsGround);
+        }
+        
+        public void StartGroundSlide()
+        {
+            if (!isGroundedCached) return;
+            
+            isGroundSliding = true;
+            isWallSliding = false;
+        }
+        
+        public void StopGroundSlide()
+        {
+            isGroundSliding = false;
+        }
+        
+        public void StartWallSlide(Vector3 normal)
+        {
+            isWallSliding = true;
+            isGroundSliding = false;
+            wallNormal = normal;
+            playerVelocity.y = 0;
+        }
+        
+        public void StopWallSlide()
+        {
+            isWallSliding = false;
+        }
+        
+        public void RequestJump()
         {
             jumpBufferCounter = jumpBufferTime;
             
             if (showJumpDebug)
             {
-                UnityLogger.Log("Jump input received - Buffer activated");
+                UnityLogger.Log("점프 요청 수신 - 버퍼 활성화");
             }
+            
+            Jump();
         }
         
         public void Jump()
         {
+            if (isWallSliding)
+            {
+                WallJump();
+                return;
+            }
+            
+            if (isGroundSliding)
+            {
+                GroundSlideJump();
+                return;
+            }
+            
             bool canJumpFromGround = isGroundedCached || (coyoteTimeCounter > 0 && canUseCoyoteTime);
             
-            if (useBhopPhysics)
+            if (canJumpFromGround)
             {
-                BhopJump(canJumpFromGround);
+                pendingJump = true;
+                jumpBufferCounter = 0;
+                _jumpCnt = 1;
+                
+                if (!isGroundedCached && coyoteTimeCounter > 0)
+                {
+                    canUseCoyoteTime = false;
+                    if (showJumpDebug)
+                    {
+                        UnityLogger.Log("코요테 타임 점프 실행!");
+                    }
+                }
+                else if (showJumpDebug)
+                {
+                    UnityLogger.Log("지상 점프 실행!");
+                }
+            }
+            else if (_jumpCnt < maxJumpCnt)
+            {
+                pendingJump = true;
+                jumpBufferCounter = 0;
+                _jumpCnt++;
+                
+                if (showJumpDebug)
+                {
+                    UnityLogger.Log($"공중 점프 #{_jumpCnt} 실행!");
+                }
             }
             else
             {
-                StandardJump(canJumpFromGround);
+                if (showJumpDebug)
+                {
+                    UnityLogger.Log($"점프 불가: 점프 횟수 {_jumpCnt}/{maxJumpCnt}, 지상: {isGroundedCached}, 코요테: {coyoteTimeCounter:F2}");
+                }
+            }
+        }
+        
+        private void WallJump()
+        {
+            Vector3 jumpDirection = wallNormal.normalized;
+            jumpDirection.y = 0;
+            
+            pendingWallJump = true;
+            pendingWallJumpDirection = jumpDirection;
+            jumpBufferCounter = 0;
+            _jumpCnt = 1;
+            
+            StopWallSlide();
+            
+            if (showJumpDebug)
+            {
+                UnityLogger.Log("벽 점프 실행!");
+            }
+        }
+        
+        private void GroundSlideJump()
+        {
+            pendingGroundSlideJump = true;
+            jumpBufferCounter = 0;
+            _jumpCnt = 1;
+            
+            StopGroundSlide();
+            
+            if (showJumpDebug)
+            {
+                UnityLogger.Log("슬라이드 점프 실행!");
             }
         }
         
@@ -133,24 +287,23 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
                 if (isGroundedCached && jumpBufferCounter > 0)
                 {
                     Jump();
-                    jumpBufferCounter = 0;
                     
                     if (showJumpDebug)
                     {
-                        UnityLogger.Log("Jump executed from buffer!");
+                        UnityLogger.Log("버퍼에서 점프 실행!");
                     }
                 }
             }
         }
-
+        
         private void ProcessCoyoteTime()
         {
             if (isGroundedCached)
             {
                 coyoteTimeCounter = coyoteTime;
                 canUseCoyoteTime = true;
-
-                if (wasGrounded == false)
+                
+                if (!wasGrounded)
                 {
                     _jumpCnt = 0;
                 }
@@ -159,165 +312,70 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             {
                 coyoteTimeCounter -= Time.deltaTime;
             }
-        }
-        
-        private void StandardJump(bool canJumpFromGround)
-        {
-            if (canJumpFromGround)
-            {
-                ExecuteJump();
-                
-                if (!isGroundedCached && coyoteTimeCounter > 0)
-                {
-                    canUseCoyoteTime = false;
-                    if (showJumpDebug)
-                    {
-                        UnityLogger.Log("Coyote time jump executed!");
-                    }
-                }
-            }
-            else if (_jumpCnt < maxJumpCnt)
-            {
-                ExecuteJump();
-            }
-        }
-        
-        private void BhopJump(bool canJumpFromGround)
-        {
-            if (canJumpFromGround)
-            {
-                Vector3 currentVel = _rbCompo.linearVelocity;
-                
-                if (enableAutoBhop && wasGrounded && currentHorizontalSpeed > baseSpeed)
-                {
-                    float retainedSpeed = currentHorizontalSpeed * bhopSpeedRetention;
-                    Vector3 horizontalDir = new Vector3(currentVel.x, 0, currentVel.z).normalized;
-                    currentVel.x = horizontalDir.x * retainedSpeed;
-                    currentVel.z = horizontalDir.z * retainedSpeed;
-                }
-                
-                currentVel.y = jumpSpeed;
-                _rbCompo.linearVelocity = currentVel;
-                _jumpCnt++;
-                
-                if (!isGroundedCached && coyoteTimeCounter > 0)
-                {
-                    canUseCoyoteTime = false;
-                    if (showJumpDebug)
-                    {
-                        UnityLogger.Log($"Coyote time jump! Speed: {currentHorizontalSpeed:F2}");
-                    }
-                }
-            }
-            else if (_jumpCnt < maxJumpCnt)
-            {
-                Vector3 velocity = _rbCompo.linearVelocity;
-                velocity.y = jumpSpeed;
-                _rbCompo.linearVelocity = velocity;
-                _jumpCnt++;
-                
-                if (showJumpDebug)
-                {
-                    UnityLogger.Log($"Air jump #{_jumpCnt}");
-                }
-            }
-        }
-        
-        private void ExecuteJump()
-        {
-            _jumpCnt = 0;
-            Vector3 velocity = _rbCompo.linearVelocity;
-            velocity.y = 0;
-            _rbCompo.linearVelocity = velocity;
-            _rbCompo.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
-            _jumpCnt++;
-        }
-        
-        public void AfterInitialize()
-        {
-            moveSpeed = _statCompo.SubscribeStat(moveSpeedStat, HandleMoveSpeedChange, 4f);
-            jumpSpeed = _statCompo.SubscribeStat(jumpSpeedStat, HandleJumpPowerChange, 3f);
-            maxmoveSpeed = _statCompo.SubscribeStat(maxMoveSpeedStat, HandleMaxMoveSpeedChange, 3f);
-            baseSpeed = moveSpeed;
-        }
-        
-        private void OnDestroy()
-        {
-            _statCompo?.UnSubscribeStat(moveSpeedStat, HandleMoveSpeedChange);
-            _statCompo?.UnSubscribeStat(jumpSpeedStat, HandleJumpPowerChange);
-            _statCompo?.UnSubscribeStat(maxMoveSpeedStat, HandleMaxMoveSpeedChange);
             
-            if (_inputReader != null)
-            {
-                _inputReader.JumpKeyEvent -= OnJumpInputReceived;
-            }
-        }
-        
-        private void HandleMoveSpeedChange(StatSO stat, float currentvalue, float previousvalue)
-        {
-            moveSpeed = currentvalue;
-        }
-        
-        private void HandleJumpPowerChange(StatSO stat, float currentvalue, float previousvalue)
-        {
-            jumpSpeed = currentvalue;
-        }
-        
-        private void HandleMaxMoveSpeedChange(StatSO stat, float currentvalue, float previousvalue)
-        {
-            maxmoveSpeed = currentvalue;
+            wasGrounded = isGroundedCached;
         }
         
         public void StopMoving()
         {
-            _rbCompo.linearVelocity = Vector3.zero;
+            playerVelocity = Vector3.zero;
+            if (_rbCompo != null)
+            {
+                _rbCompo.linearVelocity = Vector3.zero;
+            }
         }
         
         public void SetSpeed(float targetSpeedValue)
         {
             moveSpeed = targetSpeedValue;
+            
+            if (showJumpDebug)
+            {
+                UnityLogger.Log($"[CharacterMovement] moveSpeed 변경: {targetSpeedValue}");
+            }
         }
         
         public void SetReturnOriginMoveSpeed()
         {
             moveSpeed = baseSpeed;
+            
+            if (showJumpDebug)
+            {
+                UnityLogger.Log($"[CharacterMovement] moveSpeed 원래 속도로 복구: {baseSpeed}");
+            }
         }
         
         private void Update()
         {
-            isGroundedCached = CheckGroundDetected();
+            if (_rbCompo == null) return;
             
-            currentHorizontalSpeed = GetHorizontalSpeed();
+            isGroundedCached = CheckGroundDetected();
             
             ProcessCoyoteTime();
             ProcessJumpBuffer();
             
-            if (useBhopPhysics && showJumpDebug)
-            {
-                string debugInfo = $"Speed: {currentHorizontalSpeed:F2} | Max: {maxmoveSpeed:F2}";
-                debugInfo += $"\nCoyote: {coyoteTimeCounter:F2}s | Buffer: {jumpBufferCounter:F2}s";
-                debugInfo += $"\nGrounded: {isGroundedCached} | JumpCount: {_jumpCnt}";
-                UnityLogger.Log(debugInfo);
-            }
+            UpdateFPS();
         }
         
         private void FixedUpdate()
         {
-            if (useBhopPhysics)
+            if (_rbCompo == null) return;
+            
+            playerVelocity = _rbCompo.linearVelocity;
+            
+            UpdateMoveFromInput();
+            
+            QueueJump();
+            
+            if (isWallSliding)
             {
-                BhopMovement();
+                WallSlideMove();
             }
-            
-            wasGrounded = isGroundedCached;
-        }
-
-        private void BhopMovement()
-        {
-            velocity = _rbCompo.linearVelocity;
-
-            CalculateWishDirection();
-            
-            if (isGroundedCached)
+            else if (isGroundSliding)
+            {
+                GroundSlideMove();
+            }
+            else if (isGroundedCached)
             {
                 GroundMove();
             }
@@ -326,122 +384,299 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
                 AirMove();
             }
             
-            _rbCompo.linearVelocity = velocity;
+            ProcessPendingJumps();
+            
+            _rbCompo.linearVelocity = playerVelocity;
+            
+            Vector3 udp = playerVelocity;
+            udp.y = 0.0f;
+            if (udp.magnitude > playerTopVelocity)
+            {
+                playerTopVelocity = udp.magnitude;
+            }
         }
         
-        private void CalculateWishDirection()
+        private void ProcessPendingJumps()
         {
-            wishDir = transform.TransformDirection(_move);
-            wishDir.y = 0;
-            wishDir.Normalize();
+            if (pendingJump)
+            {
+                playerVelocity.y = jumpSpeed;
+                pendingJump = false;
+                wishJump = false;
+                
+                if (showJumpDebug)
+                {
+                    UnityLogger.Log($"FixedUpdate에서 점프 적용: velocity.y = {jumpSpeed}");
+                }
+            }
+            else if (pendingWallJump)
+            {
+                playerVelocity = pendingWallJumpDirection * wallJumpAwayForce;
+                playerVelocity.y = jumpSpeed;
+                pendingWallJump = false;
+                wishJump = false;
+                
+                if (showJumpDebug)
+                {
+                    UnityLogger.Log("FixedUpdate에서 벽 점프 적용");
+                }
+            }
+            else if (pendingGroundSlideJump)
+            {
+                Vector3 horizontalVelocity = new Vector3(playerVelocity.x, 0, playerVelocity.z);
+                playerVelocity = horizontalVelocity;
+                playerVelocity.y = jumpSpeed;
+                pendingGroundSlideJump = false;
+                wishJump = false;
+                
+                if (showJumpDebug)
+                {
+                    UnityLogger.Log($"FixedUpdate에서 슬라이드 점프 적용: 속도 보존 {horizontalVelocity.magnitude:F2}");
+                }
+            }
+        }
+        
+        private void UpdateFPS()
+        {
+            frameCount++;
+            dt += Time.deltaTime;
+            if (dt > 1.0f / fpsDisplayRate)
+            {
+                fps = Mathf.Round(frameCount / dt);
+                frameCount = 0;
+                dt -= 1.0f / fpsDisplayRate;
+            }
+        }
+        
+        private void QueueJump()
+        {
+            wishJump = jumpBufferCounter > 0;
         }
         
         private void GroundMove()
         {
-            ApplyFriction();
-
-            float wishSpeed = _move.magnitude * moveSpeed;
-            Accelerate(wishDir, wishSpeed, groundAccelerate);
-            
-            Vector3 horizontalVel = new Vector3(velocity.x, 0, velocity.z);
-            if (horizontalVel.magnitude > maxmoveSpeed)
+            if (!wishJump)
             {
-                horizontalVel = horizontalVel.normalized * maxmoveSpeed;
-                velocity.x = horizontalVel.x;
-                velocity.z = horizontalVel.z;
+                ApplyFriction(1.0f);
+            }
+            else
+            {
+                ApplyFriction(0);
+            }
+            
+            Vector3 wishdir = new Vector3(_move.x, 0, _move.z);
+            wishdir = transform.TransformDirection(wishdir);
+            wishdir.Normalize();
+            moveDirectionNorm = wishdir;
+            
+            float wishspeed = wishdir.magnitude;
+            wishspeed *= moveSpeed;
+            
+            Accelerate(wishdir, wishspeed, runAcceleration);
+            
+            playerVelocity.y = -gravity * Time.fixedDeltaTime;
+            
+            if (wishJump)
+            {
+                playerVelocity.y = jumpSpeed;
+                wishJump = false;
+                _jumpCnt = 1;
+            }
+        }
+        
+        private void GroundSlideMove()
+        {
+            if (!wishJump)
+            {
+                ApplyFriction(groundSlideFriction / friction);
+            }
+            else
+            {
+                ApplyFriction(0);
+            }
+            
+            Vector3 wishdir = new Vector3(_move.x, 0, _move.z);
+            wishdir = transform.TransformDirection(wishdir);
+            wishdir.Normalize();
+            moveDirectionNorm = wishdir;
+            
+            float wishspeed = wishdir.magnitude;
+            wishspeed *= (moveSpeed + groundSlideSpeedBoost);
+            
+            Accelerate(wishdir, wishspeed, groundSlideAcceleration);
+            
+            playerVelocity.y = -gravity * Time.fixedDeltaTime;
+            
+            if (wishJump)
+            {
+                Vector3 horizontalVelocity = new Vector3(playerVelocity.x, 0, playerVelocity.z);
+                playerVelocity = horizontalVelocity;
+                playerVelocity.y = jumpSpeed;
+                wishJump = false;
+                _jumpCnt = 1;
+                StopGroundSlide();
+            }
+        }
+        
+        private void WallSlideMove()
+        {
+            Vector3 wishdir = new Vector3(_move.x, 0, _move.z);
+            wishdir = transform.TransformDirection(wishdir);
+            wishdir.Normalize();
+            moveDirectionNorm = wishdir;
+            
+            float wishspeed = wishdir.magnitude * wallSlideForwardSpeed;
+            
+            Vector3 horizontalVel = new Vector3(playerVelocity.x, 0, playerVelocity.z);
+            Vector3 targetVel = wishdir * wishspeed;
+            
+            horizontalVel = Vector3.Lerp(horizontalVel, targetVel, Time.fixedDeltaTime * 10f);
+            
+            playerVelocity.x = horizontalVel.x;
+            playerVelocity.z = horizontalVel.z;
+            playerVelocity.y = 0;
+            
+            if (wishJump)
+            {
+                Vector3 jumpDirection = wallNormal.normalized;
+                jumpDirection.y = 0;
+                
+                playerVelocity = jumpDirection * wallJumpAwayForce;
+                playerVelocity.y = jumpSpeed;
+                wishJump = false;
+                _jumpCnt = 1;
+                StopWallSlide();
             }
         }
         
         private void AirMove()
         {
-            if (!enableStrafeJumping)
+            Vector3 wishdir = new Vector3(_move.x, 0, _move.z);
+            wishdir = transform.TransformDirection(wishdir);
+            
+            float wishspeed = wishdir.magnitude;
+            wishspeed *= moveSpeed;
+            
+            wishdir.Normalize();
+            moveDirectionNorm = wishdir;
+            
+            float wishspeed2 = wishspeed;
+            float accel;
+            
+            if (Vector3.Dot(playerVelocity, wishdir) < 0)
             {
-                return;
+                accel = airDecceleration;
+            }
+            else
+            {
+                accel = airAcceleration;
             }
             
-            float accel = airAccelerate;
-            float wishSpeed = _move.magnitude * moveSpeed;
-
-            bool isStrafing = Mathf.Abs(_move.x) > 0.1f;
-            if (isStrafing)
+            if (_move.z == 0 && _move.x != 0)
             {
-                wishSpeed *= strafeMultiplier;
+                if (wishspeed > sideStrafeSpeed)
+                {
+                    wishspeed = sideStrafeSpeed;
+                }
+                accel = sideStrafeAcceleration;
             }
             
-            AirAccelerate(wishDir, wishSpeed, accel);
-
-            Vector3 horizontalVel = new Vector3(velocity.x, 0, velocity.z);
-            if (horizontalVel.magnitude > maxStrafeSpeed)
+            Accelerate(wishdir, wishspeed, accel);
+            
+            if (airControl > 0)
             {
-                horizontalVel = horizontalVel.normalized * maxStrafeSpeed;
-                velocity.x = horizontalVel.x;
-                velocity.z = horizontalVel.z;
+                AirControl(wishdir, wishspeed2);
             }
+            
+            playerVelocity.y -= gravity * Time.fixedDeltaTime;
         }
-
-        private void ApplyFriction()
+        
+        private void AirControl(Vector3 wishdir, float wishspeed)
         {
-            Vector3 horizontalVel = new Vector3(velocity.x, 0, velocity.z);
-            float speed = horizontalVel.magnitude;
-            
-            if (speed < 0.1f)
+            if (Mathf.Abs(_move.z) < 0.001f || Mathf.Abs(wishspeed) < 0.001f)
             {
-                velocity.x = 0;
-                velocity.z = 0;
                 return;
             }
             
-            float drop = 0;
-            float control = speed < stopSpeed ? stopSpeed : speed;
-            drop = control * friction * Time.fixedDeltaTime;
+            float zspeed = playerVelocity.y;
+            playerVelocity.y = 0;
             
-            float newSpeed = Mathf.Max(speed - drop, 0);
+            float speed = playerVelocity.magnitude;
+            playerVelocity.Normalize();
+            
+            float dot = Vector3.Dot(playerVelocity, wishdir);
+            float k = 32;
+            k *= airControl * dot * dot * Time.fixedDeltaTime;
+            
+            if (dot > 0)
+            {
+                playerVelocity.x = playerVelocity.x * speed + wishdir.x * k;
+                playerVelocity.y = playerVelocity.y * speed + wishdir.y * k;
+                playerVelocity.z = playerVelocity.z * speed + wishdir.z * k;
+                
+                playerVelocity.Normalize();
+                moveDirectionNorm = playerVelocity;
+            }
+            
+            playerVelocity.x *= speed;
+            playerVelocity.y = zspeed;
+            playerVelocity.z *= speed;
+        }
+        
+        private void ApplyFriction(float t)
+        {
+            Vector3 vec = playerVelocity;
+            vec.y = 0.0f;
+            float speed = vec.magnitude;
+            float drop = 0.0f;
+            
+            if (isGroundedCached)
+            {
+                float control = speed < runDeacceleration ? runDeacceleration : speed;
+                drop = control * friction * Time.fixedDeltaTime * t;
+            }
+            
+            float newspeed = speed - drop;
+            playerFriction = newspeed;
+            
+            if (newspeed < 0)
+            {
+                newspeed = 0;
+            }
+            
             if (speed > 0)
             {
-                newSpeed /= speed;
+                newspeed /= speed;
             }
             
-            velocity.x *= newSpeed;
-            velocity.z *= newSpeed;
+            playerVelocity.x *= newspeed;
+            playerVelocity.z *= newspeed;
         }
-
-        private void Accelerate(Vector3 targetDir, float targetSpeed, float accel)
+        
+        private void Accelerate(Vector3 wishdir, float wishspeed, float accel)
         {
-            float currentSpeed = Vector3.Dot(velocity, targetDir);
-            float addSpeed = targetSpeed - currentSpeed;
+            float currentspeed = Vector3.Dot(playerVelocity, wishdir);
+            float addspeed = wishspeed - currentspeed;
             
-            if (addSpeed <= 0)
+            if (addspeed <= 0)
+            {
                 return;
+            }
             
-            float accelSpeed = accel * targetSpeed * Time.fixedDeltaTime;
+            float accelspeed = accel * Time.fixedDeltaTime * wishspeed;
             
-            if (accelSpeed > addSpeed)
-                accelSpeed = addSpeed;
+            if (accelspeed > addspeed)
+            {
+                accelspeed = addspeed;
+            }
             
-            velocity.x += accelSpeed * targetDir.x;
-            velocity.z += accelSpeed * targetDir.z;
-        }
-
-        private void AirAccelerate(Vector3 targetDir, float targetSpeed, float accel)
-        {
-            float currentSpeed = Vector3.Dot(velocity, targetDir);
-            float addSpeed = targetSpeed - currentSpeed;
-            
-            if (addSpeed <= 0)
-                return;
-            
-            float accelSpeed = accel * targetSpeed * Time.fixedDeltaTime;
-            
-            if (accelSpeed > addSpeed)
-                accelSpeed = addSpeed;
-            
-            velocity.x += accelSpeed * targetDir.x;
-            velocity.z += accelSpeed * targetDir.z;
+            playerVelocity.x += accelspeed * wishdir.x;
+            playerVelocity.z += accelspeed * wishdir.z;
         }
         
         public float GetHorizontalSpeed()
         {
-            Vector3 horizontalVel = new Vector3(_rbCompo.linearVelocity.x, 0, _rbCompo.linearVelocity.z);
+            Vector3 horizontalVel = new Vector3(playerVelocity.x, 0, playerVelocity.z);
             return horizontalVel.magnitude;
         }
         
@@ -459,10 +694,35 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         {
             return !isGroundedCached && coyoteTimeCounter > 0 && canUseCoyoteTime;
         }
-
+        
         public bool IsJumpBufferActive()
         {
             return jumpBufferCounter > 0;
+        }
+        
+        private void OnGUI()
+        {
+            if (!showSpeedDebug) return;
+            
+            GUIStyle style = debugStyle ?? GUI.skin.label;
+            
+            GUI.Label(new Rect(0, 0, 400, 100), "FPS: " + fps, style);
+            
+            Vector3 ups = playerVelocity;
+            ups.y = 0;
+            GUI.Label(new Rect(0, 15, 400, 100), "Speed: " + Mathf.Round(ups.magnitude * 100) / 100 + " ups", style);
+            GUI.Label(new Rect(0, 30, 400, 100), "Top Speed: " + Mathf.Round(playerTopVelocity * 100) / 100 + " ups", style);
+            GUI.Label(new Rect(0, 45, 400, 100), "MoveSpeed: " + moveSpeed.ToString("F1"), style);
+            
+            if (showJumpDebug)
+            {
+                GUI.Label(new Rect(0, 60, 400, 100), "Grounded: " + isGroundedCached, style);
+                GUI.Label(new Rect(0, 75, 400, 100), "Coyote: " + coyoteTimeCounter.ToString("F2") + "s", style);
+                GUI.Label(new Rect(0, 90, 400, 100), "Buffer: " + jumpBufferCounter.ToString("F2") + "s", style);
+                GUI.Label(new Rect(0, 105, 400, 100), "Jump Count: " + _jumpCnt, style);
+                GUI.Label(new Rect(0, 120, 400, 100), "Ground Slide: " + isGroundSliding, style);
+                GUI.Label(new Rect(0, 135, 400, 100), "Wall Slide: " + isWallSliding, style);
+            }
         }
         
         private void OnDrawGizmos()
@@ -470,17 +730,21 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             if (_rbCompo == null) return;
             
             Gizmos.color = isGroundedCached ? Color.green : Color.red;
-            Gizmos.DrawRay(transform.position, Vector3.down * jumpRaySize);
+            Vector3 spherePosition = transform.position + Vector3.down * groundCheckDistance;
+            Gizmos.DrawWireSphere(spherePosition, groundCheckRadius);
             
-            if (useBhopPhysics)
+            Gizmos.color = Color.blue;
+            Gizmos.DrawRay(transform.position, playerVelocity.normalized * 2f);
+            
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawRay(transform.position, moveDirectionNorm * 2f);
+            
+            if (isWallSliding)
             {
-                Gizmos.color = Color.blue;
-                Gizmos.DrawRay(transform.position, _rbCompo.linearVelocity.normalized * 2f);
-                
-                Gizmos.color = Color.yellow;
-                Gizmos.DrawRay(transform.position, wishDir * 2f);
+                Gizmos.color = Color.magenta;
+                Gizmos.DrawRay(transform.position, wallNormal * 2f);
             }
-
+            
             if (showJumpDebug)
             {
                 if (IsCoyoteTimeActive())
@@ -488,7 +752,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
                     Gizmos.color = Color.cyan;
                     Gizmos.DrawWireSphere(transform.position + Vector3.up * 0.5f, 0.3f);
                 }
-
+                
                 if (IsJumpBufferActive())
                 {
                     Gizmos.color = Color.magenta;
