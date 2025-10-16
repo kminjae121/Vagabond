@@ -102,8 +102,6 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
         {
             if (_player == null) return;
         
-            SetDash(false);
-        
             if (_player.movementCompo != null && movespeeds != null && movespeeds.Count > 0)
             {
                 _player.movementCompo.SetSpeed(movespeeds[0]);
@@ -120,7 +118,6 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
             if (_player == null) return;
         
             germinationEvent?.Invoke();
-            SetDash(false);
         
             if (_player.movementCompo != null && movespeeds != null && movespeeds.Count > 1)
             {
@@ -133,7 +130,6 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
             if (_player == null) return;
         
             bloomEvent?.Invoke();
-            SetDash(false);
         
             if (_player.movementCompo != null && movespeeds != null && movespeeds.Count > 2)
             {
@@ -151,7 +147,6 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
             if (_player == null) return;
         
             fullBloomEvent?.Invoke();
-            SetDash(true);
         
             if (_player.movementCompo != null && movespeeds != null && movespeeds.Count > 3)
             {
@@ -164,8 +159,7 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
             if (_player == null) return;
         
             fallingFlowerEvent?.Invoke();
-            SetDash(true);
-        
+            
             if (_player.movementCompo != null && movespeeds != null && movespeeds.Count > 4)
             {
                 _player.movementCompo.SetSpeed(movespeeds[4]);
@@ -173,13 +167,6 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
         
             isFallingFlower = true;
             fallingFlowerSec = initialFallingFlowerSec;
-        }
-
-        public void SetDash(bool IsCanDash)
-        {
-            if (_player == null || _player.dashComponent == null) return;
-        
-            _player.dashComponent.isCanDash = IsCanDash;
         }
 
         private void FallingFlower()

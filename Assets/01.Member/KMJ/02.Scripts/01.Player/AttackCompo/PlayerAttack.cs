@@ -22,6 +22,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
         [SerializeField] private float maxtimer = 1.2f;
         [SerializeField] private float flyingSpeed = 3;
 
+        public bool isDashAttacking { get; set; } = false;
+
         public float _timer { get; set; } = 0;
 
         private Rigidbody _rbComponent;

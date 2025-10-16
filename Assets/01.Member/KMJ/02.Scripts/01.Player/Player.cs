@@ -7,7 +7,6 @@ using _01.Member.KMJ._02.Scripts._01.Player.SlidingCompo;
 using _01.Member.KMJ._02.Scripts._01.Player.State;
 using _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower;
 using Code.Core.Debugs;
-using Code.Dash;
 using Code.Entities;
 using GondrLib.Dependencies;
 using UnityEngine;
@@ -44,7 +43,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         public PlayerSword swordCompo { get; private set; }
         public BloodFlowerSystem bloodSystemCompo { get; private set; }
         
-        public PlayerDashComponent dashComponent { get; private set; }
         
         #endregion
         
@@ -76,7 +74,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             movementCompo = GetCompo<CharacterMovement>();
             swordCompo = GetComponentInChildren<PlayerSword>();
             bloodSystemCompo = GetComponent<BloodFlowerSystem>();
-            dashComponent = GetComponent<PlayerDashComponent>();
         }
 
         private void ValidateComponents()
