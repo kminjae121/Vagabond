@@ -1,27 +1,53 @@
-﻿using UnityEngine;
+﻿using Code.Core.Debugs;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
 
 namespace Code.Entities.UI
 {
     public class TitleUI : MonoBehaviour
     {
-        [SerializeField] private Button startButton;
-        [SerializeField] private Button settingButton;
-        [SerializeField] private Button quitButton;
-        
+        [SerializeField] private Button startBtn;
+        [SerializeField] private Button settingBtn;
+        [SerializeField] private Button quitBtn;
+
+        [Header("Hover Effect")]
+        [SerializeField] private float hoverScale = 1.2f;
+        [SerializeField] private float hoverDuration = 0.2f;
+
+        private Vector3 _originalScale;
+
         private void Awake()
         {
-            startButton.onClick.AddListener(OnStartButtonClicked);
-            settingButton.onClick.AddListener(OnSettingButtonClicked);
-            quitButton.onClick.AddListener(OnQuitButtonClicked);
+            if (startBtn == null || settingBtn == null || quitBtn == null)
+            {
+                UnityLogger.LogError("타이틀 UI 버튼을 찾을 수 없습니다.");
+                return;
+            }
+            
+            _originalScale = startBtn.transform.localScale;
+            
+            startBtn.onClick.AddListener(OnStartButtonClicked);
+            settingBtn.onClick.AddListener(OnSettingButtonClicked);
+            quitBtn.onClick.AddListener(OnQuitButtonClicked);
+
+            AddHoverEffect(startBtn);
+            AddHoverEffect(settingBtn);
+            AddHoverEffect(quitBtn);
+        }
+
+        private void AddHoverEffect(Button btn)
+        {
+            var hover = btn.gameObject.AddComponent<UIHoverEffect>();
+            hover.Init(_originalScale, hoverScale, hoverDuration);
         }
 
         private void OnDestroy()
         {
-            startButton.onClick.RemoveListener(OnStartButtonClicked);
-            settingButton.onClick.RemoveListener(OnSettingButtonClicked);
-            quitButton.onClick.RemoveListener(OnQuitButtonClicked);
+            startBtn.onClick.RemoveListener(OnStartButtonClicked);
+            settingBtn.onClick.RemoveListener(OnSettingButtonClicked);
+            quitBtn.onClick.RemoveListener(OnQuitButtonClicked);
         }
 
         private void OnStartButtonClicked()
@@ -31,12 +57,9 @@ namespace Code.Entities.UI
 
         private void OnSettingButtonClicked()
         {
-            // 설정창
+            // 설정창 열기
         }
 
-        private void OnQuitButtonClicked()
-        {
-            Application.Quit();
-        }
+        private void OnQuitButtonClicked() => Application.Quit();
     }
 }

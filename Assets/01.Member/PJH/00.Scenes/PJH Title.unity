@@ -1562,9 +1562,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0176afbb575436e8d09ce5bfce9d989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startButton: {fileID: 670359947}
-  settingButton: {fileID: 1790329981}
-  quitButton: {fileID: 589636854}
+  startBtn: {fileID: 670359947}
+  settingBtn: {fileID: 1790329981}
+  quitBtn: {fileID: 589636854}
+  hoverScale: 1.2
+  hoverDuration: 0.2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
