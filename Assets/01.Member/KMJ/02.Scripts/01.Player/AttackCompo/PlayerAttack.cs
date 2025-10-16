@@ -161,7 +161,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
         {
             _timer += Time.fixedDeltaTime;
 
-            _rbComponent.AddForce(transform.forward * dashSpeed, ForceMode.Impulse);
+            _rbComponent.AddForce(transform.forward * (dashSpeed - _timer) , ForceMode.Impulse);
                 
             if (_timer >= maxtimer)
             {

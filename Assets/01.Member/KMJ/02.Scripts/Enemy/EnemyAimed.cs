@@ -17,10 +17,7 @@ namespace _01.Member.KMJ._02.Scripts.Enemy
 
         public float aimmingTime = 0;
         public float maxAimmingTime = 0.6f;
-
-        private void Start()
-        {
-        }
+        
 
         private void Update()
         {
@@ -33,8 +30,6 @@ namespace _01.Member.KMJ._02.Scripts.Enemy
             {
                 isTarget = true;
             }
-            
-            
         }
 
         public void AimmingThis()
@@ -55,7 +50,6 @@ namespace _01.Member.KMJ._02.Scripts.Enemy
         {
             yield return new WaitForSeconds(1f);
 
-            UnityLogger.Log("해제됨");
             aimmingTime = 0;
             isTarget = false;
         }

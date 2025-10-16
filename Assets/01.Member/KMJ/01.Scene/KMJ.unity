@@ -3010,7 +3010,6 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 256
-  aimmingFullTime: 1
   <aimingObject>k__BackingField: {fileID: 0}
 --- !u!114 &410513820
 MonoBehaviour:
@@ -11987,7 +11986,7 @@ MonoBehaviour:
   _inputReader: {fileID: 11400000, guid: 24b9526a025a0b345ba14a70e5eb829f, type: 2}
   <maxchargingTime>k__BackingField: 5
   chargeAttackSec: 1
-  dashSpeed: 10
+  dashSpeed: 6
   maxtimer: 0.4
   flyingSpeed: 40
 --- !u!1 &2037375913
@@ -13373,11 +13372,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2203ca8efa334e9d96a44fd1166e2a7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <dashDistance>k__BackingField: 10
-  <isCanDash>k__BackingField: 1
-  _inputReader: {fileID: 11400000, guid: 24b9526a025a0b345ba14a70e5eb829f, type: 2}
-  dashCoolTime: 0
-  _dashTrmObject: {fileID: 0}
 --- !u!114 &5454223710431814530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13996,7 +13990,6 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 256
-  aimmingFullTime: 1
   <aimingObject>k__BackingField: {fileID: 0}
 --- !u!1 &8985460226203750097
 GameObject:
