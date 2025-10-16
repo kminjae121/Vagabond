@@ -1,5 +1,4 @@
-﻿
-using _01.Member.KMJ._02.Scripts._01.Player.AttackCompo;
+﻿using _01.Member.KMJ._02.Scripts._01.Player.AttackCompo;
 using Code.Entities;
 using UnityEngine;
 
@@ -16,10 +15,23 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
         
         public override void Enter()
         {
-            _player.atkComponent._timer = 0;
-            _player.swordCompo.BalDo();
+            if (_player.atkComponent != null)
+            {
+                _player.atkComponent._timer = 0;
+            }
+            
+            if (_player.swordCompo != null)
+            {
+                _player.swordCompo.BalDo();
+            }
+            
             _player.SetJumping(false);
-            _atkCompo.ChargingAttack();
+            
+            if (_atkCompo != null)
+            {
+                _atkCompo.Dash();
+            }
+            
             base.Enter();
         }
 
@@ -28,16 +40,20 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
             base.Update();
         }
 
-        public override void FixedUpdate()
-        {
-            _player.atkComponent.Dash();
-            base.FixedUpdate();
-        }
-
         public override void Exit()
         {
-            _player.swordCompo.StopBalDo();
+            if (_player.swordCompo != null)
+            {
+                _player.swordCompo.StopBalDo();
+            }
+            
             _player.SetJumping(true);
+            
+            if (_atkCompo != null)
+            {
+                _atkCompo.isDashAttacking = false;
+            }
+            
             base.Exit();
         }
     }

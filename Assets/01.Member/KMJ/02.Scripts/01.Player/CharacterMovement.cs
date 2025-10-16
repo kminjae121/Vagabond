@@ -1,5 +1,4 @@
-﻿using _00.CORE._02.Scripts.Input;
-using Code.Core.Debugs;
+﻿using Code.Core.Debugs;
 using Code.Entities;
 using Code.Interfaces;
 using UnityEngine;
@@ -8,36 +7,36 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
 {
     public class CharacterMovement : MonoBehaviour, IEntityComponent
     {
-        [Header("CPM Physics - Movement")]
-        [SerializeField] private float moveSpeed = 7.0f;
-        [SerializeField] private float jumpSpeed = 8.0f;
-        [SerializeField] private float gravity = 20.0f;
+        [Header("Bloodthief Style - Movement")]
+        [SerializeField] private float moveSpeed = 12.0f;
+        [SerializeField] private float jumpSpeed = 10.0f;
+        [SerializeField] private float gravity = 25.0f;
         
-        [Header("CPM Physics - Acceleration")]
-        [SerializeField] private float runAcceleration = 14.0f;
-        [SerializeField] private float runDeacceleration = 10.0f;
-        [SerializeField] private float airAcceleration = 14f;
-        [SerializeField] private float airDecceleration = 10f;
-        [SerializeField] private float airControl = 0.8f;
+        [Header("Bloodthief Style - Acceleration")]
+        [SerializeField] private float runAcceleration = 25.0f;
+        [SerializeField] private float runDeacceleration = 15.0f;
+        [SerializeField] private float airAcceleration = 12.0f;
+        [SerializeField] private float airDecceleration = 10.0f;
+        [SerializeField] private float airControl = 1.0f;
         
-        [Header("CPM Physics - Strafe")]
+        [Header("Strafe Settings")]
         [SerializeField] private float sideStrafeSpeed = 1.0f;
         [SerializeField] private float sideStrafeAcceleration = 50.0f;
         
-        [Header("CPM Physics - Friction")]
-        [SerializeField] private float friction = 6.0f;
+        [Header("Friction")]
+        [SerializeField] private float friction = 4.0f;
         
-        [Header("Ground Slide Settings")]
-        [SerializeField] private float groundSlideSpeedBoost = 5.0f;
+        [Header("Ground Slide")]
+        [SerializeField] private float groundSlideSpeedBoost = 10.0f;
         [SerializeField] private float groundSlideFriction = 1.0f;
         [SerializeField] private float groundSlideAcceleration = 10.0f;
         
-        [Header("Wall Slide Settings")]
+        [Header("Wall Slide")]
         [SerializeField] private float wallSlideForwardSpeed = 7.0f;
         [SerializeField] private float wallJumpAwayForce = 5.0f;
         
         [Header("Speed Limits")]
-        private float _maxmoveSpeed = 15f;
+        [SerializeField] private float _maxmoveSpeed = 20f;
         public float maxmoveSpeed 
         { 
             get => _maxmoveSpeed; 
@@ -46,7 +45,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         
         [Header("Ground Detection")]
         [SerializeField] private float groundCheckRadius = 0.4f;
-        [SerializeField] private float groundCheckDistance = 0.64f;
+        [SerializeField] private float groundCheckDistance = 0.1f;
         [SerializeField] private LayerMask whatIsGround;
         
         [Header("Jump Settings")]
@@ -73,10 +72,12 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         public bool isGrounded => isGroundedCached;
         public bool isGroundSliding { get; private set; }
         public bool isWallSliding { get; private set; }
+        public bool isImpulseActive { get; private set; }
+        public bool isGuidedMovement { get; private set; }
         
         private Entity _entity;
         private Player _player;
-        private Rigidbody _rbCompo;
+        private CharacterController _controller;
         
         private Vector3 playerVelocity = Vector3.zero;
         private Vector3 moveDirectionNorm = Vector3.zero;
@@ -96,6 +97,14 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         private Vector3 pendingWallJumpDirection;
         private float ignoreGroundTime = 0f;
         
+        private Vector3 impulseVelocity = Vector3.zero;
+        private float impulseDuration = 0f;
+        private float impulseTimer = 0f;
+        
+        private Transform guidedTarget;
+        private float guidedSpeed;
+        private float guidedStopDistance;
+        
         private float playerTopVelocity = 0.0f;
         private int frameCount = 0;
         private float dt = 0.0f;
@@ -105,11 +114,11 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         {
             _entity = entity;
             _player = entity as Player;
-            _rbCompo = entity.GetComponent<Rigidbody>();
+            _controller = entity.GetComponent<CharacterController>();
             
-            if (_rbCompo == null)
+            if (_controller == null)
             {
-                UnityLogger.LogError("Rigidbody가 엔티티에 없습니다. Rigidbody를 추가해주세요.");
+                UnityLogger.LogError("CharacterController가 엔티티에 없습니다. CharacterController를 추가해주세요.");
                 return;
             }
             
@@ -119,16 +128,16 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
                 return;
             }
             
-            SetupRigidbody();
+            SetupCharacterController();
             baseSpeed = moveSpeed;
         }
         
-        private void SetupRigidbody()
+        private void SetupCharacterController()
         {
-            _rbCompo.useGravity = false;
-            _rbCompo.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-            _rbCompo.collisionDetectionMode = CollisionDetectionMode.Continuous;
-            _rbCompo.interpolation = RigidbodyInterpolation.Interpolate;
+            _controller.minMoveDistance = 0f;
+            _controller.skinWidth = 0.08f;
+            _controller.stepOffset = 0.3f;
+            _controller.slopeLimit = 45f;
         }
         
         public void SetMove(float XMove, float ZMove)
@@ -149,7 +158,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         
         public bool CheckGroundDetected()
         {
-            if (_rbCompo == null) return false;
+            if (_controller == null) return false;
             
             Vector3 spherePosition = transform.position + Vector3.down * groundCheckDistance;
             return Physics.CheckSphere(spherePosition, groundCheckRadius, whatIsGround);
@@ -179,6 +188,64 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         public void StopWallSlide()
         {
             isWallSliding = false;
+        }
+        
+        public void ApplyImpulse(Vector3 direction, float force, float duration)
+        {
+            impulseVelocity = direction.normalized * force;
+            impulseDuration = duration;
+            impulseTimer = 0f;
+            isImpulseActive = true;
+            
+            if (showJumpDebug)
+            {
+                UnityLogger.Log($"Impulse 적용: 방향={direction}, 힘={force}, 지속시간={duration}");
+            }
+        }
+        
+        public void StopImpulse()
+        {
+            isImpulseActive = false;
+            impulseVelocity = Vector3.zero;
+            impulseTimer = 0f;
+        }
+        
+        public void SetGuidedMovement(Transform target, float speed, float stopDistance)
+        {
+            if (target == null)
+            {
+                UnityLogger.LogError("Guided Movement 타겟이 null입니다.");
+                return;
+            }
+            
+            guidedTarget = target;
+            guidedSpeed = speed;
+            guidedStopDistance = stopDistance;
+            isGuidedMovement = true;
+            
+            if (showJumpDebug)
+            {
+                UnityLogger.Log($"Guided Movement 시작: 타겟={target.name}, 속도={speed}");
+            }
+        }
+        
+        public void StopGuidedMovement()
+        {
+            isGuidedMovement = false;
+            guidedTarget = null;
+            
+            if (showJumpDebug)
+            {
+                UnityLogger.Log("Guided Movement 종료");
+            }
+        }
+        
+        public bool IsGuidedMovementComplete()
+        {
+            if (!isGuidedMovement || guidedTarget == null) return true;
+            
+            float distance = Vector3.Distance(transform.position, guidedTarget.position);
+            return distance <= guidedStopDistance;
         }
         
         public void RequestJump()
@@ -321,10 +388,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         public void StopMoving()
         {
             playerVelocity = Vector3.zero;
-            if (_rbCompo != null)
-            {
-                _rbCompo.linearVelocity = Vector3.zero;
-            }
+            StopImpulse();
+            StopGuidedMovement();
         }
         
         public void SetSpeed(float targetSpeedValue)
@@ -349,7 +414,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         
         private void Update()
         {
-            if (_rbCompo == null) return;
+            if (_controller == null) return;
             
             if (ignoreGroundTime > 0)
             {
@@ -358,26 +423,24 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             }
             else
             {
-                isGroundedCached = CheckGroundDetected();
+                isGroundedCached = _controller.isGrounded || CheckGroundDetected();
             }
             
             ProcessCoyoteTime();
             ProcessJumpBuffer();
-            
-            UpdateFPS();
-        }
-        
-        private void FixedUpdate()
-        {
-            if (_rbCompo == null) return;
-            
-            playerVelocity = _rbCompo.linearVelocity;
-            
             UpdateMoveFromInput();
-            
             QueueJump();
+            UpdateFPS();
             
-            if (isWallSliding)
+            if (isImpulseActive)
+            {
+                ImpulseMove();
+            }
+            else if (isGuidedMovement)
+            {
+                GuidedMove();
+            }
+            else if (isWallSliding)
             {
                 WallSlideMove();
             }
@@ -396,13 +459,77 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             
             ProcessPendingJumps();
             
-            _rbCompo.linearVelocity = playerVelocity;
+            _controller.Move(playerVelocity * Time.deltaTime);
+            
+            CheckCollisionStop();
             
             Vector3 udp = playerVelocity;
             udp.y = 0.0f;
             if (udp.magnitude > playerTopVelocity)
             {
                 playerTopVelocity = udp.magnitude;
+            }
+            
+            if (_player != null && _player.camCompo != null)
+            {
+                _player.camCompo.UpdateCameraEffects(GetHorizontalSpeed(), isGroundedCached, wasGrounded);
+            }
+        }
+        
+        private void ImpulseMove()
+        {
+            impulseTimer += Time.deltaTime;
+            
+            if (impulseTimer >= impulseDuration)
+            {
+                StopImpulse();
+                if (_player != null)
+                {
+                    _player.ChangeState("IDLE");
+                }
+                return;
+            }
+            
+            playerVelocity = impulseVelocity;
+            playerVelocity.y -= gravity * Time.deltaTime;
+        }
+        
+        private void GuidedMove()
+        {
+            if (guidedTarget == null)
+            {
+                StopGuidedMovement();
+                return;
+            }
+            
+            Vector3 direction = (guidedTarget.position - transform.position).normalized;
+            playerVelocity = direction * guidedSpeed;
+            
+            float distance = Vector3.Distance(transform.position, guidedTarget.position);
+            if (distance <= guidedStopDistance)
+            {
+                StopGuidedMovement();
+                if (_player != null)
+                {
+                    _player.ChangeState("IDLE");
+                }
+            }
+        }
+        
+        private void CheckCollisionStop()
+        {
+            if (isImpulseActive && (_controller.collisionFlags & CollisionFlags.Sides) != 0)
+            {
+                StopImpulse();
+                if (_player != null)
+                {
+                    _player.ChangeState("IDLE");
+                }
+                
+                if (showJumpDebug)
+                {
+                    UnityLogger.Log("벽 충돌로 Impulse 중단");
+                }
             }
         }
         
@@ -415,9 +542,14 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
                 wishJump = false;
                 ignoreGroundTime = jumpGroundIgnoreDuration;
                 
+                if (_player != null && _player.camCompo != null)
+                {
+                    _player.camCompo.OnJump();
+                }
+                
                 if (showJumpDebug)
                 {
-                    UnityLogger.Log($"FixedUpdate에서 점프 적용: velocity.y = {jumpSpeed}");
+                    UnityLogger.Log($"점프 적용: velocity.y = {jumpSpeed}");
                 }
             }
             else if (pendingWallJump)
@@ -428,9 +560,14 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
                 wishJump = false;
                 ignoreGroundTime = jumpGroundIgnoreDuration;
                 
+                if (_player != null && _player.camCompo != null)
+                {
+                    _player.camCompo.OnWallJump();
+                }
+                
                 if (showJumpDebug)
                 {
-                    UnityLogger.Log("FixedUpdate에서 벽 점프 적용");
+                    UnityLogger.Log("벽 점프 적용");
                 }
             }
             else if (pendingGroundSlideJump)
@@ -442,9 +579,14 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
                 wishJump = false;
                 ignoreGroundTime = jumpGroundIgnoreDuration;
                 
+                if (_player != null && _player.camCompo != null)
+                {
+                    _player.camCompo.OnJump();
+                }
+                
                 if (showJumpDebug)
                 {
-                    UnityLogger.Log($"FixedUpdate에서 슬라이드 점프 적용: 속도 보존 {horizontalVelocity.magnitude:F2}");
+                    UnityLogger.Log($"슬라이드 점프 적용: 속도 보존 {horizontalVelocity.magnitude:F2}");
                 }
             }
         }
@@ -489,7 +631,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             
             if (playerVelocity.y <= 0)
             {
-                playerVelocity.y = -gravity * Time.fixedDeltaTime;
+                playerVelocity.y = -gravity * Time.deltaTime;
             }
             
             if (wishJump)
@@ -523,7 +665,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             
             if (playerVelocity.y <= 0)
             {
-                playerVelocity.y = -gravity * Time.fixedDeltaTime;
+                playerVelocity.y = -gravity * Time.deltaTime;
             }
             
             if (wishJump)
@@ -549,7 +691,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             Vector3 horizontalVel = new Vector3(playerVelocity.x, 0, playerVelocity.z);
             Vector3 targetVel = wishdir * wishspeed;
             
-            horizontalVel = Vector3.Lerp(horizontalVel, targetVel, Time.fixedDeltaTime * 10f);
+            horizontalVel = Vector3.Lerp(horizontalVel, targetVel, Time.deltaTime * 10f);
             
             playerVelocity.x = horizontalVel.x;
             playerVelocity.z = horizontalVel.z;
@@ -607,7 +749,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
                 AirControl(wishdir, wishspeed2);
             }
             
-            playerVelocity.y -= gravity * Time.fixedDeltaTime;
+            playerVelocity.y -= gravity * Time.deltaTime;
         }
         
         private void AirControl(Vector3 wishdir, float wishspeed)
@@ -625,7 +767,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             
             float dot = Vector3.Dot(playerVelocity, wishdir);
             float k = 32;
-            k *= airControl * dot * dot * Time.fixedDeltaTime;
+            k *= airControl * dot * dot * Time.deltaTime;
             
             if (dot > 0)
             {
@@ -652,7 +794,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             if (isGroundedCached)
             {
                 float control = speed < runDeacceleration ? runDeacceleration : speed;
-                drop = control * friction * Time.fixedDeltaTime * t;
+                drop = control * friction * Time.deltaTime * t;
             }
             
             float newspeed = speed - drop;
@@ -682,7 +824,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
                 return;
             }
             
-            float accelspeed = accel * Time.fixedDeltaTime * wishspeed;
+            float accelspeed = accel * Time.deltaTime * wishspeed;
             
             if (accelspeed > addspeed)
             {
@@ -697,6 +839,11 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         {
             Vector3 horizontalVel = new Vector3(playerVelocity.x, 0, playerVelocity.z);
             return horizontalVel.magnitude;
+        }
+        
+        public Vector3 GetVelocity()
+        {
+            return playerVelocity;
         }
         
         public float GetCoyoteTimeRemaining()
@@ -742,12 +889,14 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
                 GUI.Label(new Rect(0, 120, 400, 100), "Jump Count: " + _jumpCnt, style);
                 GUI.Label(new Rect(0, 135, 400, 100), "Ground Slide: " + isGroundSliding, style);
                 GUI.Label(new Rect(0, 150, 400, 100), "Wall Slide: " + isWallSliding, style);
+                GUI.Label(new Rect(0, 165, 400, 100), "Impulse Active: " + isImpulseActive, style);
+                GUI.Label(new Rect(0, 180, 400, 100), "Guided Movement: " + isGuidedMovement, style);
             }
         }
         
         private void OnDrawGizmos()
         {
-            if (_rbCompo == null) return;
+            if (_controller == null) return;
             
             Gizmos.color = isGroundedCached ? Color.green : Color.red;
             Vector3 spherePosition = transform.position + Vector3.down * groundCheckDistance;
@@ -763,6 +912,13 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             {
                 Gizmos.color = Color.magenta;
                 Gizmos.DrawRay(transform.position, wallNormal * 2f);
+            }
+            
+            if (isGuidedMovement && guidedTarget != null)
+            {
+                Gizmos.color = Color.cyan;
+                Gizmos.DrawLine(transform.position, guidedTarget.position);
+                Gizmos.DrawWireSphere(guidedTarget.position, guidedStopDistance);
             }
             
             if (showJumpDebug)

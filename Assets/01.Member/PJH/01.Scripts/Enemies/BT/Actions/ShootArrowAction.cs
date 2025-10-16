@@ -9,7 +9,7 @@ using Unity.Properties;
 [NodeDescription(name: "ShootArrow", story: "[Self] Shoot arrow to [Target]", category: "Action", id: "9f885b78ec44567163683686c57b4287")]
 public partial class ShootArrowAction : Action
 {
-    [SerializeReference] public BlackboardVariable<ArcherAttackCompo> Self;
+    [SerializeReference] public BlackboardVariable<EnemyArcher> Self;
     [SerializeReference] public BlackboardVariable<Transform> Target;
 
     protected override Status OnStart()
