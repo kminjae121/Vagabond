@@ -50,7 +50,27 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
         
         private void OnTriggerEnter(Collider other)
         {
-            if (((1 << other.gameObject.layer) & whatIsEnemy) != 0 && ((1 << gameObject.layer) & baldoWeaponLayer) != 0)
+           if (((1 << other.gameObject.layer) & whatIsEnemy) != 0
+                     && ((1 << gameObject.layer) & baldoWeaponLayer) != 0
+                     && player.aimmingComponent.aimingObject != null)
+            {
+                if (other.gameObject == player.aimmingComponent.aimingObject)
+                {
+                    if (other.TryGetComponent(out IDamageable damageable))
+                    {
+                        DamageData data = new DamageData();
+                        data.damage = 3000;
+                        data.damageType = DamageType.MELEE;
+
+                        damageable.ApplyDamage(data, other.transform.position, _owner.transform.forward, weaponAtkData,
+                            null);
+
+                        player.aimmingComponent.SetEnemyNull();
+                        player.bloodSystemCompo.AddFlower(1);
+                    }
+                }
+            }
+            else if (((1 << other.gameObject.layer) & whatIsEnemy) != 0 && ((1 << gameObject.layer) & baldoWeaponLayer) != 0)
             {
                 if (other.TryGetComponent(out IDamageable damageable))
                 {
@@ -59,8 +79,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
                     data.damageType = DamageType.MELEE;
                     
                     damageable.ApplyDamage(data, other.transform.position, _owner.transform.forward, weaponAtkData,null);
-                    
-                    player.aimmingComponent.SetEnemyNull();
                     
                     player.bloodSystemCompo.AddFlower(1);
                 }
@@ -71,6 +89,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
                 {
                     damageable.ApplyDamage(damageData, other.transform.position, _owner.transform.forward, weaponAtkData,null);
                 }
+                
+                
             }
         }
     }
