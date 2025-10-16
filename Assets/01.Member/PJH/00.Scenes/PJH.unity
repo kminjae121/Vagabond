@@ -354,7 +354,7 @@ GameObject:
   - component: {fileID: 884089954}
   - component: {fileID: 884089955}
   m_Layer: 8
-  m_Name: Test Enemy
+  m_Name: Scout Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -980,7 +980,7 @@ GameObject:
   - component: {fileID: 1948447306}
   - component: {fileID: 1948447320}
   m_Layer: 8
-  m_Name: Test Enemy Archer
+  m_Name: Archer Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
