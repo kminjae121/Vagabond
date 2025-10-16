@@ -12,7 +12,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
     public class PlayerAutoAiming : MonoBehaviour, IEntityComponent
     {
         [SerializeField] private LayerMask whatIsEnemy;
-        [SerializeField] private float aimmingFullTime;
 
         private Player _player;
         private float currentAimmingTime = 0f;
@@ -34,13 +33,12 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-        
-            if (Physics.Raycast(ray, out hit))
-            {
-                if (((1 << hit.collider.gameObject.layer) & whatIsEnemy) != 0 && !_player.atkComponent.isDashAttacking)
-                {
-                    currentAimmingTime += Time.deltaTime;
 
+            if (Physics.Raycast(ray, out hit) && ((1 << hit.collider.gameObject.layer) & whatIsEnemy) != 0)
+            {
+                UnityLogger.Log("앙기모띠"); 
+                if (!_player.atkComponent.isDashAttacking)
+                {
                     CheckIsTimeOver(hit);
                 }
             }
@@ -48,22 +46,20 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
             {
                 if (aimingObject.TryGetComponent(out EnemyAimed aimed))
                 {
-                    aimed.AimmingThis(false);
                     SetEnemyNull();
+                    aimed.StartCoroutineInScript();
                 }
             }
         }
 
         private void CheckIsTimeOver(RaycastHit hit)
         {
-            if (currentAimmingTime >= aimmingFullTime)
+            if (hit.transform.gameObject.TryGetComponent(out EnemyAimed aimed))
             {
-                aimingObject = hit.collider.gameObject;
-                        
-                if (aimingObject.TryGetComponent(out EnemyAimed aimed))
-                {
-                    aimed.AimmingThis(true);
-                }
+                aimed.AimmingThis();
+                
+                if(aimed.isTarget)
+                    aimingObject = hit.collider.gameObject;
             }
         }
 

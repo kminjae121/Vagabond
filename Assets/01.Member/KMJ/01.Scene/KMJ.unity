@@ -230,6 +230,7 @@ GameObject:
   - component: {fileID: 15236676}
   - component: {fileID: 15236677}
   - component: {fileID: 15236678}
+  - component: {fileID: 15236679}
   m_Layer: 8
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -387,6 +388,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c33ef85b91248c986439a0681028a6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &15236679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15236670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 398da92b8e3c4d01bf30985e20253057, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnAimmedThis:
+    m_PersistentCalls:
+      m_Calls: []
+  aimmingTime: 0
+  maxAimmingTime: 0.6
 --- !u!1 &19902516
 GameObject:
   m_ObjectHideFlags: 0
@@ -2546,6 +2564,8 @@ MonoBehaviour:
   OnAimmedThis:
     m_PersistentCalls:
       m_Calls: []
+  aimmingTime: 0
+  maxAimmingTime: 0.6
 --- !u!114 &390704174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5292,6 +5312,7 @@ GameObject:
   - component: {fileID: 797131282}
   - component: {fileID: 797131281}
   - component: {fileID: 797131280}
+  - component: {fileID: 797131287}
   m_Layer: 8
   m_Name: TestEnemy (1)
   m_TagString: Untagged
@@ -5449,6 +5470,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 797131278}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &797131287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797131278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 398da92b8e3c4d01bf30985e20253057, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnAimmedThis:
+    m_PersistentCalls:
+      m_Calls: []
+  aimmingTime: 0
+  maxAimmingTime: 0.6
 --- !u!1 &823740844
 GameObject:
   m_ObjectHideFlags: 0
@@ -11248,6 +11286,8 @@ MonoBehaviour:
   OnAimmedThis:
     m_PersistentCalls:
       m_Calls: []
+  aimmingTime: 0
+  maxAimmingTime: 0.6
 --- !u!1 &1820490863
 GameObject:
   m_ObjectHideFlags: 0
