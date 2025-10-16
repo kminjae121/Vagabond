@@ -16,9 +16,9 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         [Header("CPM Physics - Acceleration")]
         [SerializeField] private float runAcceleration = 14.0f;
         [SerializeField] private float runDeacceleration = 10.0f;
-        [SerializeField] private float airAcceleration = 2.0f;
-        [SerializeField] private float airDecceleration = 2.0f;
-        [SerializeField] private float airControl = 0.3f;
+        [SerializeField] private float airAcceleration = 14f;
+        [SerializeField] private float airDecceleration = 10f;
+        [SerializeField] private float airControl = 0.8f;
         
         [Header("CPM Physics - Strafe")]
         [SerializeField] private float sideStrafeSpeed = 1.0f;
@@ -46,13 +46,14 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         
         [Header("Ground Detection")]
         [SerializeField] private float groundCheckRadius = 0.4f;
-        [SerializeField] private float groundCheckDistance = 0.2f;
+        [SerializeField] private float groundCheckDistance = 0.64f;
         [SerializeField] private LayerMask whatIsGround;
         
         [Header("Jump Settings")]
         [SerializeField] private int _maxJumpCnt = 2;
         [SerializeField] private float coyoteTime = 0.15f;
         [SerializeField] private float jumpBufferTime = 0.2f;
+        [SerializeField] private float jumpGroundIgnoreDuration = 0.1f;
         [SerializeField] private bool showJumpDebug = false;
         
         [Header("Debug Display")]
@@ -93,6 +94,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         private bool pendingWallJump = false;
         private bool pendingGroundSlideJump = false;
         private Vector3 pendingWallJumpDirection;
+        private float ignoreGroundTime = 0f;
         
         private float playerTopVelocity = 0.0f;
         private int frameCount = 0;
@@ -349,7 +351,15 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         {
             if (_rbCompo == null) return;
             
-            isGroundedCached = CheckGroundDetected();
+            if (ignoreGroundTime > 0)
+            {
+                ignoreGroundTime -= Time.deltaTime;
+                isGroundedCached = false;
+            }
+            else
+            {
+                isGroundedCached = CheckGroundDetected();
+            }
             
             ProcessCoyoteTime();
             ProcessJumpBuffer();
@@ -403,6 +413,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
                 playerVelocity.y = jumpSpeed;
                 pendingJump = false;
                 wishJump = false;
+                ignoreGroundTime = jumpGroundIgnoreDuration;
                 
                 if (showJumpDebug)
                 {
@@ -415,6 +426,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
                 playerVelocity.y = jumpSpeed;
                 pendingWallJump = false;
                 wishJump = false;
+                ignoreGroundTime = jumpGroundIgnoreDuration;
                 
                 if (showJumpDebug)
                 {
@@ -428,6 +440,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
                 playerVelocity.y = jumpSpeed;
                 pendingGroundSlideJump = false;
                 wishJump = false;
+                ignoreGroundTime = jumpGroundIgnoreDuration;
                 
                 if (showJumpDebug)
                 {
@@ -474,7 +487,10 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             
             Accelerate(wishdir, wishspeed, runAcceleration);
             
-            playerVelocity.y = -gravity * Time.fixedDeltaTime;
+            if (playerVelocity.y <= 0)
+            {
+                playerVelocity.y = -gravity * Time.fixedDeltaTime;
+            }
             
             if (wishJump)
             {
@@ -505,7 +521,10 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             
             Accelerate(wishdir, wishspeed, groundSlideAcceleration);
             
-            playerVelocity.y = -gravity * Time.fixedDeltaTime;
+            if (playerVelocity.y <= 0)
+            {
+                playerVelocity.y = -gravity * Time.fixedDeltaTime;
+            }
             
             if (wishJump)
             {
@@ -717,11 +736,12 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             if (showJumpDebug)
             {
                 GUI.Label(new Rect(0, 60, 400, 100), "Grounded: " + isGroundedCached, style);
-                GUI.Label(new Rect(0, 75, 400, 100), "Coyote: " + coyoteTimeCounter.ToString("F2") + "s", style);
-                GUI.Label(new Rect(0, 90, 400, 100), "Buffer: " + jumpBufferCounter.ToString("F2") + "s", style);
-                GUI.Label(new Rect(0, 105, 400, 100), "Jump Count: " + _jumpCnt, style);
-                GUI.Label(new Rect(0, 120, 400, 100), "Ground Slide: " + isGroundSliding, style);
-                GUI.Label(new Rect(0, 135, 400, 100), "Wall Slide: " + isWallSliding, style);
+                GUI.Label(new Rect(0, 75, 400, 100), "Velocity.Y: " + playerVelocity.y.ToString("F2"), style);
+                GUI.Label(new Rect(0, 90, 400, 100), "Coyote: " + coyoteTimeCounter.ToString("F2") + "s", style);
+                GUI.Label(new Rect(0, 105, 400, 100), "Buffer: " + jumpBufferCounter.ToString("F2") + "s", style);
+                GUI.Label(new Rect(0, 120, 400, 100), "Jump Count: " + _jumpCnt, style);
+                GUI.Label(new Rect(0, 135, 400, 100), "Ground Slide: " + isGroundSliding, style);
+                GUI.Label(new Rect(0, 150, 400, 100), "Wall Slide: " + isWallSliding, style);
             }
         }
         
