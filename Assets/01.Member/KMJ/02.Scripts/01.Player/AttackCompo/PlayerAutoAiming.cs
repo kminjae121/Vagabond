@@ -37,7 +37,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
         
             if (Physics.Raycast(ray, out hit))
             {
-                if (((1 << hit.collider.gameObject.layer) & whatIsEnemy) != 0)
+                if (((1 << hit.collider.gameObject.layer) & whatIsEnemy) != 0 && !_player.atkComponent.isDashAttacking)
                 {
                     currentAimmingTime += Time.deltaTime;
 
