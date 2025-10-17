@@ -1,5 +1,4 @@
-﻿using Unity.Cinemachine;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace _01.Member.KMJ._02.Scripts._01.Player
 {
@@ -10,24 +9,22 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         
         [Header("Tilt Settings")]
         [SerializeField] private float tiltSpeed = 5f;
+        [SerializeField] private float climbingTiltSmoothness = 7.5f;
         [SerializeField] private Transform _target;
         
         [Header("Bloodthief Style - FOV")]
         [SerializeField] private float baseFOV = 60f;
         [SerializeField] private float maxFOV = 80f;
+        [SerializeField] private float wallSlideFOV = 55f;
+        [SerializeField] private float climbingFOV = 58f;
         [SerializeField] private float fovSpeed = 5f;
         [SerializeField] private float fovSpeedThreshold = 10f;
         [SerializeField] private float fovMaxSpeed = 20f;
         
-        [Header("Bloodthief Style - Camera Shake")]
-        [SerializeField] private float landingShakeAmount = 0.3f;
-        [SerializeField] private float landingShakeDuration = 0.2f;
-        [SerializeField] private float wallJumpShakeAmount = 0.2f;
-        [SerializeField] private float wallJumpShakeDuration = 0.15f;
-        
         [Header("Bloodthief Style - Camera Lag")]
         [SerializeField] private float cameraLagAmount = 0.1f;
         [SerializeField] private float cameraLagSpeed = 10f;
+        [SerializeField] private float wallSlideLagAmount = 0.15f;
         
         [Header("Bloodthief Style - Landing Punch")]
         [SerializeField] private float landingPunchAmount = 0.5f;
@@ -41,10 +38,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         private float currentFOV;
         private float targetFOV;
         
-        private Vector3 shakeOffset = Vector3.zero;
-        private float shakeTimer = 0f;
-        private float shakeAmount = 0f;
-        
         private Vector3 lagOffset = Vector3.zero;
         private Vector3 lastVelocity = Vector3.zero;
         
@@ -53,6 +46,11 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         
         private float lastYVelocity = 0f;
         private bool wasInAir = false;
+        
+        private bool isWallSlideMode = false;
+        private bool isClimbingMode = false;
+        private float climbingTiltAngle = 0f;
+        private float currentClimbingTilt = 0f;
         
         private void Awake()
         {
@@ -80,7 +78,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         {
             ApplyWorldTilt();
             SmoothTilt();
-            UpdateCameraShake();
             UpdateLandingPunch();
         }
 
@@ -101,11 +98,20 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
 
             float xRot = sinY * slideAngle;
             float zRot = cosY * slideAngle;
+            
+            if (isClimbingMode)
+            {
+                currentClimbingTilt = Mathf.Lerp(currentClimbingTilt, climbingTiltAngle, Time.deltaTime * climbingTiltSmoothness);
+                xRot = -currentClimbingTilt;
+                zRot = 0f;
+            }
+            else
+            {
+                currentClimbingTilt = Mathf.Lerp(currentClimbingTilt, 0f, Time.deltaTime * climbingTiltSmoothness);
+            }
 
             Quaternion tiltRotation = Quaternion.Euler(xRot, 0f, zRot);
-            Quaternion shakeRotation = Quaternion.Euler(shakeOffset.x * 10f, shakeOffset.y * 10f, shakeOffset.z * 10f);
-            
-            transform.localRotation = tiltRotation * shakeRotation;
+            transform.localRotation = tiltRotation;
         }
         
         private void SmoothTilt()
@@ -136,6 +142,18 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         
         private void UpdateFOV(float speed)
         {
+            if (isClimbingMode)
+            {
+                targetFOV = climbingFOV;
+                return;
+            }
+            
+            if (isWallSlideMode)
+            {
+                targetFOV = wallSlideFOV;
+                return;
+            }
+            
             if (speed < fovSpeedThreshold)
             {
                 targetFOV = baseFOV;
@@ -149,10 +167,12 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         
         private void UpdateCameraLag(float speed)
         {
+            float currentLagAmount = isWallSlideMode ? wallSlideLagAmount : cameraLagAmount;
+            
             Vector3 currentVelocity = new Vector3(speed, 0, 0);
             Vector3 velocityDelta = currentVelocity - lastVelocity;
             
-            Vector3 targetLag = -velocityDelta * cameraLagAmount;
+            Vector3 targetLag = -velocityDelta * currentLagAmount;
             lagOffset = Vector3.Lerp(lagOffset, targetLag, Time.deltaTime * cameraLagSpeed);
             
             lastVelocity = currentVelocity;
@@ -168,46 +188,35 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             wasInAir = !isGrounded;
         }
         
-        private void UpdateCameraShake()
-        {
-            if (shakeTimer > 0)
-            {
-                shakeTimer -= Time.deltaTime;
-                
-                shakeOffset = Random.insideUnitSphere * shakeAmount;
-                shakeAmount = Mathf.Lerp(shakeAmount, 0, Time.deltaTime * 5f);
-            }
-            else
-            {
-                shakeOffset = Vector3.Lerp(shakeOffset, Vector3.zero, Time.deltaTime * 10f);
-            }
-        }
-        
         private void UpdateLandingPunch()
         {
             landingPunchOffset = Mathf.SmoothDamp(landingPunchOffset, 0f, ref landingPunchVelocity, 1f / landingPunchSpeed);
+        }
+        
+        public void SetWallSlideMode(bool active)
+        {
+            isWallSlideMode = active;
+        }
+        
+        public void SetClimbingMode(bool active, float tiltAngle)
+        {
+            isClimbingMode = active;
+            climbingTiltAngle = tiltAngle;
+            
+            if (!active)
+            {
+                currentClimbingTilt = 0f;
+            }
         }
         
         public void OnJump()
         {
         }
         
-        public void OnWallJump()
-        {
-            TriggerShake(wallJumpShakeAmount, wallJumpShakeDuration);
-        }
-        
         public void OnLanding(float impactVelocity)
         {
             float impactForce = Mathf.Clamp01(impactVelocity / 20f);
-            TriggerShake(landingShakeAmount * impactForce, landingShakeDuration);
             landingPunchOffset = -landingPunchAmount * impactForce;
-        }
-        
-        private void TriggerShake(float amount, float duration)
-        {
-            shakeAmount = amount;
-            shakeTimer = duration;
         }
 
         public void SetCamTrm()

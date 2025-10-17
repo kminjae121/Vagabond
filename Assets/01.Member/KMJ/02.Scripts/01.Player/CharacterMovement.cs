@@ -7,12 +7,12 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
 {
     public class CharacterMovement : MonoBehaviour, IEntityComponent
     {
-        [Header("Bloodthief Style - Movement")]
+        [Header("Movement")]
         [SerializeField] private float moveSpeed = 12.0f;
         [SerializeField] private float jumpSpeed = 10.0f;
         [SerializeField] private float gravity = 25.0f;
         
-        [Header("Bloodthief Style - Acceleration")]
+        [Header("Acceleration")]
         [SerializeField] private float runAcceleration = 25.0f;
         [SerializeField] private float runDeacceleration = 15.0f;
         [SerializeField] private float airAcceleration = 12.0f;
@@ -32,7 +32,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         [SerializeField] private float groundSlideAcceleration = 10.0f;
         
         [Header("Wall Slide")]
-        [SerializeField] private float wallSlideForwardSpeed = 7.0f;
+        [SerializeField] private float wallSlideForwardSpeed = 10.0f;
         [SerializeField] private float wallJumpAwayForce = 5.0f;
         
         [Header("Speed Limits")]
@@ -200,6 +200,25 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             if (showJumpDebug)
             {
                 UnityLogger.Log($"Impulse 적용: 방향={direction}, 힘={force}, 지속시간={duration}");
+            }
+        }
+        
+        public void ApplyWallKick(Vector3 wallNormal, float awayForce, float upForce)
+        {
+            Vector3 kickDirection = wallNormal.normalized;
+            kickDirection.y = 0;
+    
+            Vector3 kickVelocity = kickDirection * awayForce;
+            kickVelocity.y = upForce;
+    
+            float totalForce = kickVelocity.magnitude;
+            float duration = 0.3f;
+    
+            ApplyImpulse(kickVelocity.normalized, totalForce, duration);
+    
+            if (showJumpDebug)
+            {
+                UnityLogger.Log($"벽 킥: 방향={kickDirection}, 수평힘={awayForce}, 수직힘={upForce}");
             }
         }
         
@@ -559,11 +578,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
                 pendingWallJump = false;
                 wishJump = false;
                 ignoreGroundTime = jumpGroundIgnoreDuration;
-                
-                if (_player != null && _player.camCompo != null)
-                {
-                    _player.camCompo.OnWallJump();
-                }
                 
                 if (showJumpDebug)
                 {
