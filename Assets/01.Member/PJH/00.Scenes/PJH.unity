@@ -1599,6 +1599,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5259254699912786724}
+  - {fileID: 1013357249}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &884089946
@@ -1744,6 +1745,18 @@ MonoBehaviour:
       - m_Target: {fileID: 884089956}
         m_TargetAssemblyTypeName: Code.Enemies.EnemyScout, Assembly-CSharp
         m_MethodName: SetBattleState
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1013357250}
+        m_TargetAssemblyTypeName: Code.Entities.Feedbacks.BlinkFeedback, Assembly-CSharp
+        m_MethodName: CreateFeedback
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2151,6 +2164,53 @@ Transform:
   - {fileID: 316027695}
   m_Father: {fileID: 157895710}
   m_LocalEulerAnglesHint: {x: -3.1796145, y: 3.830329, z: 47.39163}
+--- !u!1 &1013357248
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1013357249}
+  - component: {fileID: 1013357250}
+  m_Layer: 0
+  m_Name: Blink Feedback
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1013357249
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013357248}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 884089944}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1013357250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013357248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d00e05505f5348aca6513c630cb53474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 6692866818904039833}
+  blinkDuration: 0.15
+  blinkIntensity: 0.25
 --- !u!1 &1053880704
 GameObject:
   m_ObjectHideFlags: 0
@@ -3293,6 +3353,7 @@ MonoBehaviour:
   _waitTime: 0.06
   vaultUpForce: 5
   vaultForwardForce: 7.5
+  vaultDuration: 0.3
 --- !u!114 &1519725950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4676,18 +4737,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
   tiltSpeed: 18
+  climbingTiltSmoothness: 7.5
   _target: {fileID: 0}
   baseFOV: 60
   maxFOV: 80
+  wallSlideFOV: 55
+  climbingFOV: 58
   fovSpeed: 5
   fovSpeedThreshold: 10
   fovMaxSpeed: 20
-  landingShakeAmount: 0.3
-  landingShakeDuration: 0.2
-  wallJumpShakeAmount: 0.2
-  wallJumpShakeDuration: 0.15
   cameraLagAmount: 0.1
   cameraLagSpeed: 10
+  wallSlideLagAmount: 0.15
   landingPunchAmount: 0.5
   landingPunchSpeed: 8
   _targetPos: {x: 0, y: 0, z: 0}
@@ -6320,7 +6381,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5495902117074765545, guid: 254d4542653f16e4881bef144ca13e92, type: 3}
 --- !u!4 &5360114055485572256
