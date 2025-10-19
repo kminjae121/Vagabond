@@ -36,8 +36,8 @@ namespace Code.Entities.Combat
         {
             if (other.transform.root.gameObject.TryGetComponent(out Entity entity) && entity == _owner)
                 return;
-            
-            if (other.gameObject.TryGetComponent(out IDamageable damageable))
+
+            if (other.gameObject.CompareTag("Player") && other.gameObject.TryGetComponent(out IDamageable damageable))
             {
                 var data = new DamageData
                 {

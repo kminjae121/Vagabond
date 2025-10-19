@@ -7,7 +7,6 @@ namespace _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo
     public class EntityAnimatorTrigger : MonoBehaviour, IEntityComponent
     {
         public event Action OnAnimationEndTrigger;
-        public event Action OnAttackTrigger;
         public event Action OnAttackVFXTrigger;
         public event Action<bool> OnManualRotationTrigger;
         public event Action OnDamageCastTrigger;
@@ -22,7 +21,6 @@ namespace _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo
         }
 
         private void AnimationEnd() =>  OnAnimationEndTrigger?.Invoke();
-        private void AttackTrigger() => OnAttackTrigger?.Invoke(); 
         private void PlayAttackVFX() => OnAttackVFXTrigger?.Invoke();
         private void StartManualRotation() => OnManualRotationTrigger?.Invoke(true);
         private void StopManualRotation() => OnManualRotationTrigger?.Invoke(false);
@@ -30,6 +28,5 @@ namespace _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo
         private void StartDamageCast() => OnDamageToggleTrigger?.Invoke(true);
         private void StopDamageCast() => OnDamageToggleTrigger?.Invoke(false);
         private void CastSkill() => OnCastSkillTrigger?.Invoke();
-        
     }
 }
