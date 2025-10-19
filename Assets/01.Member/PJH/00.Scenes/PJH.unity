@@ -2209,7 +2209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 6692866818904039833}
-  blinkDuration: 0.15
+  blinkDuration: 0.25
   blinkIntensity: 0.25
 --- !u!1 &1053880704
 GameObject:
