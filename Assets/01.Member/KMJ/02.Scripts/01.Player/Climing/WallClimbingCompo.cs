@@ -14,13 +14,14 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.Climing
         [SerializeField] private Transform _endTrm;
         [SerializeField] private LayerMask _detectedLayer;
 
-        [Header("Climbing Settings")]
-        [SerializeField] private float speed = 5;
+        [Header("Bloodthief Style - Climbing Settings")]
+        [SerializeField] private float speed = 12f;
         [SerializeField] private float _waitTime = 0.06f;
 
-        [Header("Vault Settings")]
-        [SerializeField] private float vaultUpForce = 5f;
-        [SerializeField] private float vaultForwardForce = 7.5f;
+        [Header("Bloodthief Style - Vault Settings")]
+        [SerializeField] private float vaultUpForce = 10f;
+        [SerializeField] private float vaultForwardForce = 15f;
+        [SerializeField] private float vaultDuration = 0.3f;
     
         private CharacterController _controller;
         private CharacterMovement _movement;
@@ -36,12 +37,12 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.Climing
         
             if (_controller == null)
             {
-                UnityLogger.LogError("[WallClimbingCompo] CharacterController를 찾을 수 없습니다.");
+                UnityLogger.LogError("CharacterController를 찾을 수 없습니다.");
             }
         
             if (_movement == null)
             {
-                UnityLogger.LogError("[WallClimbingCompo] CharacterMovement를 찾을 수 없습니다.");
+                UnityLogger.LogError("CharacterMovement를 찾을 수 없습니다.");
             }
         }
 
@@ -57,7 +58,11 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.Climing
         
             if (hits.Length > 0)
             {
-                _player.movementCompo.StopMoving();
+                if (_player.movementCompo != null)
+                {
+                    _player.movementCompo.StopMoving();
+                }
+            
                 climbVelocity = Vector3.zero;
                 _player.ChangeState("CLIMBWALL");       
             }
@@ -77,7 +82,11 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.Climing
             }
             else
             {
-                _player.movementCompo.StopMoving();
+                if (_player.movementCompo != null)
+                {
+                    _player.movementCompo.StopMoving();
+                }
+            
                 _currentTime += Time.fixedDeltaTime;
 
                 if (_currentTime >= _waitTime)
@@ -89,8 +98,18 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.Climing
     
         private void VaultOver()
         {
-            Vector3 vaultVelocity = transform.up * vaultUpForce + transform.forward * vaultForwardForce;
-            _controller.Move(vaultVelocity * Time.fixedDeltaTime);
+            if (_movement == null)
+            {
+                UnityLogger.LogError("CharacterMovement가 없어 Vault를 실행할 수 없습니다.");
+                _player.ChangeState("IDLE");
+                return;
+            }
+        
+            Vector3 vaultDirection = (transform.up * vaultUpForce + transform.forward * vaultForwardForce).normalized;
+            float vaultMagnitude = Mathf.Sqrt(vaultUpForce * vaultUpForce + vaultForwardForce * vaultForwardForce);
+        
+            _movement.ApplyImpulse(vaultDirection, vaultMagnitude, vaultDuration);
+        
             _player.ChangeState("IDLE");
             _currentTime = 0;
         }

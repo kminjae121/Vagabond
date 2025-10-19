@@ -99,6 +99,11 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.SlidingCompo
         {
             return currentWallSide;
         }
+        
+        public Vector3 GetWallNormal()
+        {
+            return currentWallNormal;
+        }
 
         private bool CheckWall(Vector3 position, out Vector3 normal)
         {
