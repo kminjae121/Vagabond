@@ -1,5 +1,6 @@
 ﻿using _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo;
 using _01.Member.KMJ._02.Scripts._01.Player.AttackCompo;
+using Code.Core.Debugs;
 using Code.Core.Stats;
 using Code.Entities;
 using Code.Interfaces;
@@ -50,9 +51,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
         
         private void OnTriggerEnter(Collider other)
         {
-           if (((1 << other.gameObject.layer) & whatIsEnemy) != 0
-                     && ((1 << gameObject.layer) & baldoWeaponLayer) != 0
-                     && player.aimmingComponent.aimingObject != null)
+           if (((1 << other.gameObject.layer) & whatIsEnemy) != 0 && ((1 << gameObject.layer) & baldoWeaponLayer) != 0 && player.aimmingComponent.aimingObject != null)
             {
                 if (other.gameObject == player.aimmingComponent.aimingObject)
                 {
@@ -64,9 +63,9 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
 
                         damageable.ApplyDamage(data, other.transform.position, _owner.transform.forward, weaponAtkData,
                             null);
-
-                        player.aimmingComponent.SetEnemyNull();
+                        player.aimmingComponent.SetAIActive(false);
                         player.bloodSystemCompo.AddFlower(1);
+                        player.aimmingComponent.SetEnemyNull();
                     }
                 }
             }
@@ -79,7 +78,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
                     data.damageType = DamageType.MELEE;
                     
                     damageable.ApplyDamage(data, other.transform.position, _owner.transform.forward, weaponAtkData,null);
-                    
+                    player.aimmingComponent.SetAIActive(false);
                     player.bloodSystemCompo.AddFlower(1);
                 }
             }

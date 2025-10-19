@@ -13,11 +13,13 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
         [SerializeField] private Player _player;
     
         [Header("Flower Settings")]
-        [SerializeField] private int _flowerCnt = 0;
+        [SerializeField] private int _flowerCnt = 1;
         [SerializeField] private List<float> movespeeds;
     
         [Header("Falling Flower Settings")]
         [SerializeField] private float initialFallingFlowerSec = 10f;
+
+        [SerializeField] private BloodFlowerUI _bloodFlowerUI;
     
         public event Action _flowerChangeEvent;
 
@@ -40,6 +42,7 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
         private void Start()
         {
             _flowerChangeEvent?.Invoke();
+            _bloodFlowerUI.SetUIValue(1);
         }
 
         private void Update()
@@ -62,8 +65,14 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
 
         public void AddFlower(int amount)
         {
+            if (_flowerCnt >= 10)
+            {
+                return;
+            }
             _flowerCnt += amount;
+            _bloodFlowerUI.SetUIValue(_flowerCnt);
             _flowerChangeEvent?.Invoke();
+                
             UnityLogger.Log($"[BloodFlowerSystem] 꽃 추가: {_flowerCnt}");
         }
 
@@ -178,6 +187,7 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
             if (fallingFlowerSec <= 0)
             {
                 isFallingFlower = false;
+                _bloodFlowerUI.SetUIValue(1);
                 _flowerCnt = 1;
                 fallingFlowerSec = initialFallingFlowerSec;
                 _flowerChangeEvent?.Invoke();
