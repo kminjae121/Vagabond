@@ -1,73 +1,76 @@
-using System;
+  using System;
 using System.Collections.Generic;
 using System.Linq;
-using _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower;
-using Code.Core.Debugs;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BloodFlowerUI : MonoBehaviour
 {
-    [SerializeField] private float increasingValue = 1;
+    [Header("Lerp 속도 조절")]
+    [SerializeField] private float increasingValue = 5f;
+
+    [Header("UI 꽃잎 리스트 (자동 할당됨)")]
     public List<Image> bloodFlowerUIs = new List<Image>();
+
+    [SerializeField] private List<float> _flowerCountList;
     
-    public float _flowerValue = 0;
-
-    private float _modifierflowerValue = 1;
-
-
+    private float _flowerValue = 1;         
+    private float _modifierFlowerValue = 1;
+    
     private void Awake()
     {
-        GetComponentsInChildren<Image>().ToList().ForEach(UI => bloodFlowerUIs.Add(UI));
+        bloodFlowerUIs = GetComponentsInChildren<Image>().ToList();
     }
 
     private void Update()
     {
         LerpUIValue();
-        SetFlower();
+        SetFlower(); 
     }
 
     private void LerpUIValue()
     {
-        _flowerValue = Mathf.Lerp(_flowerValue, _modifierflowerValue, Time.deltaTime * increasingValue);
+        _flowerValue = Mathf.Lerp(_flowerValue, _modifierFlowerValue, Time.deltaTime * increasingValue);
     }
 
     public void SetUIValue(float value)
     {
-        _modifierflowerValue = value;
+        _modifierFlowerValue = Mathf.Clamp(value, 0, 10); 
     }
 
-    public void SetFlower()
+    private void SetFlower()
     {
+        if (bloodFlowerUIs == null || bloodFlowerUIs.Count < 4)
+            return;
+
+
+        for (int i = 0; i < bloodFlowerUIs.Count; i++)
+            bloodFlowerUIs[i].fillAmount = 0;
+        
+
         switch (_flowerValue)
         {
-            case <= 0:
-                bloodFlowerUIs[0].fillAmount = Mathf.Clamp01(_flowerValue / 3f);
+            case <= 3f: 
+                bloodFlowerUIs[0].fillAmount = Mathf.InverseLerp(0, 3f, _flowerValue);
                 break;
 
-            case <= 3:
+            case <= 6f: 
                 bloodFlowerUIs[0].fillAmount = 1f;
-                bloodFlowerUIs[1].fillAmount = Mathf.Clamp01((_flowerValue - 3f * 0f) / 3f);
+                bloodFlowerUIs[1].fillAmount = Mathf.InverseLerp(3f, 6f, _flowerValue);
                 break;
 
-            case <= 6:
+            case <= 9f: 
                 bloodFlowerUIs[0].fillAmount = 1f;
                 bloodFlowerUIs[1].fillAmount = 1f;
-                bloodFlowerUIs[2].fillAmount = Mathf.Clamp01((_flowerValue - 3f * 2f / 2f) / 3f);
-                bloodFlowerUIs[2].fillAmount = Mathf.Clamp01((_flowerValue - 3f) / 3f);
+                bloodFlowerUIs[2].fillAmount = Mathf.InverseLerp(6f, 9f, _flowerValue);
                 break;
 
-            case <= 9:
+            default:
                 bloodFlowerUIs[0].fillAmount = 1f;
                 bloodFlowerUIs[1].fillAmount = 1f;
                 bloodFlowerUIs[2].fillAmount = 1f;
-                bloodFlowerUIs[3].fillAmount = Mathf.Clamp01((_flowerValue - 6f) / 3f);
+                bloodFlowerUIs[3].fillAmount = Mathf.InverseLerp(9f, 10f, _flowerValue);
                 break;
-
-            default: 
-                foreach (var img in bloodFlowerUIs)
-                    img.fillAmount = 1f;
-                break;   
         }
     }
 }

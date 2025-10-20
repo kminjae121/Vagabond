@@ -69,6 +69,7 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
             {
                 return;
             }
+            
             _flowerCnt += amount;
             _bloodFlowerUI.SetUIValue(_flowerCnt);
             _flowerChangeEvent?.Invoke();
@@ -80,7 +81,7 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
         {
             _flowerCnt -= amount;
             if (_flowerCnt < 0) _flowerCnt = 0;
-        
+            _bloodFlowerUI.SetUIValue(_flowerCnt);
             _flowerChangeEvent?.Invoke();
             UnityLogger.Log($"[BloodFlowerSystem] 꽃 제거: {_flowerCnt}");
         }
