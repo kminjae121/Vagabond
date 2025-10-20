@@ -1603,7 +1603,6 @@ MonoBehaviour:
   increasingValue: 1
   bloodFlowerUIs:
   - {fileID: 0}
-  _flowerValue: 0
 --- !u!1 &170289888
 GameObject:
   m_ObjectHideFlags: 0
@@ -10727,11 +10726,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 1447935430}
-  _flowerCnt: 0
+  _flowerCnt: 1
   movespeeds:
-  - 11.45
-  - 13.6
-  - 17.9
+  - 8
+  - 11
+  - 14
   initialFallingFlowerSec: 10
   _bloodFlowerUI: {fileID: 168231546}
 --- !u!143 &1447935434
