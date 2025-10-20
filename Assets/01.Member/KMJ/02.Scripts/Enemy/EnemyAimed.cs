@@ -3,6 +3,7 @@ using System.Collections;
 using Code.Core.Debugs;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace _01.Member.KMJ._02.Scripts.Enemy
 {
@@ -18,7 +19,7 @@ namespace _01.Member.KMJ._02.Scripts.Enemy
         public float aimmingTime = 0;
         public float maxAimmingTime = 0.6f;
 
-        private void Start()
+        private void Awake()
         {
         }
 
@@ -26,16 +27,19 @@ namespace _01.Member.KMJ._02.Scripts.Enemy
         {
             if (isAimmed)
             {
+                OnAimmedThis?.Invoke();
                 aimmingTime += Time.deltaTime;
+                
+                if (aimmingTime >= maxAimmingTime)
+                {
+                    //uiImage.color = Color.red;
+                    aimmingTime = maxAimmingTime;
+                    isTarget = true;
+                }
             }
-
-            if (aimmingTime >= maxAimmingTime)
-            {
-                isTarget = true;
-            }
-            
-            
         }
+        
+        
 
         public void AimmingThis()
         {
@@ -44,7 +48,7 @@ namespace _01.Member.KMJ._02.Scripts.Enemy
 
         public void StartCoroutineInScript()
         {
-            if (aimmingFalseCoroutine != null)
+            if (aimmingFalseCoroutine == null)
             {
                 aimmingFalseCoroutine = StartCoroutine(AimmingFalse());
             }
@@ -53,11 +57,16 @@ namespace _01.Member.KMJ._02.Scripts.Enemy
 
         public IEnumerator AimmingFalse()
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.35f);
+            
+            //uiImage.color = Color.white;
+            //_aimUIComponent.targetingUI.SetActive(false);
 
-            UnityLogger.Log("해제됨");
+            isAimmed = false;
             aimmingTime = 0;
             isTarget = false;
+
+            aimmingFalseCoroutine = null;
         }
         
     }
