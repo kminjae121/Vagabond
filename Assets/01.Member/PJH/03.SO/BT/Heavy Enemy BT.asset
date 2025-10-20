@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2dd922ae02c94c87a66e46a10a7319b9, type: 3}
-  m_Name: Heavy Infantry Enemy BT Blackboard
+  m_Name: Heavy Enemy BT Blackboard
   m_EditorClassIdentifier: 
   AssetID:
     m_Value0: 1496031531884334064
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b27bb6d9a2c8d540a10dff10acc543e, type: 3}
-  m_Name: Heavy Infantry Enemy BT Debug Info
+  m_Name: Heavy Enemy BT Debug Info
   m_EditorClassIdentifier: 
   m_CodeBreakPointsList: []
 --- !u!114 &11400000
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bad8f2220607dac4db5082ff333fafb8, type: 3}
-  m_Name: Heavy Infantry Enemy BT
+  m_Name: Heavy Enemy BT
   m_EditorClassIdentifier: 
   Blackboard: {fileID: -7910748160772200606}
   m_Description: 
@@ -3928,7 +3928,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db920e62f70f420bb33c771449926fa4, type: 3}
-  m_Name: Heavy Infantry Enemy BT
+  m_Name: Heavy Enemy BT
   m_EditorClassIdentifier: 
   Graphs:
   - rid: 5727385024835093107
@@ -3946,7 +3946,7 @@ MonoBehaviour:
         AuthoringAssetID:
           m_Value0: 1496031531884334064
           m_Value1: 5897970049222134634
-        m_DebugInfo: {fileID: 0}
+        m_DebugInfo: {fileID: -194654567526767712}
         BlackboardReference:
           rid: 5727385024835093108
         BlackboardGroupReferences: []
@@ -5018,7 +5018,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c02bb70996b49eba31d0c206e28da24, type: 3}
-  m_Name: Heavy Infantry Enemy BT Blackboard
+  m_Name: Heavy Enemy BT Blackboard
   m_EditorClassIdentifier: 
   VersionTimestamp: 638961688874198468
   AssetID:
