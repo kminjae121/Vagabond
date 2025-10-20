@@ -62,7 +62,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
                         data.damageType = DamageType.MELEE;
 
                         damageable.ApplyDamage(data, other.transform.position, _owner.transform.forward, weaponAtkData,
-                            null);
+                            _owner);
                         player.aimmingComponent.SetAIActive(false);
                         player.bloodSystemCompo.AddFlower(1);
                         player.aimmingComponent.SetEnemyNull();
@@ -77,7 +77,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
                     data.damage = 3000;
                     data.damageType = DamageType.MELEE;
                     
-                    damageable.ApplyDamage(data, other.transform.position, _owner.transform.forward, weaponAtkData,null);
+                    damageable.ApplyDamage(data, other.transform.position, _owner.transform.forward, weaponAtkData,_owner);
                     player.aimmingComponent.SetAIActive(false);
                     player.bloodSystemCompo.AddFlower(1);
                 }
@@ -86,7 +86,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
             {
                 if (other.TryGetComponent(out IDamageable damageable))
                 {
-                    damageable.ApplyDamage(damageData, other.transform.position, _owner.transform.forward, weaponAtkData,null);
+                    damageable.ApplyDamage(damageData, other.transform.position, _owner.transform.forward, weaponAtkData,_owner);
                 }
                 
                 
