@@ -95,7 +95,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
                     
                     player.bloodSystemCompo.AddFlower(1);       
                     
-                    cutter.Cut(meshTarget,other.transform.position, _owner.transform.forward);
+                    //cutter.Cut(meshTarget,other.transform.position, _owner.transform.forward);
                 }
             }
             else if (((1 << other.gameObject.layer) & whatIsEnemy) != 0)
