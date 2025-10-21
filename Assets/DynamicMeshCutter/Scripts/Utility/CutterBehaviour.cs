@@ -229,7 +229,7 @@ namespace DynamicMeshCutter
         protected virtual void CreateGameObjects(Info info)
         {
             MeshCreationData creationInfo = MeshCreation.CreateObjects(info, DefaultMaterial, VertexCreationThreshold);
-
+            
             if (DestroyTargets)
             {
                 if (info.MeshTarget)
