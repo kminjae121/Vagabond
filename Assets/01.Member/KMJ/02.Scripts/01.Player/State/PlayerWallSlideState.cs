@@ -8,7 +8,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
     {
         private WallSliding _slidingCompo;
         private float currentTilt = 0f;
-        private const float BLOODTHIEF_TILT_ANGLE = 20f;
+        private const float BLOODTHIEF_TILT_ANGLE = 15f;
         private const float WALL_KICK_AWAY_FORCE = 8f;
         private const float WALL_KICK_UP_FORCE = 2f;
         private bool hasRequestedJump = false;
@@ -20,13 +20,13 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
 
         public override void Enter()
         {
-            base.Enter();
+            //base.Enter();
             _player.isSliding = false;
             _player.SetJumping(true);
             hasRequestedJump = false;
             
             string wallSide = _slidingCompo.GetWallSide();
-            currentTilt = wallSide == "Left" ? BLOODTHIEF_TILT_ANGLE : -BLOODTHIEF_TILT_ANGLE;
+            currentTilt = wallSide == "Left" ? -BLOODTHIEF_TILT_ANGLE : BLOODTHIEF_TILT_ANGLE;
             
             if (_player.camCompo != null)
             {
@@ -69,7 +69,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
 
         public override void Exit()
         {
-            base.Exit();
+           // base.Exit();
             
             if (_player.camCompo != null)
             {
