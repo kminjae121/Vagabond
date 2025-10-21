@@ -116,7 +116,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
             if (_isAttacking)
                 return;
 
-            gameObject.layer = Mathf.RoundToInt(Mathf.Log(baldoWeaponMask.value, 2));
+            _weaponCollider.transform.gameObject.layer = Mathf.RoundToInt(Mathf.Log(baldoWeaponMask.value, 2));
             _isAttacking = true;
             _weaponCollider.enabled = true;
             animCompo.SetBool(_baldoAttackHash, true);
@@ -125,7 +125,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
 
         public void SetNormalSword()
         {
-            gameObject.layer = Mathf.RoundToInt(Mathf.Log(baseWeaponMask.value, 2));
+            _weaponCollider.transform.gameObject.layer = Mathf.RoundToInt(Mathf.Log(baseWeaponMask.value, 2));
             _weaponCollider.enabled = false;
         }
 
