@@ -1,8 +1,8 @@
-﻿using Code.Core.Debugs;
+﻿using System.Collections.Generic;
+using Code.Core.Debugs;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
 
 namespace Code.Entities.UI
 {
@@ -12,8 +12,9 @@ namespace Code.Entities.UI
         [SerializeField] private Button settingBtn;
         [SerializeField] private Button quitBtn;
 
-        [Header("Hover Effect")]
-        [SerializeField] private float hoverScale = 1.2f;
+        [Header("Hover Effect")] [SerializeField]
+        private float hoverScale = 1.2f;
+
         [SerializeField] private float hoverDuration = 0.2f;
 
         private Vector3 _originalScale;
@@ -25,16 +26,17 @@ namespace Code.Entities.UI
                 UnityLogger.LogError("타이틀 UI 버튼을 찾을 수 없습니다.");
                 return;
             }
-            
+
             _originalScale = startBtn.transform.localScale;
-            
+
             startBtn.onClick.AddListener(OnStartButtonClicked);
             settingBtn.onClick.AddListener(OnSettingButtonClicked);
             quitBtn.onClick.AddListener(OnQuitButtonClicked);
 
-            AddHoverEffect(startBtn);
-            AddHoverEffect(settingBtn);
-            AddHoverEffect(quitBtn);
+            List<Button> btnList = new() { startBtn, settingBtn, quitBtn };
+
+            foreach (var btn in btnList)
+                AddHoverEffect(btn);
         }
 
         private void AddHoverEffect(Button btn)
