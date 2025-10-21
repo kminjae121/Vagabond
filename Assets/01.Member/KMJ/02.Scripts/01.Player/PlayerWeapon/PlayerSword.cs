@@ -1,4 +1,5 @@
-﻿using _00.CORE._02.Scripts.Input;
+﻿using System;
+using _00.CORE._02.Scripts.Input;
 using Code.Core.Stats;
 using Code.Entities;
 using Code.Interfaces;
@@ -46,7 +47,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
             }
         }
         
-        private Collider _weaponCollider;
+        [SerializeField] private Collider _weaponCollider;
         
 
         private bool _isAttacking = false;
@@ -54,16 +55,20 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
         public void Initialize(Entity entity)
         {
             animCompo.SetBool(_swordIdleHash, true);
-            _weaponCollider = GetComponent<Collider>();
             
+        }
+
+        private void Start()
+        {
             _weaponCollider.enabled = false;
             
             StatSO target = statCompo.GetStat(atkSpeedStat);
             Debug.Assert(target != null, $"{atkSpeedStat.statName} does not exist");
             target.OnValueChanged += HandleAttackSpeedChange;
             _atkSpeed = target.Value;
+            
         }
-        
+
         private void HandleAttackSpeedChange(StatSO stat, float currentvalue, float previousvalue)
         {
             AttackSpeed = currentvalue;

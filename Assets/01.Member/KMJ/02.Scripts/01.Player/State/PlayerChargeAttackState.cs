@@ -32,7 +32,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
                 _atkCompo.Dash();
             }
             
-            base.Enter();
+           // base.Enter();
         }
 
         public override void Update()
@@ -54,7 +54,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
                 _atkCompo.isDashAttacking = false;
             }
             
-            base.Exit();
+           // base.Exit();
         }
     }
 }

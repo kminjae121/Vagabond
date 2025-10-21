@@ -14,7 +14,7 @@ public class PlayerGuideAttackState : PlayerState
         _player.swordCompo.BalDo();
         _player.atkComponent.isDashAttacking = true;
         _player.SetJumping(false);
-        base.Enter();
+        //base.Enter();
     }
 
     public override void Update()
@@ -29,6 +29,6 @@ public class PlayerGuideAttackState : PlayerState
         _player.aimmingComponent.SetEnemyNull();
         _player.swordCompo.StopBalDo();
         _player.SetJumping(true);
-        base.Exit();
+        //base.Exit();
     }
 }
