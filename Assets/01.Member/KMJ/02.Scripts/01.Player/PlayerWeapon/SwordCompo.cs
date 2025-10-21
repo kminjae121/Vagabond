@@ -1,4 +1,5 @@
-﻿using _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo;
+﻿using System;
+using _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo;
 using _01.Member.KMJ._02.Scripts._01.Player.AttackCompo;
 using Code.Core.Debugs;
 using Code.Core.Stats;
@@ -37,13 +38,18 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
             _owner = entity;
             
             
+        }
+
+        private void Start()
+        {
             damageData = new DamageData();
 
             damageData.damage = statCompo.GetStat(atkDamageStat).Value;
             
             damageData.damageType = DamageType.MELEE;
+            
         }
-        
+
         private void HandleAttackDamageChange(StatSO stat, float currentvalue, float previousvalue)
         {
             _atkDamage = currentvalue;

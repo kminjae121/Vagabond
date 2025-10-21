@@ -11,7 +11,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
 
         public override void Enter()
         {
-            base.Enter();
+            //base.Enter();
             _player.isSliding = false;
             _movementCompo.Jump();
             // 점프 실행 후 바로 IDLE로 전환
