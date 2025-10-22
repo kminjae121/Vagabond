@@ -28,6 +28,11 @@ namespace _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo
             //Apply Root motion에 의해서 transform이 움직일 때 호출됨
             OnAnimatorMoveEvent?.Invoke(animator.deltaPosition, animator.deltaRotation);
         }
+        
+        public void HandleDeadEvent()
+        {
+            animator.enabled = false;
+        }
 
         public void SetParam(int hash, float value) => animator.SetFloat(hash, value);
         public void SetParam(int hash, bool value) => animator.SetBool(hash, value);

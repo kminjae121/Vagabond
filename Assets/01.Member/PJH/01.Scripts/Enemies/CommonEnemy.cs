@@ -1,4 +1,5 @@
-﻿using Code.Core.GameEvent;
+﻿using _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo;
+using Code.Core.GameEvent;
 using UnityEngine;
 
 namespace Code.Enemies
@@ -9,12 +10,15 @@ namespace Code.Enemies
         [field: SerializeField] public bool IsBattleState { get; set; }
 
         private StateChangeEvent _stateChangeChannel;
+        private RagDollCompo _ragDollCompo;
+        private ActionData _actionData;
         
         protected override void Awake()
         {
             base.Awake();
-            
-            
+
+            _ragDollCompo = GetCompo<RagDollCompo>();
+            _actionData = GetCompo<ActionData>();
         }
 
         protected override void Start()
@@ -30,15 +34,12 @@ namespace Code.Enemies
             OnDeathEvent.RemoveListener(HandleDeadEvent);
         }
 
-        private void HandleDeadEvent()
+        public void HandleChildAnimatorMove(Vector3 deltaPosition, Quaternion deltaRotation)
         {
-            if (IsDead)
-                return;
-
-            IsDead = true;
-            _stateChangeChannel.SendEventMessage(EnemyState.DEAD);
+            transform.position += deltaPosition;
+            transform.rotation = deltaRotation * transform.rotation;
         }
-
+        
         public void SetBattleState()
         {
             if (IsBattleState || IsDead)
@@ -50,6 +51,18 @@ namespace Code.Enemies
             
             if (stateVariable != null && stateVariable.Value != EnemyState.HIT)
                 _stateChangeChannel.SendEventMessage(EnemyState.CHASE);
+        }
+
+        private void HandleDeadEvent()
+        {
+            if (IsDead)
+                return;
+
+            IsDead = true;
+            _stateChangeChannel.SendEventMessage(EnemyState.DEAD);
+            
+            const float force = -30f;
+            _ragDollCompo.AddForceToRagDoll(_actionData.HitNormal * force, _actionData.HitPoint);
         }
     }
 }
