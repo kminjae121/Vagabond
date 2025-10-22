@@ -8,18 +8,18 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SSU_Demo_Brightness
-  m_Shader: {fileID: 4800000, guid: 0803c241834332942abfcbd27c498b46, type: 3}
+  m_Shader: {fileID: 4800000, guid: 5e4bf3b9c0504574189d87c35b2cd3f6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - ETC1_EXTERNAL_ALPHA
   - _ENABLEBRIGHTNESS_ON
   - _SHADERFADING_NONE
   - _SHADERSPACE_UV
   - _STRONGTINTCONTRASTTOGGLE_ON
   - _TEXTURELAYER1SHEETTOGGLE_ON
   - _TEXTURELAYER2SHEETTOGGLE_ON
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -75,6 +75,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 4adf8b6f6f86c8048b96c3d8bf69bcf8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -86,12 +90,20 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MetallicMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OuterOutlineTintTexture:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 5af9a397a8643994c829e696a24a7845, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
@@ -99,7 +111,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PixelOutlineTintTexture:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 5af9a397a8643994c829e696a24a7845, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RecolorRGBTexture:
@@ -131,11 +143,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureLayer1Texture:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 9685c3a024e22a946a7e8c2ce3542300, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureLayer2Texture:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 9685c3a024e22a946a7e8c2ce3542300, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _UVDistortMask:
@@ -147,6 +159,18 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -163,6 +187,8 @@ Material:
     - _AddHueMaskToggle: 0
     - _AddHueSaturation: 1
     - _AddHueSpeed: 1
+    - _AlphaClip: 0.5
+    - _AlphaCutoff: 0.5
     - _AlphaTintFade: 1
     - _AlphaTintMinAlpha: 0.02
     - _BakedMaterial: 0
@@ -186,6 +212,7 @@ Material:
     - _CamouflageSmoothnessB: 0.2
     - _CheckerboardDarken: 0.5
     - _CheckerboardTiling: 1
+    - _ColorMask: 15
     - _ColorReplaceBias: 0
     - _ColorReplaceBrightnessThreshold: 0.8
     - _ColorReplaceContrast: 1
@@ -218,6 +245,7 @@ Material:
     - _DirectionalGlowFadeRotation: 0
     - _DirectionalGlowFadeWidth: 0.1
     - _DstBlend: 0
+    - _EmissionToggle: 0
     - _EnableAddColor: 0
     - _EnableAddHue: 0
     - _EnableAlphaTint: 0
@@ -293,6 +321,7 @@ Material:
     - _EnchantedRainbowSpeed: 0.5
     - _EnchantedRainbowToggle: 0
     - _EnchantedReduce: 0
+    - _EnvironmentReflections: 1
     - _FadingFade: 1
     - _FadingNoiseFactor: 0.2
     - _FadingWidth: 0.3
@@ -347,14 +376,18 @@ Material:
     - _InnerOutlineOutlineOnlyToggle: 0
     - _InnerOutlineTextureToggle: 0
     - _InnerOutlineWidth: 0.02
+    - _IsText: 0
+    - _IsTextMeshPro: 0
     - _MetalContrast: 2
     - _MetalFade: 1
     - _MetalHighlightContrast: 2
     - _MetalHighlightDensity: 1
     - _MetalMaskToggle: 0
     - _Metallic: 0
+    - _MetallicMapToggle: 0
     - _Mode: 0
     - _NegativeFade: 1
+    - _NormalIntensity: 1
     - _OcclusionStrength: 1
     - _OuterOutlineDistortionToggle: 0
     - _OuterOutlineFade: 1
@@ -380,6 +413,8 @@ Material:
     - _PoisonNoiseBrightness: 1
     - _PoisonRecolorFactor: 0.5
     - _PoisonShiftSpeed: 0.2
+    - _QueueControl: -1
+    - _QueueOffset: 0
     - _RainbowBrightness: 2
     - _RainbowContrast: 1
     - _RainbowDensity: 0.5
@@ -387,6 +422,7 @@ Material:
     - _RainbowNoiseFactor: 0.2
     - _RainbowSaturation: 1
     - _RainbowSpeed: 1
+    - _ReceiveShadows: 1
     - _RecolorRGBFade: 1
     - _RecolorRGBTextureToggle: 0
     - _RecolorRGBYCPFade: 1
@@ -398,6 +434,7 @@ Material:
     - _ScreenWidthUnits: 10
     - _ShaderFading: 0
     - _ShaderSpace: 0
+    - _ShadowClip: 0.5
     - _ShadowFade: 1
     - _SharpenFactor: 4
     - _SharpenFade: 1
@@ -436,6 +473,7 @@ Material:
     - _SmokeNoiseScale: 0.5
     - _SmokeSmoothness: 1
     - _SmokeVertexSeed: 0
+    - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SourceAlphaDissolveFade: 1
     - _SourceAlphaDissolveInvert: 0
@@ -458,10 +496,17 @@ Material:
     - _SquishSquish: 0.1
     - _SquishStretch: 0.1
     - _SrcBlend: 1
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
     - _StrongTintContrast: 0
     - _StrongTintContrastToggle: 1
     - _StrongTintFade: 1
     - _StrongTintMaskToggle: 0
+    - _TMPSmoothness: 5
+    - _TMPThickness: -0.45
     - _TextureLayer1Columns: 3
     - _TextureLayer1Contrast: 1
     - _TextureLayer1ContrastToggle: 0
@@ -497,6 +542,7 @@ Material:
     - _UVDistortMaskToggle: 0
     - _UVRotateSpeed: 1
     - _UVSec: 0
+    - _UseUIAlphaClip: 0
     - _VertexTintFirst: 0
     - _VibrateFade: 1
     - _VibrateFrequency: 100
@@ -542,7 +588,7 @@ Material:
     - _CamouflageDistortionSpeed: {r: 0.1, g: 0.1, b: 0, a: 0}
     - _CamouflageNoiseScaleA: {r: 0.25, g: 0.25, b: 0, a: 0}
     - _CamouflageNoiseScaleB: {r: 0.25, g: 0.25, b: 0, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1.4980391, g: 1.4980391, b: 1.4980391, a: 1}
     - _ColorReplaceFromColor: {r: 0, g: 0, b: 0, a: 0}
     - _ColorReplaceToColor: {r: 1, g: 0, b: 0, a: 0}
     - _CustomFadeNoiseScale: {r: 1, g: 1, b: 0, a: 0}
@@ -553,6 +599,7 @@ Material:
     - _DirectionalGlowFadeEdgeColor: {r: 11.98431, g: 0.6901961, b: 0.6901961, a: 0}
     - _DirectionalGlowFadeNoiseScale: {r: 0.4, g: 0.4, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _EmissionTint: {r: 2.996078, g: 0.1568628, b: 0.1568628, a: 0}
     - _EnchantedHighColor: {r: 0, g: 0.7098798, b: 4.237095, a: 0}
     - _EnchantedLowColor: {r: 2.996078, g: 0, b: 0, a: 0}
     - _EnchantedScale: {r: 0.1, g: 0.1, b: 0, a: 0}
@@ -629,7 +676,7 @@ Material:
     - _ShiftingColorA: {r: 1.498039, g: 0, b: 0, a: 0}
     - _ShiftingColorB: {r: 1.498039, g: 0.7490196, b: 0, a: 0}
     - _ShineColor: {r: 11.98431, g: 11.98431, b: 11.98431, a: 0}
-    - _SineGlowColor: {r: 0, g: 2.007843, b: 2.996078, a: 0}
+    - _SineGlowColor: {r: 2.9960783, g: 0.12377986, b: 0, a: 0}
     - _SineMoveFrequency: {r: 1, g: 1, b: 0, a: 0}
     - _SineMoveOffset: {r: 0, g: 0.5, b: 0, a: 0}
     - _SineRotatePivot: {r: 0.5, g: 0.5, b: 0, a: 0}
@@ -664,3 +711,4 @@ Material:
     - _WorldTilingOffset: {r: 0, g: 0, b: 0, a: 0}
     - _WorldTilingScale: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1
