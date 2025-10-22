@@ -33,11 +33,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
             
             _player.SetJumping(false);
             
-            if (_movementCompo != null)
-            {
-                _movementCompo.StopMoving();
-            }
-            
            // base.Enter();
         }
 

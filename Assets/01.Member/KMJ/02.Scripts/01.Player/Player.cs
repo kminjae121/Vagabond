@@ -44,6 +44,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         public PlayerSword swordCompo { get; private set; }
         public BloodFlowerSystem bloodSystemCompo { get; private set; }
         
+        
         #endregion
         
         private EntityStateMachine _stateMachine;

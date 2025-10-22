@@ -20,7 +20,7 @@ namespace _01.Member.KMJ._00.Core._01.Entity._01.EntityState
     
         public virtual void Enter()
         {
-            //_entityAnimator.SetParam(_animationHash, true);
+            _entityAnimator.SetParam(_animationHash, true);
             _isTriggerCall = false;
             _animatorTrigger.OnAnimationEndTrigger += AnimationEndTrigger; //3
         }
@@ -33,7 +33,7 @@ namespace _01.Member.KMJ._00.Core._01.Entity._01.EntityState
 
         public virtual void Exit()
         {
-            //_entityAnimator.SetParam(_animationHash, false);
+            _entityAnimator.SetParam(_animationHash, false);
             _animatorTrigger.OnAnimationEndTrigger -= AnimationEndTrigger; //4
         }
     

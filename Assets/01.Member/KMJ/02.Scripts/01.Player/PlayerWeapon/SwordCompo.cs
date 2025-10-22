@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo;
 using _01.Member.KMJ._02.Scripts._01.Player.AttackCompo;
 using Code.Core.Debugs;
@@ -27,6 +28,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
         [SerializeField] private EntityStatCompo statCompo;
 
         [SerializeField] private Player player;
+
+        [SerializeField] private float bloodGageAmount = 60f;
         private float _atkDamage;
 
         private Entity _owner;
@@ -70,8 +73,9 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
 
                         damageable.ApplyDamage(data, other.transform.position, _owner.transform.forward, weaponAtkData,
                             _owner);
+
                         player.aimmingComponent.SetAIActive(false);
-                        player.bloodSystemCompo.AddFlower(1);
+                        player.bloodSystemCompo.AddFlower((int)bloodGageAmount);
                         player.aimmingComponent.SetEnemyNull();
                     }
                 }
@@ -81,9 +85,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
                 if (other.TryGetComponent(out IDamageable damageable))
                 {
                     DamageData data = new DamageData();
-                    var cutter = GetComponent<PlaneBehaviour>();
-
-                    MeshTarget meshTarget = other.GetComponentInChildren<MeshTarget>();
                     
                     data.damage = 99999;
                     data.damageType = DamageType.MELEE;
@@ -91,18 +92,11 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
                     damageable.ApplyDamage(data, other.transform.position, _owner.transform.forward, weaponAtkData,_owner);
                     player.aimmingComponent.SetAIActive(false);
                     
+                    player.bloodSystemCompo.AddFlower((int)bloodGageAmount);       
                     
                     
-                    player.bloodSystemCompo.AddFlower(1);       
                     
                     //cutter.Cut(meshTarget,other.transform.position, _owner.transform.forward);
-                }
-            }
-            else if (((1 << other.gameObject.layer) & whatIsEnemy) != 0)
-            {
-                if (other.TryGetComponent(out IDamageable damageable))
-                {
-                    damageable.ApplyDamage(damageData, other.transform.position, _owner.transform.forward, weaponAtkData,_owner);
                 }
             }
         }

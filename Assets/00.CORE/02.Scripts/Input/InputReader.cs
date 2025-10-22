@@ -20,8 +20,8 @@ namespace _00.CORE._02.Scripts.Input
         public Action SlideEvent { get; set; }
         public Action ChargingEvent { get; set; }
         public Action ChargingAttackEvent { get; set; }
-        public Action AttackEndEvent { get; set; }
-        public Action AttackEvent { get; set; }
+        public Action BarrierEndEvent { get; set; }
+        public Action BarrierEvent { get; set; }
         public Action DashEvent { get; set; }
 
         #endregion
@@ -51,11 +51,11 @@ namespace _00.CORE._02.Scripts.Input
         {
             if (context.started)
             {
-                AttackEvent?.Invoke();
+                ChargingEvent?.Invoke();
             }
             else if (context.canceled)
             {
-                AttackEndEvent?.Invoke();
+                ChargingAttackEvent?.Invoke();
             }
         }
 
@@ -67,11 +67,11 @@ namespace _00.CORE._02.Scripts.Input
         {
             if (context.started)
             {
-                ChargingEvent?.Invoke();
+                BarrierEvent?.Invoke();
             }
             else if (context.canceled)
             {
-                ChargingAttackEvent?.Invoke();
+                BarrierEndEvent?.Invoke();
             }
         }
 

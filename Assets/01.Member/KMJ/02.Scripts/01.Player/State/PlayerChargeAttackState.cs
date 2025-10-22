@@ -53,6 +53,11 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
             {
                 _atkCompo.isDashAttacking = false;
             }
+
+            if (_movementCompo != null)
+            {
+                _movementCompo.SetOriginGravity();
+            }
             
            // base.Exit();
         }

@@ -9,10 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddfd851c0d834c4eb9a33b1cda0211e8, type: 3}
-  m_Name: PlayerClimbWallState
+  m_Script: {fileID: 11500000, guid: 3a9752b0c8e144801967e6897679604b, type: 3}
+  m_Name: vHierarchy Data
   m_EditorClassIdentifier: 
-  stateName: CLIMBWALL
-  className: PlayerClimbingWallState
-  animParamName: CLIMBWALL
-  animationHash: 996541345
+  sceneDatas_byGuid:
+    keys:
+    - 7bb9b251148b68f46b7adb60774122d3
+    values:
+    - goDatas_byGlobalId:
+        keys: []
+        values: []

@@ -58,9 +58,6 @@ namespace _01.Member.KMJ._02.Scripts.Enemy
         public IEnumerator AimmingFalse()
         {
             yield return new WaitForSeconds(0.35f);
-            
-            //uiImage.color = Color.white;
-            //_aimUIComponent.targetingUI.SetActive(false);
 
             isAimmed = false;
             aimmingTime = 0;

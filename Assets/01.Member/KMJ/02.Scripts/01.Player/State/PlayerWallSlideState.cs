@@ -26,6 +26,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
             hasRequestedJump = false;
             
             string wallSide = _slidingCompo.GetWallSide();
+            
             currentTilt = wallSide == "Left" ? -BLOODTHIEF_TILT_ANGLE : BLOODTHIEF_TILT_ANGLE;
             
             if (_player.camCompo != null)

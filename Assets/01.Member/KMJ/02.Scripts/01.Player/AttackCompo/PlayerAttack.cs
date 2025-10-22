@@ -26,6 +26,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
         [Header("Guided Attack Settings")]
         [SerializeField] private float guidedSpeed = 25f;
         [SerializeField] private float guidedStopDistance = 2.5f;
+        [SerializeField] private Transform _camTrm;
         
         private CharacterMovement _movementCompo;
         private Coroutine _timerCoroutine;
@@ -49,10 +50,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
             
             if (_player.inputReader != null)
             {
-                _player.inputReader.AttackEvent += HandleAttack;
                 _player.inputReader.ChargingEvent += HandleCharge;
                 _player.inputReader.ChargingAttackEvent += HandleChargeAttack;
-                _player.inputReader.AttackEndEvent += HandleAttackEnd;
             }
             else
             {
@@ -64,12 +63,16 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
         {
             if (_player != null && _player.inputReader != null)
             {
-                _player.inputReader.AttackEvent -= HandleAttack;
                 _player.inputReader.ChargingEvent -= HandleCharge;
                 _player.inputReader.ChargingAttackEvent -= HandleChargeAttack;
-                _player.inputReader.AttackEndEvent -= HandleAttackEnd;
             }
         }
+
+        public void SetChargingAttackTime(float time)
+        {
+            chargeAttackSec = time;
+        }
+        
 
         private void HandleCharge()
         {
@@ -167,7 +170,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
             {
                 _movementCompo.SetGuidedMovement(
                     _player.aimmingComponent.aimingObject.transform, 
-                    guidedSpeed, 
+                    guidedSpeed + _player.movementCompo.GetCurrentMoveSpeed(), 
                     guidedStopDistance
                 );
             }
@@ -190,8 +193,9 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
             
             if (!_movementCompo.isImpulseActive)
             {
-                Vector3 dashDirection = _player.transform.forward;
-                _movementCompo.ApplyImpulse(dashDirection, dashSpeed, dashDuration);
+                Vector3 dashDirection = _camTrm.transform.forward;
+                _movementCompo.ApplyImpulse(dashDirection, dashSpeed + _player.movementCompo.GetCurrentMoveSpeed(), dashDuration);
+                _movementCompo.SetGravityZero();
                 isDashAttacking = true;
             }
         }
@@ -200,8 +204,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
         {
             while (chargingTime < maxchargingTime)
             {
-                chargingTime += 1;
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.1f);
+                chargingTime += 0.1f;
             }
         }
     }
