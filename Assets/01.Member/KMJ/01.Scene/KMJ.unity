@@ -656,6 +656,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2093033653}
     m_Modifications:
+    - target: {fileID: 95523777187566096, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 230872328860020505, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.71
@@ -707,6 +711,22 @@ PrefabInstance:
     - target: {fileID: 4654559225396563586, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_Name
       value: Scout Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4869966410915739502, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491056561534835664, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6883534719707862132, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8105008948311094861, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1159,6 +1179,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2093033653}
     m_Modifications:
+    - target: {fileID: 95523777187566096, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 230872328860020505, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.71
@@ -1210,6 +1234,26 @@ PrefabInstance:
     - target: {fileID: 4654559225396563586, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_Name
       value: Scout Enemy (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4654559225396563586, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4869966410915739502, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491056561534835664, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6883534719707862132, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8105008948311094861, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2012,6 +2056,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2093033653}
     m_Modifications:
+    - target: {fileID: 95523777187566096, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 230872328860020505, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.71
@@ -2063,6 +2111,26 @@ PrefabInstance:
     - target: {fileID: 4654559225396563586, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_Name
       value: Scout Enemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4654559225396563586, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4869966410915739502, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491056561534835664, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6883534719707862132, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8105008948311094861, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2538,6 +2606,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2093033653}
     m_Modifications:
+    - target: {fileID: 95523777187566096, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 230872328860020505, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.71
@@ -2589,6 +2661,26 @@ PrefabInstance:
     - target: {fileID: 4654559225396563586, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_Name
       value: Scout Enemy (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4654559225396563586, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4869966410915739502, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491056561534835664, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6883534719707862132, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8105008948311094861, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2724,6 +2816,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2093033653}
     m_Modifications:
+    - target: {fileID: 95523777187566096, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 230872328860020505, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.71
@@ -2775,6 +2871,26 @@ PrefabInstance:
     - target: {fileID: 4654559225396563586, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_Name
       value: Scout Enemy (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4654559225396563586, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4869966410915739502, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491056561534835664, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6883534719707862132, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8105008948311094861, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4465,7 +4581,7 @@ MonoBehaviour:
   OnAnimatorMoveEvent:
     m_PersistentCalls:
       m_Calls: []
-  animator: {fileID: 88056504}
+  <animator>k__BackingField: {fileID: 88056504}
 --- !u!114 &480959118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4583,6 +4699,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2093033653}
     m_Modifications:
+    - target: {fileID: 95523777187566096, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 230872328860020505, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.71
@@ -4634,6 +4754,26 @@ PrefabInstance:
     - target: {fileID: 4654559225396563586, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_Name
       value: Scout Enemy (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4654559225396563586, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4869966410915739502, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491056561534835664, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6883534719707862132, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8105008948311094861, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4793,7 +4933,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0
+  m_FillAmount: 0.8
   m_FillClockwise: 1
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
@@ -4942,7 +5082,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0
+  m_FillAmount: 0.8
   m_FillClockwise: 1
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
@@ -5187,7 +5327,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0
+  m_FillAmount: 0.8
   m_FillClockwise: 1
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
@@ -5262,7 +5402,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0
+  m_FillAmount: 0.8
   m_FillClockwise: 1
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
@@ -5283,6 +5423,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2093033653}
     m_Modifications:
+    - target: {fileID: 95523777187566096, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 230872328860020505, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.71
@@ -5334,6 +5478,26 @@ PrefabInstance:
     - target: {fileID: 4654559225396563586, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_Name
       value: Scout Enemy (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4654559225396563586, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4869966410915739502, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491056561534835664, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6883534719707862132, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8105008948311094861, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5625,7 +5789,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0
+  m_FillAmount: 0.8
   m_FillClockwise: 1
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
@@ -9390,6 +9554,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sheldCollider: {fileID: 1164975035}
   minusAmount: 70
+  _animatorComponent: {fileID: 480959117}
 --- !u!1001 &1172835060
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9398,6 +9563,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2093033653}
     m_Modifications:
+    - target: {fileID: 95523777187566096, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 230872328860020505, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.71
@@ -9449,6 +9618,26 @@ PrefabInstance:
     - target: {fileID: 4654559225396563586, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_Name
       value: Scout Enemy (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4654559225396563586, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4869966410915739502, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491056561534835664, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6883534719707862132, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8105008948311094861, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11201,6 +11390,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2093033653}
     m_Modifications:
+    - target: {fileID: 95523777187566096, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 230872328860020505, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.71
@@ -11252,6 +11445,26 @@ PrefabInstance:
     - target: {fileID: 4654559225396563586, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_Name
       value: Scout Enemy (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4654559225396563586, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4869966410915739502, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491056561534835664, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6883534719707862132, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8105008948311094861, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12059,6 +12272,7 @@ MonoBehaviour:
   baldoWeaponMask:
     serializedVersion: 2
     m_Bits: 256
+  _animator: {fileID: 0}
   _weaponCollider: {fileID: 0}
 --- !u!65 &1381171794
 BoxCollider:
@@ -13261,7 +13475,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0
+  m_FillAmount: 0.8
   m_FillClockwise: 1
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
@@ -14581,6 +14795,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2093033653}
     m_Modifications:
+    - target: {fileID: 95523777187566096, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 230872328860020505, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 17.42
@@ -14632,6 +14850,26 @@ PrefabInstance:
     - target: {fileID: 4654559225396563586, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_Name
       value: Scout Enemy (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4654559225396563586, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4869966410915739502, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491056561534835664, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6883534719707862132, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8105008948311094861, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15216,7 +15454,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0
+  m_FillAmount: 0.8
   m_FillClockwise: 1
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
@@ -15291,7 +15529,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0
+  m_FillAmount: 0.8
   m_FillClockwise: 1
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
@@ -15541,6 +15779,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2093033653}
     m_Modifications:
+    - target: {fileID: 95523777187566096, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 230872328860020505, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -15595,7 +15837,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4654559225396563586, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4869966410915739502, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491056561534835664, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6883534719707862132, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8105008948311094861, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16480,6 +16738,7 @@ MonoBehaviour:
   baldoWeaponMask:
     serializedVersion: 2
     m_Bits: 512
+  _animator: {fileID: 480959117}
   _weaponCollider: {fileID: 1930162450}
 --- !u!114 &1930162452
 MonoBehaviour:
@@ -16566,7 +16825,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0
+  m_FillAmount: 0.8
   m_FillClockwise: 1
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
@@ -16987,6 +17246,7 @@ MonoBehaviour:
   baldoWeaponMask:
     serializedVersion: 2
     m_Bits: 512
+  _animator: {fileID: 0}
   _weaponCollider: {fileID: 0}
 --- !u!95 &1976557636
 Animator:
@@ -17246,7 +17506,7 @@ MonoBehaviour:
   OnAnimatorMoveEvent:
     m_PersistentCalls:
       m_Calls: []
-  animator: {fileID: 1988090211}
+  <animator>k__BackingField: {fileID: 0}
 --- !u!114 &1988090213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18255,7 +18515,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0
+  m_FillAmount: 0.8
   m_FillClockwise: 1
   m_FillOrigin: 1
   m_UseSpriteMesh: 0

@@ -25,6 +25,7 @@ using UnityEngine;
 
         public override void Exit()
         {
+            _barrierCompo.EndBarrier();
             _barrierCompo.sheldCollider.enabled = false;
         }
     }

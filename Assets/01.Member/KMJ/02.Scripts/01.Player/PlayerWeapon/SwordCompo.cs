@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Runtime.CompilerServices;
 using _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo;
 using _01.Member.KMJ._02.Scripts._01.Player.AttackCompo;
@@ -33,6 +34,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
         private float _atkDamage;
 
         private Entity _owner;
+
+        private Coroutine _timeScaleCoroutine;
         
         private DamageData damageData;
 
@@ -74,6 +77,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
                         damageable.ApplyDamage(data, other.transform.position, _owner.transform.forward, weaponAtkData,
                             _owner);
 
+                        StartCoroutine(TimeScale());
                         player.aimmingComponent.SetAIActive(false);
                         player.bloodSystemCompo.AddFlower((int)bloodGageAmount);
                         player.aimmingComponent.SetEnemyNull();
@@ -92,6 +96,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
                     damageable.ApplyDamage(data, other.transform.position, _owner.transform.forward, weaponAtkData,_owner);
                     player.aimmingComponent.SetAIActive(false);
                     
+                    
+                    StartCoroutine(TimeScale());
                     player.bloodSystemCompo.AddFlower((int)bloodGageAmount);       
                     
                     
@@ -99,6 +105,13 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
                     //cutter.Cut(meshTarget,other.transform.position, _owner.transform.forward);
                 }
             }
+        }
+
+        private IEnumerator TimeScale()
+        {
+            Time.timeScale = 0.4f;
+            yield return new WaitForSeconds(0.08f);
+            Time.timeScale = 1;
         }
     }
 }
