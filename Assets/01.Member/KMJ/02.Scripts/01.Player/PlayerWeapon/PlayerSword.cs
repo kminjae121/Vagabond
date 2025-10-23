@@ -1,5 +1,6 @@
 ﻿using System;
 using _00.CORE._02.Scripts.Input;
+using _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo;
 using Code.Core.Stats;
 using Code.Entities;
 using Code.Interfaces;
@@ -36,7 +37,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
         private int _atkCnt = 0;
         
         private float _atkSpeed;
-        
+
+        [SerializeField] private EntityAnimator _animator;
         public float AttackSpeed
         {
             get => _atkSpeed;
@@ -55,7 +57,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
         public void Initialize(Entity entity)
         {
             animCompo.SetBool(_swordIdleHash, true);
-            
         }
 
         private void Start()
@@ -87,7 +88,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
             
             _weaponCollider.enabled = true;
             _isAttacking = true;
-            animCompo.SetBool(_swordIdleHash, false);
+            
             animCompo.SetInteger(_cntAttackHash, _atkCnt);
             animCompo.SetBool(_normalAttackHash, true);
 
@@ -103,7 +104,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
         {
             _isAttacking = false;
             _weaponCollider.enabled = false;
-            animCompo.SetBool(_normalAttackHash, false);
+            _animator.SetAllBoolParamFalse();
             animCompo.SetBool(_swordIdleHash, true); 
         }
 
@@ -113,7 +114,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
                 return;
 
             _isAttacking = true;
-            animCompo.SetBool(_swordIdleHash, false);
+            _animator.SetAllBoolParamFalse();
             animCompo.SetBool(_nabdoAttackHash,true);
         }
 
@@ -125,8 +126,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
             _weaponCollider.transform.gameObject.layer = Mathf.RoundToInt(Mathf.Log(baldoWeaponMask.value, 2));
             _isAttacking = true;
             _weaponCollider.enabled = true;
+            _animator.SetAllBoolParamFalse();
             animCompo.SetBool(_baldoAttackHash, true);
-            animCompo.SetBool(_swordIdleHash, false);
         }
 
         public void SetNormalSword()
@@ -138,15 +139,15 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
         public void StopBalDo()
         {
             _isAttacking = false;
+            _animator.SetAllBoolParamFalse();
             animCompo.SetBool(_swordIdleHash, true); 
-            animCompo.SetBool(_baldoAttackHash, false);
         }
 
         public void StopNabDo()
         {
             _isAttacking = false;
+            _animator.SetAllBoolParamFalse();
             animCompo.SetBool(_swordIdleHash, true); 
-            animCompo.SetBool(_nabdoAttackHash, false);
         }
 
     }
