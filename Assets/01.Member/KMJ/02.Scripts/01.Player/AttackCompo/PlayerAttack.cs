@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo;
 using Code.Core.Debugs;
 using Code.Entities;
 using Code.Interfaces;
@@ -31,6 +32,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
         private CharacterMovement _movementCompo;
         private Coroutine _timerCoroutine;
 
+        private EntityAnimator _animator;
+
         public void Initialize(Entity entity)
         {
             _player = entity as Player;
@@ -57,6 +60,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
             {
                 UnityLogger.LogError("InputReader가 할당되지 않았습니다.");
             }
+            
+            _animator = GetComponent<EntityAnimator>();
         }
 
         private void OnDestroy()
