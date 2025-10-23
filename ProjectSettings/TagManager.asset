@@ -17,10 +17,10 @@ TagManager:
   - BaldoWeapon
   - BaseWeapon
   - ClimbWall
+  - Body
+  - Projectile
   - 
-  - 
-  - Sheld
-  - 
+  - PostProcessing
   - 
   - 
   - 
