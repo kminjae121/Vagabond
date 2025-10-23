@@ -1,86 +1,153 @@
 ﻿using System;
-using _00.CORE._02.Scripts;
+using _00.CORE._02.Scripts.Input;
 using _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo;
-using _01.Member.KMJ._00.Core._01.Entity._05.Interface;
-using _01.Member.KMJ._02.Scripts._01.Player.AttackCompo;
+using Code.Core.Stats;
+using Code.Entities;
+using Code.Interfaces;
 using UnityEngine;
 
 namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
 {
     public class PlayerSword : MonoBehaviour, IEntityComponent
     {
-        [Header("Stat")]
-        [SerializeField] private StatSO _atkDamageStat;
-        [SerializeField] private StatSO _atkSpeedStat;
+        #region  SerializeField
+        [Header("Animator")]
+        [SerializeField] private Animator animCompo;
         
+        [Header("InputComponent")]
+        [SerializeField] private InputReader _inputReader;
         
         [Space(5)]
         [Header("StatCompo")]
-        [SerializeField] private EntityStatCompo _statCompo;
-        
-        [Space(5)]
-        [Header("EnemyLayer")]
-        [SerializeField] private LayerMask _whatIsEnemy;
+        [SerializeField] private EntityStatCompo statCompo;
+        [SerializeField] private StatSO atkSpeedStat;
 
-        [Space(5)]
-        [Header("AttackData")]
-        [SerializeField] private AttackDataSO _weaponAtkData;
+        [SerializeField] private LayerMask baseWeaponMask;
+        [SerializeField] private LayerMask baldoWeaponMask;
+        #endregion
         
-        private float _atkDamage;
+        
+        private readonly int _cntAttackHash = Animator.StringToHash("ATK_COUNT");
+        private readonly int _normalAttackHash = Animator.StringToHash("NORMAL_ATTACK");
+        private readonly int _baldoAttackHash = Animator.StringToHash("BALDO_ATTACK");
+        private readonly int _nabdoAttackHash = Animator.StringToHash("NABDO_ATTACK");
+        private readonly int _swordIdleHash = Animator.StringToHash("SWORD_IDLE");
+        private readonly int _attackSpeedHash = Animator.StringToHash("ATTACK_SPEED");
+        
+        private int _atkCnt = 0;
+        
         private float _atkSpeed;
+
+        [SerializeField] private EntityAnimator _animator;
+        public float AttackSpeed
+        {
+            get => _atkSpeed;
+            set
+            {
+                _atkSpeed = value;
+                animCompo.SetFloat(_attackSpeedHash, _atkSpeed);
+            }
+        }
         
-        private Collider _weaponCollider;
+        [SerializeField] private Collider _weaponCollider;
+        
 
-        private Entity _owner;
-
-        private DamageData damageData;
+        private bool _isAttacking = false;
         
         public void Initialize(Entity entity)
         {
-            _owner = entity;
-            
+            animCompo.SetBool(_swordIdleHash, true);
+        }
+
+        private void Start()
+        {
             _weaponCollider.enabled = false;
             
-            _atkDamage = _statCompo.SubscribeStat(_atkDamageStat, HandleAttackDamageChange, 4f);
+            StatSO target = statCompo.GetStat(atkSpeedStat);
+            Debug.Assert(target != null, $"{atkSpeedStat.statName} does not exist");
+            target.OnValueChanged += HandleAttackSpeedChange;
+            _atkSpeed = target.Value;
             
-            _atkSpeed = _statCompo.SubscribeStat(_atkSpeedStat, HandleAttackSpeedChange, 3f);
-
-            damageData = new DamageData();
-
-            damageData.damage = _atkDamage;
-            damageData.damageType = DamageType.MELEE;
         }
-        
-        private void HandleAttackDamageChange(StatSO stat, float currentvalue, float previousvalue)
+
+        public bool GetIsAttacking()
         {
-            _atkDamage = currentvalue;
+            return _isAttacking;
         }
 
         private void HandleAttackSpeedChange(StatSO stat, float currentvalue, float previousvalue)
         {
-            _atkSpeed = currentvalue;
+            AttackSpeed = currentvalue;
         }
+        
 
-        public void StartAttack()
+        public void Attack()
         {
+            if (_isAttacking)
+                return;
+            
             _weaponCollider.enabled = true;
+            _isAttacking = true;
+            
+            animCompo.SetInteger(_cntAttackHash, _atkCnt);
+            animCompo.SetBool(_normalAttackHash, true);
+
+            if (_atkCnt >= 2)
+            {
+                _atkCnt = 0;
+            }
+            else
+                _atkCnt++;
         }
 
         public void StopAttack()
         {
+            _isAttacking = false;
+            _weaponCollider.enabled = false;
+            _animator.SetAllBoolParamFalse();
+            animCompo.SetBool(_swordIdleHash, true); 
+        }
+
+        public void NabDo()
+        {
+            if (_isAttacking)
+                return;
+
+            _isAttacking = true;
+            _animator.SetAllBoolParamFalse();
+            animCompo.SetBool(_nabdoAttackHash,true);
+        }
+
+        public void BalDo()
+        {
+            if (_isAttacking)
+                return;
+
+            _weaponCollider.transform.gameObject.layer = Mathf.RoundToInt(Mathf.Log(baldoWeaponMask.value, 2));
+            _isAttacking = true;
+            _weaponCollider.enabled = true;
+            _animator.SetAllBoolParamFalse();
+            animCompo.SetBool(_baldoAttackHash, true);
+        }
+
+        public void SetNormalSword()
+        {
+            _weaponCollider.transform.gameObject.layer = Mathf.RoundToInt(Mathf.Log(baseWeaponMask.value, 2));
             _weaponCollider.enabled = false;
         }
 
-
-        private void OnTriggerEnter(Collider other)
+        public void StopBalDo()
         {
-            if (((1 << other.gameObject.layer) & _whatIsEnemy) != 0)
-            {
-                if (other.TryGetComponent(out IDamageable damageable))
-                {
-                    damageable.ApplyDamage(damageData, other.transform.position, _owner.transform.forward, _weaponAtkData, _owner);
-                }
-            }
+            _isAttacking = false;
+            _animator.SetAllBoolParamFalse();
+            animCompo.SetBool(_swordIdleHash, true); 
+        }
+
+        public void StopNabDo()
+        {
+            _isAttacking = false;
+            _animator.SetAllBoolParamFalse();
+            animCompo.SetBool(_swordIdleHash, true); 
         }
 
     }

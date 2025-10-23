@@ -1,40 +1,42 @@
 using _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo;
-using UnityEngine;
 
-public abstract class EntityState
+namespace _01.Member.KMJ._00.Core._01.Entity._01.EntityState
 {
-    protected Entity _entity;
-    protected int _animationHash;
-    protected EntityAnimator _entityAnimator;
-    protected EntityAnimatorTrigger _animatorTrigger; //1
-    protected bool _isTriggerCall;
-    
-    public EntityState(Entity entity, int animationHash)
+    public abstract class EntityState
     {
-        _entity = entity;
-        _animationHash = animationHash;
-        _entityAnimator = entity.GetCompo<EntityAnimator>();
-        _animatorTrigger = entity.GetCompo<EntityAnimatorTrigger>(); //2
-    }
+        protected Code.Entities.Entity _entity;
+        protected int _animationHash;
+        protected EntityAnimator _entityAnimator;
+        protected EntityAnimatorTrigger _animatorTrigger; //1
+        protected bool _isTriggerCall;
     
-    public virtual void Enter()
-    {
-        _entityAnimator.SetParam(_animationHash, true);
-        _isTriggerCall = false;
-        _animatorTrigger.OnAnimationEndTrigger += AnimationEndTrigger; //3
-    }
+        public EntityState(Code.Entities.Entity entity, int animationHash)
+        {
+            _entity = entity;
+            _animationHash = animationHash;
+            _entityAnimator = entity.GetCompo<EntityAnimator>();
+            _animatorTrigger = entity.GetCompo<EntityAnimatorTrigger>(); //2
+        }
     
-    public virtual void Update() { }
+        public virtual void Enter()
+        {
+            _entityAnimator.SetParam(_animationHash, true);
+            _isTriggerCall = false;
+            _animatorTrigger.OnAnimationEndTrigger += AnimationEndTrigger; //3
+        }
+    
+        public virtual void Update() { }
 
-    public virtual void FixedUpdate()
-    {
-    }
+        public virtual void FixedUpdate()
+        {
+        }
 
-    public virtual void Exit()
-    {
-        _entityAnimator.SetParam(_animationHash, false);
-        _animatorTrigger.OnAnimationEndTrigger -= AnimationEndTrigger; //4
-    }
+        public virtual void Exit()
+        {
+            _entityAnimator.SetParam(_animationHash, false);
+            _animatorTrigger.OnAnimationEndTrigger -= AnimationEndTrigger; //4
+        }
     
-    public virtual void AnimationEndTrigger() => _isTriggerCall = true;
+        public virtual void AnimationEndTrigger() => _isTriggerCall = true;
+    }
 }

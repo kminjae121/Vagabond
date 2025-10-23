@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: PoolManager
   m_EditorClassIdentifier: 
   itemList:
-  - {fileID: 11400000, guid: 12bbea0ea38157a4bba51f11ca4a11fc, type: 2}
-  - {fileID: 11400000, guid: 6d7af3c84ea2cc0459666556dfcdcb65, type: 2}
+  - {fileID: 11400000, guid: 57625f940051ee64ebdf2ec337c21027, type: 2}

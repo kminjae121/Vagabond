@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "Controls",
     "maps": [
         {
@@ -45,6 +46,24 @@
                     "name": "Charging",
                     "type": "Button",
                     "id": "4f7f655b-667e-4f1c-8d6d-6f09d1c15f5d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "4b213564-5008-4275-a0fc-473f966b53e8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Sliding",
+                    "type": "Button",
+                    "id": "5015ce6d-4f01-4aa3-a4b8-a3ef33b2ca3d",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -203,6 +222,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Charging",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2c06978b-50da-44c1-9a7f-20db523d78cf",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "101a04c5-f6ac-4fd7-be84-9235b820712a",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Sliding",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

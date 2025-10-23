@@ -1,4 +1,6 @@
-﻿using _01.Member.KMJ._00.Core._01.Entity._05.Interface;
+﻿
+using System;
+using Code.Interfaces;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,7 +9,7 @@ namespace _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo
     public class EntityAnimator : MonoBehaviour, IEntityComponent
     {
         public UnityEvent<Vector3, Quaternion> OnAnimatorMoveEvent;
-        [SerializeField] private Animator animator;
+        [field: SerializeField] public Animator animator {get; private set;}
 
         public bool ApplyRootMotion
         {
@@ -15,17 +17,40 @@ namespace _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo
             set => animator.applyRootMotion = value;
         }
         
-        private global::Entity _entity;
+        private Code.Entities.Entity _entity;
 
-        public void Initialize(global::Entity entity)
+        public void Initialize(Code.Entities.Entity entity)
         {
             _entity = entity;
+        }
+
+        private void Start()
+        {
+            animator = GetComponent<Animator>();
         }
 
         private void OnAnimatorMove()
         {
             //Apply Root motion에 의해서 transform이 움직일 때 호출됨
             OnAnimatorMoveEvent?.Invoke(animator.deltaPosition, animator.deltaRotation);
+        }
+        
+        public void HandleDeadEvent()
+        {
+            animator.enabled = false;
+        }
+
+        public void SetAllBoolParamFalse()
+        {
+            if (animator == null) return;
+
+            foreach (AnimatorControllerParameter param in animator.parameters)
+            {
+                if (param.type == AnimatorControllerParameterType.Bool)
+                {
+                    animator.SetBool(param.name, false);
+                }
+            }
         }
 
         public void SetParam(int hash, float value) => animator.SetFloat(hash, value);
@@ -40,5 +65,6 @@ namespace _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo
         {
             animator.enabled = false;
         }
+        
     }
 }

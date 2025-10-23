@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace _01.Member.KMJ._00.Core._01.Entity._01.EntityState
+namespace Code.Entities
 {
     [CreateAssetMenu(fileName = "StateData", menuName = "SO/FSM/StateData", order = 0)]
     public class StateDataSO : ScriptableObject

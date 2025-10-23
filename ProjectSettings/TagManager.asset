@@ -8,19 +8,19 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Ground
   - Wall
   - Enemy
+  - BaldoWeapon
+  - BaseWeapon
+  - ClimbWall
+  - Body
+  - Projectile
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - PostProcessing
   - 
   - 
   - 

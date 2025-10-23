@@ -1,37 +1,83 @@
 ﻿using System;
 using System.Collections;
-using _00.CORE._02.Scripts.Input;
-using _01.Member.KMJ._00.Core._01.Entity._05.Interface;
+using _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo;
+using Code.Core.Debugs;
+using Code.Entities;
+using Code.Interfaces;
 using UnityEngine;
 
 namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
 {
     public class PlayerAttack : MonoBehaviour, IEntityComponent
     {
-        [SerializeField] private InputReader _inputReader;
+        [Header("Player Reference")]
         private Player _player;
-
+        
+        [Header("Charging Settings")]
         public float chargingTime { get; set; } = 0;
-        public float maxchargingTime { get; set; } = 5;
-
-        private float chargeAttackSec = 3f;
-
+        [SerializeField] public float maxchargingTime = 5f;
+        [SerializeField] private float chargeAttackSec = 3f;
+        
+        [Header("Dash Attack Settings")]
+        [SerializeField] private float dashSpeed = 35f;
+        [SerializeField] private float dashDuration = 0.25f;
+        public bool isDashAttacking { get; set; } = false;
+        public float _timer { get; set; } = 0;
+        
+        [Header("Guided Attack Settings")]
+        [SerializeField] private float guidedSpeed = 25f;
+        [SerializeField] private float guidedStopDistance = 2.5f;
+        [SerializeField] private Transform _camTrm;
+        
+        private CharacterMovement _movementCompo;
         private Coroutine _timerCoroutine;
+
+        private EntityAnimator _animator;
 
         public void Initialize(Entity entity)
         {
-            _inputReader.AttackEvent += HandleAttack;
-            _inputReader.ChargingEvent += HandleCharge;
-            _inputReader.ChargingAttackEvent += HandleChargeAttack;   
             _player = entity as Player;
+            
+            if (_player == null)
+            {
+                UnityLogger.LogError("PlayerAttack는 Player 엔티티에만 사용할 수 있습니다.");
+                return;
+            }
+            
+            _movementCompo = _player.GetCompo<CharacterMovement>();
+            
+            if (_movementCompo == null)
+            {
+                UnityLogger.LogError("CharacterMovement 컴포넌트를 찾을 수 없습니다.");
+            }
+            
+            if (_player.inputReader != null)
+            {
+                _player.inputReader.ChargingEvent += HandleCharge;
+                _player.inputReader.ChargingAttackEvent += HandleChargeAttack;
+            }
+            else
+            {
+                UnityLogger.LogError("InputReader가 할당되지 않았습니다.");
+            }
+            
+            _animator = GetComponent<EntityAnimator>();
         }
 
         private void OnDestroy()
         {
-            _inputReader.AttackEvent -= HandleAttack;
-            _inputReader.ChargingEvent -= HandleCharge;
-            _inputReader.ChargingAttackEvent -= HandleChargeAttack;
+            if (_player != null && _player.inputReader != null)
+            {
+                _player.inputReader.ChargingEvent -= HandleCharge;
+                _player.inputReader.ChargingAttackEvent -= HandleChargeAttack;
+            }
         }
+
+        public void SetChargingAttackTime(float time)
+        {
+            chargeAttackSec = time;
+        }
+        
 
         private void HandleCharge()
         {
@@ -40,8 +86,19 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
 
         private void HandleAttack()
         {
-            Debug.Log("공격");
+            if (_player.bloodSystemCompo != null && _player.bloodSystemCompo.isFallingFlower)
+            {
+                HandleCharge();
+            }
+            else
+            {
+                if (_player.swordCompo != null)
+                {
+                    _player.swordCompo.Attack();
+                }
+            }
         }
+        
         public void StartChargingTimer()
         {
             if (_timerCoroutine == null)
@@ -62,7 +119,12 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
         private void HandleChargeAttack()
         {
             StopChargingTimer();
-            if (chargingTime >= chargeAttackSec)
+            
+            if (_player.aimmingComponent != null && _player.aimmingComponent.aimingObject != null)
+            {
+                _player.ChangeState("GUIDEATTACK");
+            }
+            else if (chargingTime >= chargeAttackSec)
             {
                 _player.ChangeState("CHARGEATTACK");
             }
@@ -73,44 +135,82 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
 
             chargingTime = 0;
         }
-
         
-        public void ChargingAttack()
+        private void HandleAttackEnd()
         {
-            if (_player == null) return;
-            
-            Vector3 dashDirection = _player.transform.forward;
-            
-            float dashSpeed = 20f;
-            
-            float dashDuration = 0.3f;
-            
-            StartCoroutine(DashRoutine(dashDirection, dashSpeed, dashDuration));
+            if (_player.bloodSystemCompo != null && _player.bloodSystemCompo.isFallingFlower)
+            {
+                StopChargingTimer();
+                
+                if (chargingTime >= chargeAttackSec)
+                {
+                    _player.ChangeState("CHARGEATTACK");
+                }
+                else
+                {
+                    _player.ChangeState("IDLE");
+                }
 
-            Debug.Log("차징공격 발동!");
+                chargingTime = 0;
+            }
         }
 
-        private IEnumerator DashRoutine(Vector3 direction, float speed, float duration)
+        public void GuidedAttack()
         {
-            float elapsed = 0f;
-            while (elapsed < duration)
+            if (_movementCompo == null)
             {
-                _player.transform.position += direction * speed * Time.deltaTime;
-                elapsed += Time.deltaTime;
-                yield return null;
+                UnityLogger.LogError("CharacterMovement가 없어 GuidedAttack을 실행할 수 없습니다.");
+                _player.ChangeState("IDLE");
+                return;
             }
-            _player.ChangeState("IDLE");
+            
+            if (_player.aimmingComponent == null || _player.aimmingComponent.aimingObject == null)
+            {
+                _movementCompo.StopGuidedMovement();
+                _player.ChangeState("IDLE");
+                return;
+            }
+            
+            if (!_movementCompo.isGuidedMovement)
+            {
+                _movementCompo.SetGuidedMovement(
+                    _player.aimmingComponent.aimingObject.transform, 
+                    guidedSpeed + _player.movementCompo.GetCurrentMoveSpeed(), 
+                    guidedStopDistance
+                );
+            }
+            
+            if (_movementCompo.IsGuidedMovementComplete())
+            {
+                _movementCompo.StopGuidedMovement();
+                _player.ChangeState("IDLE");
+            }
+        }
+
+        public void Dash()
+        {
+            if (_movementCompo == null)
+            {
+                UnityLogger.LogError("CharacterMovement가 없어 Dash를 실행할 수 없습니다.");
+                _player.ChangeState("IDLE");
+                return;
+            }
+            
+            if (!_movementCompo.isImpulseActive)
+            {
+                Vector3 dashDirection = _camTrm.transform.forward;
+                _movementCompo.ApplyImpulse(dashDirection, dashSpeed + _player.movementCompo.GetCurrentMoveSpeed(), dashDuration);
+                _movementCompo.SetGravityZero();
+                isDashAttacking = true;
+            }
         }
         
         public IEnumerator ChargeAttackSec()
         {
             while (chargingTime < maxchargingTime)
             {
-                chargingTime += 1;
-                
-                Debug.Log($"플레이어 차징중!{chargingTime}");
-                
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.1f);
+                chargingTime += 0.1f;
             }
         }
     }
