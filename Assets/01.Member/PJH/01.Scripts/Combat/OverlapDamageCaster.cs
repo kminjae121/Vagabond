@@ -34,10 +34,10 @@ namespace Code.Entities.Combat
             {
                 Transform target = _colliders[i].transform;
                 
-                if (_hitObjects.Contains(target.root) || _hitObjects.Count >= maxColliderCnt)
+                if (_hitObjects.Contains(target) || _hitObjects.Count >= maxColliderCnt)
                     continue;
 
-                _hitObjects.Add(target.root);
+                _hitObjects.Add(target);
 
                 Vector3 normal = (_owner.transform.position - target.position).normalized;
                 
