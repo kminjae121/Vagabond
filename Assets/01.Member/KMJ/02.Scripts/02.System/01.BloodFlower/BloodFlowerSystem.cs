@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using _01.Member.KMJ._02.Scripts._01.Player;
+using _01.Member.KMJ._02.Scripts._01.Player.AttackCompo;
 using Code.Core.Debugs;
 using UnityEngine;
 using UnityEngine.Events;
@@ -13,14 +15,19 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
         [SerializeField] private Player _player;
     
         [Header("Flower Settings")]
-        [SerializeField] private int _flowerCnt = 1;
+        [SerializeField] private float _flowerCnt;
         [SerializeField] private List<float> movespeeds;
     
         [Header("Falling Flower Settings")]
         [SerializeField] private float initialFallingFlowerSec = 10f;
 
         [SerializeField] private BloodFlowerUI _bloodFlowerUI;
-    
+
+        [SerializeField] private List<float> chargingTimeList;
+
+        [SerializeField] private float minusAmount = 0.1f;
+
+        private Coroutine _minusflowerCoroutine;
         public event Action _flowerChangeEvent;
 
         public UnityAction germinationEvent;
@@ -37,17 +44,26 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
             fallingFlowerSec = initialFallingFlowerSec;
         
             ValidateMoveSpeeds();
+            AddFlower(100);
         }
 
         private void Start()
         {
             _flowerChangeEvent?.Invoke();
             _bloodFlowerUI.SetUIValue(1);
+
+            _minusflowerCoroutine = StartCoroutine(MinusValue());
         }
 
         private void Update()
         {
             FallingFlower();
+        }
+
+        private void MinusFlowerCnt()
+        {
+            if (_flowerCnt <= 0)
+                return;
         }
 
         private void ValidateMoveSpeeds()
@@ -62,10 +78,11 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
                 UnityLogger.LogError("[BloodFlowerSystem] Player가 할당되지 않았습니다.");
             }
         }
+        
 
         public void AddFlower(int amount)
         {
-            if (_flowerCnt >= 10)
+            if (_flowerCnt >= 1000)
             {
                 return;
             }
@@ -73,17 +90,26 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
             _flowerCnt += amount;
             _bloodFlowerUI.SetUIValue(_flowerCnt);
             _flowerChangeEvent?.Invoke();
+
+            if (_minusflowerCoroutine == null)
+            {
+                _minusflowerCoroutine = StartCoroutine(MinusValue());
+            }
                 
             UnityLogger.Log($"[BloodFlowerSystem] 꽃 추가: {_flowerCnt}");
         }
 
-        public void RemoveFlower(int amount)
+        public void RemoveFlower(float amount)
         {
             _flowerCnt -= amount;
             if (_flowerCnt < 0) _flowerCnt = 0;
             _bloodFlowerUI.SetUIValue(_flowerCnt);
             _flowerChangeEvent?.Invoke();
-            UnityLogger.Log($"[BloodFlowerSystem] 꽃 제거: {_flowerCnt}");
+        }
+
+        public float GetCurrentFlowerCnt()
+        {
+            return _flowerCnt;
         }
 
         public void FlowerEvent()
@@ -93,18 +119,31 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
                 case 0:
                     SetNormal();
                     break;
-                case <= 3:
+                case <= 100:
+                    break;
+                case <= 200:
+                    break;
+                case <= 300:
                     SetGermination();
                     break;
-                case <= 6:
+                case <= 400:
+                    break;
+                case <= 500:
+                    break;
+                case <= 600:
                     SetBloomEvent();
                     break;
-                case <= 9:
+                case <= 700:
+                    break;
+                case <= 800:
                     SetFullBloom();
                     break;
-                case >= 10:
+                case <= 900:
+                    break;
+                default:
                     SetFallingFlower();
                     break;
+                
             }
         }
 
@@ -121,6 +160,7 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
             {
                 _player.movementCompo.maxJumpCnt = 2;
             }
+            _player.atkComponent.SetChargingAttackTime(chargingTimeList[0]);
         }
 
         private void SetGermination()
@@ -133,6 +173,7 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
             {
                 _player.movementCompo.SetSpeed(movespeeds[1]);
             }
+            _player.atkComponent.SetChargingAttackTime(chargingTimeList[1]);
         }
 
         private void SetBloomEvent()
@@ -150,6 +191,7 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
             {
                 _player.movementCompo.maxJumpCnt = 3;
             }
+            _player.atkComponent.SetChargingAttackTime(chargingTimeList[2]);
         }
 
         private void SetFullBloom()
@@ -162,6 +204,7 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
             {
                 _player.movementCompo.SetSpeed(movespeeds[3]);
             }
+            _player.atkComponent.SetChargingAttackTime(chargingTimeList[3]);
         }
 
         private void SetFallingFlower()
@@ -177,6 +220,7 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
         
             isFallingFlower = true;
             fallingFlowerSec = initialFallingFlowerSec;
+            _player.atkComponent.SetChargingAttackTime(chargingTimeList[4]);
         }
 
         private void FallingFlower()
@@ -197,7 +241,7 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
             }
         }
 
-        public int GetFlowerCount() => _flowerCnt;
+        public float GetFlowerCount() => _flowerCnt;
     
         public void ResetFlowerCount()
         {
@@ -205,6 +249,18 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
             isFallingFlower = false;
             fallingFlowerSec = initialFallingFlowerSec;
             _flowerChangeEvent?.Invoke();
+        }
+
+        private IEnumerator MinusValue()
+        {
+            while (_flowerCnt > 0)
+            {
+                yield return new WaitForSeconds(0.1f);
+                
+                RemoveFlower(minusAmount);
+            }
+
+            _minusflowerCoroutine = null;
         }
     }
 }

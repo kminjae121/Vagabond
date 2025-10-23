@@ -11,12 +11,14 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
         protected EntityAnimator _animatorCompo;
         protected EntityAnimatorTrigger _triggerCompo;
         protected CharacterMovement _movementCompo;
+        protected BarrierCompo _barrierCompo;
         
         public PlayerState(Entity entity, int animationHash) : base(entity, animationHash)
         {
             _animatorCompo = entity.GetCompo<EntityAnimator>();
             _triggerCompo = entity.GetCompo<EntityAnimatorTrigger>();
             _movementCompo = entity.GetCompo<CharacterMovement>();
+            _barrierCompo = entity.GetCompo<BarrierCompo>();
             _player = entity as Player;
         }
     }

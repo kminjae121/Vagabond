@@ -74,6 +74,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         public bool isWallSliding { get; private set; }
         public bool isImpulseActive { get; private set; }
         public bool isGuidedMovement { get; private set; }
+
+        private float originGravity;
         
         private Entity _entity;
         private Player _player;
@@ -109,6 +111,13 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         private int frameCount = 0;
         private float dt = 0.0f;
         private float fps = 0.0f;
+
+        public float GetCurrentMoveSpeed()
+        {
+            return moveSpeed;
+        }
+        
+        
         
         public void Initialize(Entity entity)
         {
@@ -130,6 +139,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             
             SetupCharacterController();
             baseSpeed = moveSpeed;
+            originGravity = gravity;
         }
         
         private void SetupCharacterController()
@@ -188,6 +198,16 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         public void StopWallSlide()
         {
             isWallSliding = false;
+        }
+
+        public void SetGravityZero()
+        {
+            gravity = 0;
+        }
+
+        public void SetOriginGravity()
+        {
+            gravity = originGravity;
         }
         
         public void ApplyImpulse(Vector3 direction, float force, float duration)

@@ -89,8 +89,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         private void ApplyWorldTilt()
         {
             if (_target == null) return;
-
-            float yRot = _target.eulerAngles.y;
+            
+            float yRot = _target.localEulerAngles.y;
             float radY = yRot * Mathf.Deg2Rad;
 
             float sinY = Mathf.Sin(radY);
@@ -98,7 +98,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
 
             float xRot = sinY * slideAngle;
             float zRot = cosY * slideAngle;
-            
+
             if (isClimbingMode)
             {
                 currentClimbingTilt = Mathf.Lerp(currentClimbingTilt, climbingTiltAngle, Time.deltaTime * climbingTiltSmoothness);
@@ -109,7 +109,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             {
                 currentClimbingTilt = Mathf.Lerp(currentClimbingTilt, 0f, Time.deltaTime * climbingTiltSmoothness);
             }
-
+            
             Quaternion tiltRotation = Quaternion.Euler(xRot, 0f, zRot);
             transform.localRotation = tiltRotation;
         }
@@ -211,6 +211,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         
         public void OnJump()
         {
+            
         }
         
         public void OnLanding(float impactVelocity)
