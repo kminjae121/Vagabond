@@ -14,6 +14,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
            // base.Enter();
             _player.isSliding = false;
             _player.SetJumping(true);
+           // _player.swordCompo.SetNormalSword();
         }
 
         public override void Update()

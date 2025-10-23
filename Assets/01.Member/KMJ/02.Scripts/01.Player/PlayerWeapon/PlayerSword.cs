@@ -69,6 +69,11 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
             
         }
 
+        public bool GetIsAttacking()
+        {
+            return _isAttacking;
+        }
+
         private void HandleAttackSpeedChange(StatSO stat, float currentvalue, float previousvalue)
         {
             AttackSpeed = currentvalue;
@@ -79,6 +84,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
         {
             if (_isAttacking)
                 return;
+            
             _weaponCollider.enabled = true;
             _isAttacking = true;
             animCompo.SetBool(_swordIdleHash, false);
@@ -90,15 +96,15 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
                 _atkCnt = 0;
             }
             else
-             _atkCnt++;
+                _atkCnt++;
         }
 
         public void StopAttack()
         {
             _isAttacking = false;
             _weaponCollider.enabled = false;
-            animCompo.SetBool(_swordIdleHash, true); 
             animCompo.SetBool(_normalAttackHash, false);
+            animCompo.SetBool(_swordIdleHash, true); 
         }
 
         public void NabDo()

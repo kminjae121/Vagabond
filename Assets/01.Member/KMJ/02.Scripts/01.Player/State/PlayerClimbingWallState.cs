@@ -1,58 +1,56 @@
-﻿using Code.Entities;
+﻿using _01.Member.KMJ._02.Scripts._01.Player.State;
+using Code.Entities;
 using UnityEngine;
 
-namespace _01.Member.KMJ._02.Scripts._01.Player.State
+public class PlayerClimbingWallState : PlayerState
 {
-    public class PlayerClimbingWallState : PlayerState
+    private const float CLIMBING_TILT_ANGLE = 15f;
+    
+    public PlayerClimbingWallState(Entity entity, int animationHash) : base(entity, animationHash)
     {
-        private const float CLIMBING_TILT_ANGLE = 15f;
+    }
+
+    public override void Enter()
+    {
+        if (_player.movementCompo != null)
+        {
+            _player.movementCompo.StopMoving();
+        }
         
-        public PlayerClimbingWallState(Entity entity, int animationHash) : base(entity, animationHash)
+        _player.SetJumping(false);
+        
+        if (_player.camCompo != null)
         {
+            _player.camCompo.SetClimbingMode(true, CLIMBING_TILT_ANGLE);
         }
+        
+       // base.Enter();
+    }
 
-        public override void Enter()
-        {
-            if (_player.movementCompo != null)
-            {
-                _player.movementCompo.StopMoving();
-            }
-            
-            _player.SetJumping(false);
-            
-            if (_player.camCompo != null)
-            {
-                _player.camCompo.SetClimbingMode(true, CLIMBING_TILT_ANGLE);
-            }
-            
-           // base.Enter();
-        }
+    public override void Update()
+    {
+        base.Update();
+    }
 
-        public override void Update()
+    public override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        
+        if (_player.climbingComponent != null)
         {
-            base.Update();
+            _player.climbingComponent.Climbing();
         }
+    }
 
-        public override void FixedUpdate()
+    public override void Exit()
+    {
+        _player.SetJumping(true);
+        
+        if (_player.camCompo != null)
         {
-            base.FixedUpdate();
-            
-            if (_player.climbingComponent != null)
-            {
-                _player.climbingComponent.Climbing();
-            }
+            _player.camCompo.SetClimbingMode(false, 0f);
         }
-
-        public override void Exit()
-        {
-            _player.SetJumping(true);
-            
-            if (_player.camCompo != null)
-            {
-                _player.camCompo.SetClimbingMode(false, 0f);
-            }
-            
-            //base.Exit();
-        }
+        
+        //base.Exit();
     }
 }

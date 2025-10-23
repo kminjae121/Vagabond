@@ -6,6 +6,7 @@ using Code.Entities;
 using Code.Interfaces;
 using UnityEngine;
 using Unity.Cinemachine;
+using UnityEditor.Rendering;
 using UnityEngine.UI;
 
 namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
@@ -17,6 +18,10 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
         [SerializeField] private GameObject aimUI;
         
         [SerializeField] private Image uiImage;
+        
+        [SerializeField] private Sprite baseImage;
+        [SerializeField] private Sprite aimImage;
+        [SerializeField] private Color uiRGBColor;
 
         private Player _player;
         private float currentAimmingTime = 0f;
@@ -57,6 +62,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
                 {
                     SetAIActive(false);
                     uiImage.color = Color.white;
+                    uiImage.sprite = baseImage;
                     SetEnemyNull();
                     aimed.StartCoroutineInScript();
                 }
@@ -64,6 +70,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
             else
             {
                 uiImage.color = Color.white;
+                uiImage.sprite = baseImage;
                 SetAIActive(false);
             }
         }
@@ -77,7 +84,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
                 if (aimed.isTarget)
                 {
                     _aimUI._isBoosted = true;
-                    uiImage.color = Color.red;
+                    uiImage.color = uiRGBColor;
+                    uiImage.sprite = aimImage;
                     aimingObject = hit.collider.gameObject;
                 }
             }
