@@ -2,7 +2,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace Code.Entities.Feedbacks
+namespace Code.Code.Feedbacks
 {
     public class BlinkFeedback : Feedback
     {
