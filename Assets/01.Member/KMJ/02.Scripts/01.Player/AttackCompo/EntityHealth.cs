@@ -3,7 +3,9 @@ using _01.Member.KMJ._02.Scripts._01.Player.AttackCompo;
 using Code.Core.Debugs;
 using Code.Core.Stats;
 using Code.Interfaces;
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Code.Entities
 {
@@ -12,6 +14,8 @@ namespace Code.Entities
         private Entity _entity;
         private ActionData _actionData;
         private EntityStatCompo _statCompo;
+        
+        public UnityEvent<float> OnMinusHealthEvent; 
 
         [SerializeField] private StatSO hpStat;
         [SerializeField] private float maxHealth;
@@ -24,6 +28,7 @@ namespace Code.Entities
         public delegate void OnHealthChanged(float current, float max);
 
         public event OnHealthChanged OnHealthChangedEvent;
+
 
         public void Initialize(Entity entity)
         {
@@ -75,6 +80,7 @@ namespace Code.Entities
                 _entity.OnDeathEvent?.Invoke();
             }
             
+            OnMinusHealthEvent?.Invoke(damageData.damage);
             _entity.OnHitEvent?.Invoke();
         }
     }
