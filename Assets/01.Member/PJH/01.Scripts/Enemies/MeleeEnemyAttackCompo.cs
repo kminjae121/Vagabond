@@ -69,7 +69,8 @@ namespace Code.Enemies
                 return;
             
             UnityLogger.Log("fixed 들어감");
-
+            
+            
             foreach (var caster in casters)
                 caster.CastDamage(_currentDamageData, transform.position,
                     transform.forward, attackData);

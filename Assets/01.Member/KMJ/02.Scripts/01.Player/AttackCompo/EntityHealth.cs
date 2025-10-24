@@ -4,6 +4,7 @@ using Code.Core.Debugs;
 using Code.Core.Stats;
 using Code.Interfaces;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Code.Entities
 {
@@ -19,6 +20,8 @@ namespace Code.Entities
         public delegate void OnHealthChanged(float current, float max);
 
         public event OnHealthChanged OnHealthChangedEvent;
+
+        public UnityEvent OnMinusHealthEvent;
         
         private Entity _entity;
         private ActionData _actionData;
@@ -64,9 +67,11 @@ namespace Code.Entities
             UnityLogger.Log(currentHealth);
             OnHealthChangedEvent?.Invoke(currentHealth, maxHealth);
 
+            
             if (currentHealth <= 0)
                 _entity.OnDeathEvent?.Invoke();
             
+            OnMinusHealthEvent?.Invoke();
             _entity.OnHitEvent?.Invoke();
         }
     }

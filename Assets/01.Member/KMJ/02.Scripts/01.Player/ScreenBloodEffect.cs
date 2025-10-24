@@ -24,6 +24,9 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         private float _ppModifierValue;
 
         [SerializeField] private float lerpModiferValue = 1;
+        
+        [SerializeField] private Volume volume;
+        private Vignette _vignette;
 
 
         private void Awake()
@@ -31,6 +34,11 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             Color color = screenImage.color;
             color.a = 0;
             screenImage.color = color;
+            
+            if (volume.profile.TryGet(out _vignette))
+            {
+                _vignette.intensity.value = 0;
+            }
         }
 
         private void Update()
@@ -43,6 +51,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
                 Color color = screenImage.color;
                 color.a = _imageValue;
                 screenImage.color = color;
+                _vignette.intensity.value = _ppValue;
                 
                 if (screenImage.color.a <= 0.01f)
                 {
@@ -72,9 +81,9 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             Color color = screenImage.color;
             color.a = 1;
             screenImage.color = color;
-            
+            _vignette.intensity.value = 0.56f;
             _imageValue = 1;
-            _ppValue = 0.65f;
+            _ppValue = 0.56f;
             isActive = true;
             SetTime();
             SetScreenPP();  
