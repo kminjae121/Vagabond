@@ -699,7 +699,7 @@ MonoBehaviour:
   OnAnimatorMoveEvent:
     m_PersistentCalls:
       m_Calls: []
-  animator: {fileID: 393676724}
+  <animator>k__BackingField: {fileID: 0}
 --- !u!114 &393676726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -768,7 +768,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &519464610
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1086,6 +1086,7 @@ MonoBehaviour:
   atkDamageStat: {fileID: 11400000, guid: c327b7d2f23b1804a95f2b22e2e6aef7, type: 2}
   statCompo: {fileID: 635430273}
   player: {fileID: 829136774}
+  bloodGageAmount: 60
 --- !u!114 &780140994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1108,6 +1109,7 @@ MonoBehaviour:
   baldoWeaponMask:
     serializedVersion: 2
     m_Bits: 512
+  _animator: {fileID: 0}
   _weaponCollider: {fileID: 0}
 --- !u!95 &780140995
 Animator:
@@ -1326,6 +1328,9 @@ MonoBehaviour:
     m_Bits: 256
   aimUI: {fileID: 0}
   uiImage: {fileID: 0}
+  baseImage: {fileID: 0}
+  aimImage: {fileID: 0}
+  uiRGBColor: {r: 0, g: 0, b: 0, a: 0}
   <aimingObject>k__BackingField: {fileID: 0}
 --- !u!114 &829136778
 MonoBehaviour:
@@ -1347,6 +1352,8 @@ MonoBehaviour:
   - 20
   initialFallingFlowerSec: 10
   _bloodFlowerUI: {fileID: 0}
+  chargingTimeList: []
+  minusAmount: 0.1
 --- !u!136 &829136780
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1884,6 +1891,7 @@ MonoBehaviour:
   dashDuration: 0.1
   guidedSpeed: 25
   guidedStopDistance: 2.5
+  _camTrm: {fileID: 0}
 --- !u!1 &1175838138
 GameObject:
   m_ObjectHideFlags: 0
