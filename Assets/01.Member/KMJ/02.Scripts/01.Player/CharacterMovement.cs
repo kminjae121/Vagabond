@@ -32,7 +32,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         [SerializeField] private float groundSlideAcceleration = 10.0f;
         
         [Header("Wall Slide")]
-        [SerializeField] private float wallSlideForwardSpeed = 10.0f;
+        [field: SerializeField] public float wallSlideForwardSpeed { get; set; } = 10.0f;
         [SerializeField] private float wallJumpAwayForce = 5.0f;
         
         [Header("Speed Limits")]
@@ -712,6 +712,11 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
                 StopGroundSlide();
             }
         }
+
+        public float GetWallSlideSpeed()
+        {
+            return wallSlideForwardSpeed;
+        }
         
         private void WallSlideMove()
         {
@@ -721,6 +726,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             moveDirectionNorm = wishdir;
             
             float wishspeed = wishdir.magnitude * wallSlideForwardSpeed;
+
+            wallSlideForwardSpeed -= Time.deltaTime * 2f;
             
             Vector3 horizontalVel = new Vector3(playerVelocity.x, 0, playerVelocity.z);
             Vector3 targetVel = wishdir * wishspeed;
