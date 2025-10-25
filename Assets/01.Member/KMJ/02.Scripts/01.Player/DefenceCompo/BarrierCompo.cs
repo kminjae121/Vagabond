@@ -1,6 +1,7 @@
 ﻿using System;
 using _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo;
 using _01.Member.KMJ._02.Scripts._01.Player;
+using _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower;
 using Code.Entities;
 using Code.Interfaces;
 using UnityEngine;
@@ -12,8 +13,11 @@ public class BarrierCompo : MonoBehaviour, IEntityComponent
     [field: SerializeField] public Collider sheldCollider;
 
     [SerializeField] private float minusAmount;
+    [SerializeField] private float plusAmount;
 
     [SerializeField] private EntityAnimator _animatorComponent;
+    [SerializeField] private BloodFlowerSystem _bloodFlowerSystem;
+    [SerializeField] private LayerMask whatIsArrow;
     public void Initialize(Entity entity)
     {
         _player = entity as Player;
@@ -52,7 +56,11 @@ public class BarrierCompo : MonoBehaviour, IEntityComponent
 
     private void OnTriggerEnter(Collider other)
     {
-        other.gameObject.SetActive(false);
+        if(((1 << other.gameObject.layer) & whatIsArrow) != 0)
+        {
+            _bloodFlowerSystem.AddFlower((int)plusAmount);
+            other.gameObject.SetActive(false);
+        }
     }
 
 }
