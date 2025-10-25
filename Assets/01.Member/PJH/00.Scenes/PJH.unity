@@ -4996,6 +4996,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 8.079947
       objectReference: {fileID: 0}
+    - target: {fileID: 2608841138261872099, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: <animator>k__BackingField
+      value: 
+      objectReference: {fileID: 5560779617818290860}
     - target: {fileID: 2787599813461500499, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 24.989864
@@ -5461,6 +5465,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+--- !u!95 &5560779617818290860 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3222203553015357091, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+  m_PrefabInstance: {fileID: 5560779617818290859}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5561903330317353016
 Transform:
   m_ObjectHideFlags: 0
@@ -6347,30 +6356,6 @@ PrefabInstance:
     - target: {fileID: 230872328860020505, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2488373288245986896, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
-      propertyPath: m_PropertySheet.m_Float.m_Array.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2488373288245986896, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
-      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[0].m_Name
-      value: Duration
-      objectReference: {fileID: 0}
-    - target: {fileID: 2488373288245986896, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
-      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[0].m_Value
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2488373288245986896, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
-      propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[0].m_Overridden
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2488373288245986896, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
-      propertyPath: m_PropertySheet.m_Vector3f.m_Array.Array.data[1].m_Value.y
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4617793106520553387, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
-      propertyPath: delayTime
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4654559225396563586, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_Name
