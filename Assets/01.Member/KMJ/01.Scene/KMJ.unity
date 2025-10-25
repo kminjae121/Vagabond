@@ -10026,7 +10026,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1823503480705445584, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2099341741123079638, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: <animator>k__BackingField
@@ -10062,7 +10062,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4654559225396563586, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6899335576119992652, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: castRadius
@@ -12705,6 +12705,7 @@ Transform:
   - {fileID: 1589598983}
   - {fileID: 1074300809}
   - {fileID: 1164975034}
+  - {fileID: 2141991847}
   m_Father: {fileID: 25827258}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1447935430
@@ -12802,8 +12803,8 @@ MonoBehaviour:
   _flowerCnt: 1
   movespeeds:
   - 15
-  - 20
-  - 25
+  - 22
+  - 27
   initialFallingFlowerSec: 10
   _bloodFlowerUI: {fileID: 168231546}
   chargingTimeList:
@@ -18139,6 +18140,50 @@ MonoBehaviour:
   IsRagdollKinematic: 0
   Debug: 0
   Scale: 1
+--- !u!1 &2141991846
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2141991847}
+  - component: {fileID: 2141991848}
+  m_Layer: 3
+  m_Name: ActionData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2141991847
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141991846}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1447935429}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2141991848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141991846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c33ef85b91248c986439a0681028a6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2146693403 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7244469713809179560, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}

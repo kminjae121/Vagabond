@@ -223,22 +223,29 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             }
         }
         
-        public void ApplyWallKick(Vector3 wallNormal, float awayForce, float upForce)
+        public void ApplyWallKick(Vector3 wallNormal, Transform playerTransform, float awayForce, float forwardForce, float upForce)
         {
             Vector3 kickDirection = wallNormal.normalized;
             kickDirection.y = 0;
-    
+            
             Vector3 kickVelocity = kickDirection * awayForce;
+            
+            Vector3 forwardDirection = playerTransform.forward;
+            forwardDirection.y = 0;
+            forwardDirection.Normalize();
+            
+            kickVelocity += forwardDirection * forwardForce;
+            
             kickVelocity.y = upForce;
-    
+            
             float totalForce = kickVelocity.magnitude;
             float duration = 0.3f;
-    
+            
             ApplyImpulse(kickVelocity.normalized, totalForce, duration);
-    
+
             if (showJumpDebug)
             {
-                UnityLogger.Log($"벽 킥: 방향={kickDirection}, 수평힘={awayForce}, 수직힘={upForce}");
+                UnityLogger.Log($"벽 킥: 벽반대힘={awayForce}, 전진힘={forwardForce}, 수직힘={upForce}, 방향={kickVelocity.normalized}");
             }
         }
         
