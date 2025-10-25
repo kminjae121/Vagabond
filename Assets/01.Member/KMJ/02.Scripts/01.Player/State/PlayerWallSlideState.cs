@@ -10,6 +10,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
         private float currentTilt = 0f;
         private const float BLOODTHIEF_TILT_ANGLE = 15f;
         private const float WALL_KICK_AWAY_FORCE = 8f;
+        private float WALL_Foward_AWAY_FORCE = 0;
         private const float WALL_KICK_UP_FORCE = 2f;
         private bool hasRequestedJump = false;
 
@@ -21,6 +22,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
         public override void Enter()
         {
             //base.Enter();
+            WALL_Foward_AWAY_FORCE = _movementCompo.GetCurrentMoveSpeed();
             _player.isSliding = false;
             _player.SetJumping(true);
             hasRequestedJump = false;
@@ -70,7 +72,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
             
             if (_movementCompo != null)
             {
-                _movementCompo.ApplyWallKick(wallNormal, WALL_KICK_AWAY_FORCE, WALL_KICK_UP_FORCE);
+                _movementCompo.ApplyWallKick(wallNormal, _player.transform,WALL_KICK_AWAY_FORCE,WALL_Foward_AWAY_FORCE, WALL_KICK_UP_FORCE);
             }
             
             _slidingCompo.EndWallSlide();
