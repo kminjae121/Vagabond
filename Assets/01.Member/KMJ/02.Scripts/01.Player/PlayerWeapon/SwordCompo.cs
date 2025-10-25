@@ -78,7 +78,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
                             _owner);
 
                         StartCoroutine(TimeScale());
-                        player.aimmingComponent.SetAIActive(false);
+                        player.aimmingComponent.SetUIActive(false);
                         player.bloodSystemCompo.AddFlower((int)bloodGageAmount);
                         player.aimmingComponent.SetEnemyNull();
                     }
@@ -94,7 +94,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
                     data.damageType = DamageType.MELEE;
                     
                     damageable.ApplyDamage(data, other.transform.position, _owner.transform.forward, weaponAtkData,_owner);
-                    player.aimmingComponent.SetAIActive(false);
+                    player.aimmingComponent.SetUIActive(false);
                     
                     
                     StartCoroutine(TimeScale());
