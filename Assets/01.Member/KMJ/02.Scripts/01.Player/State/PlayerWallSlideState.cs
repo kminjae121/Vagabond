@@ -36,6 +36,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
             }
             
             _slidingCompo.StartWallSlide();
+
+            _movementCompo.wallSlideForwardSpeed = _movementCompo.GetCurrentMoveSpeed();
         }
 
         public override void Update()
@@ -43,6 +45,13 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
             base.Update();
             
             if (_player.inputReader != null && _player.inputReader.IsJumpPressed() && !hasRequestedJump)
+            {
+                hasRequestedJump = true;
+                PerformWallKick();
+                return;
+            }
+
+            if (_movementCompo.GetWallSlideSpeed() <= 0)
             {
                 hasRequestedJump = true;
                 PerformWallKick();
