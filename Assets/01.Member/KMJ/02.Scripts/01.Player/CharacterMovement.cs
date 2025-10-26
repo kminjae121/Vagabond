@@ -917,17 +917,21 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         private void OnGUI()
         {
             if (!showSpeedDebug) return;
-            
-            GUIStyle style = debugStyle ?? GUI.skin.label;
+
+            GUIStyle originalStyle = debugStyle ?? GUI.skin.label;
+
+            GUIStyle style = new GUIStyle(originalStyle);
+
+            style.normal.textColor = Color.white; 
             
             GUI.Label(new Rect(0, 0, 400, 100), "FPS: " + fps, style);
-            
+    
             Vector3 ups = playerVelocity;
             ups.y = 0;
             GUI.Label(new Rect(0, 15, 400, 100), "Speed: " + Mathf.Round(ups.magnitude * 100) / 100 + " ups", style);
             GUI.Label(new Rect(0, 30, 400, 100), "Top Speed: " + Mathf.Round(playerTopVelocity * 100) / 100 + " ups", style);
             GUI.Label(new Rect(0, 45, 400, 100), "MoveSpeed: " + moveSpeed.ToString("F1"), style);
-            
+    
             if (showJumpDebug)
             {
                 GUI.Label(new Rect(0, 60, 400, 100), "Grounded: " + isGroundedCached, style);
