@@ -602,6 +602,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1820008845437422539}
+  - {fileID: 3942530956868979089}
   m_Father: {fileID: 408398013373883012}
   m_LocalEulerAnglesHint: {x: -30.023888, y: 30.257141, z: -5.4700365}
 --- !u!136 &6939478379575946196
@@ -2032,14 +2033,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Graph: {fileID: 2204925073971142482, guid: d4c098c8e990b1e43b08518902334092, type: 2}
   m_BlackboardVariableOverridesList:
-  - rid: 5727384822137487591
-  - rid: 5727384824606098407
+  - rid: 5727385282039251064
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
     version: 2
     RefIds:
-    - rid: 5727384822137487591
+    - rid: 5727385282039251064
       type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -2047,14 +2047,6 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 4654559225396563586}
-    - rid: 5727384824606098407
-      type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 18414175984905444301
-          m_Value1: 5302582234793146614
-        Name: Target
-        m_Value: {fileID: 0}
 --- !u!195 &4674489196921714316
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2212,6 +2204,9 @@ MonoBehaviour:
   hpStat: {fileID: 11400000, guid: 484dd3199351c0449b5772df6160ef24, type: 2}
   maxHealth: 0
   currentHealth: 0
+  OnMinusHealthEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4714392711865591253
 GameObject:
   m_ObjectHideFlags: 0
@@ -4031,7 +4026,6 @@ Transform:
   m_Children:
   - {fileID: 5389773289112213627}
   - {fileID: 2123719270887026547}
-  - {fileID: 3942530956868979089}
   m_Father: {fileID: 230872328860020505}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &5764399970303790527
@@ -4051,7 +4045,14 @@ Animator:
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
+    'mixamorig:LeftHandThumb2'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
+    'mixamorig:LeftHandPinky2'\n\tTransform 'mixamorig:RightHandRing2'\n\tTransform
+    'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:LeftHandThumb3'\n\tTransform
+    'mixamorig:RightArm'\n\tand more ...\n\tFrom animation clip 'Scout_Idle'\n\tFrom
+    animation clip 'Scout_Walking'\n\tFrom animation clip 'Scout_Attack'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -4071,7 +4072,7 @@ MonoBehaviour:
   OnAnimatorMoveEvent:
     m_PersistentCalls:
       m_Calls: []
-  <animator>k__BackingField: {fileID: 0}
+  <animator>k__BackingField: {fileID: 5764399970303790527}
 --- !u!114 &6960852877804143702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4348,7 +4349,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 4381882497847620272}
+    m_TransformParent: {fileID: 7258957906892805584}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a764483fb10b54b4e9811446a7b2e875, type: 3}
       propertyPath: m_LocalScale.x
@@ -4356,7 +4357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a764483fb10b54b4e9811446a7b2e875, type: 3}
       propertyPath: m_LocalScale.y
-      value: 125.000015
+      value: 125.00003
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a764483fb10b54b4e9811446a7b2e875, type: 3}
       propertyPath: m_LocalScale.z
@@ -4364,31 +4365,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a764483fb10b54b4e9811446a7b2e875, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.000110436726
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a764483fb10b54b4e9811446a7b2e875, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.8399999
+      value: 0.10502044
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a764483fb10b54b4e9811446a7b2e875, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.1500001
+      value: 0.16790232
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a764483fb10b54b4e9811446a7b2e875, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.6393436
+      value: 0.6393437
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a764483fb10b54b4e9811446a7b2e875, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.6989612
+      value: -0.69896114
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a764483fb10b54b4e9811446a7b2e875, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.29463956
+      value: 0.2946396
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a764483fb10b54b4e9811446a7b2e875, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.12601793
+      value: 0.12601797
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a764483fb10b54b4e9811446a7b2e875, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
