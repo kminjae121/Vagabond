@@ -29,6 +29,7 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
 
         private Coroutine _minusflowerCoroutine;
         public event Action _flowerChangeEvent;
+        public event Action OnPlayerDeathEvent;
 
         public UnityAction germinationEvent;
         public UnityAction bloomEvent;
@@ -101,11 +102,22 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
 
         public void RemoveFlower(float amount)
         {
-            UnityLogger.Log(amount);
             _flowerCnt -= amount;
             if (_flowerCnt < 0) _flowerCnt = 0;
             _bloodFlowerUI.SetUIValue(_flowerCnt);
             _flowerChangeEvent?.Invoke();
+        }
+
+        public void GetDamager(float damage)
+        {
+            _flowerCnt -= damage;
+            _bloodFlowerUI.SetUIValue(_flowerCnt);
+            
+            if (_flowerCnt < 0)
+            {
+                _flowerCnt = 0;
+                OnPlayerDeathEvent?.Invoke();
+            }
         }
 
         public float GetCurrentFlowerCnt()

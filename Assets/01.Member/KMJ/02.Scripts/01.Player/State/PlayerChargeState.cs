@@ -31,8 +31,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
                 _atkCompo.StartChargingTimer();
             }
             
-            _player.SetJumping(false);
-            
            // base.Enter();
         }
 

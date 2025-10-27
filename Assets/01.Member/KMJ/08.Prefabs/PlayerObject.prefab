@@ -1421,6 +1421,7 @@ MonoBehaviour:
   hpStat: {fileID: 11400000, guid: 484dd3199351c0449b5772df6160ef24, type: 2}
   maxHealth: 0
   currentHealth: 0
+  _bloodFlowerSystem: {fileID: 6985686092965635611}
   OnMinusHealthEvent:
     m_PersistentCalls:
       m_Calls:
@@ -1429,19 +1430,6 @@ MonoBehaviour:
           Assembly-CSharp
         m_MethodName: StartScreenBlood
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 6985686092965635611}
-        m_TargetAssemblyTypeName: _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower.BloodFlowerSystem,
-          Assembly-CSharp
-        m_MethodName: RemoveFlower
-        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1974,6 +1962,7 @@ Transform:
   m_Children:
   - {fileID: 6434794216916775937}
   - {fileID: 3518524926975417009}
+  - {fileID: 5997925832467301198}
   - {fileID: 8609413719820077096}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2405,6 +2394,55 @@ MonoBehaviour:
     m_StretchHeight: 0
   fpsDisplayRate: 4
   _move: {x: 0, y: 0, z: 0}
+--- !u!1 &5278401011164438321
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5997925832467301198}
+  - component: {fileID: 7347777823853493209}
+  m_Layer: 0
+  m_Name: PlayerVolum
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5997925832467301198
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5278401011164438321}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 6.5873866, y: -0.17680764, z: -49.326042}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4784848787653949655}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7347777823853493209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5278401011164438321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: fbf80a33e0c03a940873ecaccbb56f27, type: 2}
 --- !u!1 &5304457527487782306
 GameObject:
   m_ObjectHideFlags: 0
@@ -4321,7 +4359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   screenImage: {fileID: 3517367540849370856}
   lerpModiferValue: 1
-  volume: {fileID: 0}
+  volume: {fileID: 7347777823853493209}
 --- !u!114 &448549807999008805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5083,15 +5121,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6473708445310783785, guid: f4ba149b50951854c85e46e246a0b4e6, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.5
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 6473708445310783785, guid: f4ba149b50951854c85e46e246a0b4e6, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.5
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 6473708445310783785, guid: f4ba149b50951854c85e46e246a0b4e6, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.5
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 6473708445310783785, guid: f4ba149b50951854c85e46e246a0b4e6, type: 3}
       propertyPath: m_LocalPosition.x
