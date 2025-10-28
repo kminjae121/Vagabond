@@ -9,9 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daea1f1b079a412fbf101fd44805c7b2, type: 3}
-  m_Name: PoolManager
+  m_Script: {fileID: 11500000, guid: ac06062d34054a3a93d64d5b5c3a4a34, type: 3}
+  m_Name: AttackSoundSO
   m_EditorClassIdentifier: 
-  itemList:
-  - {fileID: 11400000, guid: 57625f940051ee64ebdf2ec337c21027, type: 2}
-  - {fileID: 11400000, guid: ceb4b1c2aecb4174bae90174535a27ee, type: 2}
+  audioType: 0
+  clip: {fileID: 8300000, guid: c80f2529e9780684982c7b273de3f9f7, type: 3}
+  loop: 0
+  randomizePitch: 0
+  randomPitchModifier: 0.1
+  volume: 1
+  pitch: 1

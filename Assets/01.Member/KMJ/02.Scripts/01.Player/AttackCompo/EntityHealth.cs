@@ -78,7 +78,7 @@ namespace Code.Entities
             
             if (_bloodFlowerSystem != null)
             {
-                _bloodFlowerSystem.RemoveFlower(damageData.damage);
+                _bloodFlowerSystem.GetDamage(damageData.damage);
             }
             else
             {
