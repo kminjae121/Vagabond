@@ -830,6 +830,7 @@ MonoBehaviour:
   hpStat: {fileID: 11400000, guid: 484dd3199351c0449b5772df6160ef24, type: 2}
   maxHealth: 0
   currentHealth: 0
+  _bloodFlowerSystem: {fileID: 0}
   OnMinusHealthEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -2393,10 +2394,6 @@ PrefabInstance:
       propertyPath: m_ConnectedBody
       value: 
       objectReference: {fileID: 1323872752}
-    - target: {fileID: 1193467799186017436, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1269054180055996358, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
       propertyPath: m_ConnectedBody
       value: 
@@ -2417,10 +2414,6 @@ PrefabInstance:
       propertyPath: m_ConnectedBody
       value: 
       objectReference: {fileID: 672283754}
-    - target: {fileID: 4861035812511255987, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5823408766180826463, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
       propertyPath: m_ConnectedBody
       value: 
@@ -2464,10 +2457,6 @@ PrefabInstance:
     - target: {fileID: 7194159019588466848, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7984637815822720671, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
-      propertyPath: m_Icon
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
