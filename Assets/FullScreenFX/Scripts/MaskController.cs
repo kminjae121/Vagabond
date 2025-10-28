@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Code.Core.Debugs;
 
 public class MaskController : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class MaskController : MonoBehaviour
     private int _maskSizeID;
     private bool _isAnimating = false;
     private bool _isMaskActive = false; // false = defaultValue 상태, true = targetValue 상태
+    
+    
 
     void Start()
     {
@@ -31,18 +34,19 @@ public class MaskController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            ToggleMaskAnimation();
-        }
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    ToggleMaskAnimation();
+        //}
     }
 
     public void ToggleMaskAnimation()
     {
-        if (_isAnimating || targetMaterial == null)
-        {
-            return;
-        }
+        //_isAnimating || 
+        //if (targetMaterial == null)
+        //{
+        //    return;
+        //}
 
         if (_isMaskActive)
         {
@@ -54,7 +58,7 @@ public class MaskController : MonoBehaviour
         }
     }
 
-    private IEnumerator AnimateMaskDown()
+    public IEnumerator AnimateMaskDown()
     {
         _isAnimating = true;
         float elapsedTime = 0f;
@@ -75,7 +79,7 @@ public class MaskController : MonoBehaviour
         _isAnimating = false;
     }
 
-    private IEnumerator AnimateMaskUp()
+    public IEnumerator AnimateMaskUp()
     {
         _isAnimating = true;
         float elapsedTime = 0f;
@@ -91,9 +95,9 @@ public class MaskController : MonoBehaviour
             yield return null;
         }
         targetMaterial.SetFloat(_maskSizeID, defaultValue);
-        
         _isMaskActive = false;
         _isAnimating = false;
+        
     }
 
     void OnDestroy()
