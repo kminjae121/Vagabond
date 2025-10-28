@@ -1,5 +1,6 @@
 ﻿using _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo;
 using _01.Member.KMJ._02.Scripts._01.Player.AttackCompo;
+using Code.Core.Debugs;
 using Code.Core.Stats;
 using Code.Entities;
 using Code.Entities.Combat;
@@ -36,6 +37,8 @@ namespace Code.Enemies
         {
             meleeDamageStat = _statCompo.GetStat(meleeDamageStat);
             _trigger.OnDamageToggleTrigger += SetDamageCaster;
+            
+            UnityLogger.Log("melee enemy attack compo Init 완료");
         }
 
         private void OnDestroy()
@@ -55,7 +58,7 @@ namespace Code.Enemies
 
             _currentDamageData = new DamageData
             {
-                damage = _statCompo.GetStat(meleeDamageStat).Value,
+                damage = meleeDamageStat.Value,
                 damageType = attackData.damageType
             };
         }
@@ -64,10 +67,16 @@ namespace Code.Enemies
         {
             if (!_isActive)
                 return;
+            
+            UnityLogger.Log("fixed 들어감");
+            
+
 
             foreach (var caster in casters)
+            {
                 caster.CastDamage(_currentDamageData, transform.position,
                     transform.forward, attackData);
+            }
         }
     }
 }

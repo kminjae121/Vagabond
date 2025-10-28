@@ -10,6 +10,7 @@ namespace Code.Enemies
         [SerializeField] private Transform firePos;
         [SerializeField] private PoolManagerSO poolManager;
         [SerializeField] private PoolItemSO arrowPrefab;
+        [SerializeField] private GameObject arrowInHand;
         [SerializeField] private float arrowSpeed = 20f;
         [SerializeField] private float arrowDamage = 10f;
         
@@ -21,8 +22,12 @@ namespace Code.Enemies
             arrow.transform.rotation = Quaternion.LookRotation(dir);
 
             arrow.Initialize(dir, arrowSpeed, arrowDamage, this);
+            SetActiveArrowInHand(false);
             
             UnityLogger.Log("arrow shoot");
         }
+
+        public void SetActiveArrowInHand(bool isActive) 
+            => arrowInHand.SetActive(isActive);
     }
 }

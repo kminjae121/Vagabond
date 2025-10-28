@@ -101,6 +101,7 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
 
         public void RemoveFlower(float amount)
         {
+            UnityLogger.Log(amount);
             _flowerCnt -= amount;
             if (_flowerCnt < 0) _flowerCnt = 0;
             _bloodFlowerUI.SetUIValue(_flowerCnt);
@@ -116,17 +117,15 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
         {
             switch (_flowerCnt)
             {
-                case 0:
-                    SetNormal();
-                    break;
                 case <= 100:
+                    SetNormal();
                     break;
                 case <= 200:
                     break;
                 case <= 300:
-                    SetGermination();
                     break;
                 case <= 400:
+                    SetGermination();
                     break;
                 case <= 500:
                     break;

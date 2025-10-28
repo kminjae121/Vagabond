@@ -5,25 +5,27 @@ using UnityEngine;
 using Action = Unity.Behavior.Action;
 using Unity.Properties;
 
-[Serializable, GeneratePropertyBag]
-[NodeDescription(name: "ChangeAnimation", story: "[MainAnimator] change [oldAnim] to [newAnim]", category: "Action", id: "48b287f905b1e897d99d0518aa1d377b")]
-public partial class ChangeAnimationAction : Action
+namespace Code.Enemies.BT.Actions
 {
-    [SerializeReference] public BlackboardVariable<EntityAnimator> MainAnimator;
-    [SerializeReference] public BlackboardVariable<string> OldAnim;
-    [SerializeReference] public BlackboardVariable<string> NewAnim;
-
-    protected override Status OnStart()
+    [Serializable, GeneratePropertyBag]
+    [NodeDescription(name: "ChangeAnimation", story: "[MainAnimator] change [oldAnim] to [newAnim]", category: "Action", id: "48b287f905b1e897d99d0518aa1d377b")]
+    public partial class ChangeAnimationAction : Action
     {
-        var oldHash = Animator.StringToHash(OldAnim.Value);
-        var newHash = Animator.StringToHash(NewAnim.Value);
-        
-        MainAnimator.Value.SetParam(oldHash, false);
-        MainAnimator.Value.SetParam(newHash, true);
+        [SerializeReference] public BlackboardVariable<EntityAnimator> MainAnimator;
+        [SerializeReference] public BlackboardVariable<string> OldAnim;
+        [SerializeReference] public BlackboardVariable<string> NewAnim;
 
-        OldAnim.Value = NewAnim.Value;
+        protected override Status OnStart()
+        {
+            var oldHash = Animator.StringToHash(OldAnim.Value);
+            var newHash = Animator.StringToHash(NewAnim.Value);
         
-        return Status.Success;
+            MainAnimator.Value.SetParam(oldHash, false);
+            MainAnimator.Value.SetParam(newHash, true);
+
+            OldAnim.Value = NewAnim.Value;
+        
+            return Status.Success;
+        }
     }
 }
-

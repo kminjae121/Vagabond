@@ -32,7 +32,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         [SerializeField] private float groundSlideAcceleration = 10.0f;
         
         [Header("Wall Slide")]
-        [SerializeField] private float wallSlideForwardSpeed = 10.0f;
+        [field: SerializeField] public float wallSlideForwardSpeed { get; set; } = 10.0f;
         [SerializeField] private float wallJumpAwayForce = 5.0f;
         
         [Header("Speed Limits")]
@@ -223,22 +223,29 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             }
         }
         
-        public void ApplyWallKick(Vector3 wallNormal, float awayForce, float upForce)
+        public void ApplyWallKick(Vector3 wallNormal, Transform playerTransform, float awayForce, float forwardForce, float upForce)
         {
             Vector3 kickDirection = wallNormal.normalized;
             kickDirection.y = 0;
-    
+            
             Vector3 kickVelocity = kickDirection * awayForce;
+            
+            Vector3 forwardDirection = playerTransform.forward;
+            forwardDirection.y = 0;
+            forwardDirection.Normalize();
+            
+            kickVelocity += forwardDirection * forwardForce;
+            
             kickVelocity.y = upForce;
-    
+            
             float totalForce = kickVelocity.magnitude;
             float duration = 0.3f;
-    
+            
             ApplyImpulse(kickVelocity.normalized, totalForce, duration);
-    
+
             if (showJumpDebug)
             {
-                UnityLogger.Log($"벽 킥: 방향={kickDirection}, 수평힘={awayForce}, 수직힘={upForce}");
+                UnityLogger.Log($"벽 킥: 벽반대힘={awayForce}, 전진힘={forwardForce}, 수직힘={upForce}, 방향={kickVelocity.normalized}");
             }
         }
         
@@ -712,6 +719,11 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
                 StopGroundSlide();
             }
         }
+
+        public float GetWallSlideSpeed()
+        {
+            return wallSlideForwardSpeed;
+        }
         
         private void WallSlideMove()
         {
@@ -721,6 +733,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             moveDirectionNorm = wishdir;
             
             float wishspeed = wishdir.magnitude * wallSlideForwardSpeed;
+
+            wallSlideForwardSpeed -= Time.deltaTime * 2f;
             
             Vector3 horizontalVel = new Vector3(playerVelocity.x, 0, playerVelocity.z);
             Vector3 targetVel = wishdir * wishspeed;
@@ -903,17 +917,21 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         private void OnGUI()
         {
             if (!showSpeedDebug) return;
-            
-            GUIStyle style = debugStyle ?? GUI.skin.label;
+
+            GUIStyle originalStyle = debugStyle ?? GUI.skin.label;
+
+            GUIStyle style = new GUIStyle(originalStyle);
+
+            style.normal.textColor = Color.white; 
             
             GUI.Label(new Rect(0, 0, 400, 100), "FPS: " + fps, style);
-            
+    
             Vector3 ups = playerVelocity;
             ups.y = 0;
             GUI.Label(new Rect(0, 15, 400, 100), "Speed: " + Mathf.Round(ups.magnitude * 100) / 100 + " ups", style);
             GUI.Label(new Rect(0, 30, 400, 100), "Top Speed: " + Mathf.Round(playerTopVelocity * 100) / 100 + " ups", style);
             GUI.Label(new Rect(0, 45, 400, 100), "MoveSpeed: " + moveSpeed.ToString("F1"), style);
-            
+    
             if (showJumpDebug)
             {
                 GUI.Label(new Rect(0, 60, 400, 100), "Grounded: " + isGroundedCached, style);
