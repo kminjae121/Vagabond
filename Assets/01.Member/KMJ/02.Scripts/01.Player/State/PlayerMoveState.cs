@@ -31,7 +31,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
 
         public override void Exit()
         {
-            _animatorCompo.SetAllBoolParamFalse();
            // base.Exit();
         }
     }

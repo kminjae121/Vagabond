@@ -54,6 +54,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         [Provide]
         public Player GetPlayer() => this;
         
+        
+        
         protected override void Awake()
         {
             base.Awake();

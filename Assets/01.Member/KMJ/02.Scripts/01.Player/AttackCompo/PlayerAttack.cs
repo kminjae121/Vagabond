@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections;
 using _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo;
+using Code.Core._02.Sound;
 using Code.Core.Debugs;
+using Code.Core.GameEvent;
 using Code.Entities;
 using Code.Interfaces;
+using GameEvents;
 using UnityEngine;
 
 namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
@@ -28,6 +31,10 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
         [SerializeField] private float guidedSpeed = 25f;
         [SerializeField] private float guidedStopDistance = 2.5f;
         [SerializeField] private Transform _camTrm;
+        
+        [SerializeField] private GameEventChannelSO _soundChannel;
+        [SerializeField] private SoundSO napdoSound;
+        [SerializeField] private SoundSO baldoSound;
         
         private CharacterMovement _movementCompo;
         private Coroutine _timerCoroutine;
@@ -122,10 +129,14 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
             
             if (_player.aimmingComponent != null && _player.aimmingComponent.aimingObject != null)
             {
+                var sfxEvt = SoundEvents.PlaySFXEvent.Initializer(transform.position,baldoSound);
+                _soundChannel.RaiseEvent(sfxEvt);
                 _player.ChangeState("GUIDEATTACK");
             }
             else if (chargingTime >= chargeAttackSec)
             {
+                var sfxEvt = SoundEvents.PlaySFXEvent.Initializer(transform.position,baldoSound);
+                _soundChannel.RaiseEvent(sfxEvt);
                 _player.ChangeState("CHARGEATTACK");
             }
             else
@@ -207,11 +218,13 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
         
         public IEnumerator ChargeAttackSec()
         {
-            while (chargingTime < maxchargingTime)
+            while (chargingTime < chargeAttackSec)
             {
                 yield return new WaitForSeconds(0.1f);
                 chargingTime += 0.1f;
             }
+            var sfxEvt = SoundEvents.PlaySFXEvent.Initializer(transform.position,napdoSound);
+            _soundChannel.RaiseEvent(sfxEvt);
         }
     }
 }
