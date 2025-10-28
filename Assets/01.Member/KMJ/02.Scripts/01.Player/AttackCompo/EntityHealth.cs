@@ -1,5 +1,6 @@
 ﻿using _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo;
 using _01.Member.KMJ._02.Scripts._01.Player.AttackCompo;
+using _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower;
 using Code.Core.Debugs;
 using Code.Core.Stats;
 using Code.Interfaces;
@@ -21,6 +22,8 @@ namespace Code.Entities
 
         public event OnHealthChanged OnHealthChangedEvent;
 
+        [SerializeField] private BloodFlowerSystem _bloodFlowerSystem = null;
+            
         public UnityEvent OnMinusHealthEvent;
         
         private Entity _entity;
@@ -64,15 +67,23 @@ namespace Code.Entities
 
             currentHealth = Mathf.Clamp(currentHealth - damageData.damage, 0, maxHealth);
 
-            UnityLogger.Log(currentHealth);
             OnHealthChangedEvent?.Invoke(currentHealth, maxHealth);
 
             
             if (currentHealth <= 0)
                 _entity.OnDeathEvent?.Invoke();
-            
+
             OnMinusHealthEvent?.Invoke();
             _entity.OnHitEvent?.Invoke();
+            
+            if (_bloodFlowerSystem != null)
+            {
+                _bloodFlowerSystem.GetDamage(damageData.damage);
+            }
+            else
+            {
+                return;
+            }
         }
     }
 }

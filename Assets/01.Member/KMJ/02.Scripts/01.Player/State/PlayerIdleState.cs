@@ -22,8 +22,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
         {
             if (_player.inputReader != null && _player.inputReader.MoveValue != Vector2.zero)
             {
-                _animatorCompo.SetAllBoolParamFalse();
-                _animatorCompo.animator.SetBool("MOVE", true);
                 _player.ChangeState("MOVE");
             }
             

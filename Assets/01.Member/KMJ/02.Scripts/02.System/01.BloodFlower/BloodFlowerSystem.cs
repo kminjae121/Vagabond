@@ -3,7 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using _01.Member.KMJ._02.Scripts._01.Player;
 using _01.Member.KMJ._02.Scripts._01.Player.AttackCompo;
+using Code.Core._02.Sound;
 using Code.Core.Debugs;
+using Code.Core.GameEvent;
+using GameEvents;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -26,9 +29,13 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
         [SerializeField] private List<float> chargingTimeList;
 
         [SerializeField] private float minusAmount = 0.1f;
+        
+        [SerializeField] private GameEventChannelSO _soundChannel;
+        [SerializeField] private SoundSO ScreamSound;
 
         private Coroutine _minusflowerCoroutine;
-        public event Action _flowerChangeEvent;
+        public UnityEvent _flowerChangeEvent;
+        public UnityEvent OnPlayerDeathEvent;
 
         public UnityAction germinationEvent;
         public UnityAction bloomEvent;
@@ -39,8 +46,8 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
         public bool isFallingFlower { get; set; } = false;
 
         private void Awake()
-        {
-            _flowerChangeEvent += FlowerEvent;
+        {   
+            _flowerChangeEvent.AddListener(FlowerEvent);
             fallingFlowerSec = initialFallingFlowerSec;
         
             ValidateMoveSpeeds();
@@ -101,11 +108,29 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
 
         public void RemoveFlower(float amount)
         {
-            UnityLogger.Log(amount);
             _flowerCnt -= amount;
             if (_flowerCnt < 0) _flowerCnt = 0;
             _bloodFlowerUI.SetUIValue(_flowerCnt);
             _flowerChangeEvent?.Invoke();
+        }
+
+        public void Scream()
+        {
+            var sfxEvt = SoundEvents.PlaySFXEvent.Initializer(transform.position,ScreamSound);
+            _soundChannel.RaiseEvent(sfxEvt);
+        }
+
+        public void GetDamage(float damage)
+        {
+            _flowerCnt -= damage;
+            _bloodFlowerUI.SetUIValue(_flowerCnt);
+            
+            Scream();
+            if (_flowerCnt < 0)
+            {
+                _flowerCnt = 0;
+                OnPlayerDeathEvent?.Invoke();
+            }
         }
 
         public float GetCurrentFlowerCnt()

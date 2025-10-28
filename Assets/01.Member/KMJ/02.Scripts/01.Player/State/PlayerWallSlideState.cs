@@ -22,6 +22,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
         public override void Enter()
         {
             //base.Enter();
+            _slidingCompo.PlaySlideSound();
             WALL_Foward_AWAY_FORCE = _movementCompo.GetCurrentMoveSpeed();
             _player.isSliding = false;
             _player.SetJumping(true);
@@ -83,6 +84,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
         {
            // base.Exit();
             
+           _slidingCompo.StopSlideSound();
             if (_player.camCompo != null)
             {
                 _player.camCompo.ReturnOwnTilt();

@@ -47,7 +47,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             if (isActive)
             {
                 LerpValues();
-                UnityLogger.Log(_imageValue);
                 Color color = screenImage.color;
                 color.a = _imageValue;
                 screenImage.color = color;

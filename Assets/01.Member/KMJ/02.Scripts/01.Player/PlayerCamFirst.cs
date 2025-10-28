@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using Code.Core._02.Sound;
+using Code.Core.GameEvent;
+using GameEvents;
+using UnityEngine;
 
 namespace _01.Member.KMJ._02.Scripts._01.Player
 {
@@ -32,6 +35,10 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         
         [Header("Position Settings")]
         [SerializeField] private Vector3 _targetPos;
+        
+        [Header("Sound Settings")]
+        [SerializeField] private SoundSO landSound;
+        [SerializeField] private GameEventChannelSO _soundChannel;
         
         public float slideAngle { get; private set; }
         private float _targetSlideAngle = 0f;
@@ -218,6 +225,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         {
             float impactForce = Mathf.Clamp01(impactVelocity / 20f);
             landingPunchOffset = -landingPunchAmount * impactForce;
+            var sfxEvt = SoundEvents.PlaySFXEvent.Initializer(transform.position,landSound);
+            _soundChannel.RaiseEvent(sfxEvt);
         }
 
         public void SetCamTrm()

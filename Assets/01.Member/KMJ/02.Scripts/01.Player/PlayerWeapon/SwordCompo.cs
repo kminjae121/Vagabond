@@ -3,11 +3,14 @@ using System.Collections;
 using System.Runtime.CompilerServices;
 using _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo;
 using _01.Member.KMJ._02.Scripts._01.Player.AttackCompo;
+using Code.Core._02.Sound;
 using Code.Core.Debugs;
+using Code.Core.GameEvent;
 using Code.Core.Stats;
 using Code.Entities;
 using Code.Interfaces;
 using DynamicMeshCutter;
+using GameEvents;
 using UnityEngine;
 
 namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
@@ -31,6 +34,10 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
         [SerializeField] private Player player;
 
         [SerializeField] private float bloodGageAmount = 60f;
+        
+        
+        [SerializeField] private GameEventChannelSO _soundChannel;
+        [SerializeField] private SoundSO bloodSound;
         private float _atkDamage;
 
         private Entity _owner;
@@ -69,7 +76,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
                 {
                     if (other.TryGetComponent(out IDamageable damageable))
                     {
-                        
+                        var sfxEvt = SoundEvents.PlaySFXEvent.Initializer(transform.position,bloodSound);
+                        _soundChannel.RaiseEvent(sfxEvt);
                         DamageData data = new DamageData();
                         data.damage = 99999;
                         data.damageType = DamageType.MELEE;
@@ -88,6 +96,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
             {
                 if (other.TryGetComponent(out IDamageable damageable))
                 {
+                    var sfxEvt = SoundEvents.PlaySFXEvent.Initializer(transform.position,bloodSound);
+                    _soundChannel.RaiseEvent(sfxEvt);
                     DamageData data = new DamageData();
                     
                     data.damage = 99999;
@@ -95,7 +105,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
                     
                     damageable.ApplyDamage(data, other.transform.position, _owner.transform.forward, weaponAtkData,_owner);
                     player.aimmingComponent.SetUIActive(false);
-                    
                     
                     StartCoroutine(TimeScale());
                     player.bloodSystemCompo.AddFlower((int)bloodGageAmount);       
