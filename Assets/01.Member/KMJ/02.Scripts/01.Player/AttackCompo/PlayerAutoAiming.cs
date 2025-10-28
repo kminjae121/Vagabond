@@ -80,7 +80,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
             if (hit.transform.gameObject.TryGetComponent(out EnemyAimed aimed))
             {
                 aimed.AimmingThis();
-                UnityLogger.Log("와우");
 
                 if (aimed.isTarget)
                 {
@@ -88,7 +87,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
                     uiImage.color = uiRGBColor;
                     uiImage.sprite = aimImage;
                     aimingObject = hit.collider.gameObject;
-                    UnityLogger.Log("와우");
                 }
             }
         }
