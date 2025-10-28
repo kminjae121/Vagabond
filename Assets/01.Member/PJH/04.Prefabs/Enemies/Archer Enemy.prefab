@@ -174,12 +174,14 @@ MonoBehaviour:
   attackRange: 8
   <PlayerChannel>k__BackingField: {fileID: 11400000, guid: 5b30ecdb60edff74aa9fe93eb2f3987a, type: 2}
   <IsBattleState>k__BackingField: 0
+  bowLineRenderer: {fileID: 8677003064182343701}
   firePos: {fileID: 5244525997782910801}
   poolManager: {fileID: 11400000, guid: 05d8d22aadd96e84a8fe7d8f241e8814, type: 2}
   arrowPrefab: {fileID: 11400000, guid: 57625f940051ee64ebdf2ec337c21027, type: 2}
   arrowInHand: {fileID: 804626704042173583}
   arrowSpeed: 20
   arrowDamage: 10
+  bowstringDuration: 0.5
 --- !u!114 &5902249174942895535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,6 +356,7 @@ Transform:
   - {fileID: 6569673695119818233}
   - {fileID: 2908658627821790430}
   - {fileID: 8685844784119795883}
+  - {fileID: 5426058924694996430}
   m_Father: {fileID: 4851215615297757248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7579585339681583240
@@ -539,10 +542,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c23427e67b40ef8d01ce44d4faacb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bowstringLine: {fileID: 6618524337677515732}
+  bowstringLineRenderer: {fileID: 6618524337677515732}
   bowstringTop: {fileID: 6569673695119818233}
   bowstringMiddle: {fileID: 2908658627821790430}
   bowstringBottom: {fileID: 8685844784119795883}
+  drawTargetPoint: {fileID: 5426058924694996430}
 --- !u!1 &496716903548739906
 GameObject:
   m_ObjectHideFlags: 0
@@ -2899,6 +2903,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eb12ed0510f448db723617ac3ba30cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5462912152521505503
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5426058924694996430}
+  m_Layer: 0
+  m_Name: Draw Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5426058924694996430
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5462912152521505503}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.55, y: 0.15, z: 0.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4004841630233768176}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5629167403311481024
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,23 +1,25 @@
 ﻿using UnityEngine;
-using DG.Tweening;
+using DG.Tweening; // DOTween을 사용하기 위해 필요합니다.
 
 namespace Code.Entities.Combat
 {
     public class BowLineRenderer : MonoBehaviour
     {
-        [SerializeField] private LineRenderer bowstringLine;
+        [SerializeField] private LineRenderer bowstringLineRenderer;
         [SerializeField] private Transform bowstringTop;
         [SerializeField] private Transform bowstringMiddle;
         [SerializeField] private Transform bowstringBottom;
+
+        [Header("Bow Draw Settings")]
         [SerializeField] private Transform drawTargetPoint; 
         
-        private Vector3 _originalMiddlePos;
+        private Vector3 _originalMiddleLocalPos;
         private Tween _drawTween;
 
         private void Awake()
         {
             if (bowstringMiddle != null)
-                _originalMiddlePos = bowstringMiddle.position;
+                _originalMiddleLocalPos = bowstringMiddle.localPosition;
         }
 
         private void LateUpdate()
@@ -28,38 +30,40 @@ namespace Code.Entities.Combat
 #if UNITY_EDITOR
         private void OnValidate()
         {
-            CreateBowstring();
+            if(bowstringLineRenderer != null)
+                CreateBowstring();
         }
 #endif 
         
-        public void DrawBowstring(float duration)
+        public void LoadBowstring(float duration)
         {
             _drawTween?.Kill();
 
-            if (drawTargetPoint != null)
+            if (drawTargetPoint != null && bowstringMiddle.parent != null)
             {
-                _drawTween = bowstringMiddle.DOMove(drawTargetPoint.position, duration)
+                Vector3 targetLocalPos = bowstringMiddle.parent.InverseTransformPoint(drawTargetPoint.position);
+                _drawTween = bowstringMiddle.DOLocalMove(targetLocalPos, duration)
                                             .SetEase(Ease.OutQuad);
             }
         }
-
+        
         public void ReleaseBowstring(float duration)
         {
             _drawTween?.Kill();
             
-            _drawTween = bowstringMiddle.DOMove(_originalMiddlePos, duration)
+            _drawTween = bowstringMiddle.DOLocalMove(_originalMiddleLocalPos, duration)
                                         .SetEase(Ease.OutBack);
         }
 
         private void CreateBowstring()
         {
-            if (!bowstringLine || !bowstringTop || !bowstringMiddle || !bowstringBottom)
+            if (!bowstringLineRenderer || !bowstringTop || !bowstringMiddle || !bowstringBottom)
                 return;
             
-            bowstringLine.positionCount = 3;
-            bowstringLine.SetPosition(0, bowstringTop.position);
-            bowstringLine.SetPosition(1, bowstringMiddle.position);
-            bowstringLine.SetPosition(2, bowstringBottom.position);
+            bowstringLineRenderer.positionCount = 3;
+            bowstringLineRenderer.SetPosition(0, bowstringTop.position);
+            bowstringLineRenderer.SetPosition(1, bowstringMiddle.position);
+            bowstringLineRenderer.SetPosition(2, bowstringBottom.position);
         }
 
         private void OnDestroy()
