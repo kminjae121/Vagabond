@@ -1,5 +1,8 @@
-﻿using Code.Entities;
+﻿using Code.Core._02.Sound;
+using Code.Core.GameEvent;
+using Code.Entities;
 using Code.Interfaces;
+using GameEvents;
 using UnityEngine;
 
 namespace _01.Member.KMJ._02.Scripts._01.Player.SlidingCompo
@@ -17,6 +20,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.SlidingCompo
 
         private CharacterMovement _movementCompo;
         private Player _player;
+        [SerializeField] private SoundSO slideSound;
+        [SerializeField] private GameEventChannelSO _soundChannel;
         private bool isSlidingKeyHeld = false;
         private Vector3 currentWallNormal = Vector3.zero;
         private string currentWallSide = "None";
@@ -93,6 +98,17 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.SlidingCompo
 
             currentWallSide = "None";
             return "None";
+        }
+
+        public void PlaySlideSound()
+        {
+            var sfxEvt = SoundEvents.PlayLongSFXEvent.Initializer(transform.position,slideSound,1);
+            _soundChannel.RaiseEvent(sfxEvt);
+        }
+
+        public void StopSlideSound()
+        {
+            _soundChannel.RaiseEvent(SoundEvents.StopLongSFXEvent.Initializer(1));
         }
 
         public string GetWallSide()
