@@ -29,6 +29,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         
         [Header("Debug")]
         [SerializeField] private bool showJumpDebug = false;
+
+        [field:SerializeField] public MaskController maskController {get; private set;}
         
         #region PlayerComponent
 

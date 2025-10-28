@@ -39,6 +39,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
         private float _atkSpeed;
 
         [SerializeField] private EntityAnimator _animator;
+
+        private Player _player;
         public float AttackSpeed
         {
             get => _atkSpeed;
@@ -57,6 +59,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
         public void Initialize(Entity entity)
         {
             animCompo.SetBool(_swordIdleHash, true);
+            _player = entity as Player;
         }
 
         private void Start()
@@ -139,6 +142,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
         public void StopBalDo()
         {
             _isAttacking = false;
+            _player.maskController.ToggleMaskAnimation();
             _animator.SetAllBoolParamFalse();
             animCompo.SetBool(_swordIdleHash, true); 
         }

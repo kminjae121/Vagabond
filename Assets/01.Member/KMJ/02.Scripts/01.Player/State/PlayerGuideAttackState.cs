@@ -11,6 +11,7 @@ public class PlayerGuideAttackState : PlayerState
 
     public override void Enter()
     {
+        _player.maskController.ToggleMaskAnimation();
         _player.swordCompo.BalDo();
         _player.atkComponent.isDashAttacking = true;
         _player.SetJumping(false);
