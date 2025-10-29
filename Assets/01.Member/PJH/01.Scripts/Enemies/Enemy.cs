@@ -18,14 +18,13 @@ namespace Code.Enemies
         public float attackRange;
 
         protected Pool _myPool;
-        
+
         protected override void AddComponents()
         {
             base.AddComponents();
 
             BTAgent = GetComponent<BehaviorGraphAgent>();
-            Debug.Assert(BTAgent != null,
-                $"{gameObject.name}이 behavior graph agent를 가지고 있지 않습니다.");
+            Debug.Assert(BTAgent != null, $"{gameObject.name}이 behavior graph agent를 가지고 있지 않습니다.");
         }
 
         protected virtual void Start()
@@ -37,20 +36,19 @@ namespace Code.Enemies
                 UnityLogger.LogError($"{gameObject.name}의 타겟이 존재하지 않습니다.");
                 return;
             }
-            
+
             target.Value = PlayerFinder.Target.transform;
         }
 
         public BlackboardVariable<T> GetBlackboardVariable<T>(string key)
             => BTAgent.GetVariable(key, out BlackboardVariable<T> result) ? result : null;
-
-        private void OnDrawGizmosSelected()
+        
+        public override void EntityDestroy()
         {
-            Gizmos.color = Color.magenta;
-            Gizmos.DrawWireSphere(transform.position, detectRange);
-
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, attackRange);
+            if (_myPool != null)
+                _myPool.Push(this);
+            else
+                base.EntityDestroy();
         }
         
         public void SetUpPool(Pool pool)
@@ -60,6 +58,15 @@ namespace Code.Enemies
 
         public void ResetItem()
         {
+        }
+        
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawWireSphere(transform.position, detectRange);
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, attackRange);
         }
     }
 }

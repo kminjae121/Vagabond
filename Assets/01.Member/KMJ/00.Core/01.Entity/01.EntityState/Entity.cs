@@ -15,7 +15,7 @@ namespace Code.Entities
         public bool IsDead { get; set; }
         protected Dictionary<Type, IEntityComponent> _components;
 
-        public void EntityDestroy()
+        public virtual void EntityDestroy()
         {
             Destroy(gameObject);
         }
@@ -23,6 +23,7 @@ namespace Code.Entities
         protected virtual void Awake()
         {
             _components = new Dictionary<Type, IEntityComponent>();
+            
             AddComponents();
             InitializeComponents();
             AfterInitializeComponents();
@@ -64,9 +65,7 @@ namespace Code.Entities
                     targetRotation, Time.deltaTime * smoothRotateSpeed);
             }
             else
-            {
                 transform.rotation = targetRotation;
-            }
         }
     }
 }

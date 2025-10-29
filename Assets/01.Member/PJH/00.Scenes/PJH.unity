@@ -315,7 +315,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5911425151533435393, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
   m_PrefabInstance: {fileID: 8391643448105991347}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708812883}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62a2d8d843e64aba9245cf87b82401c4, type: 3}
@@ -698,11 +698,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1708812883 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4654559225396563586, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
-  m_PrefabInstance: {fileID: 8391643448105991347}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &43252543567193503
 GameObject:
   m_ObjectHideFlags: 0
@@ -5141,6 +5136,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Archer Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 931082062621711355, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 931082062621711355, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 931082062621711355, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 5560779617818290860}
+    - target: {fileID: 931082062621711355, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 931082062621711355, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: CreateFeedback
+      objectReference: {fileID: 0}
+    - target: {fileID: 931082062621711355, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: Code.Code.Feedbacks.BlinkFeedback, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 931082062621711355, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: OnHitEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1020736899344624678, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
       propertyPath: m_ConnectedBody
       value: 
@@ -5214,6 +5237,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+--- !u!114 &5560779617818290860 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3723393238030482189, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+  m_PrefabInstance: {fileID: 5560779617818290859}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d00e05505f5348aca6513c630cb53474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5561181564562482423
 Transform:
   m_ObjectHideFlags: 0
@@ -7345,46 +7379,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3294797572880583078, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
-      propertyPath: m_Graph
-      value: 
-      objectReference: {fileID: 2590818776878050357, guid: d4c098c8e990b1e43b08518902334092, type: 2}
-    - target: {fileID: 3294797572880583078, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
-      propertyPath: 'managedReferences[5727385282039251668]'
-      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[UnityEngine.GameObject,
-        UnityEngine.CoreModule]]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 3294797572880583078, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
-      propertyPath: managedReferences[5727385282039251668].Name
-      value: Self
-      objectReference: {fileID: 0}
-    - target: {fileID: 3294797572880583078, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
-      propertyPath: m_BlackboardVariableOverridesList.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3294797572880583078, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
-      propertyPath: managedReferences[5727385282039251668].m_Value
-      value: 
-      objectReference: {fileID: 1708812883}
-    - target: {fileID: 3294797572880583078, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
-      propertyPath: 'm_BlackboardVariableOverridesList.Array.data[0]'
-      value: 5727385282039251668
-      objectReference: {fileID: 0}
-    - target: {fileID: 3294797572880583078, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
-      propertyPath: managedReferences[5727385282039251668].GUID.m_Value0
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3294797572880583078, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
-      propertyPath: managedReferences[5727385282039251668].GUID.m_Value1
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4654559225396563586, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_Name
       value: Scout Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 5764399970303790527, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
-      propertyPath: m_WarningMessage
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
