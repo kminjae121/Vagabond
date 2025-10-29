@@ -804,7 +804,6 @@ GameObject:
   - component: {fileID: 1075081422922009284}
   - component: {fileID: 3846200506516338935}
   - component: {fileID: 6362891635248815261}
-  - component: {fileID: 6453126265598301475}
   m_Layer: 0
   m_Name: PlayerCam
   m_TagString: Untagged
@@ -962,37 +961,6 @@ MonoBehaviour:
         DecelTime: 0.2
   PlayerIndex: -1
   AutoEnableInputs: 1
---- !u!114 &6453126265598301475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2087214213289064697}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e77ecefbdf024a8cb822be7946d7c30f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
-  tiltSpeed: 18
-  climbingTiltSmoothness: 7.5
-  _target: {fileID: 8361077774082490507}
-  baseFOV: 60
-  maxFOV: 80
-  wallSlideFOV: 55
-  climbingFOV: 58
-  fovSpeed: 5
-  fovSpeedThreshold: 10
-  fovMaxSpeed: 20
-  cameraLagAmount: 0.1
-  cameraLagSpeed: 10
-  wallSlideLagAmount: 0.15
-  landingPunchAmount: 0.5
-  landingPunchSpeed: 8
-  _targetPos: {x: 0, y: 0, z: 0}
-  landSound: {fileID: 0}
-  _soundChannel: {fileID: 0}
 --- !u!1 &2160927059711919554
 GameObject:
   m_ObjectHideFlags: 0
@@ -2954,7 +2922,7 @@ GameObject:
   - component: {fileID: 5997925832467301198}
   - component: {fileID: 7347777823853493209}
   m_Layer: 0
-  m_Name: PlayerVolum
+  m_Name: PlayerVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

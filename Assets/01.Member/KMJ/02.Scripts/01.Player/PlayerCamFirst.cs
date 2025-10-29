@@ -1,7 +1,4 @@
-﻿using Code.Core._02.Sound;
-using Code.Core.GameEvent;
-using GameEvents;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace _01.Member.KMJ._02.Scripts._01.Player
 {
@@ -30,15 +27,12 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         [SerializeField] private float wallSlideLagAmount = 0.15f;
         
         [Header("Bloodthief Style - Landing Punch")]
-        [SerializeField] private float landingPunchAmount = 0.5f;
-        [SerializeField] private float landingPunchSpeed = 8f;
+        [SerializeField] private float landingPunchAmount = 1.0f;
+        [SerializeField] private float landingPunchSpeed = 12f;
+        [SerializeField] private float landingPunchThreshold = 5f;
         
         [Header("Position Settings")]
         [SerializeField] private Vector3 _targetPos;
-        
-        [Header("Sound Settings")]
-        [SerializeField] private SoundSO landSound;
-        [SerializeField] private GameEventChannelSO _soundChannel;
         
         public float slideAngle { get; private set; }
         private float _targetSlideAngle = 0f;
@@ -53,6 +47,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         
         private float lastYVelocity = 0f;
         private bool wasInAir = false;
+        private bool lastFrameGrounded = false;
         
         private bool isWallSlideMode = false;
         private bool isClimbingMode = false;
@@ -96,8 +91,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         private void ApplyWorldTilt()
         {
             if (_target == null) return;
-            
-            float yRot = _target.localEulerAngles.y;
+
+            float yRot = _target.eulerAngles.y;
             float radY = yRot * Mathf.Deg2Rad;
 
             float sinY = Mathf.Sin(radY);
@@ -105,7 +100,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
 
             float xRot = sinY * slideAngle;
             float zRot = cosY * slideAngle;
-
+            
             if (isClimbingMode)
             {
                 currentClimbingTilt = Mathf.Lerp(currentClimbingTilt, climbingTiltAngle, Time.deltaTime * climbingTiltSmoothness);
@@ -116,7 +111,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             {
                 currentClimbingTilt = Mathf.Lerp(currentClimbingTilt, 0f, Time.deltaTime * climbingTiltSmoothness);
             }
-            
+
             Quaternion tiltRotation = Quaternion.Euler(xRot, 0f, zRot);
             transform.localRotation = tiltRotation;
         }
@@ -187,17 +182,21 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         
         private void CheckLanding(bool isGrounded, bool wasGrounded)
         {
-            if (isGrounded && !wasGrounded && lastYVelocity < -5f)
+            // 착지 순간 감지: 공중에서 지상으로
+            if (isGrounded && !lastFrameGrounded && Mathf.Abs(lastYVelocity) >= landingPunchThreshold)
             {
                 OnLanding(Mathf.Abs(lastYVelocity));
             }
             
-            wasInAir = !isGrounded;
+            lastFrameGrounded = isGrounded;
         }
         
         private void UpdateLandingPunch()
         {
-            landingPunchOffset = Mathf.SmoothDamp(landingPunchOffset, 0f, ref landingPunchVelocity, 1f / landingPunchSpeed);
+            if (landingPunchOffset != 0)
+            {
+                landingPunchOffset = Mathf.SmoothDamp(landingPunchOffset, 0f, ref landingPunchVelocity, 1f / landingPunchSpeed);
+            }
         }
         
         public void SetWallSlideMode(bool active)
@@ -218,15 +217,14 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         
         public void OnJump()
         {
-            
         }
         
         public void OnLanding(float impactVelocity)
         {
-            float impactForce = Mathf.Clamp01(impactVelocity / 20f);
+            // 낙하 속도에 비례한 punch 강도
+            float impactForce = Mathf.Clamp01(impactVelocity / 30f);
             landingPunchOffset = -landingPunchAmount * impactForce;
-            var sfxEvt = SoundEvents.PlaySFXEvent.Initializer(transform.position,landSound);
-            _soundChannel.RaiseEvent(sfxEvt);
+            landingPunchVelocity = 0f;
         }
 
         public void SetCamTrm()

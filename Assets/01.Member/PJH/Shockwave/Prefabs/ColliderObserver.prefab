@@ -28,10 +28,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.1309361, y: -1.7051473, z: 4.8387794}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 1898550909414629375}
   - {fileID: 1816158447781292369}
+  - {fileID: 1898550909414629375}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2472879187559052892
@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 597065adc27437648aa94cfdc441eff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  innerTrigger: {fileID: 0}
-  outerTrigger: {fileID: 0}
+  innerTrigger: {fileID: 1553321347699720293}
+  outerTrigger: {fileID: 1399649329984355933}
   onHitZoneEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -67,7 +67,7 @@ GameObject:
   - component: {fileID: 7610646883144532335}
   - component: {fileID: 7048572092718597166}
   - component: {fileID: 1399649329984355933}
-  m_Layer: 6
+  m_Layer: 16
   m_Name: Outer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a542887ee1020224ba5d3675bf66da47, type: 2}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -157,11 +157,11 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -7387706064836869012, guid: fe2b70e97431bc245bfddf31d5896cc6, type: 3}
 --- !u!114 &1399649329984355933
@@ -178,19 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onPlayerEntered:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2472879187559052892}
-        m_TargetAssemblyTypeName: ColliderObserver, Assembly-CSharp
-        m_MethodName: set_OuterEntered
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onPlayerExited:
     m_PersistentCalls:
       m_Calls: []
@@ -207,7 +195,7 @@ GameObject:
   - component: {fileID: 7144054889042471814}
   - component: {fileID: 5368805498192694257}
   - component: {fileID: 1553321347699720293}
-  m_Layer: 6
+  m_Layer: 16
   m_Name: Inner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +248,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a542887ee1020224ba5d3675bf66da47, type: 2}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -297,11 +285,11 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5495902117074765545, guid: 26709c2793d36334796d474672d96345, type: 3}
 --- !u!114 &1553321347699720293
@@ -318,19 +306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onPlayerEntered:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2472879187559052892}
-        m_TargetAssemblyTypeName: ColliderObserver, Assembly-CSharp
-        m_MethodName: set_InnerEntered
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onPlayerExited:
     m_PersistentCalls:
       m_Calls: []
