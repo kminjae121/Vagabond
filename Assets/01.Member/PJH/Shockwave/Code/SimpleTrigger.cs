@@ -1,28 +1,28 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Shockwave.Code
+namespace Code.Combat
 {
     public class SimpleTrigger : MonoBehaviour
     {
-        [SerializeField] private UnityEvent onPlayerEntered;
-        [SerializeField] private UnityEvent onPlayerExited;
+        [SerializeField] private UnityEvent<Collider> onPlayerEntered;
+        [SerializeField] private UnityEvent<Collider> onPlayerExited;
         
-        public UnityEvent OnPlayerEntered => onPlayerEntered;
-        public UnityEvent OnPlayerExited => onPlayerExited;
+        public UnityEvent<Collider> OnPlayerEntered => onPlayerEntered;
+        public UnityEvent<Collider> OnPlayerExited => onPlayerExited;
 
         private const string PLAYER_TAG = "Player";
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag(PLAYER_TAG))
-                onPlayerEntered?.Invoke();
+                onPlayerEntered?.Invoke(other);
         }
 
         private void OnTriggerExit(Collider other)
         {
             if (other.CompareTag(PLAYER_TAG))
-                onPlayerExited?.Invoke();
+                onPlayerExited?.Invoke(other);
         }
     }
 }

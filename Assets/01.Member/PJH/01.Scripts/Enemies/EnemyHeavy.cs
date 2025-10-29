@@ -5,7 +5,8 @@ namespace Code.Enemies
 {
     public class EnemyHeavy : CommonEnemy
     {
-        [SerializeField] private PoolItemSO shockWaveItem;
+        [SerializeField] private PoolManagerSO poolManager;
+        [SerializeField] private PoolItemSO shockwaveItem;
 
         public void SpawnShockWave()
         {

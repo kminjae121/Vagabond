@@ -1,7 +1,8 @@
-﻿using Code.Interfaces;
+﻿using Code.Entities;
+using Code.Interfaces;
 using UnityEngine;
 
-namespace Code.Entities.Combat
+namespace Code.Combat
 {
     public class WeaponHolder : MonoBehaviour, IEntityComponent
     {

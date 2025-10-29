@@ -1,7 +1,8 @@
+using Code.Core.Debugs;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Shockwave.Code
+namespace Code.Combat
 {
     public class ShockwaveHitDetector : MonoBehaviour
     {
@@ -9,8 +10,8 @@ namespace Shockwave.Code
         [SerializeField] private SimpleTrigger outerTrigger;
 
         [Header("Hit Zone Events")]
-        [SerializeField] private UnityEvent onHitZoneEntered;
-        [SerializeField] private UnityEvent onHitZoneExited;
+        [SerializeField] private UnityEvent<Collider> onHitZoneEntered;
+        [SerializeField] private UnityEvent<Collider> onHitZoneExited;
 
         private bool isPlayerInInner;
         private bool isPlayerInOuter;
@@ -31,47 +32,47 @@ namespace Shockwave.Code
             }
         }
     
-        private void HandleInnerEnter()
+        private void HandleInnerEnter(Collider other)
         {
             isPlayerInInner = true;
-            CheckHitZoneStatus();
+            CheckHitZoneStatus(other);
         }
 
-        private void HandleInnerExit()
+        private void HandleInnerExit(Collider other)
         {
             isPlayerInInner = false;
-            CheckHitZoneStatus();
+            CheckHitZoneStatus(other);
         }
 
-        private void HandleOuterEnter()
+        private void HandleOuterEnter(Collider other)
         {
             isPlayerInOuter = true;
-            CheckHitZoneStatus();
+            CheckHitZoneStatus(other);
         }
 
-        private void HandleOuterExit()
+        private void HandleOuterExit(Collider other)
         {
             isPlayerInOuter = false;
-            CheckHitZoneStatus();
+            CheckHitZoneStatus(other);
         }
 
-        private void CheckHitZoneStatus()
+        private void CheckHitZoneStatus(Collider other)
         {
             bool wasInHitZone = isPlayerInHitZone;
             isPlayerInHitZone = isPlayerInInner && isPlayerInOuter;
 
-            if (wasInHitZone != isPlayerInHitZone)
+            if (wasInHitZone == isPlayerInHitZone)
+                return;
+            
+            if (isPlayerInHitZone)
             {
-                if (isPlayerInHitZone)
-                {
-                    Debug.Log("플레이어가 히트 존에 진입했습니다.");
-                    onHitZoneEntered?.Invoke();
-                }
-                else
-                {
-                    Debug.Log("플레이어가 히트 존에서 이탈했습니다.");
-                    onHitZoneExited?.Invoke();
-                }
+                UnityLogger.Log("쇼크 웨이브 히트 존 진입");
+                onHitZoneEntered?.Invoke(other);
+            }
+            else
+            {
+                UnityLogger.Log("쇼크 웨이브 히트 존 이탈");
+                onHitZoneExited?.Invoke(other);
             }
         }
     }
