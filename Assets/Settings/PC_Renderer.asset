@@ -15,19 +15,19 @@ MonoBehaviour:
   m_Active: 1
   settings:
     passTag: OverlapHidden
-    Event: 500
+    Event: 300
     filterSettings:
-      RenderQueueType: 1
+      RenderQueueType: 0
       LayerMask:
         serializedVersion: 2
         m_Bits: 65536
       PassNames: []
-    overrideMaterial: {fileID: 0}
+    overrideMaterial: {fileID: 2100000, guid: a542887ee1020224ba5d3675bf66da47, type: 2}
     overrideMaterialPassIndex: 0
     overrideShader: {fileID: 0}
     overrideShaderPassIndex: 0
-    overrideMode: 0
-    overrideDepthState: 1
+    overrideMode: 1
+    overrideDepthState: 0
     depthCompareFunction: 8
     enableWrite: 1
     stencilSettings:
@@ -73,14 +73,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
-  m_Name: RenderObjects
+  m_Name: OverlapHidden2
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    passTag: RenderObjects
-    Event: 550
+    passTag: OverlapHidden2
+    Event: 350
     filterSettings:
-      RenderQueueType: 1
+      RenderQueueType: 0
       LayerMask:
         serializedVersion: 2
         m_Bits: 65536
@@ -96,7 +96,7 @@ MonoBehaviour:
     stencilSettings:
       overrideStencilState: 1
       stencilReference: 2
-      stencilCompareFunction: 3
+      stencilCompareFunction: 4
       passOperation: 0
       failOperation: 0
       zFailOperation: 0
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_AssetVersion: 2
   m_OpaqueLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 65535
   m_TransparentLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295

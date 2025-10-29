@@ -1573,6 +1573,7 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
   <PlayerFinder>k__BackingField: {fileID: 11400000, guid: a88336997ab67cf4eaa686d6a5512e7c, type: 2}
+  <PoolItem>k__BackingField: {fileID: 0}
   detectRange: 6
   attackRange: 3
   <PlayerChannel>k__BackingField: {fileID: 11400000, guid: 5b30ecdb60edff74aa9fe93eb2f3987a, type: 2}
@@ -5514,6 +5515,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   <PlayerFinder>k__BackingField: {fileID: 11400000, guid: a88336997ab67cf4eaa686d6a5512e7c, type: 2}
+  <PoolItem>k__BackingField: {fileID: 0}
   detectRange: 6
   attackRange: 3
   <PlayerChannel>k__BackingField: {fileID: 11400000, guid: 5b30ecdb60edff74aa9fe93eb2f3987a, type: 2}

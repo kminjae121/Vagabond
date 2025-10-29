@@ -170,8 +170,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   <PlayerFinder>k__BackingField: {fileID: 11400000, guid: a88336997ab67cf4eaa686d6a5512e7c, type: 2}
-  detectRange: 10
-  attackRange: 8
+  <PoolItem>k__BackingField: {fileID: 0}
+  detectRange: 20
+  attackRange: 12.5
   <PlayerChannel>k__BackingField: {fileID: 11400000, guid: 5b30ecdb60edff74aa9fe93eb2f3987a, type: 2}
   <IsBattleState>k__BackingField: 0
   bowLineRenderer: {fileID: 8677003064182343701}
