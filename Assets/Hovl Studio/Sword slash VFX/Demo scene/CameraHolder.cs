@@ -31,6 +31,8 @@ public class CameraHolder : MonoBehaviour
         if (Screen.dpi < 1) windowDpi = 1;
         if (Screen.dpi < 200) windowDpi = 1;
         else windowDpi = Screen.dpi / 200f;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         var angles = transform.eulerAngles;
         x = angles.y;
         y = angles.x;
@@ -122,8 +124,8 @@ public class CameraHolder : MonoBehaviour
             if (Screen.dpi < 200) dpiScale = 1;
             else dpiScale = Screen.dpi / 200f;
             if (pos.x < 380 * dpiScale && Screen.height - pos.y < 250 * dpiScale) return;
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.visible = false;
+            //Cursor.lockState = CursorLockMode.Locked;
             x += (float)(Input.GetAxis("Mouse X") * xRotate * 0.02);
             y -= (float)(Input.GetAxis("Mouse Y") * yRotate * 0.02);
             y = ClampAngle(y, yMinLimit, yMaxLimit);

@@ -142,7 +142,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
         public void StopBalDo()
         {
             _isAttacking = false;
-            _player.maskController.ToggleMaskAnimation();
             _animator.SetAllBoolParamFalse();
             animCompo.SetBool(_swordIdleHash, true); 
         }
