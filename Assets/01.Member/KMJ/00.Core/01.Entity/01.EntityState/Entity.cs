@@ -11,8 +11,8 @@ namespace Code.Entities
     {
         public UnityEvent OnHitEvent;
         public UnityEvent OnDeathEvent;
-        
-        public bool IsDead { get; set; }
+
+        public bool IsDead { get; set; } = false;
         protected Dictionary<Type, IEntityComponent> _components;
 
         public virtual void EntityDestroy()
