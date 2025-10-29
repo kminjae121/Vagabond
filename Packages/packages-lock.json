@@ -16,12 +16,12 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.behavior": {
-      "version": "1.0.12",
+      "version": "1.0.13",
       "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.burst": "1.7.2",
-        "com.unity.dt.app-ui": "2.0.0-pre.16",
+        "com.unity.dt.app-ui": "2.0.0",
         "com.unity.modules.ai": "1.0.0",
         "com.unity.collections": "2.1.4",
         "com.unity.modules.audio": "1.0.0",
@@ -72,7 +72,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.dt.app-ui": {
-      "version": "2.0.0-pre.16",
+      "version": "2.0.0",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -105,6 +105,13 @@
       "dependencies": {
         "com.unity.test-framework": "1.1.9"
       },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.ide.vscode": {
+      "version": "1.2.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.inputsystem": {
@@ -189,6 +196,28 @@
         "com.unity.modules.terrain": "1.0.0",
         "com.unity.modules.jsonserialize": "1.0.0",
         "com.unity.rendering.light-transport": "1.0.1"
+      }
+    },
+    "com.unity.render-pipelines.high-definition": {
+      "version": "17.0.4",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.modules.video": "1.0.0",
+        "com.unity.modules.animation": "1.0.0",
+        "com.unity.modules.imageconversion": "1.0.0",
+        "com.unity.render-pipelines.core": "17.0.4",
+        "com.unity.shadergraph": "17.0.4",
+        "com.unity.visualeffectgraph": "17.0.4",
+        "com.unity.render-pipelines.high-definition-config": "17.0.4"
+      }
+    },
+    "com.unity.render-pipelines.high-definition-config": {
+      "version": "17.0.4",
+      "depth": 1,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.render-pipelines.core": "17.0.4"
       }
     },
     "com.unity.render-pipelines.universal": {
@@ -287,7 +316,7 @@
     },
     "com.unity.ugui": {
       "version": "2.0.0",
-      "depth": 2,
+      "depth": 0,
       "source": "builtin",
       "dependencies": {
         "com.unity.modules.ui": "1.0.0",
