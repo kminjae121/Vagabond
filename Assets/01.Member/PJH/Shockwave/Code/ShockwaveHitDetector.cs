@@ -5,22 +5,16 @@ namespace Shockwave.Code
 {
     public class ShockwaveHitDetector : MonoBehaviour
     {
-        [SerializeField]
-        private SimpleTrigger innerTrigger;
-
-        [SerializeField]
-        private SimpleTrigger outerTrigger;
+        [SerializeField] private SimpleTrigger innerTrigger;
+        [SerializeField] private SimpleTrigger outerTrigger;
 
         [Header("Hit Zone Events")]
-        [SerializeField]
-        private UnityEvent onHitZoneEntered = new();
-    
-        [SerializeField]
-        private UnityEvent onHitZoneExited = new();
+        [SerializeField] private UnityEvent onHitZoneEntered;
+        [SerializeField] private UnityEvent onHitZoneExited;
 
-        private bool isPlayerInInner = false;
-        private bool isPlayerInOuter = false;
-        private bool isPlayerInHitZone = false;
+        private bool isPlayerInInner;
+        private bool isPlayerInOuter;
+        private bool isPlayerInHitZone;
 
         private void Start()
         {
@@ -71,12 +65,12 @@ namespace Shockwave.Code
                 if (isPlayerInHitZone)
                 {
                     Debug.Log("플레이어가 히트 존에 진입했습니다.");
-                    onHitZoneEntered.Invoke();
+                    onHitZoneEntered?.Invoke();
                 }
                 else
                 {
                     Debug.Log("플레이어가 히트 존에서 이탈했습니다.");
-                    onHitZoneExited.Invoke();
+                    onHitZoneExited?.Invoke();
                 }
             }
         }

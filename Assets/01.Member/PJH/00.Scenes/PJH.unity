@@ -3387,6 +3387,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scout Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5764399970303790527, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: m_WarningMessage
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
