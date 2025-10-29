@@ -60,6 +60,9 @@ namespace Code.Entities
 
         public void ApplyDamage(DamageData damageData, Vector3 hitPoint, Vector3 hitNormal, AttackDataSO attackData, Entity dealer)
         {
+            if (_entity.IsDead)
+                return;
+            
             _actionData.HitNormal = hitNormal;
             _actionData.HitPoint = hitPoint;
             _actionData.HitByPowerAttack = attackData.isPowerAttack;

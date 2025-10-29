@@ -14,7 +14,8 @@ public class MaskController : MonoBehaviour
     private int _maskSizeID;
     private bool _isAnimating = false;
     private bool _isMaskActive = false; // false = defaultValue 상태, true = targetValue 상태
-    
+
+    private Coroutine _maskCoroutine;
     
 
     void Start()
@@ -40,7 +41,7 @@ public class MaskController : MonoBehaviour
         //}
     }
 
-    public void ToggleMaskAnimation()
+    public void ToggleMaskAnimation(bool isActive)
     {
         //_isAnimating || 
         //if (targetMaterial == null)
@@ -48,13 +49,24 @@ public class MaskController : MonoBehaviour
         //    return;
         //}
 
-        if (_isMaskActive)
+        if (isActive == true)
         {
-            StartCoroutine(AnimateMaskUp());
+            if (_maskCoroutine != null)
+            {
+                StopCoroutine(_maskCoroutine);
+                _maskCoroutine = null;
+            }
+            _maskCoroutine = StartCoroutine(AnimateMaskDown());
         }
-        else
+        else if(isActive == false)
         {
-            StartCoroutine(AnimateMaskDown());
+            if (_maskCoroutine != null)
+            {
+                StopCoroutine(_maskCoroutine);
+                _maskCoroutine = null;
+            }
+            
+            _maskCoroutine = StartCoroutine(AnimateMaskUp());
         }
     }
 
@@ -77,6 +89,26 @@ public class MaskController : MonoBehaviour
         
         _isMaskActive = true;
         _isAnimating = false;
+    }
+
+    public void BalDoScrean()
+    {
+        StartCoroutine(BaldoCoroutine());
+    }
+    private IEnumerator BaldoCoroutine()
+    {
+        if (_maskCoroutine != null)
+        {
+            StopCoroutine(_maskCoroutine);
+        }
+        _maskCoroutine = StartCoroutine(AnimateMaskDown());
+
+        yield return new WaitForSeconds(1f);
+        
+        StopCoroutine(_maskCoroutine);
+        _maskCoroutine = null;
+        
+        _maskCoroutine = StartCoroutine(AnimateMaskUp());
     }
 
     public IEnumerator AnimateMaskUp()
