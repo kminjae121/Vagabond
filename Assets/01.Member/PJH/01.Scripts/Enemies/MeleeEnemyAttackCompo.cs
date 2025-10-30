@@ -3,7 +3,7 @@ using _01.Member.KMJ._02.Scripts._01.Player.AttackCompo;
 using Code.Core.Debugs;
 using Code.Core.Stats;
 using Code.Entities;
-using Code.Entities.Combat;
+using Code.Combat;
 using Code.Interfaces;
 using UnityEngine;
 

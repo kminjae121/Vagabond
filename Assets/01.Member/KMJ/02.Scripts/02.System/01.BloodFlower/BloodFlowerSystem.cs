@@ -129,6 +129,7 @@ namespace _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower
             if (_flowerCnt < 0)
             {
                 _flowerCnt = 0;
+                _player.IsDead = true;
                 OnPlayerDeathEvent?.Invoke();
             }
         }

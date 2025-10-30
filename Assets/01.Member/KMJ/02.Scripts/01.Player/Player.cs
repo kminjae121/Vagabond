@@ -67,6 +67,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             InitializeComponents();
             ValidateComponents();
             SubscribeInputEvents();
+            Time.timeScale = 1f;
         }
 
         private void InitializeComponents()

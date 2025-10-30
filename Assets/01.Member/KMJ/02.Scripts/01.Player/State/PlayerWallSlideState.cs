@@ -10,7 +10,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
         private float currentTilt = 0f;
         private const float BLOODTHIEF_TILT_ANGLE = 15f;
         private const float WALL_KICK_AWAY_FORCE = 8f;
-        private float WALL_Foward_AWAY_FORCE = 0;
+        private float wallKickForwardForce = 0;
         private const float WALL_KICK_UP_FORCE = 2f;
         private bool hasRequestedJump = false;
 
@@ -23,14 +23,15 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
         {
             //base.Enter();
             _slidingCompo.PlaySlideSound();
-            WALL_Foward_AWAY_FORCE = _movementCompo.GetCurrentMoveSpeed();
+            wallKickForwardForce = _movementCompo.GetCurrentMoveSpeed();
             _player.isSliding = false;
             _player.SetJumping(true);
             hasRequestedJump = false;
             
             string wallSide = _slidingCompo.GetWallSide();
             
-            currentTilt = wallSide == "Left" ? -BLOODTHIEF_TILT_ANGLE : BLOODTHIEF_TILT_ANGLE;
+            // 플레이어 시야 기준: 오른쪽에 벽 → 왼쪽 기울임, 왼쪽에 벽 → 오른쪽 기울임
+            currentTilt = wallSide == "Right" ? -BLOODTHIEF_TILT_ANGLE : BLOODTHIEF_TILT_ANGLE;
             
             if (_player.camCompo != null)
             {
@@ -73,7 +74,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
             
             if (_movementCompo != null)
             {
-                _movementCompo.ApplyWallKick(wallNormal, _player.transform,WALL_KICK_AWAY_FORCE,WALL_Foward_AWAY_FORCE, WALL_KICK_UP_FORCE);
+                _movementCompo.ApplyWallKick(wallNormal, _player.transform, WALL_KICK_AWAY_FORCE, wallKickForwardForce, WALL_KICK_UP_FORCE);
             }
             
             _slidingCompo.EndWallSlide();

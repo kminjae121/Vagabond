@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using DG.Tweening; // DOTween을 사용하기 위해 필요합니다.
 
-namespace Code.Entities.Combat
+namespace Code.Combat
 {
     public class BowLineRenderer : MonoBehaviour
     {

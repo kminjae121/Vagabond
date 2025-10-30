@@ -141,6 +141,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
             }
             else
             {
+                _player.aimmingComponent.SetUIActive(false);
                 _player.ChangeState("IDLE");
             }
 

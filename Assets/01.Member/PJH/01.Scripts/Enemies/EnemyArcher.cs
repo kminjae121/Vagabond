@@ -1,5 +1,5 @@
 ﻿using Code.Core.Debugs;
-using Code.Entities.Combat;
+using Code.Combat;
 using GondrLib.ObjectPool.RunTime;
 using UnityEngine;
 

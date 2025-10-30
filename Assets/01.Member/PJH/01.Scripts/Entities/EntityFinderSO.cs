@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Code.Entities
 {
@@ -8,9 +7,6 @@ namespace Code.Entities
     {
         public Entity Target { get; private set; }
 
-        public void SetTarget(Entity target)
-        {
-            Target = target;
-        }
+        public void SetTarget(Entity target) => Target = target;
     }
 }
