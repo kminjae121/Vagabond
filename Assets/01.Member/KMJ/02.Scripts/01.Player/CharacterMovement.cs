@@ -1,6 +1,9 @@
-﻿using Code.Core.Debugs;
+﻿using Code.Core._02.Sound;
+using Code.Core.Debugs;
+using Code.Core.GameEvent;
 using Code.Entities;
 using Code.Interfaces;
+using GameEvents;
 using UnityEngine;
 
 namespace _01.Member.KMJ._02.Scripts._01.Player
@@ -48,7 +51,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         [SerializeField] private float groundCheckDistance = 0.1f;
         [SerializeField] private LayerMask whatIsGround;
         
-        [Header("Jump Settings")]
+        [Header("Jump Settings")] 
         [SerializeField] private int _maxJumpCnt = 2;
         [SerializeField] private float coyoteTime = 0.15f;
         [SerializeField] private float jumpBufferTime = 0.2f;
@@ -59,6 +62,9 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         [SerializeField] private bool showSpeedDebug = true;
         [SerializeField] private GUIStyle debugStyle;
         [SerializeField] private float fpsDisplayRate = 4.0f;
+        
+        [SerializeField] private GameEventChannelSO _soundChannel;
+        [SerializeField] private SoundSO jumpSound;
         
         public Vector3 _move;
         public int _jumpCnt { get; set; }
@@ -302,6 +308,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             {
                 UnityLogger.Log("점프 요청 수신 - 버퍼 활성화");
             }
+            var sfxEvt = SoundEvents.PlaySFXEvent.Initializer(transform.position,jumpSound);
+            _soundChannel.RaiseEvent(sfxEvt);
             
             Jump();
         }
