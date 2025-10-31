@@ -26,7 +26,7 @@ MonoBehaviour:
   - rid: 5727384822137487829
   - rid: 5727384822137487847
   - rid: 5727384823889133659
-  m_VersionTimestamp: 638961688874198468
+  m_VersionTimestamp: 638975422086740047
   m_CommandBuffer:
     m_Commands: []
   m_RuntimeBlackboardAsset: {fileID: 7356441234072635701}
@@ -195,7 +195,8 @@ MonoBehaviour:
   - rid: 5727385023497896347
   - rid: 5727385023497896622
   - rid: 5727385023497896694
-  m_VersionTimestamp: 638973615630134126
+  - rid: 5727385369890783329
+  m_VersionTimestamp: 638975422202680870
   m_SerializedVersion: 1
   m_DebugInfo: {fileID: 3321215403223292971}
   m_RuntimeGraph: {fileID: 2590818776878050357}
@@ -525,6 +526,21 @@ MonoBehaviour:
       Type:
         m_SerializableType: System.String, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
+      Tooltip: 
+    NamedChildren: []
+    IsPlaceholder: 0
+  - Name: SpawnShockwave
+    Story: '[Self] spawn shockwave'
+    RuntimeTypeString: SpawnShockwaveAction, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    RuntimeTypeID:
+      m_Value0: 1722950359172666010
+      m_Value1: 10908782910663537342
+    Variables:
+    - Name: Self
+      Type:
+        m_SerializableType: Code.Enemies.EnemyHeavy, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
       Tooltip: 
     NamedChildren: []
     IsPlaceholder: 0
@@ -2796,6 +2812,7 @@ MonoBehaviour:
         - rid: 5727385009594827726
         - rid: 5727385023497896694
         - rid: 5727385009945313841
+        - rid: 5727385369890783329
         - rid: 5727385009945314099
         - rid: 5727384826764591806
         - rid: 5727384824606098288
@@ -3075,7 +3092,7 @@ MonoBehaviour:
     - rid: 5727385009594827726
       type: {class: EventNodeModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
       data:
-        Position: {x: -447.8057, y: 672.1536}
+        Position: {x: -447.1657, y: 671.5136}
         ID:
           m_Value0: 14240373577868070049
           m_Value1: 563262067230566136
@@ -3938,6 +3955,73 @@ MonoBehaviour:
           m_Value1: 0
         Name: 
         m_Value: enemy attack
+    - rid: 5727385369890783329
+      type: {class: ActionNodeModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        Position: {x: -306.54657, y: 785.3444}
+        ID:
+          m_Value0: 6021962804712845582
+          m_Value1: 889842020469128155
+        Parents:
+        - rid: 5727384826764591877
+        PortModels:
+        - rid: 5727385369890783330
+        - rid: 5727385369890783331
+        NodeType:
+          m_SerializableType: SpawnShockwaveAction, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        NodeTypeID:
+          m_Value0: 1722950359172666010
+          m_Value1: 10908782910663537342
+        m_FieldValues:
+        - rid: 5727385369890783332
+    - rid: 5727385369890783330
+      type: {class: PortModel, ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        m_Name: InputPort
+        m_PortDataFlowType: 0
+        m_IsFloating: 0
+        m_NodeModel:
+          rid: 5727385369890783329
+        m_Connections: []
+    - rid: 5727385369890783331
+      type: {class: PortModel, ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        m_Name: OutputPort
+        m_PortDataFlowType: 1
+        m_IsFloating: 0
+        m_NodeModel:
+          rid: 5727385369890783329
+        m_Connections: []
+    - rid: 5727385369890783332
+      type: {class: BehaviorGraphNodeModel/FieldModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        FieldName: Self
+        Type:
+          m_SerializableType: Code.Enemies.EnemyHeavy, Assembly-CSharp, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        LocalValue:
+          rid: 5727385369890783333
+        LinkedVariable:
+          rid: 5727385369890783412
+    - rid: 5727385369890783333
+      type: {class: 'BlackboardVariable`1[[Code.Enemies.EnemyHeavy, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: {fileID: 0}
+    - rid: 5727385369890783412
+      type: {class: 'TypedVariableModel`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 1
+          m_Value1: 0
+        Name: Self
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: 0}
 --- !u!114 &2590818776878050357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3977,7 +4061,7 @@ MonoBehaviour:
           rid: 1732290030447886339
         m_EndedNodes:
           rid: 1732290030447886340
-        m_VersionTimestamp: 638973615630134126
+        m_VersionTimestamp: 638975422202680870
     - rid: 1732290030447886337
       type: {class: BlackboardReference, ns: Unity.Behavior, asm: Unity.Behavior}
       data:

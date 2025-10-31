@@ -1159,54 +1159,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 536297483453789699}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2614499857444463285
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5982526258175184858}
-  - component: {fileID: 4421676187754914500}
-  m_Layer: 8
-  m_Name: Enemy Attack Compo
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5982526258175184858
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2614499857444463285}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 9170751073964879299}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4421676187754914500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2614499857444463285}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 473e374615bb4b15ac7d6a01d7bab9e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackData: {fileID: 11400000, guid: 377c9e407345f644b968f91255748261, type: 2}
-  meleeDamageStat: {fileID: 11400000, guid: c327b7d2f23b1804a95f2b22e2e6aef7, type: 2}
-  casters:
-  - {fileID: 0}
 --- !u!1 &2623441949350840719
 GameObject:
   m_ObjectHideFlags: 0
@@ -1820,7 +1772,6 @@ Transform:
   m_Children:
   - {fileID: 7086252407221212050}
   - {fileID: 4558892826568754830}
-  - {fileID: 5982526258175184858}
   - {fileID: 7171938403755712524}
   - {fileID: 6990947493941210262}
   - {fileID: 73152500949400595}
@@ -2023,8 +1974,10 @@ MonoBehaviour:
   attackRange: 3
   <PlayerChannel>k__BackingField: {fileID: 11400000, guid: 5b30ecdb60edff74aa9fe93eb2f3987a, type: 2}
   <IsBattleState>k__BackingField: 0
-  poolManager: {fileID: 0}
-  shockwaveItem: {fileID: 0}
+  shockwaveItem: {fileID: 11400000, guid: ef8f8f8aaffa6ce49987dc6e938bcfd0, type: 2}
+  shockwaveLifeTime: 3
+  shockwaveDamage: 10
+  shockwaveStartScale: 2.5
 --- !u!114 &585759152007158646
 MonoBehaviour:
   m_ObjectHideFlags: 0
