@@ -1,23 +1,30 @@
+using Code.Combat;
+using Code.Core.Debugs;
+using GondrLib.Dependencies;
+using GondrLib.ObjectPool.RunTime;
 using UnityEngine;
 
 public class DecalSpawner : MonoBehaviour
 {
-    public GameObject decalPrefab;
+    [SerializeField] private PoolItemSO decalItem;
 
-    public float lifetime = 10f;
+    [SerializeField] private float lifetime = 10f;
+    [SerializeField] private float minSize = 0.8f;
+    [SerializeField] private float maxSize = 1.5f;
+
+    [Inject] private PoolManagerMono _poolManager;
     
-    public float minSize = 0.8f;
-    public float maxSize = 1.5f;
-    
-    public void SpawnDecal(RaycastHit hitInfo)
+    public async void SpawnDecal(RaycastHit hitInfo)
     {
-        if (decalPrefab == null)
+        if (decalItem == null)
         {
-            Debug.LogError("Decal Prefab이 할당되지 않았습니다!");
+            UnityLogger.LogError("Decal Item이 할당되지 않았습니다.");
             return;
         }
         
-        GameObject decal = Instantiate(decalPrefab, hitInfo.point, Quaternion.LookRotation(-hitInfo.normal));
+        var decal = _poolManager.Pop<BloodDecal>(decalItem);
+        decal.transform.position = hitInfo.point;
+        decal.transform.rotation = Quaternion.LookRotation(-hitInfo.normal);
         
         float randomRotation = Random.Range(0f, 360f);
         decal.transform.Rotate(Vector3.forward, randomRotation);
@@ -27,6 +34,8 @@ public class DecalSpawner : MonoBehaviour
         
         decal.transform.SetParent(hitInfo.collider.transform);
 
-        Destroy(decal, lifetime);
+        await Awaitable.WaitForSecondsAsync(lifetime);
+        
+        _poolManager.Push(decal);
     }
 }
