@@ -706,13 +706,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1718507354184964336, guid: d4d96b4bb7033eb4ca089476560e01ac, type: 3}
-      propertyPath: shockwaveStartScale
-      value: 5
+    - target: {fileID: 2106316925186702737, guid: d4d96b4bb7033eb4ca089476560e01ac, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4269593606297301829, guid: d4d96b4bb7033eb4ca089476560e01ac, type: 3}
       propertyPath: m_Name
       value: Heavy Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4269593606297301829, guid: d4d96b4bb7033eb4ca089476560e01ac, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9170751073964879299, guid: d4d96b4bb7033eb4ca089476560e01ac, type: 3}
       propertyPath: m_LocalPosition.x
@@ -902,7 +906,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1823503480705445584, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2194105685134278127, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: attackRange
@@ -918,7 +922,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4654559225396563586, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
