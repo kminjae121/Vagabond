@@ -103,11 +103,11 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -7387706064836869012, guid: fe2b70e97431bc245bfddf31d5896cc6, type: 3}
 --- !u!114 &8749793772747289674
@@ -231,11 +231,11 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5495902117074765545, guid: 26709c2793d36334796d474672d96345, type: 3}
 --- !u!114 &6008488742621223407
@@ -283,7 +283,7 @@ Transform:
   m_GameObject: {fileID: 8561277040418234428}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -304,8 +304,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <PoolItem>k__BackingField: {fileID: 11400000, guid: ef8f8f8aaffa6ce49987dc6e938bcfd0, type: 2}
-  lifeTime: 3
-  damage: 10
   shockwaveAttackData: {fileID: 11400000, guid: 53a909d2286d150428107c4349c1c018, type: 2}
 --- !u!114 &9020832807734539117
 MonoBehaviour:

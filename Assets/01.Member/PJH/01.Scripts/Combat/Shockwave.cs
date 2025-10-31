@@ -1,5 +1,6 @@
 ﻿using _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo;
 using _01.Member.KMJ._02.Scripts._01.Player.AttackCompo;
+using Code.Core.Debugs;
 using GondrLib.ObjectPool.RunTime;
 using UnityEngine;
 
@@ -8,15 +9,23 @@ namespace Code.Combat
     public class Shockwave : MonoBehaviour, IPoolable
     {
         [field: SerializeField] public PoolItemSO PoolItem { get; private set; }
-        [SerializeField] private float lifeTime = 3f;
-        [SerializeField] private float damage = 10f;
         [SerializeField] private AttackDataSO shockwaveAttackData;
         
         public GameObject GameObject => gameObject;
 
         private Pool _myPool;
+        
+        private float _damage;
+        private float _lifeTime;
         private float _scale;
 
+        public void Initialize(float lifeTime, float damage, float scale)
+        {
+            _lifeTime = lifeTime;
+            _damage = damage;
+            _scale = scale;
+        }
+        
         private void Update()
         {
             SetShockwaveScale();
@@ -31,9 +40,9 @@ namespace Code.Combat
         
         private void CheckLifeTime()
         {
-            lifeTime -= Time.deltaTime;
+            _lifeTime -= Time.deltaTime;
 
-            if (lifeTime <= 0)
+            if (_lifeTime <= 0)
                 DestroyShockwave();
         }
 
@@ -51,11 +60,12 @@ namespace Code.Combat
             {
                 var data = new DamageData
                 {
-                    damage = damage,
+                    damage = _damage,
                     damageType = shockwaveAttackData.damageType
                 };
 
                 damageable.ApplyDamage(data, other.transform.position, transform.forward, shockwaveAttackData, null);
+                UnityLogger.Log("shockwave apply damage");
             }
         }
         
