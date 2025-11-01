@@ -1,7 +1,6 @@
 ﻿using _01.Member.KMJ._00.Core._01.Entity._01.EntityState;
 using _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo;
 using Code.Entities;
-using UnityEngine;
 
 namespace _01.Member.KMJ._02.Scripts._01.Player.State
 {
