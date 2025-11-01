@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7194159019588466848
 Transform:
   m_ObjectHideFlags: 0
@@ -261,8 +261,8 @@ MonoBehaviour:
         m_CallState: 2
   <PlayerFinder>k__BackingField: {fileID: 11400000, guid: a88336997ab67cf4eaa686d6a5512e7c, type: 2}
   <PoolItem>k__BackingField: {fileID: 11400000, guid: c821be45bce00fa4da1190bc10542b66, type: 2}
-  detectRange: 20
-  attackRange: 12.5
+  detectRange: 35
+  attackRange: 20
   <PlayerChannel>k__BackingField: {fileID: 11400000, guid: 5b30ecdb60edff74aa9fe93eb2f3987a, type: 2}
   <IsBattleState>k__BackingField: 0
   bowLineRenderer: {fileID: 8677003064182343701}
@@ -4985,7 +4985,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7378518609236068279, guid: dbba640ddf9144e4ca70fcc87a585cd6, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
