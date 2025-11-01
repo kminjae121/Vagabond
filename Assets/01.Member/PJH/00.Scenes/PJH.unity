@@ -754,17 +754,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2106316925186702737, guid: d4d96b4bb7033eb4ca089476560e01ac, type: 3}
-      propertyPath: m_Enabled
+    - target: {fileID: 1718507354184964336, guid: d4d96b4bb7033eb4ca089476560e01ac, type: 3}
+      propertyPath: shockwaveLifeTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1718507354184964336, guid: d4d96b4bb7033eb4ca089476560e01ac, type: 3}
+      propertyPath: shockwaveStartScale
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4269593606297301829, guid: d4d96b4bb7033eb4ca089476560e01ac, type: 3}
       propertyPath: m_Name
       value: Heavy Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 4269593606297301829, guid: d4d96b4bb7033eb4ca089476560e01ac, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9170751073964879299, guid: d4d96b4bb7033eb4ca089476560e01ac, type: 3}
       propertyPath: m_LocalPosition.x

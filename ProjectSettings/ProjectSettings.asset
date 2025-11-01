@@ -939,11 +939,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: dd3ad649-0f67-40fa-9f12-e9bf62005fb6
+  cloudProjectId: d4b75c6a-9b0e-4747-9c76-9447220643a2
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: Vagabond
-  organizationId: kimbaekgu121
+  organizationId: kdh8122
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
