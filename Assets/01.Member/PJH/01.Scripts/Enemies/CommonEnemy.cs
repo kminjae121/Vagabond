@@ -1,4 +1,5 @@
 ﻿using _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo;
+using Code.Core.Debugs;
 using Code.Core.GameEvent;
 using Map;
 using UnityEngine;
@@ -28,12 +29,6 @@ namespace Code.Enemies
 
             _stateChangeChannel = GetBlackboardVariable<StateChangeEvent>("StateChannel").Value;
             OnDeathEvent.AddListener(MapOpen.Instance.GetOpenCnt);
-            OnDeathEvent.AddListener(HandleDeadEvent);
-        }
-
-        private void OnDestroy()
-        {
-            OnDeathEvent.RemoveListener(HandleDeadEvent);
         }
 
         public void HandleChildAnimatorMove(Vector3 deltaPosition, Quaternion deltaRotation)
@@ -55,16 +50,19 @@ namespace Code.Enemies
                 _stateChangeChannel.SendEventMessage(EnemyState.CHASE);
         }
 
-        private void HandleDeadEvent()
+        public void HandleDeadEvent()
         {
+            UnityLogger.Log("HandleDeadEvent 메서드 진입");
+            
             if (IsDead)
                 return;
 
             IsDead = true;
             _stateChangeChannel.SendEventMessage(EnemyState.DEAD);
             
-            const float force = -30f;
+            const float force = -100f;
             _ragDollCompo.AddForceToRagDoll(_actionData.HitNormal * force, _actionData.HitPoint);
+            UnityLogger.Log("HandleDeadEvent force 적용");
         }
     }
 }

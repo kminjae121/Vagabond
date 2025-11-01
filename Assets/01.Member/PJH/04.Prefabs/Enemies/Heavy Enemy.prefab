@@ -1918,55 +1918,7 @@ MonoBehaviour:
   OnDeathEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1414081542596308698}
-        m_TargetAssemblyTypeName: Code.Entities.Combat.WeaponHolder, Assembly-CSharp
-        m_MethodName: DropWeapons
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 7632965140368949305}
-        m_TargetAssemblyTypeName: UnityEngine.CapsuleCollider, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1569351266590298437}
-        m_TargetAssemblyTypeName: Code.Enemies.RagDollCompo, Assembly-CSharp
-        m_MethodName: SetRagDollActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1569351266590298437}
-        m_TargetAssemblyTypeName: Code.Enemies.RagDollCompo, Assembly-CSharp
-        m_MethodName: SetColliderActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 8359845753187618746}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo.EntityAnimator,
           Assembly-CSharp
         m_MethodName: HandleDeadEvent
@@ -1979,7 +1931,67 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 8365672696492154754}
+      - m_Target: {fileID: 1718507354184964336}
+        m_TargetAssemblyTypeName: Code.Enemies.EnemyHeavy, Assembly-CSharp
+        m_MethodName: HandleDeadEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1414081542596308698}
+        m_TargetAssemblyTypeName: Code.Combat.WeaponHolder, Assembly-CSharp
+        m_MethodName: DropWeapons
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.CapsuleCollider, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Code.Enemies.RagDollCompo, Assembly-CSharp
+        m_MethodName: SetRagDollActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Code.Enemies.RagDollCompo, Assembly-CSharp
+        m_MethodName: SetColliderActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Code.Code.Feedbacks.DisintegrateFeedback, Assembly-CSharp
         m_MethodName: CreateFeedback
         m_Mode: 1
@@ -2317,6 +2329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d870706328354ccaa7483f4425dae6e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bodyIK: {fileID: 0}
   OnAnimatorMoveEvent:
     m_PersistentCalls:
       m_Calls: []
