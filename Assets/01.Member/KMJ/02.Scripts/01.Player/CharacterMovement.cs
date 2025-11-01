@@ -308,8 +308,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             {
                 UnityLogger.Log("점프 요청 수신 - 버퍼 활성화");
             }
-            var sfxEvt = SoundEvents.PlaySFXEvent.Initializer(transform.position,jumpSound);
-            _soundChannel.RaiseEvent(sfxEvt);
             
             Jump();
         }
@@ -318,6 +316,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         {
             if (isWallSliding)
             {
+                var sfxEvt = SoundEvents.PlaySFXEvent.Initializer(transform.position,jumpSound);
+                _soundChannel.RaiseEvent(sfxEvt);
                 WallJump();
                 return;
             }
@@ -354,6 +354,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
                 pendingJump = true;
                 jumpBufferCounter = 0;
                 _jumpCnt++;
+                var sfxEvt = SoundEvents.PlaySFXEvent.Initializer(transform.position,jumpSound);
+                _soundChannel.RaiseEvent(sfxEvt);
                 
                 if (showJumpDebug)
                 {
@@ -741,8 +743,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             moveDirectionNorm = wishdir;
             
             float wishspeed = wishdir.magnitude * wallSlideForwardSpeed;
-
-            wallSlideForwardSpeed -= Time.deltaTime;
             
             Vector3 horizontalVel = new Vector3(playerVelocity.x, 0, playerVelocity.z);
             Vector3 targetVel = wishdir * wishspeed;

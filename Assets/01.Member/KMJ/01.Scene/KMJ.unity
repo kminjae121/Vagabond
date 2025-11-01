@@ -136,17 +136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!65 &25659325
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -286,17 +275,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!65 &52339853
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -362,17 +340,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!65 &63424033
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -583,13 +550,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d113a363e88673408ceb71dc524f1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Assignments: 
-  _values: []
-  _keys: 
-  Renderer: {fileID: 0}
-  IsRagdollKinematic: 0
-  Debug: 0
-  Scale: 1
 --- !u!1 &75269402 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8591579077575837739, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
@@ -607,13 +567,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d113a363e88673408ceb71dc524f1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Assignments: 
-  _values: []
-  _keys: 
-  Renderer: {fileID: 0}
-  IsRagdollKinematic: 0
-  Debug: 0
-  Scale: 1
 --- !u!1 &79301655
 GameObject:
   m_ObjectHideFlags: 0
@@ -752,17 +705,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!1001 &96365489
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1595,20 +1537,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74d075e443ddc624db302098f7826153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameobjectRoot: {fileID: 0}
-  OverrideFaceMaterial: {fileID: 0}
-  SeparateMeshes: 0
-  ApplyTranslation: 1
-  DefaultBehaviour: 0000000000000000
-  DynamicRagdoll: {fileID: 0}
-  Animator: {fileID: 0}
-  GroupBehaviours: []
-  CreateRigidbody: "\x01\x01"
-  CreateMeshCollider: "\x01\x01"
-  Physics: 0200000002000000
-  Inherit: 
-  _meshRenderer: {fileID: 0}
-  _skinnedMeshRenderer: {fileID: 0}
 --- !u!114 &238027003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1621,13 +1549,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d113a363e88673408ceb71dc524f1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Assignments: 
-  _values: []
-  _keys: 
-  Renderer: {fileID: 0}
-  IsRagdollKinematic: 0
-  Debug: 0
-  Scale: 1
 --- !u!114 &238027004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1640,17 +1561,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!65 &238027005
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1825,13 +1735,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d113a363e88673408ceb71dc524f1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Assignments: 
-  _values: []
-  _keys: 
-  Renderer: {fileID: 0}
-  IsRagdollKinematic: 0
-  Debug: 0
-  Scale: 1
 --- !u!1001 &273601560
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2264,13 +2167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d113a363e88673408ceb71dc524f1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Assignments: 
-  _values: []
-  _keys: 
-  Renderer: {fileID: 0}
-  IsRagdollKinematic: 0
-  Debug: 0
-  Scale: 1
 --- !u!1001 &314896890
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2337,7 +2233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1823503480705445584, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2099341741123079638, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: <animator>k__BackingField
@@ -2373,7 +2269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4654559225396563586, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6899335576119992652, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: castRadius
@@ -2430,17 +2326,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!1001 &341192929
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2520,13 +2405,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d113a363e88673408ceb71dc524f1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Assignments: 
-  _values: []
-  _keys: 
-  Renderer: {fileID: 0}
-  IsRagdollKinematic: 0
-  Debug: 0
-  Scale: 1
 --- !u!1001 &348609850
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2618,17 +2496,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!1001 &364675923
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3082,17 +2949,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!65 &430236746
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3232,17 +3088,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!65 &445709858
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3416,17 +3261,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!65 &479253853
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4143,20 +3977,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74d075e443ddc624db302098f7826153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameobjectRoot: {fileID: 0}
-  OverrideFaceMaterial: {fileID: 0}
-  SeparateMeshes: 0
-  ApplyTranslation: 1
-  DefaultBehaviour: 0000000000000000
-  DynamicRagdoll: {fileID: 0}
-  Animator: {fileID: 0}
-  GroupBehaviours: []
-  CreateRigidbody: "\x01\x01"
-  CreateMeshCollider: "\x01\x01"
-  Physics: 0200000002000000
-  Inherit: 
-  _meshRenderer: {fileID: 0}
-  _skinnedMeshRenderer: {fileID: 0}
 --- !u!1 &617851024 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 592590989025812705, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
@@ -4174,17 +3994,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!65 &617851027
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4688,17 +4497,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!65 &755878324
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4911,17 +4709,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!65 &765031338
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5111,17 +4898,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!1 &781157781 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7244469713809179560, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
@@ -5139,20 +4915,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74d075e443ddc624db302098f7826153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameobjectRoot: {fileID: 0}
-  OverrideFaceMaterial: {fileID: 0}
-  SeparateMeshes: 0
-  ApplyTranslation: 1
-  DefaultBehaviour: 0000000000000000
-  DynamicRagdoll: {fileID: 0}
-  Animator: {fileID: 0}
-  GroupBehaviours: []
-  CreateRigidbody: "\x01\x01"
-  CreateMeshCollider: "\x01\x01"
-  Physics: 0200000002000000
-  Inherit: 
-  _meshRenderer: {fileID: 0}
-  _skinnedMeshRenderer: {fileID: 0}
 --- !u!1 &792909093 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3953383491542529027, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
@@ -5170,17 +4932,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!65 &792909096
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5246,17 +4997,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!1 &825334170 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 979586462447875797, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
@@ -5274,17 +5014,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!1001 &825728595
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5364,17 +5093,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!1001 &845082345
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5805,13 +5523,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d113a363e88673408ceb71dc524f1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Assignments: 
-  _values: []
-  _keys: 
-  Renderer: {fileID: 0}
-  IsRagdollKinematic: 0
-  Debug: 0
-  Scale: 1
 --- !u!1001 &923689904
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5973,20 +5684,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74d075e443ddc624db302098f7826153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameobjectRoot: {fileID: 0}
-  OverrideFaceMaterial: {fileID: 0}
-  SeparateMeshes: 0
-  ApplyTranslation: 1
-  DefaultBehaviour: 0000000000000000
-  DynamicRagdoll: {fileID: 0}
-  Animator: {fileID: 0}
-  GroupBehaviours: []
-  CreateRigidbody: "\x01\x01"
-  CreateMeshCollider: "\x01\x01"
-  Physics: 0200000002000000
-  Inherit: 
-  _meshRenderer: {fileID: 0}
-  _skinnedMeshRenderer: {fileID: 0}
 --- !u!1 &958471983 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 979586462447875797, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
@@ -6004,17 +5701,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!1 &970487756 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 592590989025812705, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
@@ -6032,17 +5718,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!65 &970487759
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6108,17 +5783,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!136 &976912167
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6207,20 +5871,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74d075e443ddc624db302098f7826153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameobjectRoot: {fileID: 0}
-  OverrideFaceMaterial: {fileID: 0}
-  SeparateMeshes: 0
-  ApplyTranslation: 1
-  DefaultBehaviour: 0000000000000000
-  DynamicRagdoll: {fileID: 0}
-  Animator: {fileID: 0}
-  GroupBehaviours: []
-  CreateRigidbody: "\x01\x01"
-  CreateMeshCollider: "\x01\x01"
-  Physics: 0200000002000000
-  Inherit: 
-  _meshRenderer: {fileID: 0}
-  _skinnedMeshRenderer: {fileID: 0}
 --- !u!1001 &1000668504
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6312,17 +5962,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!136 &1004829715
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6596,17 +6235,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!136 &1100708885
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6674,17 +6302,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!65 &1106093865
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7037,17 +6654,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!1001 &1170007952
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7114,7 +6720,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1823503480705445584, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2099341741123079638, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: <animator>k__BackingField
@@ -7150,7 +6756,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4654559225396563586, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6899335576119992652, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: castRadius
@@ -7460,17 +7066,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!136 &1188222422
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7538,17 +7133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!136 &1215484792
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7674,6 +7258,130 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5806299056409700914, guid: 26eb0358047d0974f80c0dc84116fb9b, type: 3}
   m_PrefabInstance: {fileID: 1225096388}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1231149434
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1231149439}
+  - component: {fileID: 1231149438}
+  - component: {fileID: 1231149437}
+  - component: {fileID: 1231149436}
+  - component: {fileID: 1231149435}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1231149435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231149434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d9849642bcb39d4184f4d872d71a193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 8
+--- !u!65 &1231149436
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231149434}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1231149437
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231149434}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1231149438
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231149434}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1231149439
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231149434}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.4928193, y: 0.2971864, z: -70.062}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1241516242
 GameObject:
   m_ObjectHideFlags: 0
@@ -8111,17 +7819,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!65 &1311549323
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8565,17 +8262,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!65 &1336026042
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8795,17 +8481,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!65 &1379962718
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9053,17 +8728,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!1 &1398941619 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3953383491542529027, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
@@ -9108,20 +8772,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74d075e443ddc624db302098f7826153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameobjectRoot: {fileID: 0}
-  OverrideFaceMaterial: {fileID: 0}
-  SeparateMeshes: 0
-  ApplyTranslation: 1
-  DefaultBehaviour: 0000000000000000
-  DynamicRagdoll: {fileID: 0}
-  Animator: {fileID: 0}
-  GroupBehaviours: []
-  CreateRigidbody: "\x01\x01"
-  CreateMeshCollider: "\x01\x01"
-  Physics: 0200000002000000
-  Inherit: 
-  _meshRenderer: {fileID: 0}
-  _skinnedMeshRenderer: {fileID: 0}
 --- !u!65 &1398941625
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9155,17 +8805,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!1 &1410347341 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8591579077575837739, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
@@ -9183,13 +8822,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d113a363e88673408ceb71dc524f1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Assignments: 
-  _values: []
-  _keys: 
-  Renderer: {fileID: 0}
-  IsRagdollKinematic: 0
-  Debug: 0
-  Scale: 1
 --- !u!1 &1417345370 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4309252621538363483, guid: ab3c0873dd601e4419d7062bb55c6854, type: 3}
@@ -9370,17 +9002,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!136 &1455810555
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9693,20 +9314,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74d075e443ddc624db302098f7826153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameobjectRoot: {fileID: 0}
-  OverrideFaceMaterial: {fileID: 0}
-  SeparateMeshes: 0
-  ApplyTranslation: 1
-  DefaultBehaviour: 0000000000000000
-  DynamicRagdoll: {fileID: 0}
-  Animator: {fileID: 0}
-  GroupBehaviours: []
-  CreateRigidbody: "\x01\x01"
-  CreateMeshCollider: "\x01\x01"
-  Physics: 0200000002000000
-  Inherit: 
-  _meshRenderer: {fileID: 0}
-  _skinnedMeshRenderer: {fileID: 0}
 --- !u!1001 &1571240353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10055,17 +9662,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!65 &1626771880
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10275,17 +9871,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!136 &1655264911
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10887,17 +10472,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!1 &1776416527 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4654559225396563586, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
@@ -11005,13 +10579,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d113a363e88673408ceb71dc524f1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Assignments: 
-  _values: []
-  _keys: 
-  Renderer: {fileID: 0}
-  IsRagdollKinematic: 0
-  Debug: 0
-  Scale: 1
 --- !u!1001 &1827623590
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11313,20 +10880,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74d075e443ddc624db302098f7826153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameobjectRoot: {fileID: 0}
-  OverrideFaceMaterial: {fileID: 0}
-  SeparateMeshes: 0
-  ApplyTranslation: 1
-  DefaultBehaviour: 0000000000000000
-  DynamicRagdoll: {fileID: 0}
-  Animator: {fileID: 0}
-  GroupBehaviours: []
-  CreateRigidbody: "\x01\x01"
-  CreateMeshCollider: "\x01\x01"
-  Physics: 0200000002000000
-  Inherit: 
-  _meshRenderer: {fileID: 0}
-  _skinnedMeshRenderer: {fileID: 0}
 --- !u!114 &1839864108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11339,13 +10892,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d113a363e88673408ceb71dc524f1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Assignments: 
-  _values: []
-  _keys: 
-  Renderer: {fileID: 0}
-  IsRagdollKinematic: 0
-  Debug: 0
-  Scale: 1
 --- !u!114 &1839864109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11358,17 +10904,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!65 &1839864110
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11652,17 +11187,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!136 &1900950471
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -11782,17 +11306,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!136 &1936495501
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -11982,17 +11495,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!1 &1952949949
 GameObject:
   m_ObjectHideFlags: 0
@@ -12119,17 +11621,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!65 &1979669136
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12195,20 +11686,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74d075e443ddc624db302098f7826153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameobjectRoot: {fileID: 0}
-  OverrideFaceMaterial: {fileID: 0}
-  SeparateMeshes: 0
-  ApplyTranslation: 1
-  DefaultBehaviour: 0000000000000000
-  DynamicRagdoll: {fileID: 0}
-  Animator: {fileID: 0}
-  GroupBehaviours: []
-  CreateRigidbody: "\x01\x01"
-  CreateMeshCollider: "\x01\x01"
-  Physics: 0200000002000000
-  Inherit: 
-  _meshRenderer: {fileID: 0}
-  _skinnedMeshRenderer: {fileID: 0}
 --- !u!1001 &2019282597
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12300,20 +11777,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74d075e443ddc624db302098f7826153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameobjectRoot: {fileID: 0}
-  OverrideFaceMaterial: {fileID: 0}
-  SeparateMeshes: 0
-  ApplyTranslation: 1
-  DefaultBehaviour: 0000000000000000
-  DynamicRagdoll: {fileID: 0}
-  Animator: {fileID: 0}
-  GroupBehaviours: []
-  CreateRigidbody: "\x01\x01"
-  CreateMeshCollider: "\x01\x01"
-  Physics: 0200000002000000
-  Inherit: 
-  _meshRenderer: {fileID: 0}
-  _skinnedMeshRenderer: {fileID: 0}
 --- !u!114 &2084892770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12326,17 +11789,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!1 &2091218620 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 592590989025812705, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
@@ -12354,17 +11806,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!65 &2091218623
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12581,17 +12022,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e892d961103cb054089efcee88b94672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: 
-  Index: 0
-  Rigidbody: {fileID: 0}
-  Joint: {fileID: 0}
-  Colliders: []
-  Vertices: []
-  Color:
-    r: 1
-    g: 1
-    b: 1
-    a: 1
 --- !u!136 &2121828812
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -12659,13 +12089,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d113a363e88673408ceb71dc524f1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Assignments: 
-  _values: []
-  _keys: 
-  Renderer: {fileID: 0}
-  IsRagdollKinematic: 0
-  Debug: 0
-  Scale: 1
 --- !u!1 &2146693403 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7244469713809179560, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
@@ -12683,20 +12106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74d075e443ddc624db302098f7826153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameobjectRoot: {fileID: 0}
-  OverrideFaceMaterial: {fileID: 0}
-  SeparateMeshes: 0
-  ApplyTranslation: 1
-  DefaultBehaviour: 0000000000000000
-  DynamicRagdoll: {fileID: 0}
-  Animator: {fileID: 0}
-  GroupBehaviours: []
-  CreateRigidbody: "\x01\x01"
-  CreateMeshCollider: "\x01\x01"
-  Physics: 0200000002000000
-  Inherit: 
-  _meshRenderer: {fileID: 0}
-  _skinnedMeshRenderer: {fileID: 0}
 --- !u!1001 &2643490224675019125
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12749,10 +12158,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5561807226946717417, guid: 76669e078e5b7ab43bce51f67bbb082b, type: 3}
-      propertyPath: fadeSpeed
-      value: 4.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12777,3 +12182,4 @@ SceneRoots:
   - {fileID: 2643490224675019125}
   - {fileID: 1170007952}
   - {fileID: 314896890}
+  - {fileID: 1231149439}
