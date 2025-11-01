@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Code.Core.Debugs;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Code.Entities.UI
