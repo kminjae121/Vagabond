@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections;
-using Code.Core.Debugs;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 namespace _01.Member.KMJ._02.Scripts.Enemy
 {
@@ -17,7 +14,7 @@ namespace _01.Member.KMJ._02.Scripts.Enemy
         
 
         public float aimmingTime = 0;
-        public float maxAimmingTime = 0.6f;
+        private float _maxAimmingTime = 0.2f;
 
         private void Awake()
         {
@@ -30,10 +27,10 @@ namespace _01.Member.KMJ._02.Scripts.Enemy
                 OnAimmedThis?.Invoke();
                 aimmingTime += Time.deltaTime;
                 
-                if (aimmingTime >= maxAimmingTime)
+                if (aimmingTime >= _maxAimmingTime)
                 {
                     //uiImage.color = Color.red;
-                    aimmingTime = maxAimmingTime;
+                    aimmingTime = _maxAimmingTime;
                     isTarget = true;
                 }
             }

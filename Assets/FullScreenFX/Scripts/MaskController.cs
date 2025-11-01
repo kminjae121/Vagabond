@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using Code.Core.Debugs;
 
 public class MaskController : MonoBehaviour
 {
