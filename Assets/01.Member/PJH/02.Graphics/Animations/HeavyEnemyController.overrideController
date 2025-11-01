@@ -9,5 +9,5 @@ AnimatorOverrideController:
   m_Name: HeavyEnemyController
   m_Controller: {fileID: 9100000, guid: e173327562c70f84687805fee34d4705, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: 3b01dc49d594f7f46ba672667f2ce555, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 6173c126311775e4cb5a0b8a0a3929a5, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: e4de48eab023b2641a0142f4d12a9641, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 48e7ef1ba986db84c95232c610ed0503, type: 2}

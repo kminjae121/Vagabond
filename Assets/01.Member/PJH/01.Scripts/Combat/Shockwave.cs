@@ -34,7 +34,7 @@ namespace Code.Combat
 
         private void SetShockwaveScale()
         {
-            _scale += Time.deltaTime;
+            _scale += Time.deltaTime * 2;
             transform.localScale = new Vector3(_scale, 0, _scale);
         }
         

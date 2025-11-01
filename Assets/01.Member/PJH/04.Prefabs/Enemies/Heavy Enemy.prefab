@@ -1818,12 +1818,21 @@ MonoBehaviour:
   m_Graph: {fileID: 2590818776878050357, guid: 8a4013493a50a424bb200b9e227c6f45, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 5727385282039251668
+  - rid: 2790232886985884622
   m_OriginalGraph: {fileID: 0}
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
     version: 2
     RefIds:
+    - rid: 2790232886985884622
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 8700590142931373614
+          m_Value1: 111798143729853518
+        Name: AttackDelay
+        m_Value: 5
     - rid: 5727385282039251668
       type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -1972,13 +1981,13 @@ MonoBehaviour:
   <PlayerFinder>k__BackingField: {fileID: 11400000, guid: a88336997ab67cf4eaa686d6a5512e7c, type: 2}
   <PoolItem>k__BackingField: {fileID: 11400000, guid: b523bc41b3a22574dade62b68e468d27, type: 2}
   detectRange: 12.5
-  attackRange: 3
+  attackRange: 5
   <PlayerChannel>k__BackingField: {fileID: 11400000, guid: 5b30ecdb60edff74aa9fe93eb2f3987a, type: 2}
   <IsBattleState>k__BackingField: 0
   shockwaveItem: {fileID: 11400000, guid: ef8f8f8aaffa6ce49987dc6e938bcfd0, type: 2}
-  shockwaveLifeTime: 3
-  shockwaveDamage: 10
-  shockwaveStartScale: 5
+  shockwaveLifeTime: 1
+  shockwaveDamage: 3
+  shockwaveStartScale: 1.5
 --- !u!114 &585759152007158646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2271,7 +2280,7 @@ Animator:
   m_GameObject: {fileID: 4520718733012946499}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 77067909fe079ea4a83b548e83cef377, type: 3}
-  m_Controller: {fileID: 9100000, guid: e173327562c70f84687805fee34d4705, type: 2}
+  m_Controller: {fileID: 22100000, guid: 7f63212966186674b883dda249c771bb, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -59,7 +59,7 @@ namespace Code.Combat
         private void CheckHitZoneStatus(Collider other)
         {
             bool wasInHitZone = isPlayerInHitZone;
-            isPlayerInHitZone = isPlayerInInner && isPlayerInOuter;
+            isPlayerInHitZone = isPlayerInInner && !isPlayerInOuter;
 
             if (wasInHitZone == isPlayerInHitZone)
                 return;
