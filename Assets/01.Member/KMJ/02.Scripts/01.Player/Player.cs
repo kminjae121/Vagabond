@@ -7,7 +7,9 @@ using _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon;
 using _01.Member.KMJ._02.Scripts._01.Player.SlidingCompo;
 using _01.Member.KMJ._02.Scripts._01.Player.State;
 using _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower;
+using Code.Core._02.Sound;
 using Code.Core.Debugs;
+using Code.Core.GameEvent;
 using Code.Entities;
 using GondrLib.Dependencies;
 using UnityEngine;
@@ -55,7 +57,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
 
         [Provide]
         public Player GetPlayer() => this;
-        
         
         
         protected override void Awake()

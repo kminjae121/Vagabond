@@ -1033,7 +1033,7 @@ Transform:
   m_GameObject: {fileID: 2320216162917458116}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.52, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1439,7 +1439,7 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 84704717911d0e94d9db3d17d8a12020, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1505,7 +1505,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &3078284865721128498
@@ -1577,9 +1577,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.28231198
-  m_Height: 2
+  m_Height: 1.824151
   m_Direction: 1
-  m_Center: {x: -0.0020728707, y: 0, z: 0}
+  m_Center: {x: -0.0020728707, y: 0.08792448, z: 0}
 --- !u!143 &2061414580760206797
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1661,9 +1661,9 @@ MonoBehaviour:
   initialFallingFlowerSec: 10
   _bloodFlowerUI: {fileID: 6457719098070134717}
   chargingTimeList:
+  - 0.8
   - 0.6
-  - 0.5
-  - 0.3
+  - 0.4
   - 0.2
   - 0.1
   minusAmount: 0.35
@@ -1758,7 +1758,7 @@ MonoBehaviour:
   aimImage: {fileID: 21300000, guid: 8a1c764bbd99b8a4abc0e8691f8bd2d6, type: 3}
   uiRGBColor: {r: 0.8, g: 0.06666667, b: 0, a: 1}
   <aimingObject>k__BackingField: {fileID: 0}
-  sphereRadius: 1
+  sphereRadius: 1.5
   maxDistance: 200
 --- !u!114 &6115347988773870246
 MonoBehaviour:
@@ -3363,6 +3363,7 @@ MonoBehaviour:
   fpsDisplayRate: 4
   _soundChannel: {fileID: 11400000, guid: 4f30dfb7702d1c3499d65c98bbee00e7, type: 2}
   jumpSound: {fileID: 11400000, guid: 812215dce4d04e4479b3b6147a95fc6f, type: 2}
+  landSound: {fileID: 11400000, guid: d3886cc446d182549be53d26ea8fba23, type: 2}
   _move: {x: 0, y: 0, z: 0}
 --- !u!1 &5278401011164438321
 GameObject:
@@ -4660,7 +4661,7 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 84704717911d0e94d9db3d17d8a12020, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4726,7 +4727,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &6782328319427785371
@@ -6157,7 +6158,7 @@ RectTransform:
   m_GameObject: {fileID: 8330727362163923089}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8609413719820077096}
@@ -6188,14 +6189,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 130709d0cc2485c408166ee8b3f40312, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6802,7 +6803,7 @@ MonoBehaviour:
   _bloodImage: {fileID: 9134627453444062325}
   _exitButton: {fileID: 684661127488602587}
   _retryButton: {fileID: 8066528031472394973}
-  fadeSpeed: 5
+  fadeSpeed: 5.8
   FadeEndEvent:
     m_PersistentCalls:
       m_Calls:

@@ -65,6 +65,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         
         [SerializeField] private GameEventChannelSO _soundChannel;
         [SerializeField] private SoundSO jumpSound;
+
+        [SerializeField] private SoundSO landSound;
         
         public Vector3 _move;
         public int _jumpCnt { get; set; }
@@ -430,6 +432,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
                 
                 if (!wasGrounded)
                 {
+                    var sfxEvt = SoundEvents.PlaySFXEvent.Initializer(transform.position,landSound);
+                    _soundChannel.RaiseEvent(sfxEvt);
                     _jumpCnt = 0;
                 }
             }
