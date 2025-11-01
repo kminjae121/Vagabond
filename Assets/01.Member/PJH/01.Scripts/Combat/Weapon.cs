@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Code.Entities.Combat
+namespace Code.Combat
 {
     public class Weapon : MonoBehaviour
     {

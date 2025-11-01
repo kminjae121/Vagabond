@@ -1,28 +1,29 @@
-using Code.Enemies;
 using System;
 using Unity.Behavior;
 using UnityEngine;
 using Action = Unity.Behavior.Action;
 using Unity.Properties;
 
-[Serializable, GeneratePropertyBag]
-[NodeDescription(name: "SetMove", story: "[Movement] isStop set to [newValue]", category: "Action", id: "ee94d021b029f9fcd638574078ea2946")]
-public partial class SetMoveAction : Action
+namespace Code.Enemies.BT.Actions
 {
-    [SerializeReference] public BlackboardVariable<NavMovement> Movement;
-    [SerializeReference] public BlackboardVariable<bool> NewValue;
-
-    protected override Status OnStart()
+    [Serializable, GeneratePropertyBag]
+    [NodeDescription(name: "SetMove", story: "[Movement] isStop set to [newValue]", category: "Action", id: "ee94d021b029f9fcd638574078ea2946")]
+    public partial class SetMoveAction : Action
     {
-        if (Movement.Value == null)
-            return Status.Failure;
-        
-        Movement.Value.SetStop(NewValue.Value);
-        
-        if (NewValue.Value)
-            Movement.Value.SetDestination(Movement.Value.transform.position);
+        [SerializeReference] public BlackboardVariable<NavMovement> Movement;
+        [SerializeReference] public BlackboardVariable<bool> NewValue;
 
-        return Status.Success;
+        protected override Status OnStart()
+        {
+            if (Movement.Value == null)
+                return Status.Failure;
+        
+            Movement.Value.SetStop(NewValue.Value);
+        
+            if (NewValue.Value)
+                Movement.Value.SetDestination(Movement.Value.transform.position);
+
+            return Status.Success;
+        }
     }
 }
-

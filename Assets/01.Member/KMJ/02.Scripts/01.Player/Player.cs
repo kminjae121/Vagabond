@@ -29,6 +29,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         
         [Header("Debug")]
         [SerializeField] private bool showJumpDebug = false;
+
+        [field:SerializeField] public MaskController maskController {get; private set;}
         
         #region PlayerComponent
 
@@ -54,6 +56,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
         [Provide]
         public Player GetPlayer() => this;
         
+        
+        
         protected override void Awake()
         {
             base.Awake();
@@ -63,6 +67,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             InitializeComponents();
             ValidateComponents();
             SubscribeInputEvents();
+            Time.timeScale = 1f;
         }
 
         private void InitializeComponents()

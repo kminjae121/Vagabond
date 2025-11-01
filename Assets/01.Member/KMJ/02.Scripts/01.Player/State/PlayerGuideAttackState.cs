@@ -1,7 +1,5 @@
 ﻿using _01.Member.KMJ._02.Scripts._01.Player.State;
-using Code.Core.Debugs;
 using Code.Entities;
-using UnityEngine;
 
 public class PlayerGuideAttackState : PlayerState
 {
@@ -11,6 +9,7 @@ public class PlayerGuideAttackState : PlayerState
 
     public override void Enter()
     {
+        _player.maskController.ToggleMaskAnimation(true);
         _player.swordCompo.BalDo();
         _player.atkComponent.isDashAttacking = true;
         _player.SetJumping(false);
@@ -28,6 +27,7 @@ public class PlayerGuideAttackState : PlayerState
         _player.atkComponent.isDashAttacking = false;
         _player.aimmingComponent.SetEnemyNull();
         _player.swordCompo.StopBalDo();
+        _player.maskController.ToggleMaskAnimation(false);
         _player.SetJumping(true);
         //base.Exit();
     }

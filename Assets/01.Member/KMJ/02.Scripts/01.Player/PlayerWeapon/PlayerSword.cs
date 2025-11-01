@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using _00.CORE._02.Scripts.Input;
 using _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo;
 using Code.Core.Stats;
@@ -39,6 +39,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
         private float _atkSpeed;
 
         [SerializeField] private EntityAnimator _animator;
+
+        private Player _player;
         public float AttackSpeed
         {
             get => _atkSpeed;
@@ -57,6 +59,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
         public void Initialize(Entity entity)
         {
             animCompo.SetBool(_swordIdleHash, true);
+            _player = entity as Player;
         }
 
         private void Start()

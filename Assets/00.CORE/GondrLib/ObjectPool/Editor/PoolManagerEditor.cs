@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using GondrLib.ObjectPool.Editor;
 using GondrLib.ObjectPool.RunTime;
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.UIElements;
+#endif
 using UnityEngine;
 using UnityEngine.UIElements;
 

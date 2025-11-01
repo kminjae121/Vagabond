@@ -1,7 +1,5 @@
 ﻿using _01.Member.KMJ._02.Scripts._01.Player.State;
 using Code.Entities;
-using UnityEditor;
-using UnityEngine;
 
     public class PlayerSheldComponent : PlayerState
     {

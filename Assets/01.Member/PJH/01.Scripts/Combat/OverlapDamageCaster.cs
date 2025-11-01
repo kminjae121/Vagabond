@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo;
 using _01.Member.KMJ._02.Scripts._01.Player.AttackCompo;
+using Code.Core.Debugs;
+using Code.Entities;
 using UnityEngine;
 
-namespace Code.Entities.Combat
+namespace Code.Combat
 {
     public class OverlapDamageCaster : DamageCaster
     {
@@ -19,6 +21,8 @@ namespace Code.Entities.Combat
 
             _colliders = new Collider[maxColliderCnt];
             _hitObjects = new HashSet<Transform>(maxColliderCnt);
+            
+            UnityLogger.Log("Init cast 완료");
         }
 
         public void StartCasting()
@@ -30,14 +34,17 @@ namespace Code.Entities.Combat
         {
             int cnt = Physics.OverlapSphereNonAlloc(transform.position, castRadius, _colliders, targetLayer);
 
+            UnityLogger.Log($"근접 적 공격 감지 : {cnt}");
+            
             for (int i = 0; i < cnt; ++i)
             {
                 Transform target = _colliders[i].transform;
                 
-                if (_hitObjects.Contains(target.root) || _hitObjects.Count >= maxColliderCnt)
+                if (_hitObjects.Contains(target) || _hitObjects.Count >= maxColliderCnt)
                     continue;
 
-                _hitObjects.Add(target.root);
+                _hitObjects.Add(target);
+                UnityLogger.Log($"타겟 : {target}");
 
                 Vector3 normal = (_owner.transform.position - target.position).normalized;
                 

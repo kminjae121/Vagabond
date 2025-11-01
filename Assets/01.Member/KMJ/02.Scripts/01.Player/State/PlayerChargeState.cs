@@ -1,6 +1,5 @@
 ﻿using _01.Member.KMJ._02.Scripts._01.Player.AttackCompo;
 using Code.Entities;
-using UnityEngine;
 
 namespace _01.Member.KMJ._02.Scripts._01.Player.State
 {
@@ -30,8 +29,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.State
             {
                 _atkCompo.StartChargingTimer();
             }
-            
-            _player.SetJumping(false);
             
            // base.Enter();
         }

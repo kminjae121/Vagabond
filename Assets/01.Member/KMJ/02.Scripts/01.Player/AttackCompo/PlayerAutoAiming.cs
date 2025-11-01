@@ -1,12 +1,7 @@
-﻿using System;
-using System.ComponentModel;
-using _01.Member.KMJ._02.Scripts.Enemy;
-using Code.Core.Debugs;
+﻿using _01.Member.KMJ._02.Scripts.Enemy;
 using Code.Entities;
 using Code.Interfaces;
 using UnityEngine;
-using Unity.Cinemachine;
-using UnityEditor.Rendering;
 using UnityEngine.UI;
 
 namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
@@ -30,11 +25,15 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
         private EnemyAimUI _aimUI;
         private Transform defaultTarget;
         private bool isLockedOn = false;
+        
+        public float sphereRadius = 0.5f;
+        public float maxDistance = 100f;  
 
         public void Initialize(Entity entity)
         {
             _player = entity as Player;
             _aimUI = aimUI.GetComponent<EnemyAimUI>();
+            
         }
 
         private void Update()
@@ -46,13 +45,14 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
+            
 
-            if (Physics.Raycast(ray, out hit) && ((1 << hit.collider.gameObject.layer) & whatIsEnemy) != 0)
+            if (Physics.SphereCast(ray, sphereRadius, out hit, maxDistance, whatIsEnemy))
             {
                 if (!_player.atkComponent.isDashAttacking && hit.transform.gameObject != null)
-                { 
+                {
                     uiImage.color = Color.white;
-                    SetAIActive(true);
+                    SetUIActive(true);
                     CheckIsTimeOver(hit);
                 }
             }
@@ -60,7 +60,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
             {
                 if (aimingObject.TryGetComponent(out EnemyAimed aimed))
                 {
-                    SetAIActive(false);
+                    SetUIActive(false);
                     uiImage.color = Color.white;
                     uiImage.sprite = baseImage;
                     SetEnemyNull();
@@ -71,9 +71,10 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
             {
                 uiImage.color = Color.white;
                 uiImage.sprite = baseImage;
-                SetAIActive(false);
+                SetUIActive(false);
             }
         }
+
 
         private void CheckIsTimeOver(RaycastHit hit)
         {
@@ -91,7 +92,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
             }
         }
 
-        public void SetAIActive(bool isActive)
+        public void SetUIActive(bool isActive)
         {
             aimUI.SetActive(isActive);
         }
@@ -100,5 +101,22 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
         {
             aimingObject = null;
         }
+        
+        private void OnDrawGizmosSelected()
+        {
+            if (Camera.main == null) return;
+
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            
+
+            Gizmos.color = Color.red;
+            
+            Gizmos.DrawWireSphere(ray.origin, sphereRadius);
+            
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(ray.origin, ray.origin + ray.direction * maxDistance);
+        }
+
+
     }
 }

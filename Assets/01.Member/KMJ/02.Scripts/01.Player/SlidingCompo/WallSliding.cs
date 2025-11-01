@@ -1,5 +1,8 @@
-﻿using Code.Entities;
+﻿using Code.Core._02.Sound;
+using Code.Core.GameEvent;
+using Code.Entities;
 using Code.Interfaces;
+using GameEvents;
 using UnityEngine;
 
 namespace _01.Member.KMJ._02.Scripts._01.Player.SlidingCompo
@@ -17,6 +20,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.SlidingCompo
 
         private CharacterMovement _movementCompo;
         private Player _player;
+        [SerializeField] private SoundSO slideSound;
+        [SerializeField] private GameEventChannelSO _soundChannel;
         private bool isSlidingKeyHeld = false;
         private Vector3 currentWallNormal = Vector3.zero;
         private string currentWallSide = "None";
@@ -95,9 +100,48 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.SlidingCompo
             return "None";
         }
 
+        public void PlaySlideSound()
+        {
+            var sfxEvt = SoundEvents.PlayLongSFXEvent.Initializer(transform.position, slideSound, 1);
+            _soundChannel.RaiseEvent(sfxEvt);
+        }
+
+        public void StopSlideSound()
+        {
+            _soundChannel.RaiseEvent(SoundEvents.StopLongSFXEvent.Initializer(1));
+        }
+
         public string GetWallSide()
         {
-            return currentWallSide;
+            return DetermineWallSideByPlayerView();
+        }
+        
+        /// <summary>
+        /// 플레이어의 시야(Forward) 벡터를 기준으로 벽이 오른쪽인지 왼쪽인지 판단
+        /// 벽이 플레이어의 오른쪽에 있으면 "Right", 왼쪽에 있으면 "Left"
+        /// </summary>
+        private string DetermineWallSideByPlayerView()
+        {
+            if (_player == null) return "None";
+            
+            Vector3 playerRight = _player.transform.right;
+            
+            // 현재 벽의 위치 (왼쪽 또는 오른쪽 감지 위치의 중점)
+            Vector3 wallPosition = (leftPos.position + rightPos.position) / 2f;
+            Vector3 playerToWall = (wallPosition - _player.transform.position).normalized;
+            
+            // 플레이어의 오른쪽 벡터와의 내적 계산
+            float dotRight = Vector3.Dot(playerToWall, playerRight);
+            
+            // 내적 값이 양수면 벽이 오른쪽, 음수면 왼쪽
+            if (dotRight > 0)
+            {
+                return "Right";
+            }
+            else
+            {
+                return "Left";
+            }
         }
         
         public Vector3 GetWallNormal()

@@ -1,18 +1,15 @@
 ﻿using _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo;
 using _01.Member.KMJ._02.Scripts._01.Player.AttackCompo;
-using Code.Core.Debugs;
+using _01.Member.KMJ._02.Scripts._02.System._01.BloodFlower;
 using Code.Core.Stats;
 using Code.Interfaces;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Code.Entities
 {
     public class EntityHealth : MonoBehaviour, IEntityComponent, IDamageable, IAfterInitialize
     {
-        private Entity _entity;
-        private ActionData _actionData;
-        private EntityStatCompo _statCompo;
-
         [SerializeField] private StatSO hpStat;
         [SerializeField] private float maxHealth;
         [SerializeField] private float currentHealth;
@@ -20,10 +17,17 @@ namespace Code.Entities
         public float CurrentHealth => currentHealth;
         public float MaxHealth => maxHealth;
         
-        
         public delegate void OnHealthChanged(float current, float max);
 
         public event OnHealthChanged OnHealthChangedEvent;
+
+        [SerializeField] private BloodFlowerSystem _bloodFlowerSystem = null;
+            
+        public UnityEvent OnMinusHealthEvent;
+        
+        private Entity _entity;
+        private ActionData _actionData;
+        private EntityStatCompo _statCompo;
 
         public void Initialize(Entity entity)
         {
@@ -43,18 +47,21 @@ namespace Code.Entities
             _statCompo.UnSubscribeStat(hpStat, HandleMaxHPChanged);
         }
 
-        private void HandleMaxHPChanged(StatSO stat, float currentvalue, float previousvalue)
+        private void HandleMaxHPChanged(StatSO stat, float currentValue, float previousValue)
         {
-            float changed = currentvalue - previousvalue; //얼마만큼 변했는지를 측정
-            maxHealth = currentvalue;
-            if (changed > 0)
-                currentHealth = Mathf.Clamp(currentHealth + changed, 0, maxHealth);
-            else
-                currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+            float changed = currentValue - previousValue; //얼마만큼 변했는지를 측정
+            maxHealth = currentValue;
+            
+            currentHealth = changed > 0 ?
+                Mathf.Clamp(currentHealth + changed, 0, maxHealth) 
+                : Mathf.Clamp(currentHealth, 0, maxHealth);
         }
 
         public void ApplyDamage(DamageData damageData, Vector3 hitPoint, Vector3 hitNormal, AttackDataSO attackData, Entity dealer)
         {
+            if (_entity.IsDead)
+                return;
+            
             _actionData.HitNormal = hitNormal;
             _actionData.HitPoint = hitPoint;
             _actionData.HitByPowerAttack = attackData.isPowerAttack;
@@ -62,20 +69,23 @@ namespace Code.Entities
 
             currentHealth = Mathf.Clamp(currentHealth - damageData.damage, 0, maxHealth);
 
-            UnityLogger.Log(currentHealth);
             OnHealthChangedEvent?.Invoke(currentHealth, maxHealth);
-            
-            //int typeHash = damageData.isCritical ? criticalText.nameHash : normalText.nameHash;
-            Vector3 position = hitPoint + new Vector3(0, 1.5f);
 
             
-
             if (currentHealth <= 0)
-            {
                 _entity.OnDeathEvent?.Invoke();
-            }
-            
+
+            OnMinusHealthEvent?.Invoke();
             _entity.OnHitEvent?.Invoke();
+            
+            if (_bloodFlowerSystem != null)
+            {
+                _bloodFlowerSystem.GetDamage(damageData.damage);
+            }
+            else
+            {
+                return;
+            }
         }
     }
 }
