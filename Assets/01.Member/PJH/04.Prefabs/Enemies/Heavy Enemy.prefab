@@ -430,9 +430,9 @@ GameObject:
   - component: {fileID: 2119827862836923452}
   - component: {fileID: 7735010145063783499}
   - component: {fileID: 8835813020185334115}
-  - component: {fileID: 1742853843427571852}
   - component: {fileID: 3069439183548430997}
   - component: {fileID: 2718489507981682478}
+  - component: {fileID: 6982236860655631384}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -508,28 +508,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1742853843427571852
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 989504823437341445}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -3329902420748629119, guid: 254d4542653f16e4881bef144ca13e92, type: 3}
 --- !u!54 &3069439183548430997
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -569,8 +547,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 036b8fca03304e849e08218e39a59346, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponCollider: {fileID: 1742853843427571852}
+  weaponCollider: {fileID: 6982236860655631384}
   weaponRigid: {fileID: 3069439183548430997}
+--- !u!65 &6982236860655631384
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989504823437341445}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.012241866, y: 0.0025580274, z: 0.018819911}
+  m_Center: {x: 0.000056656594, y: -0.00062053854, z: -0.0020926557}
 --- !u!1 &1016428047170350602
 GameObject:
   m_ObjectHideFlags: 0
@@ -1750,6 +1749,7 @@ GameObject:
   - component: {fileID: 3565712286016936496}
   - component: {fileID: 1718507354184964336}
   - component: {fileID: 585759152007158646}
+  - component: {fileID: 1945522320773015883}
   m_Layer: 8
   m_Name: Heavy Enemy
   m_TagString: Untagged
@@ -1767,7 +1767,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7086252407221212050}
@@ -2023,6 +2023,22 @@ MonoBehaviour:
   OnMinusHealthEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1945522320773015883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4269593606297301829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 398da92b8e3c4d01bf30985e20253057, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnAimmedThis:
+    m_PersistentCalls:
+      m_Calls: []
+  aimmingTime: 0
 --- !u!1 &4348658384929206834
 GameObject:
   m_ObjectHideFlags: 0
