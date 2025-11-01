@@ -1,6 +1,4 @@
-﻿using System;
-using Code.Entities;
-using UnityEngine;
+﻿using Code.Entities;
 
 namespace _01.Member.KMJ._02.Scripts.Test
 {
