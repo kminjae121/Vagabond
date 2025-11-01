@@ -14,7 +14,7 @@ public class DecalSpawner : MonoBehaviour
 
     [Inject] private PoolManagerMono _poolManager;
     
-    public async void SpawnDecal(RaycastHit hitInfo)
+    public async void SpawnDecal()
     {
         if (decalItem == null)
         {
@@ -23,8 +23,7 @@ public class DecalSpawner : MonoBehaviour
         }
         
         var decal = _poolManager.Pop<BloodDecal>(decalItem);
-        decal.transform.position = hitInfo.point;
-        decal.transform.rotation = Quaternion.LookRotation(-hitInfo.normal);
+        decal.transform.position = transform.position;
         
         float randomRotation = Random.Range(0f, 360f);
         decal.transform.Rotate(Vector3.forward, randomRotation);
@@ -32,7 +31,7 @@ public class DecalSpawner : MonoBehaviour
         float randomSize = Random.Range(minSize, maxSize);
         decal.transform.localScale = Vector3.one * randomSize;
         
-        decal.transform.SetParent(hitInfo.collider.transform);
+        decal.transform.SetParent(transform.root.transform);
 
         await Awaitable.WaitForSecondsAsync(lifetime);
         
