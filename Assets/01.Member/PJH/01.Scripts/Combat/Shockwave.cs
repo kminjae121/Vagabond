@@ -18,12 +18,13 @@ namespace Code.Combat
         private float _damage;
         private float _lifeTime;
         private float _scale;
+        private float _startScale;
 
         public void Initialize(float lifeTime, float damage, float scale)
         {
             _lifeTime = lifeTime;
             _damage = damage;
-            _scale = scale;
+            _startScale = _scale = scale;
         }
         
         private void Update()
@@ -76,6 +77,7 @@ namespace Code.Combat
 
         public void ResetItem()
         {
+            transform.localScale = new Vector3(_startScale, 1, _startScale);
         }
     }
 }
