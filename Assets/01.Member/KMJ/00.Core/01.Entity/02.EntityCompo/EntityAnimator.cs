@@ -1,5 +1,6 @@
 ﻿
 using Code.Interfaces;
+using RootMotion.FinalIK;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,6 +8,8 @@ namespace _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo
 {
     public class EntityAnimator : MonoBehaviour, IEntityComponent
     {
+        [SerializeField] private FullBodyBipedIK bodyIK;
+        
         public UnityEvent<Vector3, Quaternion> OnAnimatorMoveEvent;
         [field: SerializeField] public Animator animator {get; private set;}
 
@@ -36,6 +39,7 @@ namespace _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo
         
         public void HandleDeadEvent()
         {
+            bodyIK.enabled = false;
             animator.enabled = false;
         }
 

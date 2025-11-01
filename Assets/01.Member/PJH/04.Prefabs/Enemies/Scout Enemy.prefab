@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 4145306520942460368}
   - component: {fileID: 1194893225496313561}
   - component: {fileID: 5444513648741381325}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Spear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1836,7 +1836,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6899648904246607418}
   - component: {fileID: 547621701837694981}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Weapon Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1873,6 +1873,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapons:
   - {fileID: 5444513648741381325}
+  - {fileID: 5570115177505023222}
 --- !u!1 &4601920552961307511
 GameObject:
   m_ObjectHideFlags: 0
@@ -2079,9 +2080,34 @@ MonoBehaviour:
   OnDeathEvent:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 2099341741123079638}
+        m_TargetAssemblyTypeName: _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo.EntityAnimator,
+          Assembly-CSharp
+        m_MethodName: HandleDeadEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2194105685134278127}
+        m_TargetAssemblyTypeName: Code.Enemies.EnemyScout, Assembly-CSharp
+        m_MethodName: HandleDeadEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 547621701837694981}
         m_TargetAssemblyTypeName: Code.Entities.Combat.WeaponHolder, Assembly-CSharp
-        m_MethodName: DropWeapons
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2119,19 +2145,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Code.Enemies.RagDollCompo, Assembly-CSharp
         m_MethodName: SetColliderActive
         m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 2099341741123079638}
-        m_TargetAssemblyTypeName: _01.Member.KMJ._00.Core._01.Entity._02.EntityCompo.EntityAnimator,
-          Assembly-CSharp
-        m_MethodName: HandleDeadEvent
-        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3759,6 +3772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d870706328354ccaa7483f4425dae6e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bodyIK: {fileID: 5159794096070845378}
   OnAnimatorMoveEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -4425,7 +4439,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 552402524979118499, guid: 34b454ea562690749a1eecf2ac73f226, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 552402524979118499, guid: 34b454ea562690749a1eecf2ac73f226, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4615,7 +4629,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3334919384369380814, guid: 94f5437f14e6b7642952c1d3af00cdd1, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8115156905055756069, guid: 94f5437f14e6b7642952c1d3af00cdd1, type: 3}
       propertyPath: castRadius
@@ -4710,16 +4724,98 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mask
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a764483fb10b54b4e9811446a7b2e875, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a764483fb10b54b4e9811446a7b2e875, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5208527122249941033}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a764483fb10b54b4e9811446a7b2e875, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3520593225661325277}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a764483fb10b54b4e9811446a7b2e875, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5570115177505023222}
   m_SourcePrefab: {fileID: 100100000, guid: a764483fb10b54b4e9811446a7b2e875, type: 3}
 --- !u!4 &3942530956868979089 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a764483fb10b54b4e9811446a7b2e875, type: 3}
   m_PrefabInstance: {fileID: 3547735316189507194}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4466866768351613739 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a764483fb10b54b4e9811446a7b2e875, type: 3}
+  m_PrefabInstance: {fileID: 3547735316189507194}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &5208527122249941033
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4466866768351613739}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0
+  m_Height: 0
+  m_Direction: 1
+  m_Center: {x: -0.00020853644, y: 0.0000612609, z: 0.00048112043}
+--- !u!54 &3520593225661325277
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4466866768351613739}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &5570115177505023222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4466866768351613739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 036b8fca03304e849e08218e39a59346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponCollider: {fileID: 5208527122249941033}
+  weaponRigid: {fileID: 3520593225661325277}
 --- !u!1001 &6752337299182991679
 PrefabInstance:
   m_ObjectHideFlags: 0

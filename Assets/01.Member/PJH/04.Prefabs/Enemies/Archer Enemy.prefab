@@ -174,8 +174,20 @@ MonoBehaviour:
   OnDeathEvent:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 931082062621711355}
+        m_TargetAssemblyTypeName: Code.Enemies.EnemyArcher, Assembly-CSharp
+        m_MethodName: HandleDeadEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 6894368737860995855}
-        m_TargetAssemblyTypeName: Code.Entities.Combat.WeaponHolder, Assembly-CSharp
+        m_TargetAssemblyTypeName: Code.Combat.WeaponHolder, Assembly-CSharp
         m_MethodName: DropWeapons
         m_Mode: 1
         m_Arguments:
@@ -2410,6 +2422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d870706328354ccaa7483f4425dae6e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bodyIK: {fileID: 2528026239485037402}
   OnAnimatorMoveEvent:
     m_PersistentCalls:
       m_Calls: []

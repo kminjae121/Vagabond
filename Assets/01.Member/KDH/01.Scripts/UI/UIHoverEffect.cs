@@ -1,8 +1,8 @@
-﻿using UnityEngine;
-using DG.Tweening;
+﻿using DG.Tweening;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Code.Entities.UI
+namespace _01.Member.KDH._01.Scripts.UI
 {
     public class UIHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {

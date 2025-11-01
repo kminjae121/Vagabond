@@ -9,6 +9,7 @@ public class SettingsMenu : Panel
 {
     [SerializeField] private Button closeButton = null;
     [SerializeField] private AudioMixer audioMixer;
+    [SerializeField] private Toggle timerDisplayToggle = null;
 
     [SerializeField] private string masterGroupName;
     [SerializeField] private string bgmGroupName;
@@ -25,6 +26,11 @@ public class SettingsMenu : Panel
         if (closeButton != null)
         {
             closeButton.onClick.AddListener(CloseSettings);
+        }
+
+        if (timerDisplayToggle != null)
+        {
+            timerDisplayToggle.onValueChanged.AddListener(OnTimerDisplayToggled);
         }
         
         base.Initialize();
@@ -67,15 +73,22 @@ public class SettingsMenu : Panel
         audioMixer.SetFloat(masterGroupName, Mathf.Log10(Mathf.Clamp(value, 0.0001f, 1f)) * 20);
     }
 
-
     public void SetBGMVolume(float value)
     {
         audioMixer.SetFloat(bgmGroupName, Mathf.Log10(Mathf.Clamp(value, 0.0001f, 1f)) * 20);
     }
 
-
     public void SetSFXVolume(float value)
     {
         audioMixer.SetFloat(sfxGroupName, Mathf.Log10(Mathf.Clamp(value, 0.0001f, 1f)) * 20);
+    }
+
+    private void OnTimerDisplayToggled(bool isOn)
+    {
+        TimerDisplay timerDisplay = FindFirstObjectByType<TimerDisplay>();
+        if (timerDisplay != null)
+        {
+            timerDisplay.gameObject.SetActive(isOn);
+        }
     }
 }

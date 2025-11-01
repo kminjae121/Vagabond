@@ -31,7 +31,7 @@ public class DecalSpawner : MonoBehaviour
         float randomSize = Random.Range(minSize, maxSize);
         decal.transform.localScale = Vector3.one * randomSize;
         
-        decal.transform.SetParent(transform.root.transform);
+        decal.transform.SetParent(null);
 
         await Awaitable.WaitForSecondsAsync(lifetime);
         
