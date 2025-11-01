@@ -1756,7 +1756,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &9170751073964879299
 Transform:
   m_ObjectHideFlags: 0
@@ -1819,21 +1819,12 @@ MonoBehaviour:
   m_Graph: {fileID: 2590818776878050357, guid: 8a4013493a50a424bb200b9e227c6f45, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 5727385282039251668
-  - rid: 2790232886985884622
   m_OriginalGraph: {fileID: 0}
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
     version: 2
     RefIds:
-    - rid: 2790232886985884622
-      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 8700590142931373614
-          m_Value1: 111798143729853518
-        Name: AttackDelay
-        m_Value: 5
     - rid: 5727385282039251668
       type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -2005,7 +1996,7 @@ MonoBehaviour:
         m_CallState: 2
   <PlayerFinder>k__BackingField: {fileID: 11400000, guid: a88336997ab67cf4eaa686d6a5512e7c, type: 2}
   <PoolItem>k__BackingField: {fileID: 11400000, guid: b523bc41b3a22574dade62b68e468d27, type: 2}
-  detectRange: 12.5
+  detectRange: 20
   attackRange: 5
   <PlayerChannel>k__BackingField: {fileID: 11400000, guid: 5b30ecdb60edff74aa9fe93eb2f3987a, type: 2}
   <IsBattleState>k__BackingField: 0
@@ -2159,7 +2150,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4449595075858936530}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
