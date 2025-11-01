@@ -743,8 +743,6 @@ namespace _01.Member.KMJ._02.Scripts._01.Player
             moveDirectionNorm = wishdir;
             
             float wishspeed = wishdir.magnitude * wallSlideForwardSpeed;
-
-            wallSlideForwardSpeed -= Time.deltaTime;
             
             Vector3 horizontalVel = new Vector3(playerVelocity.x, 0, playerVelocity.z);
             Vector3 targetVel = wishdir * wishspeed;
