@@ -2141,8 +2141,8 @@ MonoBehaviour:
         m_CallState: 2
   <PlayerFinder>k__BackingField: {fileID: 11400000, guid: a88336997ab67cf4eaa686d6a5512e7c, type: 2}
   <PoolItem>k__BackingField: {fileID: 11400000, guid: d6ad5eb2b5965aa48b7ab19405023f53, type: 2}
-  detectRange: 6
-  attackRange: 3
+  detectRange: 12.5
+  attackRange: 2
   <PlayerChannel>k__BackingField: {fileID: 11400000, guid: 5b30ecdb60edff74aa9fe93eb2f3987a, type: 2}
   <IsBattleState>k__BackingField: 0
 --- !u!114 &5911425151533435393
@@ -3722,7 +3722,7 @@ Animator:
   m_GameObject: {fileID: 8591579077575837739}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 77067909fe079ea4a83b548e83cef377, type: 3}
-  m_Controller: {fileID: 9100000, guid: e173327562c70f84687805fee34d4705, type: 2}
+  m_Controller: {fileID: 22100000, guid: 4fcd2fd3b7ad66e45aa02be3d79d659e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
