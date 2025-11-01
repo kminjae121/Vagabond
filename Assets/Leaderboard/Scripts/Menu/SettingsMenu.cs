@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class SettingsMenu : Panel
 {
     [SerializeField] private Button closeButton = null;
+    [SerializeField] private AudioMixer audioMixer;
 
+    [SerializeField] private string masterGroupName;
+    [SerializeField] private string bgmGroupName;
+    [SerializeField] private string sfxGroupName;
     private bool settingsOpen = false;
 
     public override void Initialize()
@@ -55,5 +60,22 @@ public class SettingsMenu : Panel
     private void CloseSettings()
     {
         Close();
+    }
+    
+    public void SetMasterVolume(float value)
+    {
+        audioMixer.SetFloat(masterGroupName, Mathf.Log10(Mathf.Clamp(value, 0.0001f, 1f)) * 20);
+    }
+
+
+    public void SetBGMVolume(float value)
+    {
+        audioMixer.SetFloat(bgmGroupName, Mathf.Log10(Mathf.Clamp(value, 0.0001f, 1f)) * 20);
+    }
+
+
+    public void SetSFXVolume(float value)
+    {
+        audioMixer.SetFloat(sfxGroupName, Mathf.Log10(Mathf.Clamp(value, 0.0001f, 1f)) * 20);
     }
 }
