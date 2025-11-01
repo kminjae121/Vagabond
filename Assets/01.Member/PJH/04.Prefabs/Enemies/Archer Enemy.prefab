@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7194159019588466848
 Transform:
   m_ObjectHideFlags: 0
@@ -4956,6 +4956,10 @@ PrefabInstance:
     - target: {fileID: 4557100803904855756, guid: dbba640ddf9144e4ca70fcc87a585cd6, type: 3}
       propertyPath: FeedbackComplete.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Code.Enemies.EnemyArcher, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7378518609236068279, guid: dbba640ddf9144e4ca70fcc87a585cd6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

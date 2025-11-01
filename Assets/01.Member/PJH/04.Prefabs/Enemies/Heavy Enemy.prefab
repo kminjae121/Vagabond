@@ -1756,7 +1756,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9170751073964879299
 Transform:
   m_ObjectHideFlags: 0
@@ -1985,9 +1985,9 @@ MonoBehaviour:
   <PlayerChannel>k__BackingField: {fileID: 11400000, guid: 5b30ecdb60edff74aa9fe93eb2f3987a, type: 2}
   <IsBattleState>k__BackingField: 0
   shockwaveItem: {fileID: 11400000, guid: ef8f8f8aaffa6ce49987dc6e938bcfd0, type: 2}
-  shockwaveLifeTime: 1
+  shockwaveLifeTime: 2
   shockwaveDamage: 3
-  shockwaveStartScale: 1.5
+  shockwaveStartScale: 1
 --- !u!114 &585759152007158646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2134,7 +2134,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4449595075858936530}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
