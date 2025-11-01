@@ -2422,7 +2422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d870706328354ccaa7483f4425dae6e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bodyIK: {fileID: 0}
+  bodyIK: {fileID: 2528026239485037402}
   OnAnimatorMoveEvent:
     m_PersistentCalls:
       m_Calls: []
