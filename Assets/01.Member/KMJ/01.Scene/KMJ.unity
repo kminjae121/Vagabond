@@ -12705,10 +12705,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 500253704441295646, guid: 76669e078e5b7ab43bce51f67bbb082b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4647115771025185991, guid: 76669e078e5b7ab43bce51f67bbb082b, type: 3}
       propertyPath: m_Name
       value: PlayerObject
@@ -12753,25 +12749,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6905111054835064449, guid: 76669e078e5b7ab43bce51f67bbb082b, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 88532a819aae1c040be0f9988d58122d, type: 2}
-    - target: {fileID: 6905111054835064451, guid: 76669e078e5b7ab43bce51f67bbb082b, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8155393258263634234, guid: 76669e078e5b7ab43bce51f67bbb082b, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8155393258263634234, guid: 76669e078e5b7ab43bce51f67bbb082b, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8155393258263634234, guid: 76669e078e5b7ab43bce51f67bbb082b, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5
+    - target: {fileID: 5561807226946717417, guid: 76669e078e5b7ab43bce51f67bbb082b, type: 3}
+      propertyPath: fadeSpeed
+      value: 4.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -6802,7 +6802,7 @@ MonoBehaviour:
   _bloodImage: {fileID: 9134627453444062325}
   _exitButton: {fileID: 684661127488602587}
   _retryButton: {fileID: 8066528031472394973}
-  fadeSpeed: 3.6
+  fadeSpeed: 4.3
   FadeEndEvent:
     m_PersistentCalls:
       m_Calls:
