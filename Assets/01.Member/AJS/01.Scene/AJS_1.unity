@@ -19317,6 +19317,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6294410539071950232, guid: 76669e078e5b7ab43bce51f67bbb082b, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 84704717911d0e94d9db3d17d8a12020, type: 2}
+    - target: {fileID: 6294410539071950232, guid: 76669e078e5b7ab43bce51f67bbb082b, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7826009230911574135, guid: 76669e078e5b7ab43bce51f67bbb082b, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 84704717911d0e94d9db3d17d8a12020, type: 2}
+    - target: {fileID: 7826009230911574135, guid: 76669e078e5b7ab43bce51f67bbb082b, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
