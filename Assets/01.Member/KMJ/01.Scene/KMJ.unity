@@ -142,7 +142,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!65 &25659325
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -288,7 +292,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!65 &52339853
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -360,7 +368,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!65 &63424033
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -746,7 +758,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!1001 &96365489
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1587,10 +1603,12 @@ MonoBehaviour:
   DynamicRagdoll: {fileID: 0}
   Animator: {fileID: 0}
   GroupBehaviours: []
-  CreateRigidbody: 0101
-  CreateMeshCollider: 0101
+  CreateRigidbody: "\x01\x01"
+  CreateMeshCollider: "\x01\x01"
   Physics: 0200000002000000
-  Inherit: 0000
+  Inherit: 
+  _meshRenderer: {fileID: 0}
+  _skinnedMeshRenderer: {fileID: 0}
 --- !u!114 &238027003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1628,7 +1646,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!65 &238027005
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2414,7 +2436,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!1001 &341192929
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2598,7 +2624,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!1001 &364675923
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3058,7 +3088,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!65 &430236746
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3204,7 +3238,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!65 &445709858
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3384,7 +3422,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!65 &479253853
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4109,10 +4151,12 @@ MonoBehaviour:
   DynamicRagdoll: {fileID: 0}
   Animator: {fileID: 0}
   GroupBehaviours: []
-  CreateRigidbody: 0101
-  CreateMeshCollider: 0101
+  CreateRigidbody: "\x01\x01"
+  CreateMeshCollider: "\x01\x01"
   Physics: 0200000002000000
-  Inherit: 0000
+  Inherit: 
+  _meshRenderer: {fileID: 0}
+  _skinnedMeshRenderer: {fileID: 0}
 --- !u!1 &617851024 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 592590989025812705, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
@@ -4136,7 +4180,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!65 &617851027
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4646,7 +4694,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!65 &755878324
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4865,7 +4917,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!65 &765031338
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5061,7 +5117,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!1 &781157781 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7244469713809179560, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
@@ -5087,10 +5147,12 @@ MonoBehaviour:
   DynamicRagdoll: {fileID: 0}
   Animator: {fileID: 0}
   GroupBehaviours: []
-  CreateRigidbody: 0101
-  CreateMeshCollider: 0101
+  CreateRigidbody: "\x01\x01"
+  CreateMeshCollider: "\x01\x01"
   Physics: 0200000002000000
-  Inherit: 0000
+  Inherit: 
+  _meshRenderer: {fileID: 0}
+  _skinnedMeshRenderer: {fileID: 0}
 --- !u!1 &792909093 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3953383491542529027, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
@@ -5114,7 +5176,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!65 &792909096
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5186,7 +5252,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!1 &825334170 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 979586462447875797, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
@@ -5210,7 +5280,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!1001 &825728595
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5296,7 +5370,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!1001 &845082345
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5903,10 +5981,12 @@ MonoBehaviour:
   DynamicRagdoll: {fileID: 0}
   Animator: {fileID: 0}
   GroupBehaviours: []
-  CreateRigidbody: 0101
-  CreateMeshCollider: 0101
+  CreateRigidbody: "\x01\x01"
+  CreateMeshCollider: "\x01\x01"
   Physics: 0200000002000000
-  Inherit: 0000
+  Inherit: 
+  _meshRenderer: {fileID: 0}
+  _skinnedMeshRenderer: {fileID: 0}
 --- !u!1 &958471983 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 979586462447875797, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
@@ -5930,7 +6010,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!1 &970487756 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 592590989025812705, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
@@ -5954,7 +6038,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!65 &970487759
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6026,7 +6114,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!136 &976912167
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6123,10 +6215,12 @@ MonoBehaviour:
   DynamicRagdoll: {fileID: 0}
   Animator: {fileID: 0}
   GroupBehaviours: []
-  CreateRigidbody: 0101
-  CreateMeshCollider: 0101
+  CreateRigidbody: "\x01\x01"
+  CreateMeshCollider: "\x01\x01"
   Physics: 0200000002000000
-  Inherit: 0000
+  Inherit: 
+  _meshRenderer: {fileID: 0}
+  _skinnedMeshRenderer: {fileID: 0}
 --- !u!1001 &1000668504
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6224,7 +6318,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!136 &1004829715
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6504,7 +6602,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!136 &1100708885
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6578,7 +6680,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!65 &1106093865
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6937,7 +7043,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!1001 &1170007952
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7356,7 +7466,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!136 &1188222422
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7430,7 +7544,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!136 &1215484792
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7999,7 +8117,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!65 &1311549323
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8449,7 +8571,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!65 &1336026042
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8675,7 +8801,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!65 &1379962718
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8929,7 +9059,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!1 &1398941619 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3953383491542529027, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
@@ -8982,10 +9116,12 @@ MonoBehaviour:
   DynamicRagdoll: {fileID: 0}
   Animator: {fileID: 0}
   GroupBehaviours: []
-  CreateRigidbody: 0101
-  CreateMeshCollider: 0101
+  CreateRigidbody: "\x01\x01"
+  CreateMeshCollider: "\x01\x01"
   Physics: 0200000002000000
-  Inherit: 0000
+  Inherit: 
+  _meshRenderer: {fileID: 0}
+  _skinnedMeshRenderer: {fileID: 0}
 --- !u!65 &1398941625
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9025,7 +9161,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!1 &1410347341 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8591579077575837739, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
@@ -9236,7 +9376,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!136 &1455810555
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9557,10 +9701,12 @@ MonoBehaviour:
   DynamicRagdoll: {fileID: 0}
   Animator: {fileID: 0}
   GroupBehaviours: []
-  CreateRigidbody: 0101
-  CreateMeshCollider: 0101
+  CreateRigidbody: "\x01\x01"
+  CreateMeshCollider: "\x01\x01"
   Physics: 0200000002000000
-  Inherit: 0000
+  Inherit: 
+  _meshRenderer: {fileID: 0}
+  _skinnedMeshRenderer: {fileID: 0}
 --- !u!1001 &1571240353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9915,7 +10061,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!65 &1626771880
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10131,7 +10281,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!136 &1655264911
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10739,7 +10893,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!1 &1776416527 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4654559225396563586, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
@@ -11163,10 +11321,12 @@ MonoBehaviour:
   DynamicRagdoll: {fileID: 0}
   Animator: {fileID: 0}
   GroupBehaviours: []
-  CreateRigidbody: 0101
-  CreateMeshCollider: 0101
+  CreateRigidbody: "\x01\x01"
+  CreateMeshCollider: "\x01\x01"
   Physics: 0200000002000000
-  Inherit: 0000
+  Inherit: 
+  _meshRenderer: {fileID: 0}
+  _skinnedMeshRenderer: {fileID: 0}
 --- !u!114 &1839864108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11204,7 +11364,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!65 &1839864110
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11494,7 +11658,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!136 &1900950471
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -11620,7 +11788,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!136 &1936495501
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -11816,7 +11988,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!1 &1952949949
 GameObject:
   m_ObjectHideFlags: 0
@@ -11949,7 +12125,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!65 &1979669136
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12023,10 +12203,12 @@ MonoBehaviour:
   DynamicRagdoll: {fileID: 0}
   Animator: {fileID: 0}
   GroupBehaviours: []
-  CreateRigidbody: 0101
-  CreateMeshCollider: 0101
+  CreateRigidbody: "\x01\x01"
+  CreateMeshCollider: "\x01\x01"
   Physics: 0200000002000000
-  Inherit: 0000
+  Inherit: 
+  _meshRenderer: {fileID: 0}
+  _skinnedMeshRenderer: {fileID: 0}
 --- !u!1001 &2019282597
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12126,10 +12308,12 @@ MonoBehaviour:
   DynamicRagdoll: {fileID: 0}
   Animator: {fileID: 0}
   GroupBehaviours: []
-  CreateRigidbody: 0101
-  CreateMeshCollider: 0101
+  CreateRigidbody: "\x01\x01"
+  CreateMeshCollider: "\x01\x01"
   Physics: 0200000002000000
-  Inherit: 0000
+  Inherit: 
+  _meshRenderer: {fileID: 0}
+  _skinnedMeshRenderer: {fileID: 0}
 --- !u!114 &2084892770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12148,7 +12332,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!1 &2091218620 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 592590989025812705, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
@@ -12172,7 +12360,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!65 &2091218623
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12395,7 +12587,11 @@ MonoBehaviour:
   Joint: {fileID: 0}
   Colliders: []
   Vertices: []
-  Color: {r: 1, g: 1, b: 1, a: 1}
+  Color:
+    r: 1
+    g: 1
+    b: 1
+    a: 1
 --- !u!136 &2121828812
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -12495,10 +12691,12 @@ MonoBehaviour:
   DynamicRagdoll: {fileID: 0}
   Animator: {fileID: 0}
   GroupBehaviours: []
-  CreateRigidbody: 0101
-  CreateMeshCollider: 0101
+  CreateRigidbody: "\x01\x01"
+  CreateMeshCollider: "\x01\x01"
   Physics: 0200000002000000
-  Inherit: 0000
+  Inherit: 
+  _meshRenderer: {fileID: 0}
+  _skinnedMeshRenderer: {fileID: 0}
 --- !u!1001 &2643490224675019125
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12553,6 +12751,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4784848787653949655, guid: 76669e078e5b7ab43bce51f67bbb082b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6905111054835064449, guid: 76669e078e5b7ab43bce51f67bbb082b, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 88532a819aae1c040be0f9988d58122d, type: 2}
+    - target: {fileID: 6905111054835064451, guid: 76669e078e5b7ab43bce51f67bbb082b, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8155393258263634234, guid: 76669e078e5b7ab43bce51f67bbb082b, type: 3}
