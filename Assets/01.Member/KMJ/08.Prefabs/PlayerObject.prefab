@@ -1447,7 +1447,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1655,17 +1655,17 @@ MonoBehaviour:
   _player: {fileID: 191485003555980099}
   _flowerCnt: 1
   movespeeds:
-  - 15
-  - 22
-  - 27
+  - 20
+  - 25
+  - 32
   initialFallingFlowerSec: 10
   _bloodFlowerUI: {fileID: 6457719098070134717}
   chargingTimeList:
-  - 1.3
-  - 1.1
-  - 0.8
+  - 0.6
   - 0.5
+  - 0.3
   - 0.2
+  - 0.1
   minusAmount: 0.35
   _soundChannel: {fileID: 11400000, guid: 4f30dfb7702d1c3499d65c98bbee00e7, type: 2}
   ScreamSound: {fileID: 11400000, guid: ea876054f62e38345b55f922c4a1cdad, type: 2}
@@ -2363,7 +2363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.52201253, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2710,7 +2710,7 @@ MonoBehaviour:
   chargeAttackSec: 1
   dashSpeed: 30
   dashDuration: 0.05
-  guidedSpeed: 15
+  guidedSpeed: 50
   guidedStopDistance: 2.5
   _camTrm: {fileID: 4062774102439310534}
   _soundChannel: {fileID: 11400000, guid: 4f30dfb7702d1c3499d65c98bbee00e7, type: 2}
@@ -4668,7 +4668,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5757,7 +5757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.52201253, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6802,7 +6802,7 @@ MonoBehaviour:
   _bloodImage: {fileID: 9134627453444062325}
   _exitButton: {fileID: 684661127488602587}
   _retryButton: {fileID: 8066528031472394973}
-  fadeSpeed: 4.3
+  fadeSpeed: 5
   FadeEndEvent:
     m_PersistentCalls:
       m_Calls:
