@@ -11,8 +11,8 @@ namespace Map
         [SerializeField] private List<int> doorEnemyCnt;
 
         private bool _isCanOpen = false;
-        private int _listCnt;
-        private int _doorCnt;
+        private int _listCnt = 0;
+        private int _doorCnt = 0;
         private int _enemyCnt = 0;
 
         private void Awake()
@@ -25,10 +25,10 @@ namespace Map
 
             Instance = this;
 
+            _isCanOpen = false;
             _doorCnt = 0;
             _listCnt = 0;
-            doorList.ForEach(door => door.SetDoor(false));
-            CanCollectEnemies();
+            doorList.ForEach(door => door.SetDoor(false));   
         }
 
         public void CanCollectEnemies()

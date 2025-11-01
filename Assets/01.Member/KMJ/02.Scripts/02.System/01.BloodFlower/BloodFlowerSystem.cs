@@ -1,8 +1,6 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using _01.Member.KMJ._02.Scripts._01.Player;
-using _01.Member.KMJ._02.Scripts._01.Player.AttackCompo;
 using Code.Core._02.Sound;
 using Code.Core.Debugs;
 using Code.Core.GameEvent;

@@ -1,12 +1,7 @@
-﻿using System;
-using System.ComponentModel;
-using _01.Member.KMJ._02.Scripts.Enemy;
-using Code.Core.Debugs;
+﻿using _01.Member.KMJ._02.Scripts.Enemy;
 using Code.Entities;
 using Code.Interfaces;
 using UnityEngine;
-using Unity.Cinemachine;
-using UnityEditor.Rendering;
 using UnityEngine.UI;
 
 namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo

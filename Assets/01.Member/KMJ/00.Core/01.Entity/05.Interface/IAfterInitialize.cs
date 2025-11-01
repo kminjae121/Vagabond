@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-
+﻿
 namespace Code.Interfaces
 {
     public interface IAfterInitialize

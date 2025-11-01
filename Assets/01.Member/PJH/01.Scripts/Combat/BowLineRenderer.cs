@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using DG.Tweening; // DOTween을 사용하기 위해 필요합니다.
+using DG.Tweening; 
 
 namespace Code.Combat
 {

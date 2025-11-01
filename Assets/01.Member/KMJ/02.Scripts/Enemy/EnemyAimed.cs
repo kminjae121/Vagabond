@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections;
-using Code.Core.Debugs;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 namespace _01.Member.KMJ._02.Scripts.Enemy
 {
