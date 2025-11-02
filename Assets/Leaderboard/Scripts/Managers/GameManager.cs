@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
     private void FindAndAssignClearZoneTrigger()
     {
         clearZoneTrigger = FindFirstObjectByType<ClearZoneTrigger>();
-        
+
         if (clearZoneTrigger != null)
         {
             clearZoneTrigger.OnClearZoneEntered += OnPlayerClearedGame;
@@ -72,35 +72,47 @@ public class GameManager : MonoBehaviour
         {
             gameStarted = false;
             float recordedTime = TimerManager.Instance.StopTimer();
+
+            // 메뉴 씬으로 로드하면 PanelManager가 자동으로 초기화됨
+            SceneManager.LoadScene("Menu");
             
-            // PanelManager 초기화 확인
-            if (PanelManager.Singleton == null)
-            {
-                Debug.LogError("PanelManager를 찾을 수 없습니다.");
-                return;
-            }
+            // 메뉴 씬이 로드된 후 패널을 열기 위해 코루틴 사용
+            StartCoroutine(ShowClearResultMenuNextFrame(recordedTime));
+        }
+    }
 
-            // leaderboards 패널 처리
-            LeaderboardsMenu leaderboardMenu = (LeaderboardsMenu)PanelManager.GetSingleton("leaderboards");
-            if (leaderboardMenu != null)
-            {
-                leaderboardMenu.RecordTimeAsync(recordedTime);
-            }
-            else
-            {
-                Debug.LogWarning("LeaderboardsMenu 패널을 찾을 수 없습니다. 패널 ID가 'leaderboards'인지 확인하세요.");
-            }
+    private IEnumerator ShowClearResultMenuNextFrame(float recordedTime)
+    {
+        yield return null;
+        yield return null;
 
-            // clearresult 패널 처리
-            ClearResultMenu clearResultMenu = (ClearResultMenu)PanelManager.GetSingleton("clearresult");
-            if (clearResultMenu != null)
-            {
-                clearResultMenu.ShowClearResult(recordedTime);
-            }
-            else
-            {
-                Debug.LogWarning("ClearResultMenu 패널을 찾을 수 없습니다. 패널 ID가 'clearresult'인지 확인하세요.");
-            }
+        // PanelManager 초기화 확인
+        if (PanelManager.Singleton == null)
+        {
+            Debug.LogError("PanelManager를 찾을 수 없습니다.");
+            yield break;
+        }
+
+        // leaderboards 패널 처리
+        LeaderboardsMenu leaderboardMenu = (LeaderboardsMenu)PanelManager.GetSingleton("leaderboards");
+        if (leaderboardMenu != null)
+        {
+            leaderboardMenu.RecordTimeAsync(recordedTime);
+        }
+        else
+        {
+            Debug.LogWarning("LeaderboardsMenu 패널을 찾을 수 없습니다.");
+        }
+
+        // clearresult 패널 처리
+        ClearResultMenu clearResultMenu = (ClearResultMenu)PanelManager.GetSingleton("clearresult");
+        if (clearResultMenu != null)
+        {
+            clearResultMenu.ShowClearResult(recordedTime);
+        }
+        else
+        {
+            Debug.LogWarning("ClearResultMenu 패널을 찾을 수 없습니다.");
         }
     }
 
