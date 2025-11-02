@@ -17305,7 +17305,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1000, y: -333}
+  m_AnchoredPosition: {x: 950, y: -333}
   m_SizeDelta: {x: 507.7054, y: 58.1112}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &907346340
@@ -17713,7 +17713,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1000, y: -601}
+  m_AnchoredPosition: {x: 950, y: -601}
   m_SizeDelta: {x: 507.7054, y: 58.1112}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &918020301
@@ -17742,8 +17742,8 @@ MonoBehaviour:
 
     "Park Ji Ho\n"
 
-    "Ahn
-    Jun Su"'
+    "Ahn Jun
+    Su"'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f53754c3df20c4145be7d2fbcb842689, type: 2}
   m_sharedMaterial: {fileID: -6952080224672751141, guid: f53754c3df20c4145be7d2fbcb842689, type: 2}
