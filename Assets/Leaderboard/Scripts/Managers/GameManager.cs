@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("ClearZoneTrigger를 찾을 수 없습니다. 씬에 ClearZoneTrigger.cs가 있는 오브젝트가 있는지 확인하세요.");
+            Debug.LogWarning("ClearZoneTrigger를 찾을 수 없습니다.");
         }
     }
 
@@ -72,47 +72,48 @@ public class GameManager : MonoBehaviour
         {
             gameStarted = false;
             float recordedTime = TimerManager.Instance.StopTimer();
-
-            // 메뉴 씬으로 로드하면 PanelManager가 자동으로 초기화됨
+            
+            // 메뉴 씬으로 로드
             SceneManager.LoadScene("Menu");
             
-            // 메뉴 씬이 로드된 후 패널을 열기 위해 코루틴 사용
-            StartCoroutine(ShowClearResultMenuNextFrame(recordedTime));
+            // 씬 로드 완료 후 UI 표시
+            StartCoroutine(ShowClearResultAfterSceneLoad(recordedTime));
         }
     }
 
-    private IEnumerator ShowClearResultMenuNextFrame(float recordedTime)
+    private IEnumerator ShowClearResultAfterSceneLoad(float recordedTime)
     {
+        // 씬이 완전히 로드될 때까지 대기
+        yield return new WaitForSeconds(0.5f);
+        
+        // PanelManager 재초기화
+        PanelManager.Singleton.ForceReinitialize();
+        
         yield return null;
         yield return null;
 
-        // PanelManager 초기화 확인
-        if (PanelManager.Singleton == null)
-        {
-            Debug.LogError("PanelManager를 찾을 수 없습니다.");
-            yield break;
-        }
-
-        // leaderboards 패널 처리
+        // leaderboards 패널에 기록 저장
         LeaderboardsMenu leaderboardMenu = (LeaderboardsMenu)PanelManager.GetSingleton("leaderboards");
         if (leaderboardMenu != null)
         {
             leaderboardMenu.RecordTimeAsync(recordedTime);
+            Debug.Log("LeaderboardsMenu 찾음");
         }
         else
         {
-            Debug.LogWarning("LeaderboardsMenu 패널을 찾을 수 없습니다.");
+            Debug.LogError("LeaderboardsMenu를 찾을 수 없습니다.");
         }
 
-        // clearresult 패널 처리
+        // clearresult 패널 표시
         ClearResultMenu clearResultMenu = (ClearResultMenu)PanelManager.GetSingleton("clearresult");
         if (clearResultMenu != null)
         {
             clearResultMenu.ShowClearResult(recordedTime);
+            Debug.Log("ClearResultMenu 찾음");
         }
         else
         {
-            Debug.LogWarning("ClearResultMenu 패널을 찾을 수 없습니다.");
+            Debug.LogError("ClearResultMenu를 찾을 수 없습니다.");
         }
     }
 

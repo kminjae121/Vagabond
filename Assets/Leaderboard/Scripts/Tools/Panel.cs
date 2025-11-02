@@ -21,12 +21,21 @@ public class Panel : MonoBehaviour
     {
         if (initialized) { return; }
         initialized = true;
+        
+        // container이 없으면 자신의 RectTransform 사용
+        if (container == null)
+        {
+            container = GetComponent<RectTransform>();
+        }
+        
         Close();
     }
 
     public virtual void Open()
     {
         if (initialized == false) { Initialize(); }
+        if (container == null) { return; }
+        
         transform.SetAsLastSibling();
         container.gameObject.SetActive(true);
         isOpen = true;
@@ -35,6 +44,8 @@ public class Panel : MonoBehaviour
     public virtual void Close()
     {
         if (initialized == false) { Initialize(); }
+        if (container == null) { return; }
+        
         container.gameObject.SetActive(false);
         isOpen = false;
     }

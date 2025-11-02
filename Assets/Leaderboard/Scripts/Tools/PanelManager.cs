@@ -36,8 +36,16 @@ public class PanelManager : MonoBehaviour
     {
         if (initialized) { return; }
         initialized = true;
+        RefreshPanels();
+    }
+
+    private void RefreshPanels()
+    {
         panels.Clear();
         canvas = FindObjectsByType<Canvas>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        
+        Debug.Log("Canvas 개수: " + canvas.Length);
+        
         if (canvas != null)
         {
             for (int i = 0; i < canvas.Length; i++)
@@ -52,11 +60,20 @@ public class PanelManager : MonoBehaviour
                             list[j].Initialize();
                             list[j].Canvas = canvas[i];
                             panels.Add(list[j].ID, list[j]);
+                            Debug.Log("패널 등록됨: " + list[j].ID);
                         }
                     }
                 }
             }
         }
+        
+        Debug.Log("총 등록된 패널: " + panels.Count);
+    }
+
+    public void ForceReinitialize()
+    {
+        initialized = false;
+        RefreshPanels();
     }
     
     private void OnDestroy()
@@ -69,11 +86,12 @@ public class PanelManager : MonoBehaviour
     
     public static Panel GetSingleton(string id)
     {
-        if (Singleton.panels.ContainsKey(id))
+        var panel = Singleton.panels.ContainsKey(id) ? Singleton.panels[id] : null;
+        if (panel == null)
         {
-            return Singleton.panels[id];
+            Debug.LogError("패널을 찾을 수 없습니다: " + id);
         }
-        return null;
+        return panel;
     }
     
     public static void Open(string id)
