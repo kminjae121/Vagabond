@@ -43,7 +43,6 @@ public class GameManager : MonoBehaviour
     private void FindAndAssignClearZoneTrigger()
     {
         clearZoneTrigger = FindFirstObjectByType<ClearZoneTrigger>();
-        UnityLogger.Log("왜 안됨");
         
         if (clearZoneTrigger != null)
         {
@@ -74,20 +73,33 @@ public class GameManager : MonoBehaviour
             gameStarted = false;
             float recordedTime = TimerManager.Instance.StopTimer();
             
+            // PanelManager 초기화 확인
+            if (PanelManager.Singleton == null)
+            {
+                Debug.LogError("PanelManager를 찾을 수 없습니다.");
+                return;
+            }
+
+            // leaderboards 패널 처리
             LeaderboardsMenu leaderboardMenu = (LeaderboardsMenu)PanelManager.GetSingleton("leaderboards");
-            
-            UnityLogger.Log(leaderboardMenu);
-            
             if (leaderboardMenu != null)
             {
                 leaderboardMenu.RecordTimeAsync(recordedTime);
             }
+            else
+            {
+                Debug.LogWarning("LeaderboardsMenu 패널을 찾을 수 없습니다. 패널 ID가 'leaderboards'인지 확인하세요.");
+            }
 
+            // clearresult 패널 처리
             ClearResultMenu clearResultMenu = (ClearResultMenu)PanelManager.GetSingleton("clearresult");
-            UnityLogger.Log(clearResultMenu);
             if (clearResultMenu != null)
             {
                 clearResultMenu.ShowClearResult(recordedTime);
+            }
+            else
+            {
+                Debug.LogWarning("ClearResultMenu 패널을 찾을 수 없습니다. 패널 ID가 'clearresult'인지 확인하세요.");
             }
         }
     }
