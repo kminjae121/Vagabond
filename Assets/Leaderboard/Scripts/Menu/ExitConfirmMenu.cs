@@ -22,7 +22,7 @@ public class ExitConfirmMenu : Panel
 
         if (confirmText != null)
         {
-            confirmText.text = "정말로 게임을 종료하시겠습니까?";
+            confirmText.text = "Are you sure you want to            the game?";
         }
 
         base.Initialize();

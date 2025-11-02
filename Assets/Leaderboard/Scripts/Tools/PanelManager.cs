@@ -27,6 +27,11 @@ public class PanelManager : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     private void Initialize()
     {
         if (initialized) { return; }

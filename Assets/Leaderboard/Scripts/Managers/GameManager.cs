@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -46,7 +47,7 @@ public class GameManager : MonoBehaviour
             clearZoneTrigger.OnClearZoneEntered += OnPlayerClearedGame;
         }
     }
-    
+
     public void StartGame()
     {
         if (!gameStarted)
@@ -56,17 +57,24 @@ public class GameManager : MonoBehaviour
             Debug.Log("게임 시작됨!");
         }
     }
-    
+
     private void OnPlayerClearedGame()
     {
         if (gameStarted)
         {
             gameStarted = false;
             float recordedTime = TimerManager.Instance.StopTimer();
+            
             LeaderboardsMenu leaderboardMenu = (LeaderboardsMenu)PanelManager.GetSingleton("leaderboards");
             if (leaderboardMenu != null)
             {
                 leaderboardMenu.RecordTimeAsync(recordedTime);
+            }
+
+            ClearResultMenu clearResultMenu = (ClearResultMenu)PanelManager.GetSingleton("clearresult");
+            if (clearResultMenu != null)
+            {
+                clearResultMenu.ShowClearResult(recordedTime);
             }
         }
     }

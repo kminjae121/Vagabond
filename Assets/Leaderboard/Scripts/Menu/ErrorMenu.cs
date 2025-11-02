@@ -57,7 +57,7 @@ public class ErrorMenu : Panel
                 MenuManager.Singleton.StartClientService();
                 break;
             case Action.SignIn:
-                MenuManager.Singleton.SignInAnonymouslyAsync();
+                MenuManager.Singleton.StartClientService();
                 break;
             case Action.OpenAuthMenu:
                 PanelManager.CloseAll();

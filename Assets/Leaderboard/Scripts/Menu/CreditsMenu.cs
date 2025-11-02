@@ -23,17 +23,10 @@ public class CreditsMenu : Panel
 
         if (creditsText != null)
         {
-            creditsText.text = "=== CREDITS ===\n\n" +
-                               "Game Design\n" +
-                               "Development Team\n\n" +
-                               "Art & Animation\n" +
-                               "Art Team\n\n" +
-                               "Audio\n" +
-                               "Sound Designer\n\n" +
-                               "Special Thanks\n" +
-                               "All Players\n\n" +
-                               "© 2025 Game Studio\n" +
-                               "All Rights Reserved";
+            creditsText.text = "Kim Min Jea\n" +
+                               "Kim Dong Hyun\n" +
+                               "Park Ji Ho\n" +
+                               "Ahn Jun Su";
         }
 
         base.Initialize();
