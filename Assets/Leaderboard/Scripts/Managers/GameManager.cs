@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        // 맵 씬에 진입했을 때 UI 패널 모두 Close
+        PanelManager.CloseAll();
         FindAndAssignClearZoneTrigger();
     }
 
@@ -91,6 +93,9 @@ public class GameManager : MonoBehaviour
         
         yield return null;
         yield return null;
+
+        // 모든 패널 닫기
+        PanelManager.CloseAll();
 
         // leaderboards 패널에 기록 저장
         LeaderboardsMenu leaderboardMenu = (LeaderboardsMenu)PanelManager.GetSingleton("leaderboards");
