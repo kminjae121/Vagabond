@@ -16,9 +16,13 @@ public class LeaderboardsMenu : Panel
     [SerializeField] private Button nextButton = null;
     [SerializeField] private Button prevButton = null;
     [SerializeField] private Button closeButton = null;
+    [SerializeField] private RectTransform filterButtonsContainer = null;
+    [SerializeField] private Button filterButtonPrefab = null;
 
     private int currentPage = 1;
     private int totalPages = 0;
+    private string currentLeaderboardId = "VGTimeRk";
+    private Button[] filterButtons = null;
 
     public override void Initialize()
     {
@@ -30,6 +34,7 @@ public class LeaderboardsMenu : Panel
         closeButton.onClick.AddListener(ClosePanel);
         nextButton.onClick.AddListener(NextPage);
         prevButton.onClick.AddListener(PrevPage);
+        CreateFilterButtons();
         base.Initialize();
     }
     
@@ -44,22 +49,55 @@ public class LeaderboardsMenu : Panel
         totalPages = 0;
         LoadPlayers(1);
     }
-    
+
+    private void CreateFilterButtons()
+    {
+        MapData[] allMaps = MapManager.Instance.GetAllMaps();
+        filterButtons = new Button[allMaps.Length + 1];
+
+        Button allButton = Instantiate(filterButtonPrefab, filterButtonsContainer);
+        allButton.GetComponentInChildren<TextMeshProUGUI>().text = "All";
+        allButton.onClick.AddListener(() => FilterByLeaderboard("test"));
+        filterButtons[0] = allButton;
+
+        for (int i = 0; i < allMaps.Length; i++)
+        {
+            Button mapButton = Instantiate(filterButtonPrefab, filterButtonsContainer);
+            mapButton.GetComponentInChildren<TextMeshProUGUI>().text = allMaps[i].mapName;
+            string leaderboardId = allMaps[i].leaderboardId;
+            mapButton.onClick.AddListener(() => FilterByLeaderboard(leaderboardId));
+            filterButtons[i + 1] = mapButton;
+        }
+    }
+
+    private void FilterByLeaderboard(string leaderboardId)
+    {
+        currentLeaderboardId = leaderboardId;
+        currentPage = 1;
+        totalPages = 0;
+        pageText.text = "-";
+        nextButton.interactable = false;
+        prevButton.interactable = false;
+        ClearPlayersList();
+        LoadPlayers(1);
+    }
+
     public async void RecordTimeAsync(float elapsedTime)
     {
         try
         {
-            // 시간을 점수로 변환 (낮은 점수가 빠른 시간)
-            // 예: 1분 30초 = 90.5초 → 이를 점수로 저장
-            long timeScore = (long)(elapsedTime * 1000f); // 밀리초 단위로 저장
+            MapData selectedMap = MapManager.Instance.GetSelectedMap();
+            string leaderboardId = selectedMap != null ? selectedMap.leaderboardId : "VGTimeRk";
             
-            var playerEntry = await LeaderboardsService.Instance.AddPlayerScoreAsync("test", timeScore);
-            Debug.Log($"리더보드에 기록됨: {TimerManager.FormatTime(elapsedTime)}");
+            long timeScore = (long)(elapsedTime * 1000f);
+            
+            var playerEntry = await LeaderboardsService.Instance.AddPlayerScoreAsync(leaderboardId, timeScore);
+            Debug.Log("리더보드에 기록됨: " + TimerManager.FormatTime(elapsedTime));
             LoadPlayers(currentPage);
         }
         catch (Exception exception)
         {
-            Debug.Log($"리더보드 기록 실패: {exception.Message}");
+            Debug.Log("리더보드 기록 실패: " + exception.Message);
         }
     }
 
@@ -72,7 +110,7 @@ public class LeaderboardsMenu : Panel
             GetScoresOptions options = new GetScoresOptions();
             options.Offset = (page - 1) * playersPerPage;
             options.Limit = playersPerPage;
-            var scores = await LeaderboardsService.Instance.GetScoresAsync("VGTimeRk", options);
+            var scores = await LeaderboardsService.Instance.GetScoresAsync(currentLeaderboardId, options);
             ClearPlayersList();
             for (int i = 0; i < scores.Results.Count; i++)
             {
@@ -84,7 +122,7 @@ public class LeaderboardsMenu : Panel
         }
         catch (Exception exception)
         {
-            Debug.Log($"플레이어 로드 실패: {exception.Message}");
+            Debug.Log("플레이어 로드 실패: " + exception.Message);
         }
         pageText.text = currentPage.ToString() + "/" + totalPages.ToString();
         nextButton.interactable = currentPage < totalPages && totalPages > 1;

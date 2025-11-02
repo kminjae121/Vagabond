@@ -26,6 +26,11 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     private void Initialize()
     {
         if (initialized) { return; }
@@ -40,7 +45,7 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    private void Awake()
+    private void Start()
     {
         Application.runInBackground = true;
         StartClientService();
@@ -70,23 +75,6 @@ public class MenuManager : MonoBehaviour
         catch (Exception exception)
         {
             ShowError(ErrorMenu.Action.StartService, "Failed to connect to the network.", "Retry");
-        }
-    }
-
-    public async void SignInAnonymouslyAsync()
-    {
-        PanelManager.Open("loading");
-        try
-        {
-            await AuthenticationService.Instance.SignInAnonymouslyAsync();
-        }
-        catch (AuthenticationException exception)
-        {
-            ShowError(ErrorMenu.Action.OpenAuthMenu, "Failed to sign in.", "OK");
-        }
-        catch (RequestFailedException exception)
-        {
-            ShowError(ErrorMenu.Action.SignIn, "Failed to connect to the network.", "Retry");
         }
     }
     
@@ -147,7 +135,7 @@ public class MenuManager : MonoBehaviour
         
         AuthenticationService.Instance.Expired += () =>
         {
-            SignInAnonymouslyAsync();
+            SignInWithUsernameAndPasswordAsync("", "");
         };
     }
     
@@ -167,6 +155,7 @@ public class MenuManager : MonoBehaviour
                 await AuthenticationService.Instance.UpdatePlayerNameAsync("Player");
             }
             PanelManager.CloseAll();
+            GameState.Instance.SetState(GameState.State.Menu);
             PanelManager.Open("main");
         }
         catch

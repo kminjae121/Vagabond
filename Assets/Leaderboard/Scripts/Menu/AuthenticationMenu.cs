@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Text.RegularExpressions;
 
 public class AuthenticationMenu : Panel
 {
@@ -11,7 +12,6 @@ public class AuthenticationMenu : Panel
     [SerializeField] private TMP_InputField passwordInput = null;
     [SerializeField] private Button signinButton = null;
     [SerializeField] private Button signupButton = null;
-    [SerializeField] private Button anonymousButton = null;
 
     public override void Initialize()
     {
@@ -19,9 +19,21 @@ public class AuthenticationMenu : Panel
         {
             return;
         }
-        anonymousButton.onClick.AddListener(AnonymousSignIn);
         signinButton.onClick.AddListener(SignIn);
         signupButton.onClick.AddListener(SignUp);
+        
+        if (usernameInput != null)
+        {
+            usernameInput.onValueChanged.AddListener(OnUsernameChanged);
+            usernameInput.characterLimit = 10;
+        }
+
+        if (passwordInput != null)
+        {
+            passwordInput.onValueChanged.AddListener(OnPasswordChanged);
+            passwordInput.characterLimit = 20;
+        }
+        
         base.Initialize();
     }
 
@@ -30,11 +42,6 @@ public class AuthenticationMenu : Panel
         usernameInput.text = "";
         passwordInput.text = "";
         base.Open();
-    }
-
-    private void AnonymousSignIn()
-    {
-        MenuManager.Singleton.SignInAnonymouslyAsync();
     }
 
     private void SignIn()
@@ -53,50 +60,85 @@ public class AuthenticationMenu : Panel
         string pass = passwordInput.text.Trim();
         if (string.IsNullOrEmpty(user) == false && string.IsNullOrEmpty(pass) == false)
         {
-            if (IsPasswordValid(pass))
+            if (IsUsernameValid(user))
             {
-                MenuManager.Singleton.SignUpWithUsernameAndPasswordAsync(user, pass);
+                if (IsPasswordValid(pass))
+                {
+                    MenuManager.Singleton.SignUpWithUsernameAndPasswordAsync(user, pass);
+                }
+                else
+                {
+                    ErrorMenu panel = (ErrorMenu)PanelManager.GetSingleton("error");
+                    panel.Open(ErrorMenu.Action.None, "Password must contain at least 1 letter and 1 number. Can include special characters (!@#$%^). Length: 8-20 characters.", "OK");
+                }
             }
             else
             {
                 ErrorMenu panel = (ErrorMenu)PanelManager.GetSingleton("error");
-                panel.Open(ErrorMenu.Action.None, "Password does not match requirements. Insert at least 1 uppercase, 1 lowercase, 1 digit and 1 symbol. With minimum 8 and a maximum of 30 characters.", "OK");
+                panel.Open(ErrorMenu.Action.None, "Username can only contain letters, numbers, and underscores (_). Length: 2-10 characters.", "OK");
             }
         }
+    }
+
+    private void OnUsernameChanged(string value)
+    {
+        string filteredValue = FilterUsername(value);
+        if (filteredValue != value)
+        {
+            usernameInput.text = filteredValue;
+        }
+    }
+
+    private void OnPasswordChanged(string value)
+    {
+        string filteredValue = FilterPassword(value);
+        if (filteredValue != value)
+        {
+            passwordInput.text = filteredValue;
+        }
+    }
+
+    private string FilterUsername(string username)
+    {
+        return Regex.Replace(username, "[^a-zA-Z0-9_]", "");
+    }
+
+    private string FilterPassword(string password)
+    {
+        return Regex.Replace(password, "[^a-zA-Z0-9!@#$%^]", "");
+    }
+
+    private bool IsUsernameValid(string username)
+    {
+        if (username.Length < 2 || username.Length > 10)
+        {
+            return false;
+        }
+        return Regex.IsMatch(username, "^[a-zA-Z0-9_]+$");
     }
     
     private bool IsPasswordValid(string password)
     {
-        if (password.Length < 8 || password.Length > 30)
+        if (password.Length < 8 || password.Length > 20)
         {
             return false;
         }
         
-        bool hasUppercase = false;
-        bool hasLowercase = false;
+        bool hasLetter = false;
         bool hasDigit = false;
-        bool hasSymbol = false;
 
         foreach (char c in password)
         {
-            if (char.IsUpper(c))
+            if (char.IsLetter(c))
             {
-                hasUppercase = true;
-            }
-            else if (char.IsLower(c))
-            {
-                hasLowercase = true;
+                hasLetter = true;
             }
             else if (char.IsDigit(c))
             {
                 hasDigit = true;
             }
-            else if (!char.IsLetterOrDigit(c))
-            {
-                hasSymbol = true;
-            }
         }
-        return hasUppercase && hasLowercase && hasDigit && hasSymbol;
+        return hasLetter && hasDigit;
     }
     
 }

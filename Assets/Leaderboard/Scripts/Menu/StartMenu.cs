@@ -35,7 +35,7 @@ public class StartMenu : Panel
         PanelManager.CloseAll();
         if (AuthenticationService.Instance.SessionTokenExists)
         {
-            GameManager.Instance.StartGame();
+            GameState.Instance.SetState(GameState.State.Menu);
             PanelManager.Open("main");
         }
         else
