@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Code.Core.Debugs;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -42,10 +43,12 @@ public class GameManager : MonoBehaviour
     private void FindAndAssignClearZoneTrigger()
     {
         clearZoneTrigger = FindFirstObjectByType<ClearZoneTrigger>();
+        UnityLogger.Log("왜 안됨");
         
         if (clearZoneTrigger != null)
         {
             clearZoneTrigger.OnClearZoneEntered += OnPlayerClearedGame;
+            StartGame();
             Debug.Log("ClearZoneTrigger 자동 할당됨");
         }
         else
@@ -72,12 +75,16 @@ public class GameManager : MonoBehaviour
             float recordedTime = TimerManager.Instance.StopTimer();
             
             LeaderboardsMenu leaderboardMenu = (LeaderboardsMenu)PanelManager.GetSingleton("leaderboards");
+            
+            UnityLogger.Log(leaderboardMenu);
+            
             if (leaderboardMenu != null)
             {
                 leaderboardMenu.RecordTimeAsync(recordedTime);
             }
 
             ClearResultMenu clearResultMenu = (ClearResultMenu)PanelManager.GetSingleton("clearresult");
+            UnityLogger.Log(clearResultMenu);
             if (clearResultMenu != null)
             {
                 clearResultMenu.ShowClearResult(recordedTime);
