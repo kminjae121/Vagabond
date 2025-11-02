@@ -4750,6 +4750,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: Archer Enemy (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[0].x
+      value: 325.96188
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[0].y
+      value: 52.879322
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[0].z
+      value: 529.2727
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[1].x
+      value: 325.85535
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[1].y
+      value: 52.931473
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[1].z
+      value: 530.768
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[2].x
+      value: 325.74167
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[2].y
+      value: 52.987103
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[2].z
+      value: 532.36304
+      objectReference: {fileID: 0}
     - target: {fileID: 7194159019588466848, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 324.2508
@@ -15109,6 +15145,42 @@ PrefabInstance:
     - target: {fileID: 108305060461687567, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
       propertyPath: m_Name
       value: Archer Enemy (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[0].x
+      value: -24.27723
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[0].y
+      value: 13.199322
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[0].z
+      value: 538.92487
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[1].x
+      value: -24.383793
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[1].y
+      value: 13.251475
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[1].z
+      value: 540.42017
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[2].x
+      value: -24.49746
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[2].y
+      value: 13.307105
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[2].z
+      value: 542.0152
       objectReference: {fileID: 0}
     - target: {fileID: 7194159019588466848, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -33856,6 +33928,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: Archer Enemy (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[0].x
+      value: -19.030838
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[0].y
+      value: 13.699322
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[0].z
+      value: 529.3792
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[1].x
+      value: -19.137402
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[1].y
+      value: 13.751475
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[1].z
+      value: 530.8745
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[2].x
+      value: -19.251068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[2].y
+      value: 13.807105
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[2].z
+      value: 532.46954
+      objectReference: {fileID: 0}
     - target: {fileID: 7194159019588466848, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -20.741943
@@ -47383,6 +47491,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1023383511}
     m_Modifications:
+    - target: {fileID: 43551113749239664, guid: c7128ff1b0a2bf841a852dbb77973070, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 529286338792006625, guid: c7128ff1b0a2bf841a852dbb77973070, type: 3}
       propertyPath: characterMovement
       value: 
@@ -47466,6 +47578,10 @@ PrefabInstance:
     - target: {fileID: 1521457149838980892, guid: c7128ff1b0a2bf841a852dbb77973070, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461461914160874126, guid: c7128ff1b0a2bf841a852dbb77973070, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5505312696642005461, guid: c7128ff1b0a2bf841a852dbb77973070, type: 3}
       propertyPath: m_Name
@@ -64151,6 +64267,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: Archer Enemy (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[0].x
+      value: 335.0376
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[0].y
+      value: 39.379322
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[0].z
+      value: 556.55634
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[1].x
+      value: 334.93106
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[1].y
+      value: 39.431473
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[1].z
+      value: 558.05164
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[2].x
+      value: 334.81738
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[2].y
+      value: 39.487103
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[2].z
+      value: 559.64667
+      objectReference: {fileID: 0}
     - target: {fileID: 7194159019588466848, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 333.3265
@@ -72255,6 +72407,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: Archer Enemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[0].x
+      value: -7.7001457
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[0].y
+      value: 12.32752
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[0].z
+      value: 196.9645
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[1].x
+      value: -7.8067093
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[1].y
+      value: 12.379674
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[1].z
+      value: 198.4598
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[2].x
+      value: -7.920377
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[2].y
+      value: 12.435304
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[2].z
+      value: 200.05478
+      objectReference: {fileID: 0}
     - target: {fileID: 7194159019588466848, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.411251
@@ -76200,9 +76388,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1395747434}
-  - component: {fileID: 1395747433}
-  - component: {fileID: 1395747432}
   - component: {fileID: 1395747431}
+  - component: {fileID: 1395747435}
   m_Layer: 0
   m_Name: a
   m_TagString: Untagged
@@ -76225,65 +76412,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1395747432
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1395747430}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1395747433
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1395747430}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &1395747434
 Transform:
   m_ObjectHideFlags: 0
@@ -76293,12 +76427,24 @@ Transform:
   m_GameObject: {fileID: 1395747430}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 322.22943, y: 54.6, z: 519.2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 314.5104, y: 54.6, z: 491.7213}
+  m_LocalScale: {x: 101.58, y: 100, z: 55.446144}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1395747435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1395747430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d14df61298624d2fa807ea6dc3720405, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1396242127 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7972750036960268349, guid: 3c3efdb128074cc4294c1f6d1bd53e08, type: 3}
@@ -159599,6 +159745,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: Archer Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[0].x
+      value: 1.6046302
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[0].y
+      value: 12.327518
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[0].z
+      value: 194.95566
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[1].x
+      value: 1.4980664
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[1].y
+      value: 12.379672
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[1].z
+      value: 196.45096
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[2].x
+      value: 1.3843985
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[2].y
+      value: 12.435302
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[2].z
+      value: 198.04594
+      objectReference: {fileID: 0}
     - target: {fileID: 7194159019588466848, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.10647535
@@ -163298,6 +163480,42 @@ PrefabInstance:
     - target: {fileID: 108305060461687567, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
       propertyPath: m_Name
       value: Archer Enemy (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[0].x
+      value: 299.06274
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[0].y
+      value: 33.869324
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[0].z
+      value: 602.48145
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[1].x
+      value: 298.9562
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[1].y
+      value: 33.921474
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[1].z
+      value: 603.97675
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[2].x
+      value: 298.84253
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[2].y
+      value: 33.977104
+      objectReference: {fileID: 0}
+    - target: {fileID: 6618524337677515732, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
+      propertyPath: m_Positions.Array.data[2].z
+      value: 605.5718
       objectReference: {fileID: 0}
     - target: {fileID: 7194159019588466848, guid: 6dcead7ce80a89348958add6bab0bc4c, type: 3}
       propertyPath: m_LocalPosition.x
