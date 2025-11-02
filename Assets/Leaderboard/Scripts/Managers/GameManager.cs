@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private Collider clearPoint = null;
     private ClearZoneTrigger clearZoneTrigger = null;
     private bool gameStarted = false;
 
@@ -37,14 +36,21 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        if (clearPoint != null)
+        FindAndAssignClearZoneTrigger();
+    }
+
+    private void FindAndAssignClearZoneTrigger()
+    {
+        clearZoneTrigger = FindFirstObjectByType<ClearZoneTrigger>();
+        
+        if (clearZoneTrigger != null)
         {
-            clearZoneTrigger = clearPoint.GetComponent<ClearZoneTrigger>();
-            if (clearZoneTrigger == null)
-            {
-                clearZoneTrigger = clearPoint.gameObject.AddComponent<ClearZoneTrigger>();
-            }
             clearZoneTrigger.OnClearZoneEntered += OnPlayerClearedGame;
+            Debug.Log("ClearZoneTrigger 자동 할당됨");
+        }
+        else
+        {
+            Debug.LogWarning("ClearZoneTrigger를 찾을 수 없습니다. 씬에 ClearZoneTrigger.cs가 있는 오브젝트가 있는지 확인하세요.");
         }
     }
 
@@ -76,20 +82,6 @@ public class GameManager : MonoBehaviour
             {
                 clearResultMenu.ShowClearResult(recordedTime);
             }
-        }
-    }
-
-    public void SetClearPoint(Collider clearPointCollider)
-    {
-        clearPoint = clearPointCollider;
-        if (clearPoint != null)
-        {
-            clearZoneTrigger = clearPoint.GetComponent<ClearZoneTrigger>();
-            if (clearZoneTrigger == null)
-            {
-                clearZoneTrigger = clearPoint.gameObject.AddComponent<ClearZoneTrigger>();
-            }
-            clearZoneTrigger.OnClearZoneEntered += OnPlayerClearedGame;
         }
     }
 
