@@ -87,7 +87,7 @@ namespace _01.Member.KDH._01.Scripts.Physics
         {
             if (characterMovement == null)
             {
-                Debug.LogError("[BhopMechanicsUI] CharacterMovement가 할당되지 않았습니다.");
+               // Debug.LogError("[BhopMechanicsUI] CharacterMovement가 할당되지 않았습니다.");
             }
         }
         
