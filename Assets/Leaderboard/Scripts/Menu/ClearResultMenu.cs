@@ -44,6 +44,13 @@ public class ClearResultMenu : Panel
 
     public void ShowClearResult(float elapsedTime)
     {
+        // Canvas 활성화
+        Canvas uiCanvas = FindFirstObjectByType<Canvas>();
+        if (uiCanvas != null)
+        {
+            uiCanvas.gameObject.SetActive(true);
+        }
+
         MapData selectedMap = MapManager.Instance.GetSelectedMap();
 
         if (mapNameText != null && selectedMap != null)
@@ -123,6 +130,14 @@ public class ClearResultMenu : Panel
     private void RestartGame()
     {
         Close();
+        
+        // Canvas 비활성화
+        Canvas uiCanvas = FindFirstObjectByType<Canvas>();
+        if (uiCanvas != null)
+        {
+            uiCanvas.gameObject.SetActive(false);
+        }
+        
         TimerManager.Instance.ResetTimer();
         GameState.Instance.SetState(GameState.State.InGame);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
