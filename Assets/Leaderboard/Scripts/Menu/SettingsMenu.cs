@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class SettingsMenu : Panel
 {
     [SerializeField] private Button closeButton = null;
-    [SerializeField] private AudioMixer audioMixer;
+    [SerializeField] private AudioMixer audioMixer = null;
     [SerializeField] private Toggle timerDisplayToggle = null;
 
     [SerializeField] private string masterGroupName;
@@ -31,6 +31,11 @@ public class SettingsMenu : Panel
         if (timerDisplayToggle != null)
         {
             timerDisplayToggle.onValueChanged.AddListener(OnTimerDisplayToggled);
+            TimerDisplay timerDisplay = FindFirstObjectByType<TimerDisplay>();
+            if (timerDisplay != null)
+            {
+                timerDisplayToggle.isOn = timerDisplay.IsDisplayActive();
+            }
         }
         
         base.Initialize();
@@ -88,7 +93,7 @@ public class SettingsMenu : Panel
         TimerDisplay timerDisplay = FindFirstObjectByType<TimerDisplay>();
         if (timerDisplay != null)
         {
-            timerDisplay.gameObject.SetActive(isOn);
+            timerDisplay.SetDisplayActive(isOn);
         }
     }
 }

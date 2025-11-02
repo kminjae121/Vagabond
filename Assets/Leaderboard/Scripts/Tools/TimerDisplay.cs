@@ -6,38 +6,35 @@ using TMPro;
 public class TimerDisplay : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI timerText = null;
+    private bool isDisplayActive = true;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private void Start()
+    {
+        isDisplayActive = true;
+    }
 
     private void Update()
     {
-        if (timerText != null)
+        if (isDisplayActive && TimerManager.Instance != null)
         {
             float currentTime = TimerManager.Instance.GetElapsedTime();
             timerText.text = TimerManager.FormatTime(currentTime);
-            
-            // 타이머가 실행 중이 아니면 불투명도 감소
-            if (!TimerManager.Instance.IsRunning())
-            {
-                Color color = timerText.color;
-                color.a = 0.5f;
-                timerText.color = color;
-            }
-            else
-            {
-                Color color = timerText.color;
-                color.a = 1f;
-                timerText.color = color;
-            }
         }
     }
-    
-    public void ResetDisplay()
+
+    public void SetDisplayActive(bool active)
     {
-        if (timerText != null)
-        {
-            timerText.text = "00:00.000";
-            Color color = timerText.color;
-            color.a = 0.5f;
-            timerText.color = color;
-        }
+        isDisplayActive = active;
+        gameObject.SetActive(active);
+    }
+
+    public bool IsDisplayActive()
+    {
+        return isDisplayActive;
     }
 }
