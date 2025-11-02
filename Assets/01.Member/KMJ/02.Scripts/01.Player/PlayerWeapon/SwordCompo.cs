@@ -83,7 +83,7 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.PlayerWeapon
                             _owner);
 
                         StartCoroutine(TimeScale());
-                        player.aimmingComponent.SetUIActive(false);
+                        //player.aimmingComponent.SetUIActive(false);
                         player.bloodSystemCompo.AddFlower((int)bloodGageAmount);
                         player.aimmingComponent.SetEnemyNull();
                     }

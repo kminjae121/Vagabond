@@ -21,7 +21,7 @@ public class LeaderboardsMenu : Panel
 
     private int currentPage = 1;
     private int totalPages = 0;
-    private string currentLeaderboardId = "VGTimeRk";
+    private string currentLeaderboardId = "Vagabond";
     private Button[] filterButtons = null;
 
     public override void Initialize()
@@ -57,7 +57,7 @@ public class LeaderboardsMenu : Panel
 
         Button allButton = Instantiate(filterButtonPrefab, filterButtonsContainer);
         allButton.GetComponentInChildren<TextMeshProUGUI>().text = "All";
-        allButton.onClick.AddListener(() => FilterByLeaderboard("test"));
+        allButton.onClick.AddListener(() => FilterByLeaderboard("Vagabond"));
         filterButtons[0] = allButton;
 
         for (int i = 0; i < allMaps.Length; i++)
@@ -87,7 +87,7 @@ public class LeaderboardsMenu : Panel
         try
         {
             MapData selectedMap = MapManager.Instance.GetSelectedMap();
-            string leaderboardId = selectedMap != null ? selectedMap.leaderboardId : "VGTimeRk";
+            string leaderboardId = selectedMap != null ? selectedMap.leaderboardId : "Vagabond";
             
             long timeScore = (long)(elapsedTime * 1000f);
             

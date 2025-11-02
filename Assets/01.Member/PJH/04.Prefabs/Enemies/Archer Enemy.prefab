@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4351715856375572885}
@@ -559,9 +559,9 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: -0.30234566, y: 0.6396611, z: -0.7536496}
-  - {x: -0.3556275, y: 0.6657376, z: -0.0059991563}
-  - {x: -0.4124615, y: 0.6935526, z: 0.7914947}
+  - {x: -0.6046913, y: 1.2793221, z: -1.5072992}
+  - {x: -0.711255, y: 1.3314753, z: -0.011998313}
+  - {x: -0.824923, y: 1.3871052, z: 1.5829895}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1

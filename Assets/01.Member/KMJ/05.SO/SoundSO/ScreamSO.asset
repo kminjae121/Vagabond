@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ScreamSO
   m_EditorClassIdentifier: 
   audioType: 0
-  clip: {fileID: 8300000, guid: 9f5362380f1f69c468df3f743947d31d, type: 3}
+  clip: {fileID: 8300000, guid: a823ac035027100419ce3bf1d5aa7469, type: 3}
   loop: 0
   randomizePitch: 0
   randomPitchModifier: 0.1
