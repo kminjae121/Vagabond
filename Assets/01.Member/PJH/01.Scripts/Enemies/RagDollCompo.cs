@@ -33,12 +33,30 @@ namespace Code.Enemies
         
         public void SetRagDollActive(bool isActive)
         {
+            if (isActive)
+            {
+                ResetRagDollVelocity();
+            }
+            
             _partList.ForEach(part => part.SetRagDollActive(isActive));
         }
         
         public void SetColliderActive(bool isActive)
         {
             _partList.ForEach(part => part.SetCollider(isActive));
+        }
+
+        public void ResetRagDollVelocity()
+        {
+            foreach (var part in _partList)
+            {
+                var rigidBody = part.GetComponent<Rigidbody>();
+                if (rigidBody != null)
+                {
+                    rigidBody.linearVelocity = Vector3.zero;
+                    rigidBody.angularVelocity = Vector3.zero;
+                }
+            }
         }
 
         public void AddForceToRagDoll(Vector3 force, Vector3 position)

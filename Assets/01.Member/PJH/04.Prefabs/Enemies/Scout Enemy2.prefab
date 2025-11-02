@@ -209,6 +209,38 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2194105685134278127, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: OnDeathEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2194105685134278127, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: OnDeathEvent.m_PersistentCalls.m_Calls.Array.data[8].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2194105685134278127, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: OnDeathEvent.m_PersistentCalls.m_Calls.Array.data[8].m_Target
+      value: 
+      objectReference: {fileID: 4804826732590342503}
+    - target: {fileID: 2194105685134278127, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: OnDeathEvent.m_PersistentCalls.m_Calls.Array.data[8].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2194105685134278127, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: OnDeathEvent.m_PersistentCalls.m_Calls.Array.data[8].m_MethodName
+      value: CreateFeedback
+      objectReference: {fileID: 0}
+    - target: {fileID: 2194105685134278127, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: OnDeathEvent.m_PersistentCalls.m_Calls.Array.data[8].m_TargetAssemblyTypeName
+      value: Code.Code.Feedbacks.DisintegrateFeedback, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2194105685134278127, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: OnDeathEvent.m_PersistentCalls.m_Calls.Array.data[8].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2194105685134278127, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+      propertyPath: OnDeathEvent.m_PersistentCalls.m_Calls.Array.data[8].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4654559225396563586, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
       propertyPath: m_Name
       value: Scout Enemy2
@@ -246,6 +278,17 @@ PrefabInstance:
       addedObject: {fileID: 4941467846801730013}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+--- !u!114 &4804826732590342503 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4617793106520553387, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}
+  m_PrefabInstance: {fileID: 196924909987731148}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5aba15a97d047e1b83592b3233b1228, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6736228591861147894 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6899648904246607418, guid: 3aaf79f5347dbf14796214a99bc72b5f, type: 3}

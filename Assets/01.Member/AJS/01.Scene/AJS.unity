@@ -47648,6 +47648,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BhopMechanics
       objectReference: {fileID: 0}
+    - target: {fileID: 5505312696642005461, guid: c7128ff1b0a2bf841a852dbb77973070, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

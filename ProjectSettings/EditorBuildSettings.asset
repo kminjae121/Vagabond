@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/01.Member/KMJ/01.Scene/KMJ.unity
     guid: 7bb9b251148b68f46b7adb60774122d3
+  - enabled: 1
+    path: Assets/Leaderboard/Scenes/TestUGS.unity
+    guid: 10afce66b72133345a5a15e0ef59b6e4
   - enabled: 1
     path: Assets/01.Member/AJS/01.Scene/AJS.unity
     guid: 8ec943a77c163424e97927f146c5b81c
