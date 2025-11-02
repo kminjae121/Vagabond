@@ -65,12 +65,8 @@ public class MapManager : MonoBehaviour
         currentSelectedMap = map;
         GameState.Instance.SetState(GameState.State.InGame);
         
-        // 씬 이동 전에 Canvas 비활성화
-        Canvas uiCanvas = FindFirstObjectByType<Canvas>();
-        if (uiCanvas != null)
-        {
-            uiCanvas.gameObject.SetActive(false);
-        }
+        // 맵 씬 이동 전에만 UI 비활성화
+        CanvasManager.HideUI();
         
         UnityEngine.SceneManagement.SceneManager.LoadScene(map.sceneName);
     }

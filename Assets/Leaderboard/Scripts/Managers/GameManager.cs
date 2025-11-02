@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        // 맵 씬에 진입했을 때 모든 UI 패널만 Close (Canvas는 유지)
+        // 맵 씬에 진입했을 때 모든 UI 패널만 Close (Canvas 유지)
         HideAllPanels();
         FindAndAssignClearZoneTrigger();
     }
@@ -105,6 +105,9 @@ public class GameManager : MonoBehaviour
         // PanelManager 재초기화
         PanelManager.Singleton.ForceReinitialize();
         
+        // UI 활성화
+        CanvasManager.ShowUI();
+        
         yield return null;
         yield return null;
 
@@ -118,10 +121,6 @@ public class GameManager : MonoBehaviour
             leaderboardMenu.RecordTimeAsync(recordedTime);
             Debug.Log("LeaderboardsMenu 찾음");
         }
-        else
-        {
-            Debug.LogError("LeaderboardsMenu를 찾을 수 없습니다.");
-        }
 
         // clearresult 패널 표시
         ClearResultMenu clearResultMenu = (ClearResultMenu)PanelManager.GetSingleton("clearresult");
@@ -129,10 +128,6 @@ public class GameManager : MonoBehaviour
         {
             clearResultMenu.ShowClearResult(recordedTime);
             Debug.Log("ClearResultMenu 찾음");
-        }
-        else
-        {
-            Debug.LogError("ClearResultMenu를 찾을 수 없습니다.");
         }
     }
 
