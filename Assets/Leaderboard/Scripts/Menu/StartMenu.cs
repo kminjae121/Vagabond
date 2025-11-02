@@ -27,6 +27,13 @@ public class StartMenu : Panel
 
     public override void Open()
     {
+        // Canvas 활성화
+        Canvas uiCanvas = FindFirstObjectByType<Canvas>();
+        if (uiCanvas != null)
+        {
+            uiCanvas.gameObject.SetActive(true);
+        }
+        
         base.Open();
     }
 

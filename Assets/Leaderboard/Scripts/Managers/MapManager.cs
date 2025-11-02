@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MapManager : MonoBehaviour
 {
@@ -63,6 +64,14 @@ public class MapManager : MonoBehaviour
     {
         currentSelectedMap = map;
         GameState.Instance.SetState(GameState.State.InGame);
+        
+        // 씬 이동 전에 Canvas 비활성화
+        Canvas uiCanvas = FindFirstObjectByType<Canvas>();
+        if (uiCanvas != null)
+        {
+            uiCanvas.gameObject.SetActive(false);
+        }
+        
         UnityEngine.SceneManagement.SceneManager.LoadScene(map.sceneName);
     }
 }

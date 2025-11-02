@@ -37,9 +37,23 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        // 맵 씬에 진입했을 때 UI 패널 모두 Close
-        PanelManager.CloseAll();
+        // 맵 씬에 진입했을 때 모든 UI 패널만 Close (Canvas는 유지)
+        HideAllPanels();
         FindAndAssignClearZoneTrigger();
+    }
+
+    private void HideAllPanels()
+    {
+        PanelManager.Close("start");
+        PanelManager.Close("auth");
+        PanelManager.Close("loading");
+        PanelManager.Close("main");
+        PanelManager.Close("leaderboards");
+        PanelManager.Close("clearresult");
+        PanelManager.Close("settings");
+        PanelManager.Close("credits");
+        PanelManager.Close("exitconfirm");
+        PanelManager.Close("error");
     }
 
     private void FindAndAssignClearZoneTrigger()
@@ -95,7 +109,7 @@ public class GameManager : MonoBehaviour
         yield return null;
 
         // 모든 패널 닫기
-        PanelManager.CloseAll();
+        HideAllPanels();
 
         // leaderboards 패널에 기록 저장
         LeaderboardsMenu leaderboardMenu = (LeaderboardsMenu)PanelManager.GetSingleton("leaderboards");
