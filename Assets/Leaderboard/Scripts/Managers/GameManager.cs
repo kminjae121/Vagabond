@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
             float recordedTime = TimerManager.Instance.StopTimer();
             
             // 메뉴 씬으로 로드
-            SceneManager.LoadScene("Menu");
+            SceneManager.LoadScene("TestUGS");
             
             // 씬 로드 완료 후 UI 표시
             StartCoroutine(ShowClearResultAfterSceneLoad(recordedTime));
