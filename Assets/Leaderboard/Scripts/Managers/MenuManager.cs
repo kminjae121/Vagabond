@@ -48,6 +48,15 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         Application.runInBackground = true;
+        
+        // Canvas 활성화 (게임 시작 시 UI가 보이도록)
+        Canvas uiCanvas = FindFirstObjectByType<Canvas>();
+        if (uiCanvas != null)
+        {
+            uiCanvas.gameObject.SetActive(true);
+            Debug.Log("Canvas 활성화됨");
+        }
+        
         StartClientService();
     }
 
