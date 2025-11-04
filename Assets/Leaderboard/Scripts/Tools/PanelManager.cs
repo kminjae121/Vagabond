@@ -29,7 +29,15 @@ public class PanelManager : MonoBehaviour
 
     private void Awake()
     {
+        // 루트 오브젝트가 아니면 루트로 변경
+        if (transform.parent != null)
+        {
+            transform.SetParent(null);
+            Debug.Log("PanelManager 루트로 변경됨");
+        }
+        
         DontDestroyOnLoad(gameObject);
+        Debug.Log("PanelManager DontDestroyOnLoad 설정됨");
     }
 
     private void Initialize()
@@ -50,6 +58,8 @@ public class PanelManager : MonoBehaviour
         {
             for (int i = 0; i < canvas.Length; i++)
             {
+                Debug.Log("Canvas 발견: " + canvas[i].gameObject.name + " (Active: " + canvas[i].gameObject.activeSelf + ")");
+                
                 Panel[] list = canvas[i].gameObject.GetComponentsInChildren<Panel>(true);
                 if (list != null)
                 {
@@ -100,6 +110,10 @@ public class PanelManager : MonoBehaviour
         if (panel != null)
         {
             panel.Open();
+        }
+        else
+        {
+            Debug.LogError("Open 실패 - 패널을 찾을 수 없습니다: " + id);
         }
     }
     

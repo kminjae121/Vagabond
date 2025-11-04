@@ -134,10 +134,15 @@ public class MainMenu : Panel
     {
         if (selectedMap != null)
         {
-            MapLeaderboardMenu mapLeaderboardMenu = (MapLeaderboardMenu)PanelManager.GetSingleton("mapleaderboard");
-            if (mapLeaderboardMenu != null)
+            // LeaderboardsMenu에 맵 정보 전달
+            LeaderboardsMenu leaderboardsMenu = (LeaderboardsMenu)PanelManager.GetSingleton("leaderboards");
+            if (leaderboardsMenu != null)
             {
-                mapLeaderboardMenu.OpenForMap(selectedMap);
+                leaderboardsMenu.OpenForMap(selectedMap);
+            }
+            else
+            {
+                Debug.LogError("LeaderboardsMenu를 찾을 수 없습니다.");
             }
         }
     }

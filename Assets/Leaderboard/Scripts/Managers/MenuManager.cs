@@ -28,6 +28,11 @@ public class MenuManager : MonoBehaviour
 
     private void Awake()
     {
+        if (transform.parent != null)
+        {
+            transform.SetParent(null);
+        }
+        
         DontDestroyOnLoad(gameObject);
     }
 
@@ -48,22 +53,83 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         Application.runInBackground = true;
-        StartClientService();
+        
+        // Canvas 즉시 활성화
+        Canvas[] allCanvas = FindObjectsByType<Canvas>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        Debug.Log("Canvas 찾음: " + allCanvas.Length + "개");
+        
+        foreach (Canvas canvas in allCanvas)
+        {
+            canvas.gameObject.SetActive(true);
+            Debug.Log("Canvas 활성화: " + canvas.gameObject.name);
+        }
+        
+        // 코루틴으로 지연 실행
+        StartCoroutine(InitializeServices());
     }
 
-    public async void StartClientService()
+    private IEnumerator InitializeServices()
     {
+        yield return null;
+        yield return null;
+        
+        // PanelManager 초기화 확인
+        Debug.Log("PanelManager Singleton 접근");
+        var pm = PanelManager.Singleton;
+        Debug.Log("PanelManager 준비 완료");
+        
+        yield return null;
+        
         PanelManager.CloseAll();
         PanelManager.Open("loading");
-        try
+        
+        yield return StartCoroutine(StartClientServiceCoroutine());
+    }
+
+    // 외부에서 호출할 수 있는 public 메서드
+    public void StartClientService()
+    {
+        StartCoroutine(StartClientServiceCoroutine());
+    }
+
+    private IEnumerator StartClientServiceCoroutine()
+    {
+        // try/catch 밖에서 yield return 처리
+        bool initialized = false;
+        Exception initException = null;
+
+        // Unity Services 초기화 (try/catch 제거)
+        if (UnityServices.State != ServicesInitializationState.Initialized)
         {
-            if (UnityServices.State != ServicesInitializationState.Initialized)
+            var options = new InitializationOptions();
+            options.SetProfile("default_profile");
+            
+            var initTask = UnityServices.InitializeAsync();
+            while (!initTask.IsCompleted)
             {
-                var options = new InitializationOptions();
-                options.SetProfile("default_profile");
-                await UnityServices.InitializeAsync();
+                yield return null;
             }
             
+            if (initTask.IsFaulted)
+            {
+                initException = initTask.Exception;
+                initialized = false;
+            }
+            else
+            {
+                initialized = true;
+            }
+        }
+        else
+        {
+            initialized = true;
+        }
+
+        yield return null;
+
+        // 결과 처리
+        if (initialized)
+        {
             if (!eventsInitialized)
             {
                 SetupEvents();
@@ -71,9 +137,11 @@ public class MenuManager : MonoBehaviour
 
             PanelManager.CloseAll();
             PanelManager.Open("start");
+            Debug.Log("메뉴 표시됨");
         }
-        catch (Exception exception)
+        else
         {
+            Debug.LogError("초기화 실패: " + (initException != null ? initException.Message : "Unknown error"));
             ShowError(ErrorMenu.Action.StartService, "Failed to connect to the network.", "Retry");
         }
     }
@@ -143,7 +211,10 @@ public class MenuManager : MonoBehaviour
     {
         PanelManager.Close("loading");
         ErrorMenu panel = (ErrorMenu)PanelManager.GetSingleton("error");
-        panel.Open(action, error, button);
+        if (panel != null)
+        {
+            panel.Open(action, error, button);
+        }
     }
     
     private async void SignInConfirmAsync()

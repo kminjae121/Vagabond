@@ -6,6 +6,22 @@ public class CanvasManager : MonoBehaviour
 {
     private static Canvas mainUICanvas = null;
 
+    private void Awake()
+    {
+        // Canvas는 부모 또는 자신
+        Canvas canvas = GetComponentInParent<Canvas>();
+        if (canvas == null)
+        {
+            canvas = GetComponent<Canvas>();
+        }
+        
+        if (canvas != null)
+        {
+            mainUICanvas = canvas;
+            Debug.Log("CanvasManager 초기화 - Canvas: " + canvas.gameObject.name);
+        }
+    }
+
     public static Canvas MainUICanvas
     {
         get
@@ -15,14 +31,6 @@ public class CanvasManager : MonoBehaviour
                 mainUICanvas = FindFirstObjectByType<Canvas>();
             }
             return mainUICanvas;
-        }
-    }
-
-    private void Awake()
-    {
-        if (mainUICanvas == null)
-        {
-            mainUICanvas = GetComponent<Canvas>();
         }
     }
 
