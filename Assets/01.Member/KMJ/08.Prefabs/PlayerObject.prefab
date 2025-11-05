@@ -7351,6 +7351,10 @@ PrefabInstance:
       propertyPath: m_CullingMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13700002, guid: 8afe723514f619143a45ea089476b2cc, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 023caf8ac82f2eb4b9dbbad86a0f71e7, type: 2}
     - target: {fileID: 13700004, guid: 8afe723514f619143a45ea089476b2cc, type: 3}
       propertyPath: m_Enabled
       value: 0
