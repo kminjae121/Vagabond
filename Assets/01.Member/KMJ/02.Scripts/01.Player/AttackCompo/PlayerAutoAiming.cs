@@ -57,8 +57,8 @@ namespace _01.Member.KMJ._02.Scripts._01.Player.AttackCompo
                 }
             }
             else if (aimingObject != null)
-            {
-                if (aimingObject.TryGetComponent(out EnemyAimed aimed))
+            {                if (aimingObject.TryGetComponent(out EnemyAimed aimed))
+
                 {
                     SetUIActive(false);
                     uiImage.color = Color.white;
